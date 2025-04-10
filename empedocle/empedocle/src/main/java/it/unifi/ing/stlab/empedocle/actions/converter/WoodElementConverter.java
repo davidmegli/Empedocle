@@ -20,7 +20,7 @@ import it.unifi.ing.stlab.woodelements.model.WoodElement;
 public class WoodElementConverter implements Converter {
 	
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -30,9 +30,9 @@ public class WoodElementConverter implements Converter {
         }
 
 		lookup();
-        WoodElement wood_element = wood_elementDao.findByUuid( value );
+        WoodElement woodElement = woodElementDao.findByUuid( value );
 
-        if (wood_element == null) {
+        if (woodElement == null) {
             throw new ConverterException();
         }
 

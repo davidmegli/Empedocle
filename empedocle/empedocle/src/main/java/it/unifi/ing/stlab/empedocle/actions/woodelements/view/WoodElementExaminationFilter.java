@@ -32,7 +32,7 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 
 	private ExaminationListType selectedList;
 	
-	private Long wood_elementId;
+	private Long woodElementId;
 
 	@Inject
 	private LoggedUser loggedUser;

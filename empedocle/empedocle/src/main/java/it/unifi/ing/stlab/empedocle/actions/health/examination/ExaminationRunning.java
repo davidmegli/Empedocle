@@ -66,7 +66,7 @@ public class ExaminationRunning implements Serializable {
 	private boolean summary;
 		
 	private WoodElement lastWoodElementVersion;
-	private List<Examination> wood_elementLastExams;
+	private List<Examination> woodElementLastExams;
 
 	private List<Viewer> examReports;
 	private String selection;
@@ -116,7 +116,7 @@ public class ExaminationRunning implements Serializable {
 	private UserDao userDao;
 	
 	@EJB
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 
 	@EJB
 	private GarbageCollectorHelper garbageCollector;
@@ -168,8 +168,8 @@ public class ExaminationRunning implements Serializable {
 			
 			initLastWoodElementVersion( examination );
 
-			if(wood_elementLastExams == null){
-				wood_elementLastExams = examinationDao.findWoodElementLastExams(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
+			if(woodElementLastExams == null){
+				woodElementLastExams = examinationDao.findWoodElementLastExams(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
 			}
 
 			/*TEST*/
@@ -219,7 +219,7 @@ public class ExaminationRunning implements Serializable {
 */
 
 	public List<Examination> getWoodElementLastExams(){
-		return this.wood_elementLastExams;
+		return this.woodElementLastExams;
 	}
 
 	public void initReports( Long id ) {
@@ -244,7 +244,7 @@ public class ExaminationRunning implements Serializable {
 	//
 
 	private void initLastWoodElementVersion( Examination examination ) {
-		lastWoodElementVersion = wood_elementDao
+		lastWoodElementVersion = woodElementDao
 				.findLastVersionById( examination.getAppointment().getWoodElement().getId() );		
 	}
 
@@ -434,7 +434,7 @@ public class ExaminationRunning implements Serializable {
 
 			conversation.end();
 			
-			return "wood_element-list";
+			return "woodelement-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}

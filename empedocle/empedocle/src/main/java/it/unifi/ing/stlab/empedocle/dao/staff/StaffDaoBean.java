@@ -135,7 +135,7 @@ public class StaffDaoBean implements StaffDao {
 				.getResultList()
 				.isEmpty();
 
-		Boolean wood_elementActions = !entityManager.createQuery( 
+		Boolean woodElementActions = !entityManager.createQuery(
 				"select pa from WoodElementAction pa" 
 					+ " where pa.author = :user" )
 				.setParameter( "user", s.getUser() )
@@ -143,6 +143,6 @@ public class StaffDaoBean implements StaffDao {
 				.getResultList()
 				.isEmpty();		
 
-		return checkExaminations || checkFactActions || wood_elementActions;
+		return checkExaminations || checkFactActions || woodElementActions;
 	}
 }

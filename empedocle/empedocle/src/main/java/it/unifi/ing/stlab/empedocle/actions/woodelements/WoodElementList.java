@@ -46,7 +46,7 @@ public class WoodElementList extends Navigator {
 	private UserTransaction utx;
 	
 	@Inject 
-	protected WoodElementFilter wood_elementFilter;
+	protected WoodElementFilter woodElementFilter;
 	
 	@Inject
 	private LoggedUser loggedUser;
@@ -58,7 +58,7 @@ public class WoodElementList extends Navigator {
 	// EJB injections
 	//
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	@Inject
 	private ExaminationDao examinationDao;
@@ -79,12 +79,12 @@ public class WoodElementList extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		setNavigationStatus( wood_elementFilter );
+		setNavigationStatus( woodElementFilter );
 		refreshCurrentPage();
 
 	}
 
-	public String runDateless( Long wood_elementId){ // when starting a "recovery" appointment where a date can be chosen
+	public String runDateless( Long woodElementId){ // when starting a "recovery" appointment where a date can be chosen
 		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "

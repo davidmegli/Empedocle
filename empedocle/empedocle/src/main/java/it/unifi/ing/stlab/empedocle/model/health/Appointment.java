@@ -41,7 +41,7 @@ public class Appointment implements Persistable {
 	private String acceptanceCode;
 	private Set<Service> services;
 	private Agenda agenda;
-	private WoodElement wood_element;
+	private WoodElement woodElement;
 	private AppointmentStatus status;
 
 
@@ -151,10 +151,10 @@ public class Appointment implements Persistable {
 	@ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn( name = "wood_element_id" )
 	public WoodElement getWoodElement() {
-		return wood_element;
+		return woodElement;
 	}
 	public void setWoodElement(WoodElement pazient) {
-		this.wood_element = pazient;
+		this.woodElement = pazient;
 	}
 
 	

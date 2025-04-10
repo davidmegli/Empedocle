@@ -50,7 +50,7 @@ public class WoodElementEdit implements Serializable {
 	// EJB injections
 	//
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	@Resource
 	private UserTransaction utx;
@@ -69,20 +69,20 @@ public class WoodElementEdit implements Serializable {
 	//
 	private WoodElement current;
 	private WoodElement original;
-	private WoodElementManager wood_elementManager;
+	private WoodElementManager woodElementManager;
 
 	
 	@PostConstruct
 	public void init() {
-		wood_elementManager = new WoodElementManager();
+		woodElementManager = new WoodElementManager();
 
 		try {
 			utx.begin();
 			
 			if ( isNew() ) {
-				current = wood_elementManager.createWoodElement( loggedUser.getUser(), new Time( new Date() ) );
+				current = woodElementManager.createWoodElement( loggedUser.getUser(), new Time( new Date() ) );
 			} else {
-				original = wood_elementDao.fetchById( Long.parseLong( id ) );
+				original = woodElementDao.fetchById( Long.parseLong( id ) );
 				current = wood_elementManager.modify(
 						loggedUser.getUser(), new Time( new Date() ), original );
 			}

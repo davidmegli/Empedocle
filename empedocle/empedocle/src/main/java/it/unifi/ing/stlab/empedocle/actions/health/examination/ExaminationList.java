@@ -51,13 +51,13 @@ public class ExaminationList extends Navigator {
 	private ExaminationDao examinationDao;
 	
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	//
 	// Local attributes
 	//
 	private String selection;
-	private String wood_elementId;
+	private String woodElementId;
 	private List<Examination> examinationResults;
 	private List<Viewer> selectedReports;
 	private Integer itemCount;
@@ -196,7 +196,7 @@ public class ExaminationList extends Navigator {
 	}
 	
 	public String history( Long pid ){
-		wood_elementId = Long.toString( pid );
+		woodElementId = Long.toString( pid );
 		
 		return "history";
 	}
@@ -207,7 +207,7 @@ public class ExaminationList extends Navigator {
 	//
 	
 	public WoodElement getLastWoodElementVersion( Long pid ) {
-		return wood_elementDao.findLastVersionById( pid );
+		return woodElementDao.findLastVersionById( pid );
 	}
 	
 	@Override
@@ -223,7 +223,7 @@ public class ExaminationList extends Navigator {
 	}
 	
 	public String getWoodElementId() {
-		return wood_elementId;
+		return woodElementId;
 	}
 	
 	public List<Viewer> getSelectedReports(){

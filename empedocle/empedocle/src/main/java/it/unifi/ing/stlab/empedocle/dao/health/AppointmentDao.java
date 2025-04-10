@@ -10,6 +10,6 @@ import java.util.Set;
 @Local
 public interface AppointmentDao {
 	
-	List<Appointment> findByWoodElements(Set<WoodElement> wood_elements);
+	List<Appointment> findByWoodElements(Set<WoodElement> woodElements);
 	void update(Appointment a);
 }

@@ -20,13 +20,13 @@ public class AppointmentDaoBean implements AppointmentDao {
 
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public List<Appointment> findByWoodElements( Set<WoodElement> wood_elements ) {
+	public List<Appointment> findByWoodElements( Set<WoodElement> woodElements ) {
 		return ( List<Appointment> ) entityManager
 				.createQuery(
 					"select a" + 
 					" from Appointment a" +
 					" where a.wood_element in :wood_elements " )
-				.setParameter( "wood_elements", wood_elements ).getResultList();
+				.setParameter( "wood_elements", woodElements ).getResultList();
 	}
 	
 	@Override

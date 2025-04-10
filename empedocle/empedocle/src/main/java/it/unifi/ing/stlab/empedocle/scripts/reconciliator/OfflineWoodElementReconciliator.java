@@ -39,7 +39,7 @@ public class OfflineWoodElementReconciliator {
 	private UserTransaction utx;	
 	
 	@EJB
-	private WoodElementDao wood_elementDao;		
+	private WoodElementDao woodElementDao;
 	
 	@EJB
 	private UserDao userDao;

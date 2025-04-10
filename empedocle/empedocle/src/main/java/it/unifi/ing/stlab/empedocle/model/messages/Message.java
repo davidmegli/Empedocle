@@ -32,7 +32,7 @@ public class Message implements Persistable {
 	private MessageLevel level;
 	private Boolean isRead;
 	
-	private WoodElement wood_element;
+	private WoodElement woodElement;
 
 
 	public Message( String uuid ) {
@@ -113,10 +113,10 @@ public class Message implements Persistable {
 	@ManyToOne
 	@JoinColumn( name = "wood_element_id" )
 	public WoodElement getWoodElement() {
-		return wood_element;
+		return woodElement;
 	}
-	public void setWoodElement( WoodElement wood_element ) {
-		this.wood_element = wood_element;
+	public void setWoodElement( WoodElement woodElement ) {
+		this.woodElement = wood_element;
 	}
 	
 	@PrePersist

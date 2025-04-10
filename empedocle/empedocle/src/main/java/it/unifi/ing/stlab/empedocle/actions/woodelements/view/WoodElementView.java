@@ -76,7 +76,7 @@ public class WoodElementView extends Navigator {
 	private ExaminationDao examinationDao;
 	
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	@Inject
 	private ViewerDao viewerDao;

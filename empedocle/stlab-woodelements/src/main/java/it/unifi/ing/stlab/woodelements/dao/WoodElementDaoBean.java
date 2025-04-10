@@ -150,7 +150,7 @@ public class WoodElementDaoBean implements WoodElementDao {
 									" where p.name = :name " +
 									" and p.surname = :surname " +
 									" and p.destination is null " +
-								//	" and p.identifier is null " +  // to allow merging even between different wood_element records of the same wood_element in Book
+								//	" and p.identifier is null " +  // to allow merging even between different woodElement records of the same woodElement in Book
 									" and p.id <> :notPid", WoodElement.class )
 					.setParameter( "name", name )
 					.setParameter( "surname", surname )
@@ -159,17 +159,17 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 
 	/**
-	 * Manual Merge of wood_elements
+	 * Manual Merge of woodElements
 	 */
 	@Override
-	public WoodElement mergeWoodElements( Long wood_elementId, Long otherId, User author ) {
-		WoodElement wood_element = findById( wood_elementId );
+	public WoodElement mergeWoodElements( Long woodElementId, Long otherId, User author ) {
+		WoodElement woodElement = findById( woodElementId );
 		WoodElement other = findById( otherId );
 
 		WoodElement master;
 		WoodElement slave;
 
-		WoodElementIdentifier wood_elementIdentifier = wood_element.getIdentifier();
+		WoodElementIdentifier woodElementIdentifier = wood_element.getIdentifier();
 		WoodElementIdentifier otherIdentifier = other.getIdentifier();
 		if ( wood_elementIdentifier != null && otherIdentifier != null ) {
 			// merge between Book wood_element records

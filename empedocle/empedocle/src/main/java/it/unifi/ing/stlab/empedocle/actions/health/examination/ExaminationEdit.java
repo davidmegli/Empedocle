@@ -63,7 +63,7 @@ public class ExaminationEdit implements Serializable {
 	private AgendaDao agendaDao;
 	
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	@EJB
 	private ServiceDao serviceDao;
@@ -80,7 +80,7 @@ public class ExaminationEdit implements Serializable {
 	private Examination current;
 
 	private AgendaSuggestion agendaSuggestion;
-	private WoodElementSuggestion wood_elementSuggestion;
+	private WoodElementSuggestion woodElementSuggestion;
 	
 
 	@PostConstruct
@@ -166,7 +166,7 @@ public class ExaminationEdit implements Serializable {
 	}
 	
 	public WoodElementSuggestion getWoodElementSuggestion() {
-		return wood_elementSuggestion;
+		return woodElementSuggestion;
 	}
 	
 	//
@@ -196,7 +196,7 @@ public class ExaminationEdit implements Serializable {
 	}
 	
 	//
-	// Internal class for wood_element suggestion
+	// Internal class for woodElement suggestion
 	//
 	public class WoodElementSuggestion implements SuggestionInterface {
 		
@@ -205,7 +205,7 @@ public class ExaminationEdit implements Serializable {
 		@Override
 		public List<SelectItem> autocomplete( String suggestion ) {
 			List<SelectItem> result = new ArrayList<SelectItem>();
-			List<WoodElement> pList = wood_elementDao.findBySuggestion( suggestion, 0 );
+			List<WoodElement> pList = woodElementDao.findBySuggestion( suggestion, 0 );
 			
 			for( WoodElement p : pList ){
 				result.add( new SelectItem( p.getUuid(), WoodElementUtils.toString( p )));
@@ -246,9 +246,9 @@ public class ExaminationEdit implements Serializable {
 	}
 
 	private void initWoodElementSuggestion() {
-		wood_elementSuggestion = new WoodElementSuggestion();
+		woodElementSuggestion = new WoodElementSuggestion();
 		if ( !isNew() )
-			wood_elementSuggestion.setSuggestion( 
+			woodElementSuggestion.setSuggestion(
 					WoodElementUtils.toString( current.getAppointment().getWoodElement()) );
 	}
 	

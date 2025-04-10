@@ -31,10 +31,10 @@ public interface WoodElementDao {
 	
 	WoodElement fetchById(Long id);
 	
-	WoodElement mergeWoodElements(Long wood_elementId, Long otherId, User author);
+	WoodElement mergeWoodElements(Long woodElementId, Long otherId, User author);
 	
 	void save(WoodElement target);
 	void update(WoodElement target);
-	void deleteById(Long wood_elementId, User author);
+	void deleteById(Long woodElementId, User author);
 
 }

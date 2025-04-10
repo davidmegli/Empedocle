@@ -27,8 +27,8 @@ public class ExaminationRandomInitializer {
 		Examination examination = ExaminationFactory.createExamination();
 		Agenda agenda = initAgenda();
 		Service service = initService( agenda );
-		WoodElement wood_element = initWoodElement();
-		Appointment appointment = initAppointment( wood_element, service );
+		WoodElement woodElement = initWoodElement();
+		Appointment appointment = initAppointment( woodElement, service );
 		examination.setAppointment( appointment );
 		examination.setLastUpdate( new Date() );
 		examination.setAuthor( initUser() );
@@ -36,13 +36,13 @@ public class ExaminationRandomInitializer {
 		return examination;
 	}
 	
-	private Appointment initAppointment(WoodElement wood_element, Service service){
+	private Appointment initAppointment(WoodElement woodElement, Service service){
 		Appointment appointment = new Appointment(UUID.randomUUID().toString());
 		appointment.setDate(new Date());
 		appointment.setAcceptanceCode("AXX120XX83149");
 		appointment.setBookingCode("0901XXX882XXX32");
 		appointment.setNumber("123456");
-		appointment.setWoodElement(wood_element);
+		appointment.setWoodElement(woodElement);
 		appointment.addService(service);
 		appointment.setAgenda(service.getAgenda());
 		
@@ -59,20 +59,20 @@ public class ExaminationRandomInitializer {
 	}
 	
 	private WoodElement initWoodElement() {
-		WoodElement wood_element = WoodElementFactory.createWoodElement();
+		WoodElement woodElement = WoodElementFactory.createWoodElement();
 		
-		wood_element.setAsl("AZ. USL 10 - FIRENZE");
-		wood_element.setTaxCode("RSSGVN14F56P543D");
-		wood_element.setSsnCode("XYZ");
-		wood_element.setSurname("ROSSI");
-		wood_element.setBirthDate(new Date());
-		wood_element.setBirthPlace("FIRENZE");
-		wood_element.setNationality("ITALIA");
-		wood_element.setName("GIOVANNI");
-		wood_element.setRegion("TOSCANA");
-		wood_element.setSex(Sex.M);
-		wood_element.setHomePhone("055 667788");
-		wood_element.setWorkPhone("329 345678901");
+		woodElement.setAsl("AZ. USL 10 - FIRENZE");
+		woodElement.setTaxCode("RSSGVN14F56P543D");
+		woodElement.setSsnCode("XYZ");
+		woodElement.setSurname("ROSSI");
+		woodElement.setBirthDate(new Date());
+		woodElement.setBirthPlace("FIRENZE");
+		woodElement.setNationality("ITALIA");
+		woodElement.setName("GIOVANNI");
+		woodElement.setRegion("TOSCANA");
+		woodElement.setSex(Sex.M);
+		woodElement.setHomePhone("055 667788");
+		woodElement.setWorkPhone("329 345678901");
 		
 		Address domicile = new Address();
 		domicile.setPlace("VIA DI VILLA MAGNA 76 FIRENZE");

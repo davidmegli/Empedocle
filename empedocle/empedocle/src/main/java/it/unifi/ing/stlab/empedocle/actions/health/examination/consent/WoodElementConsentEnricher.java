@@ -23,15 +23,15 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 
-@Named("wood_element-consent")
+@Named("woodelement-consent")
 @RequestScoped
-@WebServlet(urlPatterns = "/wood_element-consent")
+@WebServlet(urlPatterns = "/woodelement-consent")
 public class WoodElementConsentEnricher extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 
 	public WoodElementConsentEnricher() {
 		super();
@@ -41,7 +41,7 @@ public class WoodElementConsentEnricher extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		WoodElement wood_element = wood_elementDao.findById( new Long(request.getParameter("pid")));
+		WoodElement woodElement = woodElementDao.findById( new Long(request.getParameter("pid")));
 		
 		PdfReader reader = new PdfReader(
 				"http://" + request.getServerName() + ":" + request.getServerPort() 
@@ -68,7 +68,7 @@ public class WoodElementConsentEnricher extends HttpServlet {
 			
 			// print name and surname
 			over.setTextMatrix(120, 665);
-			over.showText(wood_element.getName() + " " + wood_element.getSurname());
+			over.showText(woodElement.getName() + " " + wood_element.getSurname());
 			
 			// print birth place
 			over.setTextMatrix(120, 648);

@@ -83,7 +83,7 @@ public class ExaminationQueryBuilderImpl implements ExaminationQueryBuilder {
 		
 		StringBuffer buffer = buildSelectClause(false);
 		
-		// FIXME la query mi torna meno risultati di quanti dovrebbe -> ordinando per taxCode di wood_element, vengono trovate solo
+		// FIXME la query mi torna meno risultati di quanti dovrebbe -> ordinando per taxCode di woodElement, vengono trovate solo
 		// le visite che hanno paziente != null, a differenza del count che invece le trova tutte.
 		
 		writeFilters(buffer);

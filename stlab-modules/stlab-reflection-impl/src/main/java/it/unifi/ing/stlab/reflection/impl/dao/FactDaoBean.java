@@ -94,7 +94,7 @@ public class FactDaoBean implements FactDao {
 			"  left join fetch f.type " +
 			"  left join fetch f.context c " +
 			"  left join fetch c.appointment a " +
-			"  left join fetch a.patient " +
+			"  left join fetch a.woodelement " +
 			"  left join fetch a.services " +
 			"  left join fetch f.origin " +
 			" where aa.id = :id" ).setParameter( "id", id ).getResultList();

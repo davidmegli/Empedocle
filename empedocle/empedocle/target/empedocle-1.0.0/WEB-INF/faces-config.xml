@@ -28,7 +28,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>wood_element-list</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -87,10 +87,10 @@
 	<!-- WoodElement navigation rules -->
 	<!-- from wood_element-list -->
 	<navigation-rule>
-		<from-view-id>/pages/wood_elements/wood_element-list.xhtml</from-view-id>
+		<from-view-id>/pages/woodelements/woodelement-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>view</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -104,7 +104,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -122,7 +122,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>add-new</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -136,7 +136,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -155,17 +155,17 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
 	<!-- from wood_element-view -->
 	<navigation-rule>
-		<from-view-id>/pages/wood_elements/wood_element-view.xhtml</from-view-id>
+		<from-view-id>/pages/woodelements/woodelement-view.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -183,7 +183,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -204,17 +204,17 @@
 	
 	<!-- from wood_element-edit -->
 	<navigation-rule>
-		<from-view-id>/pages/wood_elements/wood_element-edit.xhtml</from-view-id>
+		<from-view-id>/pages/woodelements/woodelement-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
 			<if>#{wood_elementEdit.from eq 'list'}</if>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
 			<if>#{wood_elementEdit.from eq 'view'}</if>
-			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -229,7 +229,7 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<if>#{wood_elementEdit.from eq 'view'}</if>
-			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -244,7 +244,7 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<if>#{wood_elementEdit.from eq 'list'}</if>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -270,7 +270,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>history</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
@@ -358,7 +358,7 @@
 		<from-view-id>/pages/examination/examination-summary.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
+			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>

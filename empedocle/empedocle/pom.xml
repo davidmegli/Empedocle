@@ -44,7 +44,7 @@
 		</dependency>
 		<dependency>
 			<groupId>it.unifi.ing.stlab</groupId>
-			<artifactId>stlab-wood_elements</artifactId>
+			<artifactId>stlab-woodelements</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>

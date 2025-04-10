@@ -15,18 +15,18 @@ public interface ExaminationDao {
 
 	int count(ExaminationQueryBuilder builder);
 	Long countByType(ExaminationType type);
-	int countWoodElementHistory(Long wood_elementId, Long examFromId,
+	int countWoodElementHistory(Long woodElementId, Long examFromId,
                             Set<ExaminationStatus> statuses, Set<Agenda> agendas);
 	Long countUserExaminationsByStatus(String userid, ExaminationStatus status, Date start, Date end);
 	
-	boolean hasWoodElementHistory(Long wood_elementId);
-	boolean hasWoodElementHistory(Long wood_elementId, Set<ExaminationStatus> statuses, Set<Agenda> agendas);
+	boolean hasWoodElementHistory(Long woodElementId);
+	boolean hasWoodElementHistory(Long woodElementId, Set<ExaminationStatus> statuses, Set<Agenda> agendas);
 	
 	Examination findById(Long id);
 	Examination findByAppointmentCodes(String bookingCode, String acceptanceCode);
 	List<Examination> find(ExaminationQueryBuilder builder, int offset, int limit);
-	List<Examination> findWoodElementLastExams(Long wood_elementId, Long lastExamId, int numExams);
-	List<Examination> findWoodElementHistory(Long wood_elementId,
+	List<Examination> findWoodElementLastExams(Long woodElementId, Long lastExamId, int numExams);
+	List<Examination> findWoodElementHistory(Long woodElementId,
                                          Long examFromId, Set<ExaminationStatus> statuses,
                                          Set<Agenda> agendas, int offset, int limit);
 	

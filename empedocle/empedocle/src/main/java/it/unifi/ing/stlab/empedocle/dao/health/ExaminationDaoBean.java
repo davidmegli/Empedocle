@@ -112,9 +112,9 @@ public class ExaminationDaoBean implements ExaminationDao {
 	}
 	
 	@Override
-	public int countWoodElementHistory(Long wood_elementId, Long examFromId, 
+	public int countWoodElementHistory(Long woodElementId, Long examFromId,
 			Set<ExaminationStatus> statuses, Set<Agenda> agendas ) {
-		if(wood_elementId == null || examFromId == null)
+		if(woodElementId == null || examFromId == null)
 			throw new IllegalArgumentException("id paziente o id esame sono nulli");
 		
 		return ((Long)entityManager.createQuery("select count ( distinct e ) " +
@@ -124,7 +124,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 												" and e.status in :statuses " +
 												" and e.appointment.agenda in :agendas " +
 												" and e.id != :examId ")						  						
-						  				.setParameter("pid", wood_elementId)
+						  				.setParameter("pid", woodElementId)
 						  				.setParameter("examId", examFromId)
 						  				.setParameter("statuses", statuses)
 						  				.setParameter("agendas", agendas)
@@ -133,8 +133,8 @@ public class ExaminationDaoBean implements ExaminationDao {
 	}
 	
 	@Override
-	public boolean hasWoodElementHistory( Long wood_elementId ) {
-		if( wood_elementId == null )
+	public boolean hasWoodElementHistory( Long woodElementId ) {
+		if( woodElementId == null )
 			throw new IllegalArgumentException("id paziente è nullo");
 		
 		 return ((Long) entityManager.createQuery("select count ( distinct e ) " +

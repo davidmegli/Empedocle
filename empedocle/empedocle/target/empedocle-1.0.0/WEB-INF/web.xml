@@ -98,8 +98,8 @@
 			<web-resource-name>Basic user pages</web-resource-name>
 			<url-pattern>/pages/examination/examination-list.jsf</url-pattern>
 			<url-pattern>/pages/examination/examination-running.jsf</url-pattern>
-			<url-pattern>/pages/wood_elements/wood_element-list.jsf</url-pattern>
-			<url-pattern>/pages/wood_elements/wood_element-view.jsf</url-pattern>
+			<url-pattern>/pages/woodelements/woodelement-list.jsf</url-pattern>
+			<url-pattern>/pages/woodelements/woodelement-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/panel/*</url-pattern>		
 			<url-pattern>/pages/messages/*</url-pattern>				
 			<url-pattern>/home.jsf</url-pattern>
@@ -135,12 +135,12 @@
 			<url-pattern>/pages/staff/staff-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/staff-edit.jsf</url-pattern>
 			<url-pattern>/pages/staff/staff-list.jsf</url-pattern>
-			<url-pattern>/pages/wood_elements/wood_element-list.jsf</url-pattern>
-			<url-pattern>/pages/wood_elements/wood_element-view.jsf</url-pattern>
+			<url-pattern>/pages/woodelements/woodelement-list.jsf</url-pattern>
+			<url-pattern>/pages/woodelements/woodelement-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/panel/*</url-pattern>
 			<url-pattern>/home.jsf</url-pattern>
 			<url-pattern>/pages/viewer/report-viewer.jsf</url-pattern>
-			<url-pattern>/pages/wood_elements/wood_element-edit.jsf</url-pattern>
+			<url-pattern>/pages/woodelements/woodelement-edit.jsf</url-pattern>
 			<url-pattern>/pages/examination/examination-edit.jsf</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>

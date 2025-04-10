@@ -25,7 +25,7 @@ import org.apache.commons.jexl2.MapContext;
 public class FieldRetrieverBean implements FieldRetriever {
 
 	@Inject
-	private WoodElementDao wood_elementDao;
+	private WoodElementDao woodElementDao;
 	
 	private JexlEngine jexlEngine;
 	private JexlContext context;
@@ -54,9 +54,9 @@ public class FieldRetrieverBean implements FieldRetriever {
 		context = new MapContext();
 		Examination exam = ClassHelper.cast( fact.getContext(), Examination.class );
 		context.set( "Appointment", exam.getAppointment() );
-		WoodElement wood_element = exam.getAppointment().getWoodElement();
-		if( wood_element.getId() != null )
-			context.set( "WoodElement", wood_elementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
+		WoodElement woodElement = exam.getAppointment().getWoodElement();
+		if( woodElement.getId() != null )
+			context.set( "WoodElement", woodElementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
 		else 
 			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by ExaminationRandomInitializer (invoked by ViewerPreview)
 		context.set( "Agenda", exam.getAppointment().getAgenda() );
