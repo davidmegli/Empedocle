@@ -63,7 +63,7 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.patient.after aa " +
+						" join factroot.context.appointment.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.appointment.agenda in :agendas " +
@@ -97,7 +97,7 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals(" select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.patient.after aa " +
+						" join factroot.context.appointment.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.appointment.agenda in :agendas " +
@@ -140,7 +140,7 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.patient.after aa " +
+						" join factroot.context.appointment.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
 						" and factroot.context.appointment.agenda in :agendas " +
@@ -195,7 +195,7 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.patient.after aa " +
+						" join factroot.context.appointment.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
 						" and factroot.context.appointment.agenda in :agendas " +
@@ -244,7 +244,7 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.patient.after aa " +
+						" join factroot.context.appointment.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.appointment.agenda in :agendas " +

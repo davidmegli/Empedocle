@@ -191,8 +191,8 @@
 								value="#{examinationResults}" var="examination"
 								style="#{empty examinationResults ? 'display:none;' : ''}">
 								
-								<c:set var="_patient" 
-									value="#{examinationList.getLastPatientVersion( examination.appointment.patient.id )}" />
+								<c:set var="_wood_element"
+									value="#{examinationList.getLastWoodElementVersion( examination.appointment.wood_element.id )}" />
 								
 								<h:column>
 									<f:facet name="header">
@@ -212,21 +212,21 @@
 									<f:facet name="header">
 										Surname
 									</f:facet>
-									#{_patient.surname}
+									#{_wood_element.surname}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Name
 									</f:facet>
-									#{_patient.name}
+									#{_wood_element.name}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Sex
 									</f:facet>
-									#{_patient.sex}
+									#{_wood_element.sex}
 								</h:column>
 
 								<h:column>
@@ -234,7 +234,7 @@
 										Birthdate
 									</f:facet>
 									<h:outputText
-										value="#{_patient.birthDate}">
+										value="#{_wood_element.birthDate}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>
 
@@ -244,14 +244,14 @@
 									<f:facet name="header">
 										Birthplace
 									</f:facet>
-									#{_patient.birthPlace}
+									#{_wood_element.birthPlace}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Tax Code
 									</f:facet>
-									#{_patient.taxCode}
+									#{_wood_element.taxCode}
 								</h:column>
 
 								<h:column>
@@ -269,10 +269,10 @@
 									</a4j:commandLink>
 										
 									<h:commandLink title="Open record"
-										action="#{examinationList.history( _patient.id )}" 
+										action="#{examinationList.history( _wood_element.id )}"
 										styleClass="btn btn-info pull-left dist-right tltip">
 										<i class="fw-icon-large 
-											#{examinationList.checkHistory( _patient.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
+											#{examinationList.checkHistory( _wood_element.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
 									</h:commandLink>
 									
 									<h:commandLink title="Start"

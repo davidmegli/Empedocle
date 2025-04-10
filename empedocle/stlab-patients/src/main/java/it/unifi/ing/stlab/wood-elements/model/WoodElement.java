@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.implementation.timed.TimedEntityImpl;
@@ -6,8 +6,8 @@ import it.unifi.ing.stlab.entities.implementation.traced.TracedEntityImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.model.actions.PatientAction;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+-elements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
@@ -16,16 +16,16 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table( name = "patients" )
-public class Patient 
-	implements TracedEntity<Patient,PatientAction>,
+@Table( name = "wood_elements" )
+public class WoodElement 
+	implements TracedEntity<WoodElement,WoodElementAction>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
 	private PersistableImpl persistable;
-	private TracedEntityImpl<Patient,PatientAction> tracedEntity;
+	private TracedEntityImpl<WoodElement,WoodElementAction> tracedEntity;
 	private TimedEntityImpl<TimeRange,Time> timedEntity;
 	
-	private PatientIdentifier identifier;
+	private WoodElementIdentifier identifier;
 	
 	//FIXME DPB da cancellare
 	private String oldIdentifier;
@@ -46,16 +46,16 @@ public class Patient
 	private String asl;
 
 	
-	public Patient( String uuid ) {
+	public WoodElement( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<Patient,PatientAction>();
+		tracedEntity = new TracedEntityImpl<WoodElement,WoodElementAction>();
 		tracedEntity.setDelegator( this );
 	}
-	protected Patient() {
+	protected WoodElement() {
 		persistable = new PersistableImpl();
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<Patient,PatientAction>();
+		tracedEntity = new TracedEntityImpl<WoodElement,WoodElementAction>();
 		tracedEntity.setDelegator( this );
 	}
 
@@ -65,7 +65,7 @@ public class Patient
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="patient", allocationSize = 1 )
+		pkColumnValue="wood_element", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
 		return persistable.getId();
@@ -95,48 +95,48 @@ public class Patient
 	
 	@ManyToMany( fetch = FetchType.LAZY )
 	@JoinTable(
-		name = "patient_before",
-	    joinColumns = { @JoinColumn( name = "patient_id", referencedColumnName="id" ) },
-	    inverseJoinColumns = { @JoinColumn( name = "before_patient_id", referencedColumnName = "id") } )
-	protected Set<Patient> getBefore() {
+		name = "wood_element_before",
+	    joinColumns = { @JoinColumn( name = "wood_element_id", referencedColumnName="id" ) },
+	    inverseJoinColumns = { @JoinColumn( name = "before_wood_element_id", referencedColumnName = "id") } )
+	protected Set<WoodElement> getBefore() {
 		return tracedEntity.getBefore();
 	}
-	protected void setBefore(Set<Patient> before) {
+	protected void setBefore(Set<WoodElement> before) {
 		tracedEntity.setBefore(before);
 	}
-	public Set<Patient> listBefore() {
+	public Set<WoodElement> listBefore() {
 		return tracedEntity.listBefore();
 	}
 
 	
 	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY )
-	protected Set<Patient> getAfter() {
+	protected Set<WoodElement> getAfter() {
 		return tracedEntity.getAfter();
 	}
-	protected void setAfter(Set<Patient> after) {
+	protected void setAfter(Set<WoodElement> after) {
 		tracedEntity.setAfter(after);
 	}
-	public Set<Patient> listAfter() {
+	public Set<WoodElement> listAfter() {
 		return tracedEntity.listAfter();
 	}
 
 	
 	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "origin_id" )
-	public PatientAction getOrigin() {
+	public WoodElementAction getOrigin() {
 		return tracedEntity.getOrigin();
 	}
-	protected void setOrigin(PatientAction origin) {
+	protected void setOrigin(WoodElementAction origin) {
 		tracedEntity.setOrigin(origin);
 	}
 
 	
 	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "dest_id" )
-	public PatientAction getDestination() {
+	public WoodElementAction getDestination() {
 		return tracedEntity.getDestination();
 	}
-	protected void setDestination(PatientAction destination) {
+	protected void setDestination(WoodElementAction destination) {
 		tracedEntity.setDestination(destination);
 	}
 
@@ -155,10 +155,10 @@ public class Patient
 	// Identifier
 	@ManyToOne( cascade=CascadeType.PERSIST )
 	@JoinColumn( name="identifier_id", nullable=true )
-	public PatientIdentifier getIdentifier() {
+	public WoodElementIdentifier getIdentifier() {
 		return identifier;
 	}
-	public void setIdentifier(PatientIdentifier identifier) {
+	public void setIdentifier(WoodElementIdentifier identifier) {
 		this.identifier = identifier;
 	}
 	
@@ -351,7 +351,7 @@ public class Patient
 	}
 	
 	@Override
-	public boolean sameAs(Patient entity) {
+	public boolean sameAs(WoodElement entity) {
 		return 
 			( identifier == null && entity.getIdentifier() == null || identifier != null && identifier.equals( entity.getIdentifier() ) ) &&
 			( isEmpty( name ) && isEmpty( entity.getName() ) || name != null && name.equals( entity.getName() )) &&
@@ -372,8 +372,8 @@ public class Patient
 	
 	
 	@Override
-	public Patient copy() {
-		Patient result = PatientFactory.createPatient();
+	public WoodElement copy() {
+		WoodElement result = WoodElementFactory.createWoodElement();
 		result.setIdentifier( getIdentifier() );
 		result.setName( getName() );
 		result.setSurname( getSurname() );

@@ -78,7 +78,7 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.appointment.date asc, e.appointment.patient.taxCode asc", "e.appointment.date desc, e.appointment.patient.taxCode desc" );
+		addSort( "Date", "e.appointment.date asc, e.appointment.wood_element.taxCode asc", "e.appointment.date desc, e.appointment.wood_element.taxCode desc" );
 		toggle( "Date" );
 	}
 
@@ -190,12 +190,12 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 			}
 		} );		
 		
-		addFilterDef( "Tax Code", FilterType.TEXT, "e.appointment.patient.taxCode like :ptaxc", "ptaxc" );
-		addFilterDef( "Surname", FilterType.TEXT, "e.appointment.patient.surname like :psur", "psur" );
-		addFilterDef( "Name", FilterType.TEXT, "e.appointment.patient.name like :pname", "pname" );
-		addFilterDef( "Birthplace", FilterType.TEXT, "e.appointment.patient.birthPlace like :pbplace", "pbplace" );
-		addFilterDef( "Birthdate - from", FilterType.DATE, "e.appointment.patient.birthDate >= :pbmin", "pbmin" );
-		addFilterDef( "Birthdate - to", FilterType.DATE, "e.appointment.patient.birthDate <= :pbmax", "pbmax" );
+		addFilterDef( "Tax Code", FilterType.TEXT, "e.appointment.wood_element.taxCode like :ptaxc", "ptaxc" );
+		addFilterDef( "Surname", FilterType.TEXT, "e.appointment.wood_element.surname like :psur", "psur" );
+		addFilterDef( "Name", FilterType.TEXT, "e.appointment.wood_element.name like :pname", "pname" );
+		addFilterDef( "Birthplace", FilterType.TEXT, "e.appointment.wood_element.birthPlace like :pbplace", "pbplace" );
+		addFilterDef( "Birthdate - from", FilterType.DATE, "e.appointment.wood_element.birthDate >= :pbmin", "pbmin" );
+		addFilterDef( "Birthdate - to", FilterType.DATE, "e.appointment.wood_element.birthDate <= :pbmax", "pbmax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );
 	}

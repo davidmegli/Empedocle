@@ -135,14 +135,14 @@ public class StaffDaoBean implements StaffDao {
 				.getResultList()
 				.isEmpty();
 
-		Boolean patientActions = !entityManager.createQuery( 
-				"select pa from PatientAction pa" 
+		Boolean wood_elementActions = !entityManager.createQuery( 
+				"select pa from WoodElementAction pa" 
 					+ " where pa.author = :user" )
 				.setParameter( "user", s.getUser() )
 				.setMaxResults( 1 )
 				.getResultList()
 				.isEmpty();		
 
-		return checkExaminations || checkFactActions || patientActions;
+		return checkExaminations || checkFactActions || wood_elementActions;
 	}
 }

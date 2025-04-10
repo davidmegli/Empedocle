@@ -35,13 +35,13 @@
 		<h:form id="edit-form" styleClass="form-horizontal">
 	
 			<div class="crud-title">
-				<h2>#{patientEdit.new ? 'Create' : 'Edit'} Paziente
+				<h2>#{wood_elementEdit.new ? 'Create' : 'Edit'} Paziente
 				
 					<h:panelGroup layout="block" styleClass="pull-right align-btn">
-						<h:commandLink class="btn" action="#{patientEdit.cancel()}" immediate="true">
+						<h:commandLink class="btn" action="#{wood_elementEdit.cancel()}" immediate="true">
 							<i class="fw-icon-step-backward dist-right"></i> Cancel
 						</h:commandLink>
-						<h:commandLink class="btn btn-primary dist-left" action="#{patientEdit.save()}">
+						<h:commandLink class="btn btn-primary dist-left" action="#{wood_elementEdit.save()}">
 							<i class="fw-icon-step-forward dist-right"></i> Save
 						</h:commandLink>						
 					</h:panelGroup>
@@ -51,11 +51,11 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:taxcode">* Tax Code</label>
 				<div class="controls">
-					<h:inputText id="taxcode" value="#{patientEdit.current.taxCode}"
+					<h:inputText id="taxcode" value="#{wood_elementEdit.current.taxCode}"
 								 required="true" requiredMessage="'Tax code' is a required field!"
 								 styleClass="#{ component.valid ? '' : 'vld-error'}" />
 					<h:commandLink class="btn btn-info dist-left"
-								   action="#{patientEdit.generateTaxCode}">
+								   action="#{wood_elementEdit.generateTaxCode}">
 						<i class="fw-icon-play-circle fw-icon-large dist-right"></i> Genera
 						<f:ajax
 								execute="@this :edit-form:surname :edit-form:name :edit-form:sex :edit-form:birthDate :edit-form:birthplace"
@@ -68,7 +68,7 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:surname">* Surname</label>
 				<div class="controls">
-					<h:inputText id="surname" value="#{patientEdit.current.surname}"
+					<h:inputText id="surname" value="#{wood_elementEdit.current.surname}"
 						required="true" requiredMessage="'Surname' is a required field!"
 						styleClass="#{ component.valid ? '' : 'vld-error'}" />
 				</div>
@@ -77,7 +77,7 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:name">* Name</label>
 				<div class="controls">
-					<h:inputText id="name" value="#{patientEdit.current.name}"
+					<h:inputText id="name" value="#{wood_elementEdit.current.name}"
 						required="true" requiredMessage="'Name' is a required field!"
 						styleClass="#{ component.valid ? '' : 'vld-error'}" />
 				</div>
@@ -86,7 +86,7 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:sex">* Sex</label>
 				<div class="controls">
-					<h:selectOneMenu id="sex" value="#{patientEdit.current.sex}" 
+					<h:selectOneMenu id="sex" value="#{wood_elementEdit.current.sex}"
 						required="true" requiredMessage="'Sex' is a required field!"
 						styleClass="#{ component.valid ? '' : 'vld-error'}">
 						<f:selectItem noSelectionOption="true" />
@@ -100,7 +100,7 @@
 			<div class="control-group" xmlns:datepicker="http://java.sun.com/jsf/composite/datepicker">
 				<label class="control-label bold" for="edit-form:birthDate">* Birthdate</label>
 				<div class="controls">
-		    		<datepicker:datePicker id="birthDate" value="#{patientEdit.current.birthDate}"
+		    		<datepicker:datePicker id="birthDate" value="#{wood_elementEdit.current.birthDate}"
 		    			render="@this"
 		    			boxClass="datepicker-box" styleClass="#{ component.valid ? '' : 'vld-error'}" 
 		    			required="true" requiredMessage="'Birthdate' is a required field!" />
@@ -110,7 +110,7 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:birthplace">* Birthplace</label>
 				<div class="controls">
-					<h:inputText id="birthplace" value="#{patientEdit.current.birthPlace}"
+					<h:inputText id="birthplace" value="#{wood_elementEdit.current.birthPlace}"
 						required="true" requiredMessage="'Birthplace' is a required field!"
 						styleClass="#{ component.valid ? '' : 'vld-error'}" />
 				</div>
@@ -119,42 +119,42 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:nationality">Nazionalità</label>
 				<div class="controls">
-					<h:inputText id="nationality" value="#{patientEdit.current.nationality}" />
+					<h:inputText id="nationality" value="#{wood_elementEdit.current.nationality}" />
 				</div>
 			</div>	
 	 		
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:residence">Residenza</label>
 				<div class="controls">
-					<h:inputText id="residence" value="#{patientEdit.current.residence.place}" />
+					<h:inputText id="residence" value="#{wood_elementEdit.current.residence.place}" />
 				</div>
 			</div>		
 			
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:domicile">Domicilio</label>
 				<div class="controls">
-					<h:inputText id="domicile" value="#{patientEdit.current.domicile.place}" />
+					<h:inputText id="domicile" value="#{wood_elementEdit.current.domicile.place}" />
 				</div>
 			</div>
 			
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:homephone">Telefono</label>
 				<div class="controls">
-					<h:inputText id="homephone" value="#{patientEdit.current.homePhone}" />
+					<h:inputText id="homephone" value="#{wood_elementEdit.current.homePhone}" />
 				</div>
 			</div>		
 			
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:workphone">Cellulare</label>
 				<div class="controls">
-					<h:inputText id="workphone" value="#{patientEdit.current.workPhone}" />
+					<h:inputText id="workphone" value="#{wood_elementEdit.current.workPhone}" />
 				</div>
 			</div>		
 			
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:ssncode">Codice SSN</label>
 				<div class="controls">
-					<h:inputText id="ssncode" value="#{patientEdit.current.ssnCode}" />
+					<h:inputText id="ssncode" value="#{wood_elementEdit.current.ssnCode}" />
 				</div>
 			</div>				
 											

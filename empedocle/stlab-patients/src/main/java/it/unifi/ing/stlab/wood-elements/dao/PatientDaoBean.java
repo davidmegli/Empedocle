@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.patients.dao;
+package it.unifi.ing.stlab.wood-elements.dao;
 
 import java.util.Date;
 import java.util.List;
@@ -12,14 +12,14 @@ import javax.persistence.TypedQuery;
 import it.unifi.ing.stlab.commons.query.QueryBuilder;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
-import it.unifi.ing.stlab.patients.manager.PatientManager;
-import it.unifi.ing.stlab.patients.model.Patient;
-import it.unifi.ing.stlab.patients.model.PatientIdentifier;
+import it.unifi.ing.stlab.wood-elements.manager.WoodElementManager;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
-public class PatientDaoBean implements PatientDao {
+public class WoodElementDaoBean implements WoodElementDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -31,7 +31,7 @@ public class PatientDaoBean implements PatientDao {
  
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Patient> find(QueryBuilder builder, int offset, int limit) {
+	public List<WoodElement> find(QueryBuilder builder, int offset, int limit) {
 		Query query = builder
 			.getListQuery( entityManager )
 			.setFirstResult( offset );
@@ -40,25 +40,25 @@ public class PatientDaoBean implements PatientDao {
 			query.setMaxResults( limit );
 		}
 		
-		return (List<Patient>) query.getResultList();	
+		return (List<WoodElement>) query.getResultList();	
 	}
 	
 	@Override
-	public Patient findById(Long id) {
-		return entityManager.find(Patient.class, id);
+	public WoodElement findById(Long id) {
+		return entityManager.find(WoodElement.class, id);
 	}
 	
 	@Override
-	public Patient fetchById(Long id) {
+	public WoodElement fetchById(Long id) {
 		if ( id == null ) 
 			throw new IllegalArgumentException( "id is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from Patient p" +
+			" from WoodElement p" +
 			" left join fetch p.before b " + 
 			" left join fetch p.after a " + 
-			" where p.id = :pid", Patient.class )
+			" where p.id = :pid", WoodElement.class )
 			.setParameter( "pid", id )
 			.setMaxResults( 1 )
 			.getResultList();		
@@ -66,17 +66,17 @@ public class PatientDaoBean implements PatientDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (Patient)results.get( 0 );
+		return (WoodElement)results.get( 0 );
 	}	
 	
 	@Override
-	public Patient findByIdentifier(String identifier) {
+	public WoodElement findByIdentifier(String identifier) {
 		if ( identifier == null ) 
 			throw new IllegalArgumentException( "identifier is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from Patient p" +
+			" from WoodElement p" +
 			" where p.identifier.code = :identifier" +
 			" and p.destination is null" )
 			.setParameter( "identifier", identifier )
@@ -86,20 +86,20 @@ public class PatientDaoBean implements PatientDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (Patient)results.get( 0 );
+		return (WoodElement)results.get( 0 );
 	}
 	
 	@Override
-	public Patient findLastVersionById( Long id ) {
+	public WoodElement findLastVersionById( Long id ) {
 		if( id == null )
 			throw new IllegalArgumentException( "id is null" );
 		
-		List<Patient> results = entityManager.createQuery(
+		List<WoodElement> results = entityManager.createQuery(
 					" select p " +
-					" from Patient p " +
+					" from WoodElement p " +
 					" join p.before b " +
 					" where b.id = :pid " +
-					" and p.destination is null", Patient.class )
+					" and p.destination is null", WoodElement.class )
 				.setParameter( "pid", id )
 				.setMaxResults( 1 )
 				.getResultList();
@@ -111,15 +111,15 @@ public class PatientDaoBean implements PatientDao {
 	}
 	
 	@Override
-	public PatientIdentifier findIdentifierByCode(String code) {
+	public WoodElementIdentifier findIdentifierByCode(String code) {
 		if ( code == null ) 
 			throw new IllegalArgumentException( "code is null" );
 		
-		List<PatientIdentifier> results =
+		List<WoodElementIdentifier> results =
 				entityManager.createQuery( " select pi " +
-									" from PatientIdentifier pi " +
+									" from WoodElementIdentifier pi " +
 									" where pi.code = :code ", 
-									PatientIdentifier.class )
+									WoodElementIdentifier.class )
 							.setParameter( "code", code )
 //							.setFlushMode(FlushModeType.COMMIT)
 							.setMaxResults( 1 )
@@ -132,26 +132,26 @@ public class PatientDaoBean implements PatientDao {
 	}
 
 	@Override
-	public List<Patient> findByName(String name, String surname) {
+	public List<WoodElement> findByName(String name, String surname) {
 		return entityManager.createQuery( " select p "+
-									" from Patient p " +
+									" from WoodElement p " +
 									" where p.name = :name " +
 									" and p.surname = :surname " +
-									" and p.destination is null ", Patient.class )
+									" and p.destination is null ", WoodElement.class )
 					.setParameter( "name", name )
 					.setParameter( "surname", surname )
 					.getResultList();
 	}
 	
 	@Override
-	public List<Patient> findForMerge(String name, String surname, Long excludeId) {
+	public List<WoodElement> findForMerge(String name, String surname, Long excludeId) {
 		return entityManager.createQuery( " select p "+
-									" from Patient p " +
+									" from WoodElement p " +
 									" where p.name = :name " +
 									" and p.surname = :surname " +
 									" and p.destination is null " +
-								//	" and p.identifier is null " +  // to allow merging even between different patient records of the same patient in Book
-									" and p.id <> :notPid", Patient.class )
+								//	" and p.identifier is null " +  // to allow merging even between different wood_element records of the same wood_element in Book
+									" and p.id <> :notPid", WoodElement.class )
 					.setParameter( "name", name )
 					.setParameter( "surname", surname )
 					.setParameter( "notPid", excludeId )
@@ -159,46 +159,46 @@ public class PatientDaoBean implements PatientDao {
 	}
 
 	/**
-	 * Manual Merge of patients
+	 * Manual Merge of wood_elements
 	 */
 	@Override
-	public Patient mergePatients( Long patientId, Long otherId, User author ) {
-		Patient patient = findById( patientId );
-		Patient other = findById( otherId );
+	public WoodElement mergeWoodElements( Long wood_elementId, Long otherId, User author ) {
+		WoodElement wood_element = findById( wood_elementId );
+		WoodElement other = findById( otherId );
 
-		Patient master;
-		Patient slave;
+		WoodElement master;
+		WoodElement slave;
 
-		PatientIdentifier patientIdentifier = patient.getIdentifier();
-		PatientIdentifier otherIdentifier = other.getIdentifier();
-		if ( patientIdentifier != null && otherIdentifier != null ) {
-			// merge between Book patient records
+		WoodElementIdentifier wood_elementIdentifier = wood_element.getIdentifier();
+		WoodElementIdentifier otherIdentifier = other.getIdentifier();
+		if ( wood_elementIdentifier != null && otherIdentifier != null ) {
+			// merge between Book wood_element records
 			// master is the most recent record
-			if ( patient.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) { 
-				master = patient;
+			if ( wood_element.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) { 
+				master = wood_element;
 				slave = other;
 			} else {
 				master = other;
-				slave = patient;
+				slave = wood_element;
 			}
 		} else {
-			if ( patientIdentifier != null || otherIdentifier == null ) {
+			if ( wood_elementIdentifier != null || otherIdentifier == null ) {
 				// there are two possible cases:
-				// - patient is the Book record and is the master
+				// - wood_element is the Book record and is the master
 				// - or both records are without an identifier and
-				// the current record (i.e., patient) is taken as the master
-				master = patient;
+				// the current record (i.e., wood_element) is taken as the master
+				master = wood_element;
 				slave = other;
 			} else {
 				// other is the Book record and is the master
 				master = other;
-				slave = patient;
+				slave = wood_element;
 			}
 		}
 
-		PatientManager manager = new PatientManager();
+		WoodElementManager manager = new WoodElementManager();
 		Time time = new Time( new Date() );
-		Patient result = manager.merge( author, time, master, slave );
+		WoodElement result = manager.merge( author, time, master, slave );
 		
 		entityManager.persist( result );
 		
@@ -206,13 +206,13 @@ public class PatientDaoBean implements PatientDao {
 	}
 	
 	@Override
-	public void save( Patient target ) {
+	public void save( WoodElement target ) {
 		entityManager.persist( target );
 		flush();
 	}
 	
 	@Override
-	public void update( Patient target ) {
+	public void update( WoodElement target ) {
 		entityManager.merge( target );
 		flush();
 	}
@@ -221,8 +221,8 @@ public class PatientDaoBean implements PatientDao {
 	public void deleteById( Long id, User author ) {
 		
 		if( id != null ) {
-			PatientManager manager = new PatientManager();
-			Patient result = manager.delete( author, new Time( new Date() ), findById( id ));
+			WoodElementManager manager = new WoodElementManager();
+			WoodElement result = manager.delete( author, new Time( new Date() ), findById( id ));
 			entityManager.persist( result );
 		}
 	}	
@@ -232,13 +232,13 @@ public class PatientDaoBean implements PatientDao {
 	}
 
 	@Override
-	public Patient findByTaxCode( String taxCode ) {
+	public WoodElement findByTaxCode( String taxCode ) {
 		if ( taxCode == null ) 
 			throw new IllegalArgumentException( "tax code is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from Patient p" +
+			" from WoodElement p" +
 			" where p.taxCode = :taxCode" +
 			" and p.destination is null" )
 			.setParameter( "taxCode", taxCode )
@@ -248,16 +248,16 @@ public class PatientDaoBean implements PatientDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (Patient)results.get( 0 );
+		return (WoodElement)results.get( 0 );
 	}
 
 	@Override
-	public List<Patient> findBySuggestion( String suggestion, int limit ) {
+	public List<WoodElement> findBySuggestion( String suggestion, int limit ) {
 		
-		TypedQuery<Patient> query = entityManager.createQuery(
-				" select p from Patient p " 
+		TypedQuery<WoodElement> query = entityManager.createQuery(
+				" select p from WoodElement p " 
 					+ " where CONCAT( p.surname, ' ', p.name, ' - ', p.taxCode ) like :suggestion " 
-					+ " and p.destination is null", Patient.class );
+					+ " and p.destination is null", WoodElement.class );
 		
 		query.setParameter( "suggestion", '%' + suggestion + '%');
 		
@@ -269,14 +269,14 @@ public class PatientDaoBean implements PatientDao {
 	}
 	
 	@Override
-	public Patient findByUuid( String uuid ) {
+	public WoodElement findByUuid( String uuid ) {
 		if (uuid == null || uuid.trim().isEmpty())
 			throw new IllegalArgumentException("Parametro uuid null");
 
-		List<Patient> results = entityManager.createQuery( 
+		List<WoodElement> results = entityManager.createQuery( 
 				"select p " 
-					+ " from Patient p " 
-					+ " where p.uuid = :uuid", Patient.class )
+					+ " from WoodElement p " 
+					+ " where p.uuid = :uuid", WoodElement.class )
 			.setParameter("uuid", uuid )
 			.setMaxResults( 1 )
 			.getResultList();

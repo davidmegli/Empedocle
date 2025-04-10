@@ -1,8 +1,8 @@
-package it.unifi.ing.stlab.patients.model.actions;
+package it.unifi.ing.stlab.wood-elements.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.ModifyActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.ModifyAction;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -14,48 +14,48 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "MD" )
-public class PatientModifyAction
-	extends PatientAction
-	implements ModifyAction<Patient,PatientAction,User,Time> {
+public class WoodElementModifyAction
+	extends WoodElementAction
+	implements ModifyAction<WoodElement,WoodElementAction,User,Time> {
 
-	public PatientModifyAction(String uuid) {
+	public WoodElementModifyAction(String uuid) {
 		super(uuid);
-		setDelegate( new ModifyActionImpl<Patient,PatientAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<WoodElement,WoodElementAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
-	protected PatientModifyAction() {
+	protected WoodElementModifyAction() {
 		super();
-		setDelegate( new ModifyActionImpl<Patient,PatientAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<WoodElement,WoodElementAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected ModifyActionImpl<Patient,PatientAction,User,Time> getDelegate() {
-		return (ModifyActionImpl<Patient,PatientAction,User,Time>)super.getDelegate();
+	protected ModifyActionImpl<WoodElement,WoodElementAction,User,Time> getDelegate() {
+		return (ModifyActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
-	public Patient getSource() {
+	public WoodElement getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(Patient source) {
+	protected void setSource(WoodElement source) {
 		getDelegate().setSource(source);
 	}
-	public void assignSource(Patient newSource) {
+	public void assignSource(WoodElement newSource) {
 		getDelegate().assignSource(newSource);
 	}
 
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public Patient getTarget() {
+	public WoodElement getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(Patient target) {
+	protected void setTarget(WoodElement target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(Patient newTarget) {
+	public void assignTarget(WoodElement newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 

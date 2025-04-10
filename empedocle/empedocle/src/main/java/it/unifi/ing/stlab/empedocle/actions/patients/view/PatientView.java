@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients.view;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +25,8 @@ import it.unifi.ing.stlab.empedocle.model.health.ExaminationTypeContext;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.factquery.dao.FactQueryConstructor;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.model.facts.FactStatus;
 import it.unifi.ing.stlab.users.model.RoleType;
 import it.unifi.ing.stlab.view.dao.ViewerDao;
@@ -34,7 +34,7 @@ import it.unifi.ing.stlab.view.model.Viewer;
 
 @Named
 @ViewScoped
-public class PatientView extends Navigator {
+public class WoodElementView extends Navigator {
 	
 	//
 	// CDI injections
@@ -49,7 +49,7 @@ public class PatientView extends Navigator {
 	private LoggedUser loggedUser;
 	
 	@Inject 
-	protected PatientExaminationFilter examinationFilter;
+	protected WoodElementExaminationFilter examinationFilter;
 	
 	@Inject
 	private ExaminationPrint examinationPrint;
@@ -76,7 +76,7 @@ public class PatientView extends Navigator {
 	private ExaminationDao examinationDao;
 	
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	@Inject
 	private ViewerDao viewerDao;
@@ -84,13 +84,13 @@ public class PatientView extends Navigator {
 	//
 	// Local attributes
 	//
-	private Patient current;
+	private WoodElement current;
 
 	// Attributes for list
 	private String selection;
 	
 	// Attribute for merge
-	private List<Patient> matchingPatients;
+	private List<WoodElement> matchingWoodElements;
 //
 	private List<Viewer> factPanels;
 	private List<Viewer> reports;
@@ -98,17 +98,17 @@ public class PatientView extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		current = patientDao.findById( Long.parseLong( id ) );
+		current = wood_elementDao.findById( Long.parseLong( id ) );
 
 		initFilter();
 		setNavigationStatus( examinationFilter );
 		refreshCurrentPage();
 		
 		initFactPanels();
-		initMatchingPatients();
+		initMatchingWoodElements();
 	}
 
-	@Produces @RequestScoped @PatientExaminationResults @Named( "patientExaminationResults" ) 
+	@Produces @RequestScoped @WoodElementExaminationResults @Named( "wood_elementExaminationResults" ) 
 	public List<Examination> getResults() {
 		if ( getItemCount().intValue() == 0 ) 
 			return new ArrayList<Examination>();
@@ -172,10 +172,10 @@ public class PatientView extends Navigator {
 	// navigation methods
 	//
 	public String merge( Long other ) {
-		Patient result = patientDao.mergePatients( getCurrent().getId(), other,
+		WoodElement result = wood_elementDao.mergeWoodElements( getCurrent().getId(), other,
 				loggedUser.getUser() );
 
-		return "patient-view?faces-redirect=true&from=patient-list&id=" + result.getId();
+		return "wood_element-view?faces-redirect=true&from=wood_element-list&id=" + result.getId();
 	}
 	
 	public String run( Long id ) {
@@ -209,7 +209,7 @@ public class PatientView extends Navigator {
 		return examinationId;
 	}
 	
-	public Patient getCurrent() {
+	public WoodElement getCurrent() {
 		return current;
 	}
 	
@@ -229,8 +229,8 @@ public class PatientView extends Navigator {
 		return factPanels;
 	}
 
-	public List<Patient> getMatchingPatients() {
-		return matchingPatients;
+	public List<WoodElement> getMatchingWoodElements() {
+		return matchingWoodElements;
 	}
 	
 	@Override
@@ -259,8 +259,8 @@ public class PatientView extends Navigator {
 					|| checkRoleFor( "recover" );
 	}
 	
-	private void initMatchingPatients() {
-		matchingPatients = patientDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
+	private void initMatchingWoodElements() {
+		matchingWoodElements = wood_elementDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
 	}
 	
 	private void initFactPanels() {
@@ -286,6 +286,6 @@ public class PatientView extends Navigator {
 	}
 	
 	private void initFilter() {
-		examinationFilter.setPatientId( Long.parseLong( id ) );
+		examinationFilter.setWoodElementId( Long.parseLong( id ) );
 	}
 }

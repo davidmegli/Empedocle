@@ -1,12 +1,12 @@
 package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
 
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.manager.PatientManager;
-import it.unifi.ing.stlab.patients.model.Address;
-import it.unifi.ing.stlab.patients.model.Patient;
-import it.unifi.ing.stlab.patients.model.PatientIdentifier;
-import it.unifi.ing.stlab.patients.model.Sex;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.manager.WoodElementManager;
+import it.unifi.ing.stlab.wood-elements.model.Address;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.wood-elements.model.Sex;
 import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -30,7 +30,7 @@ import java.util.List;
 //@Startup
 @Singleton
 @TransactionManagement( TransactionManagementType.BEAN )
-public class OfflinePatientReconciliator {
+public class OfflineWoodElementReconciliator {
 	
 	@PersistenceContext
 	private EntityManager entityManager;	
@@ -39,7 +39,7 @@ public class OfflinePatientReconciliator {
 	private UserTransaction utx;	
 	
 	@EJB
-	private PatientDao patientDao;		
+	private WoodElementDao wood_elementDao;		
 	
 	@EJB
 	private UserDao userDao;
@@ -49,14 +49,14 @@ public class OfflinePatientReconciliator {
 	
 	private MySQLConnector connector;
 	
-	private static final String DB_ADDRESS = "jdbc:mysql://localhost/empdb_dupl_patients";
+	private static final String DB_ADDRESS = "jdbc:mysql://localhost/empdb_dupl_wood_elements";
 	private static final String DB_USER = "root";
 	private static final String DB_PASS = "root";
 	
 	@PostConstruct
 	@Remove
 	public void init() {
-        logger.info( "*** OfflinePatientReconciliator started ***" );
+        logger.info( "*** OfflineWoodElementReconciliator started ***" );
         initConnection();
         doJob();
 	}
@@ -64,7 +64,7 @@ public class OfflinePatientReconciliator {
 	@PreDestroy //XXX non viene distrutto
 	public void destroy() {
 		closeConnection();
-		logger.info("*** OfflinePatientReconciliator stopped ***");
+		logger.info("*** OfflineWoodElementReconciliator stopped ***");
 	}
 	
 	private void initConnection() {
@@ -73,42 +73,42 @@ public class OfflinePatientReconciliator {
 	
 	private void doJob() {
 		try {
-			ResultSet rs = connector.executeQuery( "SELECT * from patients WHERE NOT master" );
+			ResultSet rs = connector.executeQuery( "SELECT * from wood_elements WHERE NOT master" );
 			int size = connector.count( rs );
-			logger.info( "Detected " + size + " patients to be merged!" );
+			logger.info( "Detected " + size + " wood_elements to be merged!" );
 			
 			int current = 1;
 			int merged = 0;
 			while ( rs.next() ) {
-				logger.info( "Started " + current + "/" + size + " patients" );
+				logger.info( "Started " + current + "/" + size + " wood_elements" );
 	
 				utx.begin();
 			
 				String slaveIdentifier = rs.getString( "id_ACE" );
 				String masterIdentifier = rs.getString( "master_id_ACE" );
 	
-				Patient slave = patientDao.findByIdentifier( slaveIdentifier );
-				Patient master = patientDao.findByIdentifier( masterIdentifier );
+				WoodElement slave = wood_elementDao.findByIdentifier( slaveIdentifier );
+				WoodElement master = wood_elementDao.findByIdentifier( masterIdentifier );
 	
-				PatientManager patientManager = new PatientManager();
+				WoodElementManager wood_elementManager = new WoodElementManager();
 				User author = userDao.findByUsername( "administrator" );
 				Time time = new Time( new Date() );
 				
 				if ( master == null ) {
 					// master not found
 					if ( slave == null ) {
-						// master and slave not found: patient not managed by empedocle
-						logger.error( "Cannot find the patients you wish to merge" );
+						// master and slave not found: wood_element not managed by empedocle
+						logger.error( "Cannot find the wood_elements you wish to merge" );
 					} else {
 						// slave found, master not found
 	
-						// 1. a new patient with role master is created
-						master = patientManager.createPatient( author, time );
+						// 1. a new wood_element with role master is created
+						master = wood_elementManager.createWoodElement( author, time );
 						update( master, rs );
 						entityManager.persist( master );
 	
 						// 2. master and slave are merged
-						Patient result = patientManager.merge( author, time, master, slave );
+						WoodElement result = wood_elementManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
@@ -117,10 +117,10 @@ public class OfflinePatientReconciliator {
 					// master found
 					
 					// 1. master is updated
-					Patient copy = patientManager.modify( author, time, master );
+					WoodElement copy = wood_elementManager.modify( author, time, master );
 					update( copy, rs );
 					
-					Patient purged = patientManager.purge( copy );
+					WoodElement purged = wood_elementManager.purge( copy );
 					if ( purged != null ) {
 						master = purged;
 						entityManager.persist( master );
@@ -131,18 +131,18 @@ public class OfflinePatientReconciliator {
 					
 					if ( slave != null ) {
 						// 2. master and slave are merged
-						Patient result = patientManager.merge( author, time, master, slave );
+						WoodElement result = wood_elementManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
 					}
 				}
 				utx.commit();
-				logger.info( "Ended " + current + "/" + size + " patients" );
+				logger.info( "Ended " + current + "/" + size + " wood_elements" );
 				current++;
 			}
 			rs.close();
-			logger.info( "Merged  " + merged + "/" + size + " patients" );
+			logger.info( "Merged  " + merged + "/" + size + " wood_elements" );
 		} catch ( Exception e ) {
 			logger.error( e );
 			
@@ -154,56 +154,56 @@ public class OfflinePatientReconciliator {
 		}
 	}
 	
-	private void update( Patient patient, ResultSet rs ) throws SQLException {
+	private void update( WoodElement wood_element, ResultSet rs ) throws SQLException {
 		
-		PatientIdentifier identifier = retrievePatientIdentifier( rs.getString( "master_id_ACE" ) );
-		patient.setIdentifier( identifier );
+		WoodElementIdentifier identifier = retrieveWoodElementIdentifier( rs.getString( "master_id_ACE" ) );
+		wood_element.setIdentifier( identifier );
 		
-		patient.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
-		patient.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
-		patient.setName( check( rs.getString( "master_name" ) ) );
-		patient.setSurname( check( rs.getString( "master_surname" ) ) );
-		patient.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
-		patient.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
-		patient.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
+		wood_element.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
+		wood_element.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
+		wood_element.setName( check( rs.getString( "master_name" ) ) );
+		wood_element.setSurname( check( rs.getString( "master_surname" ) ) );
+		wood_element.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
+		wood_element.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
+		wood_element.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
 
 		if ( check( rs.getString( "master_residence_place" ) ) != null ) {
-			patient.setResidence( new Address() );
-			patient.getResidence().setPlace( rs.getString( "master_residence_place" ) );
+			wood_element.setResidence( new Address() );
+			wood_element.getResidence().setPlace( rs.getString( "master_residence_place" ) );
 		}
 		
 		if ( check( rs.getString( "master_domicile_place" ) )  != null ) {
-			patient.setDomicile( new Address() );
-			patient.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
+			wood_element.setDomicile( new Address() );
+			wood_element.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
 		}
 		
-		patient.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
-		patient.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
-		patient.setNationality( check( rs.getString( "master_nationality" ) ) );
+		wood_element.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
+		wood_element.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
+		wood_element.setNationality( check( rs.getString( "master_nationality" ) ) );
 	}
 	
 	private String check( String value ) {
 		return ( value != null && !value.isEmpty() ) ? value : null;
 	}
 
-	private PatientIdentifier retrievePatientIdentifier( String code ){
-		PatientIdentifier identifier = null;
+	private WoodElementIdentifier retrieveWoodElementIdentifier( String code ){
+		WoodElementIdentifier identifier = null;
 		
 		if ( code == null ) 
 			throw new IllegalArgumentException( "code is null" );
 		
-		List<PatientIdentifier> results =
+		List<WoodElementIdentifier> results =
 				entityManager.createQuery( " select pi " +
-									" from PatientIdentifier pi " +
+									" from WoodElementIdentifier pi " +
 									" where pi.code = :code ", 
-									PatientIdentifier.class )
+									WoodElementIdentifier.class )
 							.setParameter( "code", code )
 							.setFlushMode( FlushModeType.COMMIT )
 							.setMaxResults( 1 )
 							.getResultList();
 		
 		if ( results.size() == 0 ) {
-			identifier = PatientFactory.createPatientIdentifier();
+			identifier = WoodElementFactory.createWoodElementIdentifier();
 			identifier.setCode( code );
 			
 		} else {

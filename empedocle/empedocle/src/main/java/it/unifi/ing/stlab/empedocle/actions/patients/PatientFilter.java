@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Named
 @SessionScoped
-public class PatientFilter extends FilterBean implements QueryBuilder { 
+public class WoodElementFilter extends FilterBean implements QueryBuilder { 
 
 	private static final long serialVersionUID = -6187714669628170593L;
 
@@ -39,7 +39,7 @@ public class PatientFilter extends FilterBean implements QueryBuilder {
 	@Inject
 	private AgendaDao agendaDao;
 
-	public PatientFilter() {
+	public WoodElementFilter() {
 		setPageSize( 10 );
 		
 		// filters available
@@ -55,7 +55,7 @@ public class PatientFilter extends FilterBean implements QueryBuilder {
 	public Query getCountQuery( EntityManager entityManager ) {
 		StringBuffer buffer = new StringBuffer();
 		
-		buffer.append( "select count( distinct p ) from Patient p where p.destination is null" );
+		buffer.append( "select count( distinct p ) from WoodElement p where p.destination is null" );
 		writeFilters( buffer );
 		
 		Query result = entityManager.createQuery( buffer.toString() );
@@ -68,7 +68,7 @@ public class PatientFilter extends FilterBean implements QueryBuilder {
 	public Query getListQuery( EntityManager entityManager ) {
 		StringBuffer buffer = new StringBuffer();
 		
-		buffer.append( "select distinct p from Patient p where p.destination is null" );
+		buffer.append( "select distinct p from WoodElement p where p.destination is null" );
 		
 		writeFilters( buffer );
 		

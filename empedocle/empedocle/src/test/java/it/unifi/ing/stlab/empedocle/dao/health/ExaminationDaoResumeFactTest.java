@@ -8,9 +8,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.manager.PatientManager;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.manager.WoodElementManager;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
@@ -46,7 +46,7 @@ public class ExaminationDaoResumeFactTest extends PersistenceTest {
 	
 	protected CompositeFact newCompositeFact;
 	protected TextualFact newTextualFact;
-	protected Patient p;
+	protected WoodElement p;
 	protected User author;
 	protected Examination examination;
 	
@@ -71,12 +71,12 @@ public class ExaminationDaoResumeFactTest extends PersistenceTest {
 		author.setUserid("usr");
 		entityManager.persist(author);
 		
-		p = PatientFactory.createPatient();
+		p = WoodElementFactory.createWoodElement();
 		entityManager.persist( p );
 		
 		examination = ExaminationFactory.createExamination();
 		examination.setAppointment(AppointmentFactory.createAppointment());
-		examination.getAppointment().setPatient(p);
+		examination.getAppointment().setWoodElement(p);
 		examination.setStatus(ExaminationStatus.DONE);
 		entityManager.persist( examination );
 		
@@ -137,10 +137,10 @@ public class ExaminationDaoResumeFactTest extends PersistenceTest {
 	}
 	
 	@Test
-	public void testResumeUpdatedPatient() {
-		PatientManager patientManager = new PatientManager();
+	public void testResumeUpdatedWoodElement() {
+		WoodElementManager wood_elementManager = new WoodElementManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		Patient pNew = patientManager.modify(author, time, p);
+		WoodElement pNew = wood_elementManager.modify(author, time, p);
 		entityManager.persist(pNew);
 		
 		Fact resumed = examinationDao.resume(newTextualFact, pNew);

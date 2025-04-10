@@ -56,31 +56,31 @@ public class ExaminationDaoTest extends JpaTest {
 	}
 	
 	@Test
-	public void testFindPatientHistoryNullStatusesAndAgendas() {
-		List<Examination> exams = examinationDao.findPatientHistory( new Long(83695), new Long(181896), null, null, 0, 5 );
+	public void testFindWoodElementHistoryNullStatusesAndAgendas() {
+		List<Examination> exams = examinationDao.findWoodElementHistory( new Long(83695), new Long(181896), null, null, 0, 5 );
 		assertEquals(0, exams.size());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindPatientHistoryNullStatuses() {
+	public void testFindWoodElementHistoryNullStatuses() {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "IMPORTCARDIO" ));
 		
-		examinationDao.findPatientHistory( new Long(83695), new Long(181896), null, agendas, 0, 5 );
+		examinationDao.findWoodElementHistory( new Long(83695), new Long(181896), null, agendas, 0, 5 );
 	}
 	
 	@Test
-	public void testFindPatientHistoryNullAgendas() {
+	public void testFindWoodElementHistoryNullAgendas() {
 		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>();
 		statuses.add( ExaminationStatus.CONCLUDED );
 		statuses.add( ExaminationStatus.DONE );
 		
-		List<Examination> exams = examinationDao.findPatientHistory( new Long(83695), new Long(181896), statuses, null, 0, 5 );
+		List<Examination> exams = examinationDao.findWoodElementHistory( new Long(83695), new Long(181896), statuses, null, 0, 5 );
 		assertEquals(0, exams.size());
 	}		
 	
 	@Test
-	public void testFindPatientHistory() {
+	public void testFindWoodElementHistory() {
 		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>();
 		statuses.add( ExaminationStatus.CONCLUDED );
 		statuses.add( ExaminationStatus.DONE );
@@ -88,22 +88,22 @@ public class ExaminationDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		List<Examination> exams = examinationDao.findPatientHistory( new Long(83695), new Long(181896), statuses, agendas, 0, 5 );
+		List<Examination> exams = examinationDao.findWoodElementHistory( new Long(83695), new Long(181896), statuses, agendas, 0, 5 );
 		assertEquals( 1, exams.size() );
 	}	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindPatientHistoryFail1() {
-		examinationDao.findPatientHistory( null, new Long(181896), null, null, 0, 5 );
+	public void testFindWoodElementHistoryFail1() {
+		examinationDao.findWoodElementHistory( null, new Long(181896), null, null, 0, 5 );
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindPatientHistoryFail2() {
-		examinationDao.findPatientHistory( new Long(83695), null, null, null, 0, 5 );
+	public void testFindWoodElementHistoryFail2() {
+		examinationDao.findWoodElementHistory( new Long(83695), null, null, null, 0, 5 );
 	}
 	
 	@Test
-	public void testHasPatientHistory() {
+	public void testHasWoodElementHistory() {
 		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>();
 		statuses.add( ExaminationStatus.CONCLUDED );
 		statuses.add( ExaminationStatus.DONE );
@@ -111,12 +111,12 @@ public class ExaminationDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		boolean result = examinationDao.hasPatientHistory( new Long(83695), statuses, agendas);
+		boolean result = examinationDao.hasWoodElementHistory( new Long(83695), statuses, agendas);
 		assertTrue(result);
 	}
 	
 	@Test
-	public void testCountPatientHistory() {
+	public void testCountWoodElementHistory() {
 		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>();
 		statuses.add( ExaminationStatus.CONCLUDED );
 		statuses.add( ExaminationStatus.DONE );
@@ -124,18 +124,18 @@ public class ExaminationDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		int result = examinationDao.countPatientHistory( new Long(83695), new Long(181896), statuses, agendas );
+		int result = examinationDao.countWoodElementHistory( new Long(83695), new Long(181896), statuses, agendas );
 		assertEquals( 1, result );
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCountPatientHistoryFail1() {
-		examinationDao.countPatientHistory( null, new Long(181896), null, null);
+	public void testCountWoodElementHistoryFail1() {
+		examinationDao.countWoodElementHistory( null, new Long(181896), null, null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCountPatientHistoryFail2() {
-		examinationDao.countPatientHistory( new Long(82727), null, null, null);
+	public void testCountWoodElementHistoryFail2() {
+		examinationDao.countWoodElementHistory( new Long(82727), null, null, null);
 	}
 	
 }

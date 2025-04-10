@@ -16,9 +16,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.impl.factory.FactFactory;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.test.FieldUtils;
@@ -48,8 +48,8 @@ public class FieldRetrieverTest {
 		appointment.setAcceptanceCode( "1234" );
 		appointment.setDate( c.getTime() );
 
-		Patient patient = PatientFactory.createPatient();
-		patient.setName( "Gino" );
+		WoodElement wood_element = WoodElementFactory.createWoodElement();
+		wood_element.setName( "Gino" );
 
 		User user = UserFactory.createUser();
 		user.setName( "Fabio" );
@@ -62,21 +62,21 @@ public class FieldRetrieverTest {
 		// user.addQualification(qualification2);
 
 		examination.setAppointment( appointment );
-		appointment.setPatient( patient );
+		appointment.setWoodElement( wood_element );
 		examination.setAuthor( user );
 
 		root.setContext( examination );
 
-		PatientDao patientDao = mock( PatientDao.class );
+		WoodElementDao wood_elementDao = mock( WoodElementDao.class );
 
-		when( patientDao.findLastVersionById( anyLong() ) ).thenReturn( patient );
+		when( wood_elementDao.findLastVersionById( anyLong() ) ).thenReturn( wood_element );
 
-		FieldUtils.assignField( retriever, "patientDao", patientDao );
+		FieldUtils.assignField( retriever, "wood_elementDao", wood_elementDao );
 	}
 
 	@Test
 	public void testObtainFieldPaziente() {
-		path = "Patient.Name";
+		path = "WoodElement.Name";
 		String result = retriever.retrieve( root, path );
 
 		assertEquals( "Gino", result );

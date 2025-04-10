@@ -13,8 +13,8 @@
 					<h:panelGroup layout="block" rendered="#{loginBean.loggedIn}">
 						<ul class="nav">
 							<li>
-								<h:link outcome="/pages/patients/patient-view.xhtml" includeViewParams="true">
-									<f:param name="id" value="#{examinationRunning.lastPatientVersion.id}" />
+								<h:link outcome="/pages/wood_elements/wood_element-view.xhtml" includeViewParams="true">
+									<f:param name="id" value="#{examinationRunning.lastWoodElementVersion.id}" />
 									<f:param name="from" value="#{view.viewId}" />
 									<f:param name="eid" value="#{examinationRunning.id}" />
 									<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" />
@@ -28,8 +28,8 @@
 								    </a>
 								    <ul class="dropdown-menu">
 										<li>
-											<h:outputLink value="/empedocle/patient-consent" target="_blank">
-												<f:param name="pid" value="#{examinationRunning.lastPatientVersion.id}" />
+											<h:outputLink value="/empedocle/wood_element-consent" target="_blank">
+												<f:param name="pid" value="#{examinationRunning.lastWoodElementVersion.id}" />
 												<i class="fw-icon-file-text dist-right fw-icon-large"></i> Consent to the processing of personal data
 											</h:outputLink>
 										</li>										

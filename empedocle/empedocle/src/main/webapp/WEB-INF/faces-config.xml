@@ -27,8 +27,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>patient-list</from-outcome>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<from-outcome>wood_element-list</from-outcome>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -84,27 +84,27 @@
 	</navigation-rule>
 	
 	
-	<!-- Patient navigation rules -->
-	<!-- from patient-list -->
+	<!-- WoodElement navigation rules -->
+	<!-- from wood_element-list -->
 	<navigation-rule>
-		<from-view-id>/pages/patients/patient-list.xhtml</from-view-id>
+		<from-view-id>/pages/wood_elements/wood_element-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>view</from-outcome>
-			<to-view-id>/pages/patients/patient-view.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{patientList.selection}</value>
+					<value>#{wood_elementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>patient-list</value>
+					<value>wood_element-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/patients/patient-edit.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -112,7 +112,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{patientList.selection}</value>
+					<value>#{wood_elementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -122,7 +122,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>add-new</from-outcome>
-			<to-view-id>/pages/patients/patient-edit.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -136,7 +136,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -149,23 +149,23 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{patientList.examinationId}</value>
+					<value>#{wood_elementList.examinationId}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from patient-view -->
+	<!-- from wood_element-view -->
 	<navigation-rule>
-		<from-view-id>/pages/patients/patient-view.xhtml</from-view-id>	
+		<from-view-id>/pages/wood_elements/wood_element-view.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/patients/patient-edit.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -173,7 +173,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{patientList.selection}</value>
+					<value>#{wood_elementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -183,7 +183,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -196,55 +196,55 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{patientView.selection}</value>
+					<value>#{wood_elementView.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>		
 	</navigation-rule>
 	
-	<!-- from patient-edit -->
+	<!-- from wood_element-edit -->
 	<navigation-rule>
-		<from-view-id>/pages/patients/patient-edit.xhtml</from-view-id>
+		<from-view-id>/pages/wood_elements/wood_element-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{patientEdit.from eq 'list'}</if>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<if>#{wood_elementEdit.from eq 'list'}</if>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{patientEdit.from eq 'view'}</if>
-			<to-view-id>/pages/patients/patient-view.xhtml</to-view-id>
+			<if>#{wood_elementEdit.from eq 'view'}</if>
+			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{patientEdit.id}</value>
+					<value>#{wood_elementEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>patient-list</value>
+					<value>wood_element-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{patientEdit.from eq 'view'}</if>
-			<to-view-id>/pages/patients/patient-view.xhtml</to-view-id>
+			<if>#{wood_elementEdit.from eq 'view'}</if>
+			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{patientEdit.id}</value>
+					<value>#{wood_elementEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>patient-list</value>
+					<value>wood_element-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{patientEdit.from eq 'list'}</if>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<if>#{wood_elementEdit.from eq 'list'}</if>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -270,11 +270,11 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>history</from-outcome>
-			<to-view-id>/pages/patients/patient-view.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationList.patientId}</value>
+					<value>#{examinationList.wood_elementId}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -358,7 +358,7 @@
 		<from-view-id>/pages/examination/examination-summary.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/patients/patient-list.xhtml</to-view-id>
+			<to-view-id>/pages/wood_elements/wood_element-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>

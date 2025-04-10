@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.empedocle.actions.viewer;
 
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.view.controllers.FieldRetriever;
 
@@ -25,7 +25,7 @@ import org.apache.commons.jexl2.MapContext;
 public class FieldRetrieverBean implements FieldRetriever {
 
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	private JexlEngine jexlEngine;
 	private JexlContext context;
@@ -54,11 +54,11 @@ public class FieldRetrieverBean implements FieldRetriever {
 		context = new MapContext();
 		Examination exam = ClassHelper.cast( fact.getContext(), Examination.class );
 		context.set( "Appointment", exam.getAppointment() );
-		Patient patient = exam.getAppointment().getPatient();
-		if( patient.getId() != null )
-			context.set( "Patient", patientDao.findLastVersionById( patient.getId()  ) ); // in the real scenario
+		WoodElement wood_element = exam.getAppointment().getWoodElement();
+		if( wood_element.getId() != null )
+			context.set( "WoodElement", wood_elementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
 		else 
-			context.set( "Patient", patient ); // only in the case of patient generated on-the-fly by ExaminationRandomInitializer (invoked by ViewerPreview)
+			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by ExaminationRandomInitializer (invoked by ViewerPreview)
 		context.set( "Agenda", exam.getAppointment().getAgenda() );
 		context.set( "User", exam.getAuthor() );
 	}

@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 public enum Sex {
 	M("M"), F("F"), N("N.D.");

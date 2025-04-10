@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients.view;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements.view;
 
 import java.io.Serializable;
 

@@ -12,7 +12,7 @@ public interface MessageDao {
 	Message findById(Long id);
 	
 	int count(MessageQueryBuilder builder);
-	int countByPatientId(Long id);
+	int countByWoodElementId(Long id);
 
 	void update(Message target);
 	void save(Message target);

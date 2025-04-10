@@ -10,8 +10,8 @@ import it.unifi.ing.stlab.empedocle.security.LoginBean;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
 import it.unifi.ing.stlab.reflection.impl.manager.FactManager;
@@ -65,8 +65,8 @@ public class ExaminationRunning implements Serializable {
 	private ExaminationDetails examinationDetails;
 	private boolean summary;
 		
-	private Patient lastPatientVersion;
-	private List<Examination> patientLastExams;
+	private WoodElement lastWoodElementVersion;
+	private List<Examination> wood_elementLastExams;
 
 	private List<Viewer> examReports;
 	private String selection;
@@ -116,7 +116,7 @@ public class ExaminationRunning implements Serializable {
 	private UserDao userDao;
 	
 	@EJB
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 
 	@EJB
 	private GarbageCollectorHelper garbageCollector;
@@ -166,10 +166,10 @@ public class ExaminationRunning implements Serializable {
 				throw new IllegalArgumentException( "Visita non trovata" );
 			}
 			
-			initLastPatientVersion( examination );
+			initLastWoodElementVersion( examination );
 
-			if(patientLastExams == null){
-				patientLastExams = examinationDao.findPatientLastExams(lastPatientVersion.getId(), Long.parseLong( id ), 10);
+			if(wood_elementLastExams == null){
+				wood_elementLastExams = examinationDao.findWoodElementLastExams(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
 			}
 
 			/*TEST*/
@@ -218,8 +218,8 @@ public class ExaminationRunning implements Serializable {
 
 */
 
-	public List<Examination> getPatientLastExams(){
-		return this.patientLastExams;
+	public List<Examination> getWoodElementLastExams(){
+		return this.wood_elementLastExams;
 	}
 
 	public void initReports( Long id ) {
@@ -243,9 +243,9 @@ public class ExaminationRunning implements Serializable {
 	// Private methods
 	//
 
-	private void initLastPatientVersion( Examination examination ) {
-		lastPatientVersion = patientDao
-				.findLastVersionById( examination.getAppointment().getPatient().getId() );		
+	private void initLastWoodElementVersion( Examination examination ) {
+		lastWoodElementVersion = wood_elementDao
+				.findLastVersionById( examination.getAppointment().getWoodElement().getId() );		
 	}
 
 	private void beginConversation() {
@@ -434,7 +434,7 @@ public class ExaminationRunning implements Serializable {
 
 			conversation.end();
 			
-			return "patient-list";
+			return "wood_element-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
@@ -456,7 +456,7 @@ public class ExaminationRunning implements Serializable {
 
 			conversation.end();
 			
-			return "patient-list";
+			return "wood_element-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
@@ -508,7 +508,7 @@ public class ExaminationRunning implements Serializable {
 
 	public String close() {
 		conversation.end();
-		return "patient-list";
+		return "wood_element-list";
 	}
 	
 	public String switchUser() {
@@ -590,8 +590,8 @@ public class ExaminationRunning implements Serializable {
 		facesContext.getExternalContext().getFlash().setKeepMessages( keepMessages );
 	}
 	
-	public Patient getLastPatientVersion() {
-		return lastPatientVersion;
+	public WoodElement getLastWoodElementVersion() {
+		return lastWoodElementVersion;
 	}
 
 	public String getExaminationId() {

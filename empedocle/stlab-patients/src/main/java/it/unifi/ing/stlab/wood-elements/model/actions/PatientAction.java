@@ -1,10 +1,10 @@
-package it.unifi.ing.stlab.patients.model.actions;
+package it.unifi.ing.stlab.wood-elements.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.implementation.traced.ActionImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.entities.model.traced.Action;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -28,31 +28,31 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
 @Entity
-@Table( name="patient_actions" )
+@Table( name="wood_element_actions" )
 @Inheritance( strategy=InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( 
 	name= "from_class", 
 	discriminatorType=DiscriminatorType.STRING )
-public abstract class PatientAction 
-	implements Action<Patient,PatientAction,User,Time>, Persistable {
+public abstract class WoodElementAction 
+	implements Action<WoodElement,WoodElementAction,User,Time>, Persistable {
 
 	private PersistableImpl persistable;
-	private ActionImpl<Patient,PatientAction,User,Time> delegate;
+	private ActionImpl<WoodElement,WoodElementAction,User,Time> delegate;
 
-	public PatientAction( String uuid ) {
+	public WoodElementAction( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 	}
-	protected PatientAction() {
+	protected WoodElementAction() {
 		persistable = new PersistableImpl();
 	}
 
 	
 	
 	@Transient
-	protected ActionImpl<Patient, PatientAction, User, Time> getDelegate() {
+	protected ActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
 		return delegate;
 	}
-	protected void setDelegate(ActionImpl<Patient, PatientAction, User, Time> delegate) {
+	protected void setDelegate(ActionImpl<WoodElement, WoodElementAction, User, Time> delegate) {
 		this.delegate = delegate;
 	}
 	
@@ -63,7 +63,7 @@ public abstract class PatientAction
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="patient_action", 
+		pkColumnValue="wood_element_action",
 		allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {

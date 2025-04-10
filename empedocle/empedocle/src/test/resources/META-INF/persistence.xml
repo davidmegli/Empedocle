@@ -11,14 +11,14 @@
  		<class>it.unifi.ing.stlab.users.model.Role</class> 
  		<class>it.unifi.ing.stlab.users.model.Qualification</class> 
 
- 		<class>it.unifi.ing.stlab.patients.model.Patient</class> 
-		<class>it.unifi.ing.stlab.patients.model.PatientIdentifier</class>
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientCreateAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientModifyAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientMergeAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientSplitAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientDeleteAction</class> 
+ 		<class>it.unifi.ing.stlab.wood-elements.model.WoodElement</class>
+		<class>it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementCreateAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementModifyAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementMergeAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementSplitAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementDeleteAction</class>
 
  		<class>it.unifi.ing.stlab.reflection.model.types.Unit</class> 
  		<class>it.unifi.ing.stlab.reflection.model.types.UnitUse</class> 
@@ -130,14 +130,14 @@
  		<class>it.unifi.ing.stlab.users.model.Role</class> 
  		<class>it.unifi.ing.stlab.users.model.Qualification</class> 
 
- 		<class>it.unifi.ing.stlab.patients.model.Patient</class> 
-		<class>it.unifi.ing.stlab.patients.model.PatientIdentifier</class>
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientCreateAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientModifyAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientMergeAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientSplitAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientDeleteAction</class> 
+ 		<class>it.unifi.ing.stlab.wood-elements.model.WoodElement</class>
+		<class>it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementCreateAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementModifyAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementMergeAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementSplitAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementDeleteAction</class>
 
  		<class>it.unifi.ing.stlab.reflection.model.types.Unit</class> 
  		<class>it.unifi.ing.stlab.reflection.model.types.UnitUse</class> 
@@ -251,14 +251,14 @@
  		<class>it.unifi.ing.stlab.users.model.Role</class> 
  		<class>it.unifi.ing.stlab.users.model.Qualification</class> 
 
- 		<class>it.unifi.ing.stlab.patients.model.Patient</class> 
-		<class>it.unifi.ing.stlab.patients.model.PatientIdentifier</class>
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientCreateAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientModifyAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientMergeAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientSplitAction</class> 
- 		<class>it.unifi.ing.stlab.patients.model.actions.PatientDeleteAction</class> 
+ 		<class>it.unifi.ing.stlab.wood-elements.model.WoodElement</class>
+		<class>it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementCreateAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementModifyAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementMergeAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementSplitAction</class>
+ 		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementDeleteAction</class>
 
  		<class>it.unifi.ing.stlab.reflection.model.types.Unit</class> 
  		<class>it.unifi.ing.stlab.reflection.model.types.UnitUse</class> 

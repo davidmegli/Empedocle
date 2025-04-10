@@ -9,7 +9,7 @@ import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.visitor.fact.tools.EmptyFactVisitor;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.impl.visitor.fact.FactCopyVisitor;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.reflection.model.facts.FactStatus;
@@ -30,13 +30,13 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 	private RecurrentFactHelper helper;
 	
 	@Mock private ExaminationDao examinationDao;
-	@Mock private Patient fakePatient;
+	@Mock private WoodElement fakeWoodElement;
 	
 	@Before
 	public void setUp() {
 		super.setUp();
 		helper = new RecurrentFactHelper(examinationDao);
-		when(fakePatient.getId()).thenReturn(1L);
+		when(fakeWoodElement.getId()).thenReturn(1L);
 		
 	}
 	
@@ -49,7 +49,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		fake_return.setText("recuperata!");
 		fake_return.setContext(context);
 		
-		when(examinationDao.resume(any(Fact.class), any(Patient.class))).thenReturn(fake_return);
+		when(examinationDao.resume(any(Fact.class), any(WoodElement.class))).thenReturn(fake_return);
 		
 		helper.resumeRecurrentFacts(root);
 		
@@ -77,7 +77,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		
 		Examination e = (Examination)root.getContext();
 		Appointment a = AppointmentFactory.createAppointment();
-		a.setPatient(fakePatient);
+		a.setWoodElement(fakeWoodElement);
 		e.setAppointment(a);
 		
 		AssignContextVisitor acv = new AssignContextVisitor(e);
@@ -85,7 +85,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		AssignStatusVisitor asv = new AssignStatusVisitor(FactStatus.DRAFT);
 		destination.accept(asv);
 		
-		when(examinationDao.resume(any(Fact.class), any(Patient.class))).thenReturn(cmp);
+		when(examinationDao.resume(any(Fact.class), any(WoodElement.class))).thenReturn(cmp);
 		
 		helper.resumeRecurrentFacts(destination);
 		

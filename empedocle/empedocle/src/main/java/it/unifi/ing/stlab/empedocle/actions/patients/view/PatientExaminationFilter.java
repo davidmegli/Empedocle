@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients.view;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +26,13 @@ import it.unifi.ing.stlab.filters.SelectItemBuilder;
 
 @Named
 @SessionScoped
-public class PatientExaminationFilter extends FilterBean implements ExaminationQueryBuilder { 
+public class WoodElementExaminationFilter extends FilterBean implements ExaminationQueryBuilder { 
 
 	private static final long serialVersionUID = -4636045233963106991L;
 
 	private ExaminationListType selectedList;
 	
-	private Long patientId;
+	private Long wood_elementId;
 
 	@Inject
 	private LoggedUser loggedUser;
@@ -40,7 +40,7 @@ public class PatientExaminationFilter extends FilterBean implements ExaminationQ
 	@Inject
 	private AgendaDao agendaDao;
 	
-	public PatientExaminationFilter() {
+	public WoodElementExaminationFilter() {
 		setPageSize( 10 );
 		
 		// filters available
@@ -129,7 +129,7 @@ public class PatientExaminationFilter extends FilterBean implements ExaminationQ
 		
 		buffer.append( "select count( distinct e ) " )		
 			  .append( " from Examination e " )
-			  .append( " join e.appointment.patient.after aa " )
+			  .append( " join e.appointment.wood_element.after aa " )
 			  .append( " where aa.id = :id " )
 			  .append( " and e.appointment.agenda in :agendas " )
 			  .append( " and e.status in :ex_status " )
@@ -156,7 +156,7 @@ public class PatientExaminationFilter extends FilterBean implements ExaminationQ
 		
 		buffer.append( "select distinct e " )
 			  .append( " from Examination e " )
-			  .append( " join e.appointment.patient.after aa ")
+			  .append( " join e.appointment.wood_element.after aa ")
 			  .append( " where aa.id = :id " )
 			  .append( " and e.appointment.agenda in :agendas " )			  
 			  .append( " and e.status in :ex_status " )
@@ -189,7 +189,7 @@ public class PatientExaminationFilter extends FilterBean implements ExaminationQ
 	public void resolveParameters( Query query ) {
 		super.resolveParameters( query );
 		
-		query.setParameter( "id", patientId );
+		query.setParameter( "id", wood_elementId );
 		query.setParameter( "agendas",  loggedUser.getAgendas());		
 		
 		switch ( selectedList ) {
@@ -245,10 +245,10 @@ public class PatientExaminationFilter extends FilterBean implements ExaminationQ
 		}
 	}
 
-	public Long getPatientId() {
-		return patientId;
+	public Long getWoodElementId() {
+		return wood_elementId;
 	}
-	public void setPatientId( Long patientId ) {
-		this.patientId = patientId;
+	public void setWoodElementId( Long wood_elementId ) {
+		this.wood_elementId = wood_elementId;
 	}
 }

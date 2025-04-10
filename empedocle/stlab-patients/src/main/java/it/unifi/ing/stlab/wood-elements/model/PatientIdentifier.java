@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
@@ -13,19 +13,19 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 
 @Entity
-@Table( name = "patient_identifiers" )
-public class PatientIdentifier implements Persistable {
+@Table( name = "wood_element_identifiers" )
+public class WoodElementIdentifier implements Persistable {
 
 	private PersistableImpl persistable;
 	
 	private String code;
 	private Long version;
 
-	public PatientIdentifier(){
+	public WoodElementIdentifier(){
 		persistable = new PersistableImpl();
 		
 	}
-	public PatientIdentifier(String uuid){
+	public WoodElementIdentifier(String uuid){
 		persistable = new PersistableImpl( uuid );
 	}
 	
@@ -36,7 +36,7 @@ public class PatientIdentifier implements Persistable {
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="patient_identifier", allocationSize = 1 )
+		pkColumnValue="wood_element_identifier", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
 		return persistable.getId();

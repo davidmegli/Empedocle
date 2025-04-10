@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients.view;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements.view;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,5 +10,5 @@ import javax.inject.Qualifier;
 @Qualifier
 @Retention( RetentionPolicy.RUNTIME )
 @Target({ ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
-public @interface PatientExaminationResults {
+public @interface WoodElementExaminationResults {
 }

@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.patients;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements;
 
 import java.util.*;
 
@@ -27,13 +27,13 @@ import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.RoleType;
 
 @Named
 @RequestScoped
-public class PatientList extends Navigator {
+public class WoodElementList extends Navigator {
 
 	private static final String ENROLLING_FILTER_NAME = "Visit for Agenda:";
 	//
@@ -46,7 +46,7 @@ public class PatientList extends Navigator {
 	private UserTransaction utx;
 	
 	@Inject 
-	protected PatientFilter patientFilter;
+	protected WoodElementFilter wood_elementFilter;
 	
 	@Inject
 	private LoggedUser loggedUser;
@@ -58,7 +58,7 @@ public class PatientList extends Navigator {
 	// EJB injections
 	//
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	@Inject
 	private ExaminationDao examinationDao;
@@ -79,27 +79,27 @@ public class PatientList extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		setNavigationStatus( patientFilter );
+		setNavigationStatus( wood_elementFilter );
 		refreshCurrentPage();
 
 	}
 
-	public String runDateless( Long patientId){ // when starting a "recovery" appointment where a date can be chosen
-		if( !patientFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String runDateless( Long wood_elementId){ // when starting a "recovery" appointment where a date can be chosen
+		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) patientFilter
+		String selectedAgendaUuid = (String) wood_elementFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
 		Appointment appointment = AppointmentFactory.createAppointment();
 		appointment.setAgenda( agenda );
-		appointment.setPatient( patientDao.findById( patientId ) );
+		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
 		//appointment.setDate( date );
 		appointment.setStatus( AppointmentStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
@@ -137,22 +137,22 @@ public class PatientList extends Navigator {
 			throw new RuntimeException( "exam not found" );
 	}
 
-	public String run( Long patientId ) {
-		if( !patientFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String run( Long wood_elementId ) {
+		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) patientFilter
+		String selectedAgendaUuid = (String) wood_elementFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
 		Appointment appointment = AppointmentFactory.createAppointment();
 		appointment.setAgenda( agenda );
-		appointment.setPatient( patientDao.findById( patientId ) );
+		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
 		appointment.setDate( date );
 		appointment.setStatus( AppointmentStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
@@ -190,15 +190,15 @@ public class PatientList extends Navigator {
 			throw new RuntimeException( "exam not found" );
 	}
 	
-	@Produces @RequestScoped @Named( "patientResults" ) 
-	public List<Patient> getResults() {
+	@Produces @RequestScoped @Named( "wood_elementResults" ) 
+	public List<WoodElement> getResults() {
 		if ( getItemCount().intValue() == 0 )
 			return new ArrayList<>();
 
-		return patientDao.find( patientFilter,  getOffset(),  getLimit() );
+		return wood_elementDao.find( wood_elementFilter,  getOffset(),  getLimit() );
 	}
 	
-	public Boolean checkHistory( Long patientId ){
+	public Boolean checkHistory( Long wood_elementId ){
 		Set<Agenda> agendas = loggedUser.getAgendas();
 		
 		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>(
@@ -207,11 +207,11 @@ public class PatientList extends Navigator {
 						ExaminationStatus.DONE, 
 						ExaminationStatus.CONCLUDED));
 		
-		return examinationDao.hasPatientHistory( patientId, statuses, agendas );
+		return examinationDao.hasWoodElementHistory( wood_elementId, statuses, agendas );
 	}
 
-	public boolean isRemovable( Long patientId ) {
-		return !examinationDao.hasPatientHistory( patientId );
+	public boolean isRemovable( Long wood_elementId ) {
+		return !examinationDao.hasWoodElementHistory( wood_elementId );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -248,10 +248,10 @@ public class PatientList extends Navigator {
 		return "add-new";
 	}
 	
-	public String delete( Long patientId ) {
-		patientDao.deleteById( patientId, loggedUser.getUser() );
+	public String delete( Long wood_elementId ) {
+		wood_elementDao.deleteById( wood_elementId, loggedUser.getUser() );
 		
-		message( FacesMessage.SEVERITY_INFO, "Patient successfully deleted!", true );
+		message( FacesMessage.SEVERITY_INFO, "WoodElement successfully deleted!", true );
 		return "delete";
 	}
 
@@ -266,7 +266,7 @@ public class PatientList extends Navigator {
 	@Override
 	public Integer getItemCount() {
 		if ( itemCount == null ) {
-			itemCount = patientDao.count( patientFilter );
+			itemCount = wood_elementDao.count( wood_elementFilter );
 		}
 		return itemCount;
 	}

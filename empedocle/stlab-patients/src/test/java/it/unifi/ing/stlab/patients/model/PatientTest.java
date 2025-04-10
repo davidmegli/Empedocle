@@ -1,62 +1,62 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 import static org.junit.Assert.assertEquals;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
 
 import org.junit.Test;
 
-public class PatientTest {
+public class WoodElementTest {
 
 	@Test
 	public void testSameAs1() {
-		Patient patient1 = PatientFactory.createPatient();
-		PatientIdentifier identifier = PatientFactory.createPatientIdentifier();
+		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
 		identifier.setCode( "id" );
-		patient1.setIdentifier( identifier );
+		wood_element1.setIdentifier( identifier );
 
-		Patient patient2 = PatientFactory.createPatient();
+		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
 
-		assertEquals( false, patient1.sameAs( patient2 ) );
-		assertEquals( false, patient2.sameAs( patient1 ) );
+		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
+		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
 	}
 	
 	@Test
 	public void testSameAs2() {
-		Patient patient1 = PatientFactory.createPatient();		
-		Patient patient2 = PatientFactory.createPatient();
+		WoodElement wood_element1 = WoodElementFactory.createWoodElement();		
+		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
 
-		assertEquals( true, patient1.sameAs( patient2 ) );
-		assertEquals( true, patient2.sameAs( patient1 ) );
+		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
+		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
 	}
 	
 	@Test
 	public void testSameAs3() {
-		Patient patient1 = PatientFactory.createPatient();
-		PatientIdentifier identifier = PatientFactory.createPatientIdentifier();
+		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
 		identifier.setCode( "id" );
-		patient1.setIdentifier( identifier );
+		wood_element1.setIdentifier( identifier );
 
-		Patient patient2 = PatientFactory.createPatient();
-		patient2.setIdentifier( identifier );
+		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		wood_element2.setIdentifier( identifier );
 
-		assertEquals( true, patient1.sameAs( patient2 ) );
-		assertEquals( true, patient2.sameAs( patient1 ) );
+		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
+		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
 	}
 	
 	@Test
 	public void testSameAs4() {
-		Patient patient1 = PatientFactory.createPatient();
-		PatientIdentifier identifier1 = PatientFactory.createPatientIdentifier();
+		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElementIdentifier identifier1 = WoodElementFactory.createWoodElementIdentifier();
 		identifier1.setCode( "id1" );
-		patient1.setIdentifier( identifier1 );
+		wood_element1.setIdentifier( identifier1 );
 
-		Patient patient2 = PatientFactory.createPatient();
-		PatientIdentifier identifier2 = PatientFactory.createPatientIdentifier();
+		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		WoodElementIdentifier identifier2 = WoodElementFactory.createWoodElementIdentifier();
 		identifier2.setCode( "id2" );
-		patient2.setIdentifier( identifier2 );
+		wood_element2.setIdentifier( identifier2 );
 
-		assertEquals( false, patient1.sameAs( patient2 ) );
-		assertEquals( false, patient2.sameAs( patient1 ) );
+		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
+		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
 	}	
 
 }

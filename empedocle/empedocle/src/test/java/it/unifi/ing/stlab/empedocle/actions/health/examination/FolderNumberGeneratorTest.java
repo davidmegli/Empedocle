@@ -6,9 +6,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.view.controllers.cardiology.FolderNumberGenerator;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.model.Patient;
-import it.unifi.ing.stlab.patients.model.PatientIdentifier;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.UnitFactory;
 import it.unifi.ing.stlab.reflection.impl.factory.FactFactory;
@@ -35,8 +35,8 @@ public class FolderNumberGeneratorTest extends PersistenceTest {
 	
 	@Test
 	public void testGenerateFolderNumber() {
-		Patient p = PatientFactory.createPatient();
-		PatientIdentifier pi = PatientFactory.createPatientIdentifier();
+		WoodElement p = WoodElementFactory.createWoodElement();
+		WoodElementIdentifier pi = WoodElementFactory.createWoodElementIdentifier();
 		pi.setCode( "paziente" );
 		p.setIdentifier(pi);
 		
@@ -45,7 +45,7 @@ public class FolderNumberGeneratorTest extends PersistenceTest {
 		
 		Appointment a = AppointmentFactory.createAppointment();
 		a.setNumber("1234");
-		a.setPatient(p);
+		a.setWoodElement(p);
 		entityManager.persist(a);
 		
 		Examination e = ExaminationFactory.createExamination();

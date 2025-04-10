@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;

@@ -28,7 +28,7 @@
 			<h:panelGroup layout="block" styleClass="page-title #{examinationView.getStyleClass( examinationView.current.examination )}">
 				<h2>
 					Visit of
-					#{examinationView.current.examination.appointment.patient.surname} #{examinationView.current.examination.appointment.patient.name}
+					#{examinationView.current.examination.appointment.wood_element.surname} #{examinationView.current.examination.appointment.wood_element.name}
 					del 
 					<h:outputText value="#{examinationView.current.examination.appointment.date}" >
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
@@ -37,7 +37,7 @@
 					<h:panelGroup layout="block" styleClass="pull-right align-btn">
 						<h:link styleClass="btn dist-left" includeViewParams="true" outcome="#{param.from}">
 							<f:param name="id" value="#{param.pid}" />
-							<f:param name="from" value="#{empty param.eid ? 'patient-list' : '/pages/examination/examination-running.html'}" />
+							<f:param name="from" value="#{empty param.eid ? 'wood_element-list' : '/pages/examination/examination-running.html'}" />
 							<f:param name="eid" value="#{param.eid}" 
 								disable="#{empty param.eid}"/>
 							<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" 

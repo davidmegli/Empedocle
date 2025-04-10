@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 
 @Stateless
 @TransactionAttribute
@@ -20,13 +20,13 @@ public class AppointmentDaoBean implements AppointmentDao {
 
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public List<Appointment> findByPatients( Set<Patient> patients ) {
+	public List<Appointment> findByWoodElements( Set<WoodElement> wood_elements ) {
 		return ( List<Appointment> ) entityManager
 				.createQuery(
 					"select a" + 
 					" from Appointment a" +
-					" where a.patient in :patients " )
-				.setParameter( "patients", patients ).getResultList();
+					" where a.wood_element in :wood_elements " )
+				.setParameter( "wood_elements", wood_elements ).getResultList();
 	}
 	
 	@Override

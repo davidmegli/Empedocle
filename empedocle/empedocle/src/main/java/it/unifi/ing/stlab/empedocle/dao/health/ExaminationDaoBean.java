@@ -3,7 +3,7 @@ package it.unifi.ing.stlab.empedocle.dao.health;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.*;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
 import it.unifi.ing.stlab.reflection.impl.model.facts.FactImpl;
@@ -42,11 +42,11 @@ public class ExaminationDaoBean implements ExaminationDao {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public Fact resume(Fact f, Patient p) {
+	public Fact resume(Fact f, WoodElement p) {
 		String q = "SELECT f FROM FactImpl f" +
-				" JOIN f.context.appointment.patient.after aa " +
+				" JOIN f.context.appointment.wood_element.after aa " +
 				" WHERE f.type = :type" +
-				" AND aa.id = :patient" +
+				" AND aa.id = :wood_element" +
 				" AND f.context.status != :notStatusExam" +
 				" AND f.status != :notStatusFact" +
 				" AND f.destination is null" +
@@ -55,7 +55,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 		List<Fact> result = entityManager.createQuery(q)
 			.setMaxResults(1)
 			.setParameter("type", f.getType())
-			.setParameter("patient", p.getId())
+			.setParameter("wood_element", p.getId())
 			.setParameter("notStatusExam", ExaminationStatus.RUNNING)
 			.setParameter("notStatusFact", FactStatus.REFUSED)
 			// NB: f è ancora TRANSIENT !
@@ -112,19 +112,19 @@ public class ExaminationDaoBean implements ExaminationDao {
 	}
 	
 	@Override
-	public int countPatientHistory(Long patientId, Long examFromId, 
+	public int countWoodElementHistory(Long wood_elementId, Long examFromId, 
 			Set<ExaminationStatus> statuses, Set<Agenda> agendas ) {
-		if(patientId == null || examFromId == null)
+		if(wood_elementId == null || examFromId == null)
 			throw new IllegalArgumentException("id paziente o id esame sono nulli");
 		
 		return ((Long)entityManager.createQuery("select count ( distinct e ) " +
 						  						" from Examination e " +
-						  						" join e.appointment.patient.after aa " +
+						  						" join e.appointment.wood_element.after aa " +
 						  						" where aa.id = :pid " +
 												" and e.status in :statuses " +
 												" and e.appointment.agenda in :agendas " +
 												" and e.id != :examId ")						  						
-						  				.setParameter("pid", patientId)
+						  				.setParameter("pid", wood_elementId)
 						  				.setParameter("examId", examFromId)
 						  				.setParameter("statuses", statuses)
 						  				.setParameter("agendas", agendas)
@@ -133,22 +133,22 @@ public class ExaminationDaoBean implements ExaminationDao {
 	}
 	
 	@Override
-	public boolean hasPatientHistory( Long patientId ) {
-		if( patientId == null )
+	public boolean hasWoodElementHistory( Long wood_elementId ) {
+		if( wood_elementId == null )
 			throw new IllegalArgumentException("id paziente è nullo");
 		
 		 return ((Long) entityManager.createQuery("select count ( distinct e ) " +
 						 " from Examination e " +
-						 " join e.appointment.patient.after aa " +
+						 " join e.appointment.wood_element.after aa " +
 						 " where aa.id = :pid ")
-				 .setParameter("pid", patientId)
+				 .setParameter("pid", wood_elementId)
 				 .getSingleResult()).intValue() > 0;
 	}
 	
 	// FIXME ripulire
 	@Override
-	public boolean hasPatientHistory(Long patientId, Set<ExaminationStatus> statuses, Set<Agenda> agendas ) {
-		if(patientId == null)
+	public boolean hasWoodElementHistory(Long wood_elementId, Set<ExaminationStatus> statuses, Set<Agenda> agendas ) {
+		if(wood_elementId == null)
 			throw new IllegalArgumentException("id paziente è nullo");
 		
 		StringBuffer query = new StringBuffer();
@@ -156,7 +156,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 			.append(" from Examination e ")
 			.append(" join e.appointment a ")
 			.append(" join a.agenda ag ")
-			.append(" join a.patient.after aa ")
+			.append(" join a.wood_element.after aa ")
 			.append(" where aa.id = :pid ");
 		
 		if(agendas != null && agendas.size() > 0) {
@@ -191,27 +191,27 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		return (entityManager.createQuery(query.toString())
 			.setMaxResults(1)
-			.setParameter("pid", patientId)
+			.setParameter("pid", wood_elementId)
 			.getResultList().size() > 0);
 	}
 	
 	@Override
 	// FIXME eliminare IN?
-	public List<Examination> findPatientHistory( Long patientId, Long examFromId, 
+	public List<Examination> findWoodElementHistory( Long wood_elementId, Long examFromId, 
 			Set<ExaminationStatus> statuses, Set<Agenda> agendas, int offset, int limit ) {
-		if ( patientId == null || examFromId == null )
+		if ( wood_elementId == null || examFromId == null )
 			throw new IllegalArgumentException( "id paziente o id esame sono nulli" );
 		
 		TypedQuery<Examination> query = entityManager.createQuery(
 			" select distinct e from Examination e " 
-					+ " join e.appointment.patient.after aa " 
+					+ " join e.appointment.wood_element.after aa " 
 					+ " where e.status in :statuses " 
 					+ " and e.appointment.agenda in :agendas " 
 					+ " and e.id != :examId " 
 					+ " and aa.id = :pid " 
 					+ " order by e.appointment.date DESC", Examination.class );
 		
-		query.setParameter( "pid", patientId )
+		query.setParameter( "pid", wood_elementId )
 			.setParameter( "examId", examFromId )
 			.setParameter( "statuses", statuses )
 			.setParameter( "agendas", agendas );
@@ -225,15 +225,15 @@ public class ExaminationDaoBean implements ExaminationDao {
 		return query.getResultList();
 	}
 
-	public List<Examination> findPatientLastExams( Long patientId, Long lastExamId,  int examsNum){
+	public List<Examination> findWoodElementLastExams( Long wood_elementId, Long lastExamId,  int examsNum){
 		TypedQuery<Examination> query = entityManager.createQuery(
 				" select distinct e from Examination e "
-						+ " join e.appointment.patient.after aa"
+						+ " join e.appointment.wood_element.after aa"
 						+ " where e.id != :examId "
 						+ " and aa.id = :pid "
 						+ " order by e.appointment.date DESC", Examination.class );
 
-		query.setParameter( "pid", patientId )
+		query.setParameter( "pid", wood_elementId )
 				.setParameter( "examId", lastExamId );
 
 		query.setMaxResults( examsNum );

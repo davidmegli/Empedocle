@@ -16,7 +16,7 @@
 	<ui:define name="body">
 		<style>
 			#edit-form\:agenda .controls > input,
-			#edit-form\:patient .controls > input { width: 50%; }
+			#edit-form\:wood_element .controls > input { width: 50%; }
 		</style>
 	
 		<h:form id="edit-form" styleClass="form-horizontal">
@@ -59,16 +59,16 @@
 				</div>
 			</h:panelGroup>
 			
-			<h:panelGroup layout="block" class="control-group" id="patient">
-				<label class="control-label bold" for="edit-form:patient">* Patient</label>
+			<h:panelGroup layout="block" class="control-group" id="wood_element">
+				<label class="control-label bold" for="edit-form:wood_element">* WoodElement</label>
 				<div class="controls">
 					<emp:suggestionList
-						bean="#{examinationEdit.patientSuggestion}"
-						value="#{examinationEdit.current.appointment.patient}"
-						suggestion="#{examinationEdit.patientSuggestion.suggestion}"
-						converter="#{patientConverter}"
-						required="true" requiredMessage="'Patient' is a required field!"
-						render=":edit-form:patient"/>
+						bean="#{examinationEdit.wood_elementSuggestion}"
+						value="#{examinationEdit.current.appointment.wood_element}"
+						suggestion="#{examinationEdit.wood_elementSuggestion.suggestion}"
+						converter="#{wood_elementConverter}"
+						required="true" requiredMessage="'WoodElement' is a required field!"
+						render=":edit-form:wood_element"/>
 				</div>
 			</h:panelGroup>
 		</h:form>

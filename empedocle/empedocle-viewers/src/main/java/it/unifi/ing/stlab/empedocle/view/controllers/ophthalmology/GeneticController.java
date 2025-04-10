@@ -53,12 +53,12 @@ public class GeneticController extends ContainerController implements Serializab
 	}
 	
 	// Informativa Pazienti
-	public boolean isInformativeRecovered(Fact fact, Viewer viewer, Long patientId) {
+	public boolean isInformativeRecovered(Fact fact, Viewer viewer, Long wood_elementId) {
 		if(informative == null) {
 			informative = getRecovered(fact, viewer, 0l);
 		}
 		if(informativeRecovered == null) {
-			informativeRecovered = hasBeenResumed(informative, patientId);
+			informativeRecovered = hasBeenResumed(informative, wood_elementId);
 		}
 		return informativeRecovered;
 		
@@ -69,12 +69,12 @@ public class GeneticController extends ContainerController implements Serializab
 	}
 	
 	// Consulenza genetica preconcezionale
-	public boolean isAdviceRecovered(Fact fact, Viewer viewer, Long patientId) {
+	public boolean isAdviceRecovered(Fact fact, Viewer viewer, Long wood_elementId) {
 		if(advice == null) {
 			advice = getRecovered(fact, viewer, 2l);
 		}
 		if(adviceRecovered == null) {
-			adviceRecovered = hasBeenResumed(advice, patientId);
+			adviceRecovered = hasBeenResumed(advice, wood_elementId);
 		}
 		return adviceRecovered;
 	}
@@ -84,12 +84,12 @@ public class GeneticController extends ContainerController implements Serializab
 	}
 	
 	// Visita parenti prossimi
-	public boolean isParentVisitRecovered(Fact fact, Viewer viewer, Long patientId) {
+	public boolean isParentVisitRecovered(Fact fact, Viewer viewer, Long wood_elementId) {
 		if(parentVisit == null) {
 			parentVisit = getRecovered(fact, viewer, 4l);
 		}
 		if(parentVisitRecovered == null) {
-			parentVisitRecovered = hasBeenResumed(parentVisit, patientId);
+			parentVisitRecovered = hasBeenResumed(parentVisit, wood_elementId);
 		}
 		return parentVisitRecovered;
 	}
@@ -99,12 +99,12 @@ public class GeneticController extends ContainerController implements Serializab
 	}
 	
 	// Consulenza genetica preconcezionale famiglia
-	public boolean isFamilyAdviceRecovered(Fact fact, Viewer viewer, Long patientId) {
+	public boolean isFamilyAdviceRecovered(Fact fact, Viewer viewer, Long wood_elementId) {
 		if(familyAdvice == null) {
 			familyAdvice = getRecovered(fact, viewer, 6l);
 		}
 		if(familyAdviceRecovered == null) {
-			familyAdviceRecovered = hasBeenResumed(familyAdvice, patientId);
+			familyAdviceRecovered = hasBeenResumed(familyAdvice, wood_elementId);
 		}
 		return familyAdviceRecovered;
 	}
@@ -114,12 +114,12 @@ public class GeneticController extends ContainerController implements Serializab
 	}	
 	
 	// Consenso inserimento Registro Toscano Malattie Rare
-	public boolean isRegisterRecovered(Fact fact, Viewer viewer, Long patientId) {
+	public boolean isRegisterRecovered(Fact fact, Viewer viewer, Long wood_elementId) {
 		if(register == null) {
 			register = getRecovered(fact, viewer, 8l);
 		}
 		if(registerRecovered == null) {
-			registerRecovered = hasBeenResumed(register, patientId);
+			registerRecovered = hasBeenResumed(register, wood_elementId);
 		}
 		
 		return registerRecovered;
@@ -180,16 +180,16 @@ public class GeneticController extends ContainerController implements Serializab
 	// se esiste, allora è stata recuperata da una visita precedente
 	private boolean hasBeenResumed(QualitativeFact f, Long pId) {
 		String q = "SELECT f FROM QualitativeFactImpl f"
-				+ " JOIN f.context.appointment.patient.after aa "
+				+ " JOIN f.context.appointment.wood_element.after aa "
 				+ " WHERE f.type = :type" + " AND f.phenomenon is not null"
-				+ " AND aa.id = :patient"
+				+ " AND aa.id = :wood_element"
 				+ " AND f.destination is null" + " AND f != :currFact"
 				+ " AND f.phenomenon is not null"
 				+ " ORDER BY f.origin.time DESC";
 
 		List<Fact> result = entityManager.createQuery(q, Fact.class)
 				.setMaxResults(1).setParameter("type", f.getType())
-				.setParameter("patient", pId).setParameter("currFact", f)
+				.setParameter("wood_element", pId).setParameter("currFact", f)
 				.getResultList();
 
         return result.size() >= 1;

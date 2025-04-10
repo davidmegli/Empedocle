@@ -65,9 +65,9 @@ public class POIDataExporter {
 						workbook.getSheet( buildSheetName(rootType) ),
 						currentRowNumbers.get( rootType.getName()  ) );
 			
-			// write the default rows containing Patient and Examination info
+			// write the default rows containing WoodElement and Examination info
 			Examination e = ClassHelper.cast(rootFact.getContext(), Examination.class);
-			getConfig().writeDefaultColumns(e, e.getAppointment().getPatient(), row);
+			getConfig().writeDefaultColumns(e, e.getAppointment().getWoodElement(), row);
 			
 			for(FactLink fl : rootFact.listChildrenOrdered()) {
 				if(fl.getTarget() != null ){

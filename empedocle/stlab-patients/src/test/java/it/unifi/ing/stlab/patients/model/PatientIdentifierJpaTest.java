@@ -1,19 +1,19 @@
-package it.unifi.ing.stlab.patients.model;
+package it.unifi.ing.stlab.wood-elements.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.test.PersistenceTest;
 
 import org.junit.Test;
 
-public class PatientIdentifierJpaTest extends PersistenceTest {
+public class WoodElementIdentifierJpaTest extends PersistenceTest {
 
 	protected String uuid;
 	
 	@Override
 	protected void insertData() throws Exception {
-		PatientIdentifier identifier = PatientFactory.createPatientIdentifier();
+		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
 		identifier.setCode( "IDENTIFIER001" );
 		
 		entityManager.persist( identifier );
@@ -22,12 +22,12 @@ public class PatientIdentifierJpaTest extends PersistenceTest {
 	}
 	
 	@Test
-	public void testPatient() {
-		PatientIdentifier identifier = (PatientIdentifier)
+	public void testWoodElement() {
+		WoodElementIdentifier identifier = (WoodElementIdentifier)
 			entityManager
 				.createQuery( 
 					"select p " +
-					" from PatientIdentifier p " +
+					" from WoodElementIdentifier p " +
 					" where p.uuid = :uuid" ).setParameter( "uuid", uuid ).getSingleResult();
 	
 		assertNotNull( identifier );

@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.empedocle.actions.health.examination.consent;
 
 import it.unifi.ing.stlab.empedocle.actions.util.DateUtils;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,17 +23,17 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 
-@Named("patient-consent")
+@Named("wood_element-consent")
 @RequestScoped
-@WebServlet(urlPatterns = "/patient-consent")
-public class PatientConsentEnricher extends HttpServlet {
+@WebServlet(urlPatterns = "/wood_element-consent")
+public class WoodElementConsentEnricher extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 
-	public PatientConsentEnricher() {
+	public WoodElementConsentEnricher() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class PatientConsentEnricher extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		Patient patient = patientDao.findById( new Long(request.getParameter("pid")));
+		WoodElement wood_element = wood_elementDao.findById( new Long(request.getParameter("pid")));
 		
 		PdfReader reader = new PdfReader(
 				"http://" + request.getServerName() + ":" + request.getServerPort() 
@@ -68,15 +68,15 @@ public class PatientConsentEnricher extends HttpServlet {
 			
 			// print name and surname
 			over.setTextMatrix(120, 665);
-			over.showText(patient.getName() + " " + patient.getSurname());
+			over.showText(wood_element.getName() + " " + wood_element.getSurname());
 			
 			// print birth place
 			over.setTextMatrix(120, 648);
-			over.showText(patient.getBirthPlace());
+			over.showText(wood_element.getBirthPlace());
 			
 			// print birth date
 			over.setTextMatrix(440, 648);
-			over.showText( DateUtils.getString(patient.getBirthDate(), "dd/MM/yyyy"));
+			over.showText( DateUtils.getString(wood_element.getBirthDate(), "dd/MM/yyyy"));
 			
 			over.endText();
 			

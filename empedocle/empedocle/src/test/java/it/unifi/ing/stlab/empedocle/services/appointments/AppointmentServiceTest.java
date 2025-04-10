@@ -15,11 +15,11 @@ import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Appoi
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.AppointmentStatus;
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Service;
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Services;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.patient.Identifiers;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.patient.Patient;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.patient.Place;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.patient.Sex;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
+import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Identifiers;
+import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.WoodElement;
+import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Place;
+import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Sex;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
 import it.unifi.ing.stlab.test.FieldUtils;
 import it.unifi.ing.stlab.test.PersistenceTest;
 import it.unifi.ing.stlab.users.dao.UserDao;
@@ -35,7 +35,7 @@ public class AppointmentServiceTest extends PersistenceTest {
 	
 	private AppointmentServiceBean appointmentService;
 	
-	protected PatientDao patientDao;
+	protected WoodElementDao wood_elementDao;
 	protected ServiceDao serviceDao;
 	protected ExaminationDao examinationDao;		
 	protected AgendaDao agendaDao;
@@ -47,7 +47,7 @@ public class AppointmentServiceTest extends PersistenceTest {
 	protected void insertData() throws Exception {
 		appointmentService = new AppointmentServiceBean();
 		
-		patientDao = mock( PatientDao.class );
+		wood_elementDao = mock( WoodElementDao.class );
 		serviceDao = mock( ServiceDao.class );
 		examinationDao = mock( ExaminationDao.class );
 		agendaDao = mock( AgendaDao.class );
@@ -56,7 +56,7 @@ public class AppointmentServiceTest extends PersistenceTest {
 		utx = mock( UserTransaction.class );
 		
 		FieldUtils.assignField( appointmentService, "entityManager", entityManager);
-		FieldUtils.assignField( appointmentService, "patientDao", patientDao );
+		FieldUtils.assignField( appointmentService, "wood_elementDao", wood_elementDao );
 		FieldUtils.assignField( appointmentService, "serviceDao", serviceDao );
 		FieldUtils.assignField( appointmentService, "examinationDao", examinationDao );
 		FieldUtils.assignField( appointmentService, "agendaDao", agendaDao );
@@ -64,11 +64,11 @@ public class AppointmentServiceTest extends PersistenceTest {
 		FieldUtils.assignField( appointmentService, "logger", logger );
 		FieldUtils.assignField( appointmentService, "utx", utx );
 		
-		Patient patientDetails = init_patientDetails();
+		WoodElement wood_elementDetails = init_wood_elementDetails();
 		Appointment appointmentDetails = init_appointmentDetails();
 
 		when( userDao.findByUsername( "administrator" )).thenReturn( null );
-		when( patientDao.findByIdentifier( patientDetails.getIdentifiers().getIdAce() )).thenReturn( null );
+		when( wood_elementDao.findByIdentifier( wood_elementDetails.getIdentifiers().getIdAce() )).thenReturn( null );
 		when( examinationDao.findByAppointmentCodes(appointmentDetails.getBookingCode(), appointmentDetails.getAcceptanceCode()))
 			.thenReturn( null );
 		when( serviceDao.find( appointmentDetails.getServices().getService().get(0).getCode(), appointmentDetails.getServices().getService().get(0).getDescription(), appointmentDetails.getAgenda() )).thenReturn( null );
@@ -77,11 +77,11 @@ public class AppointmentServiceTest extends PersistenceTest {
 		doNothing().when( utx ).begin();
 		doNothing().when( utx ).commit();
 		doNothing().when( logger ).info( anyString() );
-		appointmentService.handleAppointment( "BOOK", new Date(), patientDetails, appointmentDetails);
+		appointmentService.handleAppointment( "BOOK", new Date(), wood_elementDetails, appointmentDetails);
 	}
 
 	@Test
-	public void testPatientNotFound() {
+	public void testWoodElementNotFound() {
 		Agenda agenda = (Agenda) entityManager
 				.createQuery(
 						"select a " 
@@ -115,24 +115,24 @@ public class AppointmentServiceTest extends PersistenceTest {
 		return appointmentDetails;
 	}
 	
-	private Patient init_patientDetails() {
-		Patient patientDetails = new Patient();
+	private WoodElement init_wood_elementDetails() {
+		WoodElement wood_elementDetails = new WoodElement();
 		
 		Identifiers ids = new Identifiers();
 		ids.setIdAce( "id_ace" );
 		ids.setTaxCode( "GVNVRD84T03A450Z" );
-		patientDetails.setIdentifiers( ids );
+		wood_elementDetails.setIdentifiers( ids );
 		
-		patientDetails.setName( "Giovanni" );
-		patientDetails.setSurname( "Verdi" );
-		patientDetails.setBirthDate( new Date() );
-		patientDetails.setSex( Sex.M );
+		wood_elementDetails.setName( "Giovanni" );
+		wood_elementDetails.setSurname( "Verdi" );
+		wood_elementDetails.setBirthDate( new Date() );
+		wood_elementDetails.setSex( Sex.M );
 		
 		Place birth_place = new Place();
 		birth_place.setCity( "FIRENZE" );
-		patientDetails.setBirthPlace( birth_place );
+		wood_elementDetails.setBirthPlace( birth_place );
 		
-		return patientDetails;
+		return wood_elementDetails;
 	}
 
 }

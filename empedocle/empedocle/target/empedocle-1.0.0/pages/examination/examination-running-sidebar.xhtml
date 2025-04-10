@@ -77,28 +77,28 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle not-underline" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-					<h:outputText value="Patient Data" />
+					<h:outputText value="WoodElement Data" />
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
 				<div class="accordion-inner">
 					<dl>
 						<dt>Tax Code</dt>
-						<dd>#{examinationRunning.lastPatientVersion.taxCode}</dd>
+						<dd>#{examinationRunning.lastWoodElementVersion.taxCode}</dd>
 						<dt>Surname</dt>
-						<dd>#{examinationRunning.lastPatientVersion.surname}</dd>
+						<dd>#{examinationRunning.lastWoodElementVersion.surname}</dd>
 						<dt>Name</dt>
-						<dd>#{examinationRunning.lastPatientVersion.name}</dd>
+						<dd>#{examinationRunning.lastWoodElementVersion.name}</dd>
 						<dt>Sex</dt>
-						<dd>#{examinationRunning.lastPatientVersion.sex}</dd>
+						<dd>#{examinationRunning.lastWoodElementVersion.sex}</dd>
 						<dt>Birthdate</dt>
 						<dd>
-							<h:outputText value="#{examinationRunning.lastPatientVersion.birthDate}">
+							<h:outputText value="#{examinationRunning.lastWoodElementVersion.birthDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy"/>
 							</h:outputText>
 						</dd>	
 						<dt>Birthplace</dt>
-						<dd>#{examinationRunning.lastPatientVersion.birthPlace}</dd>						
+						<dd>#{examinationRunning.lastWoodElementVersion.birthPlace}</dd>
 					</dl>
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 					<div id="collapseThree" class="accordion-body collapse in">
 						<div class="accordion-inner" style="padding: 9px 9px; font-size: smaller;">
 							<h:panelGroup layout="block" id="results">
-								<h:panelGroup rendered="#{empty examinationRunning.patientLastExams}">
+								<h:panelGroup rendered="#{empty examinationRunning.wood_elementLastExams}">
 									<br />
 									<h:outputText styleClass="lead" value="No visit found" />
 								</h:panelGroup>
@@ -159,8 +159,8 @@
 								<h:dataTable
 										styleClass="table table-striped table-hover"
 										columnClasses="datetime, agenda, action"
-										value="#{examinationRunning.patientLastExams}" var="examination"
-										rendered="#{not empty examinationRunning.patientLastExams}"
+										value="#{examinationRunning.wood_elementLastExams}" var="examination"
+										rendered="#{not empty examinationRunning.wood_elementLastExams}"
 										style="padding: 6px; ">
 
 									<h:column>
@@ -207,11 +207,11 @@
 											<i class="fw-icon-book fw-icon-large "></i>
 										</a4j:commandLink>
 
-										<h:link outcome="/pages/patients/examination/examination-view.xhtml" includeViewParams="true"
+										<h:link outcome="/pages/wood_elements/examination/examination-view.xhtml" includeViewParams="true"
 												rendered="#{examinationRunning.hasView(examination)}" title="View visit"
 												styleClass="btn btn-info pull-left dist-right tltip">
 											<f:param name="id" value="#{examination.id}" />
-											<f:param name="pid" value="#{examinationRunning.lastPatientVersion.id}" />
+											<f:param name="pid" value="#{examinationRunning.lastWoodElementVersion.id}" />
 											<f:param name="from" value="#{view.viewId}" />
 											<f:param name="eid" value="#{examinationRunning.examinationId}" disable="#{examinationRunning.examinationId eq null}" />
 											<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"

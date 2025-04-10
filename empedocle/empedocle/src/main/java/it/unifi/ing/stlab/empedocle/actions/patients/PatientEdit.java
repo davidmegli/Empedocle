@@ -1,13 +1,13 @@
-package it.unifi.ing.stlab.empedocle.actions.patients;
+package it.unifi.ing.stlab.empedocle.actions.wood_elements;
 
 import it.unifi.ing.stlab.commons.cdi.HttpParam;
 import it.unifi.ing.stlab.empedocle.actions.util.taxcode.FiscalCodeValidator;
 import it.unifi.ing.stlab.empedocle.actions.util.taxcode.FiscalCodeValidatorException;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.manager.PatientManager;
-import it.unifi.ing.stlab.patients.model.Address;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.manager.WoodElementManager;
+import it.unifi.ing.stlab.wood-elements.model.Address;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +30,7 @@ import java.util.Date;
 @Named
 @ConversationScoped
 @TransactionManagement( TransactionManagementType.BEAN )
-public class PatientEdit implements Serializable {
+public class WoodElementEdit implements Serializable {
 
 	private static final long serialVersionUID = -9188387601950001747L;
 
@@ -50,7 +50,7 @@ public class PatientEdit implements Serializable {
 	// EJB injections
 	//
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	@Resource
 	private UserTransaction utx;
@@ -67,23 +67,23 @@ public class PatientEdit implements Serializable {
 	//
 	// Local attributes
 	//
-	private Patient current;
-	private Patient original;
-	private PatientManager patientManager;
+	private WoodElement current;
+	private WoodElement original;
+	private WoodElementManager wood_elementManager;
 
 	
 	@PostConstruct
 	public void init() {
-		patientManager = new PatientManager();
+		wood_elementManager = new WoodElementManager();
 
 		try {
 			utx.begin();
 			
 			if ( isNew() ) {
-				current = patientManager.createPatient( loggedUser.getUser(), new Time( new Date() ) );
+				current = wood_elementManager.createWoodElement( loggedUser.getUser(), new Time( new Date() ) );
 			} else {
-				original = patientDao.fetchById( Long.parseLong( id ) );
-				current = patientManager.modify( 
+				original = wood_elementDao.fetchById( Long.parseLong( id ) );
+				current = wood_elementManager.modify(
 						loggedUser.getUser(), new Time( new Date() ), original );
 			}
 			initEmbeddedFields();
@@ -139,17 +139,17 @@ public class PatientEdit implements Serializable {
 			
 			if ( exists() ) {
 				message(FacesMessage.SEVERITY_ERROR,
-						"ERROR - Patient with Tax Code '"
+						"ERROR - WoodElement with Tax Code '"
 								+ current.getTaxCode() + "' is already registered!", true);
 			} else {
 				if ( isNew() ) {
-					patientDao.save(current);
+					wood_elementDao.save(current);
 				} else {
-					Patient purged = patientManager.purge( current );
+					WoodElement purged = wood_elementManager.purge( current );
 					
 					if ( purged != null ) {
-						patientDao.save( purged );
-						patientDao.update( original );
+						wood_elementDao.save( purged );
+						wood_elementDao.update( original );
 	//					updateAppointmentsReferences( purged );
 						
 						id = purged.getId().toString();
@@ -157,7 +157,7 @@ public class PatientEdit implements Serializable {
 				}
 				
 				message(FacesMessage.SEVERITY_INFO,
-						"Patient successfully saved!", true);
+						"WoodElement successfully saved!", true);
 			}
 		
 			utx.commit();
@@ -185,7 +185,7 @@ public class PatientEdit implements Serializable {
 		return from;
 	}
 	
-	public Patient getCurrent() {
+	public WoodElement getCurrent() {
 		return current;
 	}
 	
@@ -215,7 +215,7 @@ public class PatientEdit implements Serializable {
 	}
 
 	private boolean exists() {
-		Patient result = patientDao.findByTaxCode( current.getTaxCode() );
+		WoodElement result = wood_elementDao.findByTaxCode( current.getTaxCode() );
 		
 		if ( result == null ) return false;
 		else {
@@ -239,11 +239,11 @@ public class PatientEdit implements Serializable {
 		facesContext.getExternalContext().getFlash().setKeepMessages( keepMessages );				
 	}	
 	
-//	private void updateAppointmentsReferences( Patient p ) {
-//		List<Appointment> appointments = appointmentDao.findByPatients( p.listBefore() );		
+//	private void updateAppointmentsReferences( WoodElement p ) {
+//		List<Appointment> appointments = appointmentDao.findByWoodElements( p.listBefore() );		
 //		
 //		for( Appointment a : appointments ) {
-//			a.setPatient( p );
+//			a.setWoodElement( p );
 //			appointmentDao.update( a );
 //		}
 //	}	

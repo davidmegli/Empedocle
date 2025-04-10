@@ -32,8 +32,8 @@ import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 
 @Named
 @ConversationScoped
@@ -63,7 +63,7 @@ public class ExaminationEdit implements Serializable {
 	private AgendaDao agendaDao;
 	
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	@EJB
 	private ServiceDao serviceDao;
@@ -80,7 +80,7 @@ public class ExaminationEdit implements Serializable {
 	private Examination current;
 
 	private AgendaSuggestion agendaSuggestion;
-	private PatientSuggestion patientSuggestion;
+	private WoodElementSuggestion wood_elementSuggestion;
 	
 
 	@PostConstruct
@@ -93,7 +93,7 @@ public class ExaminationEdit implements Serializable {
 		}
 		
 		initAgendaSuggestion();
-		initPatientSuggestion();
+		initWoodElementSuggestion();
 	}
 	
 	public String cancel() {
@@ -165,8 +165,8 @@ public class ExaminationEdit implements Serializable {
 		return agendaSuggestion;
 	}
 	
-	public PatientSuggestion getPatientSuggestion() {
-		return patientSuggestion;
+	public WoodElementSuggestion getWoodElementSuggestion() {
+		return wood_elementSuggestion;
 	}
 	
 	//
@@ -196,19 +196,19 @@ public class ExaminationEdit implements Serializable {
 	}
 	
 	//
-	// Internal class for patient suggestion
+	// Internal class for wood_element suggestion
 	//
-	public class PatientSuggestion implements SuggestionInterface {
+	public class WoodElementSuggestion implements SuggestionInterface {
 		
 		private String suggestion;
 
 		@Override
 		public List<SelectItem> autocomplete( String suggestion ) {
 			List<SelectItem> result = new ArrayList<SelectItem>();
-			List<Patient> pList = patientDao.findBySuggestion( suggestion, 0 );
+			List<WoodElement> pList = wood_elementDao.findBySuggestion( suggestion, 0 );
 			
-			for( Patient p : pList ){
-				result.add( new SelectItem( p.getUuid(), PatientUtils.toString( p )));
+			for( WoodElement p : pList ){
+				result.add( new SelectItem( p.getUuid(), WoodElementUtils.toString( p )));
 			}
 			return result;
 		}
@@ -224,9 +224,9 @@ public class ExaminationEdit implements Serializable {
 	//
 	// Internal utility class
 	//
-	private static class PatientUtils {
+	private static class WoodElementUtils {
 		
-		public static String toString( Patient p ) {
+		public static String toString( WoodElement p ) {
 			return p.getSurname() + " " + p.getName() + " - " + p.getTaxCode();
 		}
 	}
@@ -245,11 +245,11 @@ public class ExaminationEdit implements Serializable {
 					current.getAppointment().getAgenda().toString() );
 	}
 
-	private void initPatientSuggestion() {
-		patientSuggestion = new PatientSuggestion();
+	private void initWoodElementSuggestion() {
+		wood_elementSuggestion = new WoodElementSuggestion();
 		if ( !isNew() )
-			patientSuggestion.setSuggestion( 
-					PatientUtils.toString( current.getAppointment().getPatient()) );
+			wood_elementSuggestion.setSuggestion( 
+					WoodElementUtils.toString( current.getAppointment().getWoodElement()) );
 	}
 	
 	private void message( Severity severityInfo, String message, boolean keepMessages ) {

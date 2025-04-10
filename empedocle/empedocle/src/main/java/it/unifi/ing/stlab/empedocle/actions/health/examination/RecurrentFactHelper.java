@@ -22,7 +22,7 @@ public class RecurrentFactHelper {
 			if(child.getTarget().getType().getRecurrent()) {
 				
 				Fact currFact = child.getTarget();
-				Fact resumed = examinationDao.resume(currFact, ((Examination)currFact.getContext()).getAppointment().getPatient());
+				Fact resumed = examinationDao.resume(currFact, ((Examination)currFact.getContext()).getAppointment().getWoodElement());
 				
 				if(resumed != null) {
 					FactResumeVisitor v = new FactResumeVisitor(currFact);

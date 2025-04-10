@@ -12,15 +12,15 @@ import javax.naming.InitialContext;
 
 import org.richfaces.component.UIParameter;
 
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 
 @Named
 @RequestScoped
-public class PatientConverter implements Converter {
+public class WoodElementConverter implements Converter {
 	
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -30,30 +30,30 @@ public class PatientConverter implements Converter {
         }
 
 		lookup();
-        Patient patient = patientDao.findByUuid( value );
+        WoodElement wood_element = wood_elementDao.findByUuid( value );
 
-        if (patient == null) {
+        if (wood_element == null) {
             throw new ConverterException();
         }
 
-        return patient;
+        return wood_element;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (!(value instanceof Patient)) {
+		if (!(value instanceof WoodElement)) {
 			return null;
 		}
 
-		return ((Patient) value).getUuid();
+		return ((WoodElement) value).getUuid();
 	}
 	
 	//XXX aggiunto per evitare NullPointerException su agendaDao (non inizializzato in suggestionList)
 	private void lookup() {
-		if( patientDao == null ) {
+		if( wood_elementDao == null ) {
 			try {
 				InitialContext jndi = new InitialContext();
-				patientDao = (PatientDao) jndi.lookup("java:module/PatientDaoBean");
+				wood_elementDao = (WoodElementDao) jndi.lookup("java:module/WoodElementDaoBean");
 			} catch ( Exception e ) {
 				e.printStackTrace();
 			}

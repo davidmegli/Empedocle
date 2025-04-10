@@ -7,8 +7,8 @@ import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.RoleType;
 import it.unifi.ing.stlab.view.model.Viewer;
 
@@ -51,13 +51,13 @@ public class ExaminationList extends Navigator {
 	private ExaminationDao examinationDao;
 	
 	@Inject
-	private PatientDao patientDao;
+	private WoodElementDao wood_elementDao;
 	
 	//
 	// Local attributes
 	//
 	private String selection;
-	private String patientId;
+	private String wood_elementId;
 	private List<Examination> examinationResults;
 	private List<Viewer> selectedReports;
 	private Integer itemCount;
@@ -144,7 +144,7 @@ public class ExaminationList extends Navigator {
 						ExaminationStatus.DONE, 
 						ExaminationStatus.CONCLUDED));
 		
-		return examinationDao.hasPatientHistory( pid, statuses, agendas );
+		return examinationDao.hasWoodElementHistory( pid, statuses, agendas );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -196,7 +196,7 @@ public class ExaminationList extends Navigator {
 	}
 	
 	public String history( Long pid ){
-		patientId = Long.toString( pid );
+		wood_elementId = Long.toString( pid );
 		
 		return "history";
 	}
@@ -206,8 +206,8 @@ public class ExaminationList extends Navigator {
 	// get methods
 	//
 	
-	public Patient getLastPatientVersion( Long pid ) {
-		return patientDao.findLastVersionById( pid );
+	public WoodElement getLastWoodElementVersion( Long pid ) {
+		return wood_elementDao.findLastVersionById( pid );
 	}
 	
 	@Override
@@ -222,8 +222,8 @@ public class ExaminationList extends Navigator {
 		return selection;
 	}
 	
-	public String getPatientId() {
-		return patientId;
+	public String getWoodElementId() {
+		return wood_elementId;
 	}
 	
 	public List<Viewer> getSelectedReports(){

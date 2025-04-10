@@ -4,8 +4,8 @@ import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.model.Patient;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.factory.FactLinkFactory;
@@ -30,7 +30,7 @@ public class BasicFactTest {
 
 	protected FactContext context;
 	protected Appointment appointment;
-	protected Patient patient;
+	protected WoodElement wood_element;
 	protected Fact root;
 	
 	// Composite with two children txt
@@ -51,9 +51,9 @@ public class BasicFactTest {
 		author.setUserid("usr");
 		Examination ex = ExaminationFactory.createExamination();
 		appointment = AppointmentFactory.createAppointment();
-		patient = PatientFactory.createPatient();
+		wood_element = WoodElementFactory.createWoodElement();
 		ex.setAppointment(appointment);
-		appointment.setPatient(patient);
+		appointment.setWoodElement(wood_element);
 		context = ex;
 		mng = new FactManager();
 		

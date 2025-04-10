@@ -16,50 +16,50 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergeInformation;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergePatient;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergeWoodElement;
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.ObjectFactory;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.PatientIdentification;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.PatientIdentifiers;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.WoodElementIdentification;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.WoodElementIdentifiers;
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.UpdatePersonInformation;
-import it.unifi.ing.stlab.patients.dao.PatientDao;
-import it.unifi.ing.stlab.patients.factory.PatientFactory;
-import it.unifi.ing.stlab.patients.model.Patient;
-import it.unifi.ing.stlab.patients.model.actions.PatientMergeAction;
-import it.unifi.ing.stlab.patients.model.actions.PatientModifyAction;
+import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.wood-elements.model.actions.WoodElementMergeAction;
+import it.unifi.ing.stlab.wood-elements.model.actions.WoodElementModifyAction;
 import it.unifi.ing.stlab.test.FieldUtils;
 import it.unifi.ing.stlab.test.PersistenceTest;
 import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.factory.UserFactory;
 
-public class MasterPatientIndexServiceTest extends PersistenceTest {
+public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 	
-	private MasterPatientIndexServiceImpl mpiService;
+	private MasterWoodElementIndexServiceImpl mpiService;
 	
-	protected PatientDao patientDao;
+	protected WoodElementDao wood_elementDao;
 	protected UserDao userDao;
 	protected Logger logger;
 	protected UserTransaction utx;
 	
 	private UpdatePersonInformation updatePersonInformation;
-	private MergePatient mergePatient;
+	private MergeWoodElement mergeWoodElement;
 	
 	@Override 
 	protected void insertData() throws Exception {
-		mpiService = new MasterPatientIndexServiceImpl();
+		mpiService = new MasterWoodElementIndexServiceImpl();
 		
-		patientDao = mock( PatientDao.class );
+		wood_elementDao = mock( WoodElementDao.class );
 		userDao = mock( UserDao.class );
-		logger = Logger.getLogger( MasterPatientIndexServiceImpl.class );
+		logger = Logger.getLogger( MasterWoodElementIndexServiceImpl.class );
 		utx = mock( UserTransaction.class );
 		
 		FieldUtils.assignField( mpiService, "entityManager", entityManager);
-		FieldUtils.assignField( mpiService, "patientDao", patientDao );
+		FieldUtils.assignField( mpiService, "wood_elementDao", wood_elementDao );
 		FieldUtils.assignField( mpiService, "userDao", userDao );
 		FieldUtils.assignField( mpiService, "logger", logger );
 		FieldUtils.assignField( mpiService, "utx", utx );
 		
 		updatePersonInformation = initUpdatePersonInformation();
-		mergePatient = initMergePatient();
+		mergeWoodElement = initMergeWoodElement();
 
 		when( userDao.findByUsername( "administrator" )).thenReturn( UserFactory.createUser() );
 		
@@ -69,199 +69,199 @@ public class MasterPatientIndexServiceTest extends PersistenceTest {
 	}
 
 	@Test
-	public void testUpdate_patientNotFound() {
-		when( patientDao.findByIdentifier( updatePersonInformation.getPatientIdentification()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( null );
+	public void testUpdate_wood_elementNotFound() {
+		when( wood_elementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
 		mpiService.update( updatePersonInformation );
 	}
 	
 	@Test
-	public void testUpdate_patientFound() {
-		Patient patient = PatientFactory.createPatient();
+	public void testUpdate_wood_elementFound() {
+		WoodElement wood_element = WoodElementFactory.createWoodElement();
 		
-		assertNull( patient.getDestination() );
+		assertNull( wood_element.getDestination() );
 
-		when( patientDao.findByIdentifier( updatePersonInformation.getPatientIdentification()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( patient );
+		when( wood_elementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( wood_element );
 		mpiService.update( updatePersonInformation );
 		
-		// a new PatientModifyAction is created
-		assertNotNull( patient.getDestination() );
-		assertTrue( patient.getDestination() instanceof PatientModifyAction);
+		// a new WoodElementModifyAction is created
+		assertNotNull( wood_element.getDestination() );
+		assertTrue( wood_element.getDestination() instanceof WoodElementModifyAction);
 		
-		// the PatientModifyAction's source is patient
-		assertEquals( patient, ((PatientModifyAction) patient.getDestination()).getSource() );
+		// the WoodElementModifyAction's source is wood_element
+		assertEquals( wood_element, ((WoodElementModifyAction) wood_element.getDestination()).getSource() );
 		
-		// the PatientModifyAction's target is a new patient with the data collected in updatePersonInformation
-		assertNotEquals( patient, ((PatientModifyAction) patient.getDestination()).getTarget() );
-		assertEquals( updatePersonInformation.getPatientIdentification().getPatientIdentifiers().getIdAce(),
-				((PatientModifyAction) patient.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( updatePersonInformation.getPatientIdentification().getCognome(),
-				((PatientModifyAction) patient.getDestination()).getTarget().getSurname() );
-		assertEquals( updatePersonInformation.getPatientIdentification().getNome(),
-				((PatientModifyAction) patient.getDestination()).getTarget().getName() );
+		// the WoodElementModifyAction's target is a new wood_element with the data collected in updatePersonInformation
+		assertNotEquals( wood_element, ((WoodElementModifyAction) wood_element.getDestination()).getTarget() );
+		assertEquals( updatePersonInformation.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(),
+				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( updatePersonInformation.getWoodElementIdentification().getCognome(),
+				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getSurname() );
+		assertEquals( updatePersonInformation.getWoodElementIdentification().getNome(),
+				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getName() );
 	}
 	
 	@Test
 	public void testMerge_masterAndSlaveNotFound() {
-		when( patientDao.findByIdentifier(
-				mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce() ) )
+		when( wood_elementDao.findByIdentifier(
+				mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce() ) )
 						.thenReturn( null );
-		mpiService.merge( mergePatient );
+		mpiService.merge( mergeWoodElement );
 	}
 	
 	@Test
 	public void testMerge_masterFoundSlaveNotFound() {
-		Patient master = PatientFactory.createPatient();
+		WoodElement master = WoodElementFactory.createWoodElement();
 		
 		assertNull( master.getDestination() );
 
-		when( patientDao.findByIdentifier( mergePatient.getPatientIdentification()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( patientDao.findByIdentifier( mergePatient.getMergeInformation()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( null );
-		mpiService.merge( mergePatient );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
+		mpiService.merge( mergeWoodElement );
 		
-		// a new PatientModifyAction is created
+		// a new WoodElementModifyAction is created
 		assertNotNull( master.getDestination() );
-		assertTrue( master.getDestination() instanceof PatientModifyAction);
+		assertTrue( master.getDestination() instanceof WoodElementModifyAction);
 		
-		// the PatientModifyAction's source is the master patient
-		assertEquals( master, ((PatientModifyAction) master.getDestination()).getSource() );
+		// the WoodElementModifyAction's source is the master wood_element
+		assertEquals( master, ((WoodElementModifyAction) master.getDestination()).getSource() );
 		
-		// the PatientModifyAction's target is a new patient with the data collected in mergePatient
-		assertNotEquals( master, ((PatientModifyAction) master.getDestination()).getTarget() );
-		assertEquals( mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce(),
-				((PatientModifyAction) master.getDestination()).getTarget().getIdentifier().getCode());
-		assertEquals( mergePatient.getPatientIdentification().getCognome(),
-				((PatientModifyAction) master.getDestination()).getTarget().getSurname() );
-		assertEquals( mergePatient.getPatientIdentification().getNome(),
-				((PatientModifyAction) master.getDestination()).getTarget().getName() );
-		assertNull(((PatientModifyAction) master.getDestination()).getTarget().getDestination());
+		// the WoodElementModifyAction's target is a new wood_element with the data collected in mergeWoodElement
+		assertNotEquals( master, ((WoodElementModifyAction) master.getDestination()).getTarget() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(),
+				((WoodElementModifyAction) master.getDestination()).getTarget().getIdentifier().getCode());
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(),
+				((WoodElementModifyAction) master.getDestination()).getTarget().getSurname() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(),
+				((WoodElementModifyAction) master.getDestination()).getTarget().getName() );
+		assertNull(((WoodElementModifyAction) master.getDestination()).getTarget().getDestination());
 	}
 	
 	@Test
 	public void testMerge_masterNotFoundSlaveFound() {
-		Patient slave = PatientFactory.createPatient();
+		WoodElement slave = WoodElementFactory.createWoodElement();
 		
 		assertNull( slave.getDestination() );
 
-		when( patientDao.findByIdentifier( mergePatient.getPatientIdentification()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( null );
-		when( patientDao.findByIdentifier( mergePatient.getMergeInformation()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( slave );
-		mpiService.merge( mergePatient );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
+		mpiService.merge( mergeWoodElement );
 		
-		// a new PatientMergeAction is created to merge the slave patient and a new master patient generated ex-novo
+		// a new WoodElementMergeAction is created to merge the slave wood_element and a new master wood_element generated ex-novo
 		assertNotNull( slave.getDestination() );
-		assertTrue( slave.getDestination() instanceof PatientMergeAction);
+		assertTrue( slave.getDestination() instanceof WoodElementMergeAction);
 		
-		// the PatientMergeAction's source2 is the slave patient
-		assertEquals( slave, ((PatientMergeAction) slave.getDestination()).getSource2() );
+		// the WoodElementMergeAction's source2 is the slave wood_element
+		assertEquals( slave, ((WoodElementMergeAction) slave.getDestination()).getSource2() );
 		
-		// the PatientMergeAction's source1 is the new master patient generated ex-novo starting from 
-		// the new data collected in mergePatient
-		assertEquals( mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce(), 
-				((PatientMergeAction) slave.getDestination()).getSource1().getIdentifier().getCode() );
-		assertEquals( mergePatient.getPatientIdentification().getNome(), 
-				((PatientMergeAction) slave.getDestination()).getSource1().getName() );
-		assertEquals( mergePatient.getPatientIdentification().getCognome(), 
-				((PatientMergeAction) slave.getDestination()).getSource1().getSurname() );
+		// the WoodElementMergeAction's source1 is the new master wood_element generated ex-novo starting from 
+		// the new data collected in mergeWoodElement
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
+				((WoodElementMergeAction) slave.getDestination()).getSource1().getIdentifier().getCode() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
+				((WoodElementMergeAction) slave.getDestination()).getSource1().getName() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
+				((WoodElementMergeAction) slave.getDestination()).getSource1().getSurname() );
 		
-		// the PatientMergeAction's target is a copy of the master patient
-		assertNotEquals( ((PatientMergeAction) slave.getDestination()).getSource1(), 
-				((PatientMergeAction) slave.getDestination()).getTarget() );
-		assertEquals( mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergePatient.getPatientIdentification().getNome(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getName() );
-		assertEquals( mergePatient.getPatientIdentification().getCognome(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getSurname() );	
+		// the WoodElementMergeAction's target is a copy of the master wood_element
+		assertNotEquals( ((WoodElementMergeAction) slave.getDestination()).getSource1(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getName() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getSurname() );	
 	}
 	
 	@Test
 	public void testMerge_masterFoundSlaveFound() {
-		Patient master = PatientFactory.createPatient();
-		Patient slave = PatientFactory.createPatient();
+		WoodElement master = WoodElementFactory.createWoodElement();
+		WoodElement slave = WoodElementFactory.createWoodElement();
 		
 		assertNull( master.getDestination() );
 		assertNull( slave.getDestination() );
 
-		when( patientDao.findByIdentifier( mergePatient.getPatientIdentification()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( patientDao.findByIdentifier( mergePatient.getMergeInformation()
-				.getPatientIdentifiers().getIdAce() ) ).thenReturn( slave );
-		mpiService.merge( mergePatient );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
+		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
+		mpiService.merge( mergeWoodElement );
 		
 		assertNotNull( master.getDestination() );
 		assertNotNull( slave.getDestination() );
 		
-		// a new PatientModifyAction is created to update the master patient
-		assertTrue( master.getDestination() instanceof PatientModifyAction );
-		assertEquals( master, ((PatientModifyAction) master.getDestination()).getSource() );
-		assertEquals( mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce(), 
-				((PatientModifyAction) master.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergePatient.getPatientIdentification().getNome(), 
-				((PatientModifyAction) master.getDestination()).getTarget().getName() );		
-		assertEquals( mergePatient.getPatientIdentification().getCognome(), 
-				((PatientModifyAction) master.getDestination()).getTarget().getSurname() );				
+		// a new WoodElementModifyAction is created to update the master wood_element
+		assertTrue( master.getDestination() instanceof WoodElementModifyAction );
+		assertEquals( master, ((WoodElementModifyAction) master.getDestination()).getSource() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
+				((WoodElementModifyAction) master.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
+				((WoodElementModifyAction) master.getDestination()).getTarget().getName() );		
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
+				((WoodElementModifyAction) master.getDestination()).getTarget().getSurname() );				
 
-		// a new PatientMergeAction is created to merge the updated version of master patient and the slave patient
-		assertTrue( slave.getDestination() instanceof PatientMergeAction );
-		// the PatientMergeAction's source1 is the copy of the master patient after the PatientModifyAction
-		assertEquals( ((PatientModifyAction) master.getDestination()).getTarget(), 
-				((PatientMergeAction) slave.getDestination()).getSource1() );
-		// the PatientMergeAction's source2 is the slave patient
-		assertEquals( slave, ((PatientMergeAction) slave.getDestination()).getSource2() );
-		// the PatientMergeAction's target is a copy of the master patient
-		assertNotEquals( ((PatientMergeAction) slave.getDestination()).getSource1(), 
-				((PatientMergeAction) slave.getDestination()).getTarget() );
-		assertEquals( mergePatient.getPatientIdentification().getPatientIdentifiers().getIdAce(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergePatient.getPatientIdentification().getNome(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getName() );
-		assertEquals( mergePatient.getPatientIdentification().getCognome(), 
-				((PatientMergeAction) slave.getDestination()).getTarget().getSurname() );	
+		// a new WoodElementMergeAction is created to merge the updated version of master wood_element and the slave wood_element
+		assertTrue( slave.getDestination() instanceof WoodElementMergeAction );
+		// the WoodElementMergeAction's source1 is the copy of the master wood_element after the WoodElementModifyAction
+		assertEquals( ((WoodElementModifyAction) master.getDestination()).getTarget(), 
+				((WoodElementMergeAction) slave.getDestination()).getSource1() );
+		// the WoodElementMergeAction's source2 is the slave wood_element
+		assertEquals( slave, ((WoodElementMergeAction) slave.getDestination()).getSource2() );
+		// the WoodElementMergeAction's target is a copy of the master wood_element
+		assertNotEquals( ((WoodElementMergeAction) slave.getDestination()).getSource1(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getName() );
+		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
+				((WoodElementMergeAction) slave.getDestination()).getTarget().getSurname() );	
 	}
 	
 	private UpdatePersonInformation initUpdatePersonInformation() {
 		ObjectFactory of = new ObjectFactory();
 		UpdatePersonInformation upi = of.createUpdatePersonInformation();
 		
-		// create patient information with id ACE and some personal data
-		PatientIdentification identification = of.createPatientIdentification();
-		PatientIdentifiers identifiers = of.createPatientIdentifiers();
+		// create wood_element information with id ACE and some personal data
+		WoodElementIdentification identification = of.createWoodElementIdentification();
+		WoodElementIdentifiers identifiers = of.createWoodElementIdentifiers();
 		identifiers.setIdAce( "p001" );
-		identification.setPatientIdentifiers( identifiers );
+		identification.setWoodElementIdentifiers( identifiers );
 		identification.setCognome( "Rossi" );
 		identification.setNome( "Luca" );
 
-		// add patient information to upi
-		upi.setPatientIdentification( identification );
+		// add wood_element information to upi
+		upi.setWoodElementIdentification( identification );
 		
 		return upi;
 	}
 	
-	private MergePatient initMergePatient() {
+	private MergeWoodElement initMergeWoodElement() {
 		ObjectFactory of = new ObjectFactory();
-		MergePatient mp = of.createMergePatient();
+		MergeWoodElement mp = of.createMergeWoodElement();
 		
-		// create master patient information with id ACE and some personal data
-		PatientIdentification identification = of.createPatientIdentification();
-		PatientIdentifiers masterIdentifiers = of.createPatientIdentifiers();
+		// create master wood_element information with id ACE and some personal data
+		WoodElementIdentification identification = of.createWoodElementIdentification();
+		WoodElementIdentifiers masterIdentifiers = of.createWoodElementIdentifiers();
 		masterIdentifiers.setIdAce( "master" );
-		identification.setPatientIdentifiers( masterIdentifiers );
+		identification.setWoodElementIdentifiers( masterIdentifiers );
 		identification.setCognome( "Rossi" );
 		identification.setNome( "Luca" );
 		
-		// create slave patient information with id ACE
+		// create slave wood_element information with id ACE
 		MergeInformation mergeInfo = of.createMergeInformation();
-		PatientIdentifiers slaveIdentifiers = of.createPatientIdentifiers();
+		WoodElementIdentifiers slaveIdentifiers = of.createWoodElementIdentifiers();
 		slaveIdentifiers.setIdAce( "slave" );
-		mergeInfo.setPatientIdentifiers( slaveIdentifiers );
+		mergeInfo.setWoodElementIdentifiers( slaveIdentifiers );
 		
 		// add master information to mp
-		mp.setPatientIdentification( identification );
+		mp.setWoodElementIdentification( identification );
 		// add slave information to mp
 		mp.setMergeInformation( mergeInfo );
 		
