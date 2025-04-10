@@ -12,14 +12,14 @@
 		<class>it.unifi.ing.stlab.users.model.Role</class>
 		<class>it.unifi.ing.stlab.users.model.Qualification</class>
 
-		<class>it.unifi.ing.stlab.wood-elements.model.WoodElement</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.WoodElementIdentifier</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementAction</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementCreateAction</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementModifyAction</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementMergeAction</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementSplitAction</class>
-		<class>it.unifi.ing.stlab.wood-elements.model.actions.WoodElementDeleteAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.WoodElement</class>
+		<class>it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementCreateAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementModifyAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementSplitAction</class>
+		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementDeleteAction</class>
 
 		<class>it.unifi.ing.stlab.reflection.model.types.Unit</class>
 		<class>it.unifi.ing.stlab.reflection.model.types.UnitUse</class>

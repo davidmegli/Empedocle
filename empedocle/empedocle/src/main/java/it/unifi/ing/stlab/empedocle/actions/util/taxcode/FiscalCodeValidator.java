@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.empedocle.actions.util.taxcode;
 
-import it.unifi.ing.stlab.wood-elements.model.Sex;
+import it.unifi.ing.stlab.woodelements.model.Sex;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

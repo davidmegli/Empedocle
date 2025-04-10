@@ -3,7 +3,7 @@ package it.unifi.ing.stlab.empedocle.dao.health;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.*;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
 import it.unifi.ing.stlab.reflection.impl.model.facts.FactImpl;

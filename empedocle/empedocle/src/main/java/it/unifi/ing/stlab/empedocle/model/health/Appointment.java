@@ -3,7 +3,7 @@ package it.unifi.ing.stlab.empedocle.model.health;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 
 import java.util.Collections;
 import java.util.Date;

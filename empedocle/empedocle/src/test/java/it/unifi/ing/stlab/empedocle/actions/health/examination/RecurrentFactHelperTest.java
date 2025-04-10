@@ -9,7 +9,7 @@ import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Appointment;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.visitor.fact.tools.EmptyFactVisitor;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.impl.visitor.fact.FactCopyVisitor;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.reflection.model.facts.FactStatus;

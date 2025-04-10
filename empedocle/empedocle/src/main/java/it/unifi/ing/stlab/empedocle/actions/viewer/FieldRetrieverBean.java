@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.empedocle.actions.viewer;
 
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.view.controllers.FieldRetriever;
 

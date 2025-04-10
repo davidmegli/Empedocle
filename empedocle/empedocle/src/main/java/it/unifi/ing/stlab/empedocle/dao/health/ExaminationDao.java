@@ -2,7 +2,7 @@ package it.unifi.ing.stlab.empedocle.dao.health;
 
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.*;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 
 import javax.ejb.Local;

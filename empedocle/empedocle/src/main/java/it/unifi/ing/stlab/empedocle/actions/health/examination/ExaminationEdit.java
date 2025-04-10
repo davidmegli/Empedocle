@@ -32,8 +32,8 @@ import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
-import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 
 @Named
 @ConversationScoped

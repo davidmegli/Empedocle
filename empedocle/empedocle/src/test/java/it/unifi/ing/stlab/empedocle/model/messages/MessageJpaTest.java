@@ -8,8 +8,8 @@ import java.util.Date;
 import it.unifi.ing.stlab.empedocle.factory.MessageFactory;
 import it.unifi.ing.stlab.empedocle.model.messages.Message;
 import it.unifi.ing.stlab.empedocle.model.messages.MessageLevel;
-import it.unifi.ing.stlab.wood-elements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.test.PersistenceTest;
 
 import org.junit.Test;

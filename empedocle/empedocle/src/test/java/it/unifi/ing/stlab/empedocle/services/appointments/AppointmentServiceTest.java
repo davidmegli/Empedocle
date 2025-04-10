@@ -19,7 +19,7 @@ import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Iden
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.WoodElement;
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Place;
 import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Sex;
-import it.unifi.ing.stlab.wood-elements.dao.WoodElementDao;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.test.FieldUtils;
 import it.unifi.ing.stlab.test.PersistenceTest;
 import it.unifi.ing.stlab.users.dao.UserDao;

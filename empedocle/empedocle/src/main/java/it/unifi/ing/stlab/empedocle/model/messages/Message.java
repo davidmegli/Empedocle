@@ -18,7 +18,7 @@ import javax.persistence.TableGenerator;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
-import it.unifi.ing.stlab.wood-elements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 
 @Entity
 @Table(name = "messages")
