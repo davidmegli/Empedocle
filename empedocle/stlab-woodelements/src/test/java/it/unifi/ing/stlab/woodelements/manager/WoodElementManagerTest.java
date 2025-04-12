@@ -17,50 +17,50 @@ import org.junit.Test;
 public class WoodElementManagerTest {
 
 	protected WoodElementManager manager;
-	protected WoodElement wood_element1;
-	protected WoodElement wood_element2;
+	protected WoodElement woodElement1;
+	protected WoodElement woodElement2;
 	
 	@Before
 	public void setUp() {
 		manager = new WoodElementManager();
 		
-		wood_element1 = WoodElementFactory.createWoodElement();
-		wood_element1.setName( "Prova1" );
+		woodElement1 = WoodElementFactory.createWoodElement();
+		woodElement1.setName( "Prova1" );
 		
-		wood_element2 = WoodElementFactory.createWoodElement();
-		wood_element2.setName( "Prova2" );
+		woodElement2 = WoodElementFactory.createWoodElement();
+		woodElement2.setName( "Prova2" );
 	}
 	
 	@Test
 	public void testMergeWoodElements() {
 		WoodElement merged = manager.merge( UserFactory.createUser(), 
-												new Time( new Date() ), 
-												wood_element1, wood_element2 ); 
+												new Time( new Date() ),
+				woodElement1, woodElement2);
 		
 		assertNotNull( merged );
 		assertNotNull( merged.getName() );
-		assertEquals( wood_element1.getName(), merged.getName() );
-		assertTrue( merged.listBefore().contains( wood_element1 ) );
-		assertTrue( merged.listBefore().contains( wood_element2 ) );
+		assertEquals( woodElement1.getName(), merged.getName() );
+		assertTrue( merged.listBefore().contains(woodElement1) );
+		assertTrue( merged.listBefore().contains(woodElement2) );
 		assertEquals( WoodElementMergeAction.class, merged.getOrigin().getClass() );
-		assertEquals( wood_element1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
-		assertEquals( wood_element2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
+		assertEquals(woodElement1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
+		assertEquals(woodElement2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
 	}
 	
 	@Test
 	public void testMergeWoodElements_Null() {
 		WoodElement merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
-												null, wood_element2 ); 
+												null, woodElement2);
 		
 		assertNotNull( merged );
 		assertNotNull( merged.getName() );
-		assertEquals( wood_element1.getName(), merged.getName() );
-		assertTrue( merged.listBefore().contains( wood_element1 ) );
-		assertTrue( merged.listBefore().contains( wood_element2 ) );
+		assertEquals( woodElement1.getName(), merged.getName() );
+		assertTrue( merged.listBefore().contains(woodElement1) );
+		assertTrue( merged.listBefore().contains(woodElement2) );
 		assertEquals( WoodElementMergeAction.class, merged.getOrigin().getClass() );
-		assertEquals( wood_element1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
-		assertEquals( wood_element2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
+		assertEquals(woodElement1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
+		assertEquals(woodElement2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
 	}
 	
 	

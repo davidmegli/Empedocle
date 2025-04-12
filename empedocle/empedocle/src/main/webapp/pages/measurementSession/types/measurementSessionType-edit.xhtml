@@ -421,13 +421,13 @@
 						action="#{measurementSessionTypeEdit.importAgendas()}"
 						execute="@this" styleClass="btn btn-primary pull-right"
 	                   	oncomplete="#{rich:component('import-popup')}.hide(); return false;"
-	                   	rendered="#{not empty measurementSessionTypeEdit.importFromExamTypeId}"
+	                   	rendered="#{not empty measurementSessionTypeEdit.importFromMeasurementSessionTypeId}"
 	                   	render=":measurementSessiontype-edit-form:agenda-lst @form">
 						<i class="fw-icon-step-forward dist-right"></i> Import
 					</a4j:commandLink>
 					
 					<a4j:commandLink
-						action="#{measurementSessionTypeEdit.resetImportFromExamTypeId()}"
+						action="#{measurementSessionTypeEdit.resetImportFromMeasurementSessionTypeId()}"
 						execute="@this" styleClass="btn pull-right dist-right"
 	                   	oncomplete="#{rich:component('import-popup')}.hide(); return false;"
 	                   	render="@form">
@@ -441,9 +441,9 @@
 					<div class="control-group">
 						<label class="control-label bold">Visit Structure</label>
 						<div class="controls align-txt">				
-							<h:selectOneMenu value="#{measurementSessionTypeEdit.importFromExamTypeId}" styleClass="autosized">
+							<h:selectOneMenu value="#{measurementSessionTypeEdit.importFromMeasurementSessionTypeId}" styleClass="autosized">
 								<f:selectItem itemValue="" itemLabel="" noSelectionOption="true"/>
-								<f:selectItems value="#{measurementSessionTypeEdit.listExamTypeImport()}" />
+								<f:selectItems value="#{measurementSessionTypeEdit.listMeasurementSessionTypeImport()}" />
 								<f:ajax execute="@this" render=":import-form"/>
 							</h:selectOneMenu>
 						</div>
@@ -453,11 +453,11 @@
 						<label class="control-label bold">Agendas</label>
 						<div class="controls">		
 							<h:panelGroup id="agenda-lst" layout="block" styleClass="agenda-import-list"
-								rendered="#{not empty measurementSessionTypeEdit.listAgendasFromExamTypeId()}">
+								rendered="#{not empty measurementSessionTypeEdit.listAgendasFromMeasurementSessionTypeId()}">
 								
 								<h:panelGroup layout="block" styleClass="scrollable">
 									<h:dataTable styleClass="table table-bordered table-condensed"
-										value="#{measurementSessionTypeEdit.listAgendasFromExamTypeId()}"
+										value="#{measurementSessionTypeEdit.listAgendasFromMeasurementSessionTypeId()}"
 										var="_agenda">
 										
 										<h:column>

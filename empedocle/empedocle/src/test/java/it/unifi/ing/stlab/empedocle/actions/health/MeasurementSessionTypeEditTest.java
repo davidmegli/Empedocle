@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 
 import org.junit.Before;
 
-import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.types.AgendaExamTypeBean;
+import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.types.AgendaMeasurementSessionTypeBean;
 import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.types.MeasurementSessionTypeEdit;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
@@ -37,7 +37,7 @@ public class MeasurementSessionTypeEditTest {
 		
 		addedAgendas = new ArrayList<Agenda>();
 		removedAgendas = new ArrayList<Agenda>();
-		FieldUtils.assignField( measurementSessionTypeEdit, "agendas", new ArrayList<AgendaExamTypeBean>() );
+		FieldUtils.assignField( measurementSessionTypeEdit, "agendas", new ArrayList<AgendaMeasurementSessionTypeBean>() );
 		FieldUtils.assignField( measurementSessionTypeEdit, "addedAgendas", addedAgendas );
 		FieldUtils.assignField( measurementSessionTypeEdit, "removedAgendas", removedAgendas );
 	}
@@ -46,7 +46,7 @@ public class MeasurementSessionTypeEditTest {
 //	public void testAdjustAddedAgenda() {
 //		Agenda agenda = AgendaFactory.createAgenda();
 //		agenda.setUuid( "UUID PROVA" );
-//		AgendaExamTypeBean bean = new AgendaExamTypeBean( agenda, null, null );
+//		AgendaMeasurementSessionTypeBean bean = new AgendaMeasurementSessionTypeBean( agenda, null, null );
 //		removedAgendas.add( agenda );
 //		
 //		assertTrue( addedAgendas.isEmpty() );
@@ -65,7 +65,7 @@ public class MeasurementSessionTypeEditTest {
 //	public void testRemoveAgenda() {
 //		Agenda agenda = AgendaFactory.createAgenda();
 //		agenda.setUuid( "UUID PROVA" );
-//		AgendaExamTypeBean bean = new AgendaExamTypeBean( agenda, null, null );
+//		AgendaMeasurementSessionTypeBean bean = new AgendaMeasurementSessionTypeBean( agenda, null, null );
 //		FieldUtils.assignField(bean, "entityManager", entityManager);
 //		addedAgendas.add( agenda );
 //		
@@ -96,7 +96,7 @@ public class MeasurementSessionTypeEditTest {
 //		agenda.setUuid( "UUID PROVA" );
 //		agenda.setCode( "123" );
 //		agenda.setDescription( "PROVA AGENDA" );
-//		AgendaExamTypeBean bean = new AgendaExamTypeBean( agenda, null, null );
+//		AgendaMeasurementSessionTypeBean bean = new AgendaMeasurementSessionTypeBean( agenda, null, null );
 //		FieldUtils.assignField(bean, "entityManager", entityManager);
 //		measurementSessionTypeEdit.removeAgenda( bean );
 //		

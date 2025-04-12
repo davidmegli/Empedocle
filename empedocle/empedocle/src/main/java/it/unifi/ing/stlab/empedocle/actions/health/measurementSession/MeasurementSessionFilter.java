@@ -78,7 +78,7 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.survey_schedule.date asc, e.survey_schedule.wood_element.taxCode asc", "e.survey_schedule.date desc, e.survey_schedule.wood_element.taxCode desc" );
+		addSort( "Date", "e.surveySchedule.date asc, e.surveySchedule.woodElement.taxCode asc", "e.surveySchedule.date desc, e.surveySchedule.woodElement.taxCode desc" );
 		toggle( "Date" );
 	}
 
@@ -131,7 +131,7 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 	// se cerco le visite di una giornata, dovrò andare dalla mezzanotte di oggi alla mezzanotte di domani
 	private void initFilterDefs() {
 		
-		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.survey_schedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
+		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.surveySchedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
 			
 			@Override
 			public List<SelectItem> getSelectItems(Object param, int offset, int limit) {
@@ -171,8 +171,8 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 			}
 		} );			
 			
-		addFilterDef( "Date - from", FilterType.DATE, "e.survey_schedule.date >= :pamin", "pamin" );
-		addFilterDef( "Date - to", FilterType.DATE, "e.survey_schedule.date <= :pamax", "pamax" );
+		addFilterDef( "Date - from", FilterType.DATE, "e.surveySchedule.date >= :pamin", "pamin" );
+		addFilterDef( "Date - to", FilterType.DATE, "e.surveySchedule.date <= :pamax", "pamax" );
 		
 		addFilterDef( "Assigned to", FilterType.SUGGESTION, "e.author.uuid = :puser", "puser", new SelectItemBuilder() {
 			@Override
@@ -190,12 +190,12 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 			}
 		} );		
 		
-		addFilterDef( "Tax Code", FilterType.TEXT, "e.survey_schedule.wood_element.taxCode like :ptaxc", "ptaxc" );
-		addFilterDef( "Surname", FilterType.TEXT, "e.survey_schedule.wood_element.surname like :psur", "psur" );
-		addFilterDef( "Name", FilterType.TEXT, "e.survey_schedule.wood_element.name like :pname", "pname" );
-		addFilterDef( "Birthplace", FilterType.TEXT, "e.survey_schedule.wood_element.birthPlace like :pbplace", "pbplace" );
-		addFilterDef( "Birthdate - from", FilterType.DATE, "e.survey_schedule.wood_element.birthDate >= :pbmin", "pbmin" );
-		addFilterDef( "Birthdate - to", FilterType.DATE, "e.survey_schedule.wood_element.birthDate <= :pbmax", "pbmax" );
+		addFilterDef( "Tax Code", FilterType.TEXT, "e.surveySchedule.woodElement.taxCode like :ptaxc", "ptaxc" );
+		addFilterDef( "Surname", FilterType.TEXT, "e.surveySchedule.woodElement.surname like :psur", "psur" );
+		addFilterDef( "Name", FilterType.TEXT, "e.surveySchedule.woodElement.name like :pname", "pname" );
+		addFilterDef( "Birthplace", FilterType.TEXT, "e.surveySchedule.woodElement.birthPlace like :pbplace", "pbplace" );
+		addFilterDef( "Birthdate - from", FilterType.DATE, "eSurveySchedule.woodElement.birthDate >= :pbmin", "pbmin" );
+		addFilterDef( "Birthdate - to", FilterType.DATE, "e.surveySchedule.woodElement.birthDate <= :pbmax", "pbmax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );
 	}
@@ -206,32 +206,32 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 		
 		// FIXME si può evitare l'uso dell'operatore IN ?
 		queryBuilders.put( MeasurementSessionListType.ALL, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));			
 		}});
 		queryBuilders.put( MeasurementSessionListType.BOOKED, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.TODO ));
-			addPredefinedFilter( createFilter( "e.survey_schedule.status = :pastatus", "pastatus", SurveyScheduleStatus.BOOKED ));
+			addPredefinedFilter( createFilter( "e.surveySchedule.status = :pastatus", "pastatus", SurveyScheduleStatus.BOOKED ));
 		}} );
 		queryBuilders.put( MeasurementSessionListType.ACCEPTED, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.TODO ));
-			addPredefinedFilter( createFilter( "e.survey_schedule.status = :pastatus", "pastatus", SurveyScheduleStatus.ACCEPTED ));
+			addPredefinedFilter( createFilter( "e.surveySchedule.status = :pastatus", "pastatus", SurveyScheduleStatus.ACCEPTED ));
 		}} );
 		queryBuilders.put( MeasurementSessionListType.RUNNING, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.RUNNING ));
 		}} );
 		queryBuilders.put( MeasurementSessionListType.SUSPENDED, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.SUSPENDED ));
 		}} );
 		queryBuilders.put( MeasurementSessionListType.DONE, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.DONE ));
 		}} );
 		queryBuilders.put( MeasurementSessionListType.CONCLUDED, new MeasurementSessionQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.surveySchedule.agenda in :agendas", "agendas", agendas));
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", MeasurementSessionStatus.CONCLUDED ));
 		}} );
 	}

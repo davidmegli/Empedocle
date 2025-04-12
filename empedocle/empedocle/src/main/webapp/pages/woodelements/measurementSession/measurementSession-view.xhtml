@@ -28,16 +28,16 @@
 			<h:panelGroup layout="block" styleClass="page-title #{measurementSessionView.getStyleClass( measurementSessionView.current.measurementSession )}">
 				<h2>
 					Visit of
-					#{measurementSessionView.current.measurementSession.survey_schedule.wood_element.surname} #{measurementSessionView.current.measurementSession.survey_schedule.wood_element.name}
+					#{measurementSessionView.current.measurementSession.surveySchedule.woodElement.surname} #{measurementSessionView.current.measurementSession.surveySchedule.woodElement.name}
 					del 
-					<h:outputText value="#{measurementSessionView.current.measurementSession.survey_schedule.date}" >
+					<h:outputText value="#{measurementSessionView.current.measurementSession.surveySchedule.date}" >
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 					</h:outputText>
 					
 					<h:panelGroup layout="block" styleClass="pull-right align-btn">
 						<h:link styleClass="btn dist-left" includeViewParams="true" outcome="#{param.from}">
 							<f:param name="id" value="#{param.pid}" />
-							<f:param name="from" value="#{empty param.eid ? 'wood_element-list' : '/pages/measurementSession/measurementSession-running.html'}" />
+							<f:param name="from" value="#{empty param.eid ? 'woodelement-list' : '/pages/measurementSession/measurementSession-running.html'}" />
 							<f:param name="eid" value="#{param.eid}" 
 								disable="#{empty param.eid}"/>
 							<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" 
@@ -49,7 +49,7 @@
 				<div class="container">
  					<div class="row">
 						<span class="bold span1">Agenda</span> 
-						<span class="span4">#{measurementSessionView.current.measurementSession.survey_schedule.agenda.toString()}</span>
+						<span class="span4">#{measurementSessionView.current.measurementSession.surveySchedule.agenda.toString()}</span>
 						<br />
 						<span class="bold span1">Responsabile</span> 
 						<span class="span4">Dott. #{measurementSessionView.current.measurementSession.author.name.concat(' ').concat(measurementSessionView.current.measurementSession.author.surname)}</span>

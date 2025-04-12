@@ -1,5 +1,5 @@
-it\unifi\ing\stlab\woodelements\dao\WoodElementDaoTest.class
-it\unifi\ing\stlab\woodelements\model\WoodElementIdentifierJpaTest.class
-it\unifi\ing\stlab\woodelements\model\WoodElementTest.class
-it\unifi\ing\stlab\woodelements\model\WoodElementJpaTest.class
-it\unifi\ing\stlab\woodelements\manager\WoodElementManagerTest.class
+it/unifi/ing/stlab/woodelements/model/WoodElementJpaTest.class
+it/unifi/ing/stlab/woodelements/dao/WoodElementDaoTest.class
+it/unifi/ing/stlab/woodelements/manager/WoodElementManagerTest.class
+it/unifi/ing/stlab/woodelements/model/WoodElementTest.class
+it/unifi/ing/stlab/woodelements/model/WoodElementIdentifierJpaTest.class

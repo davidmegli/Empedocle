@@ -86,36 +86,36 @@
 	      	//]]> 
 		</script>
 				
-		<h:form id="wood_element-view-form">
+		<h:form id="woodelement-view-form">
 			<h:panelGroup id="filters" layout="block" xmlns:filter="http://java.sun.com/jsf/composite/components/filters">
 				<h2>
 					Clinical Record of
-					<span style="text-transform:uppercase;">#{wood_elementView.current.surname}</span>
-					<span class='capitalize'>#{wood_elementView.current.name}</span>
+					<span style="text-transform:uppercase;">#{woodElementView.current.surname}</span>
+					<span class='capitalize'>#{woodElementView.current.name}</span>
 
 					<h:panelGroup layout="block" styleClass="pull-right align-btn">
-						<h:panelGroup styleClass="#{wood_elementView.measurementSessionId eq null ? '' : 'hide'}">
+						<h:panelGroup styleClass="#{woodElementView.measurementSessionId eq null ? '' : 'hide'}">
 							<!--<a4j:commandLink
 								oncomplete="$('#matching-panel').modal('show');"
-								styleClass="btn btn-primary #{not empty wood_elementView.matchingWoodElements and wood_elementView.checkRoleFor( 'merge' ) ? '' : 'hide'}">
+								styleClass="btn btn-primary #{not empty woodElementView.matchingWoodElements and woodElementView.checkRoleFor( 'merge' ) ? '' : 'hide'}">
 								<i class="fw-icon-link"></i> Unisci
 							</a4j:commandLink>-->
 									
 							<h:commandLink
-								action="#{wood_elementList.delete( wood_elementView.current.id )}"
-								styleClass="btn btn-danger dist-left #{wood_elementList.checkRoleFor( 'delete' ) and wood_elementList.isRemovable( wood_elementView.current.id ) ? '' : 'hide'}"
+								action="#{woodElementList.delete( woodElementView.current.id )}"
+								styleClass="btn btn-danger dist-left #{woodElementList.checkRoleFor( 'delete' ) and woodElementList.isRemovable( woodElementView.current.id ) ? '' : 'hide'}"
 								onclick="if(!confirm('Delete the selected wood_element? Click oK to confirm the deletion')) {return false;}">
 								<i class="fw-icon-remove dist-right"></i> Elimina
 							</h:commandLink>	
 							
 							<h:commandLink
-								action="#{wood_elementList.edit( wood_elementView.current.id )}"
-								styleClass="btn btn-warning dist-left #{wood_elementList.checkRoleFor( 'edit' ) ? '' : 'hide'}">
+								action="#{woodElementList.edit( woodElementView.current.id )}"
+								styleClass="btn btn-warning dist-left #{woodElementList.checkRoleFor( 'edit' ) ? '' : 'hide'}">
 								<i class="fw-icon-pencil dist-right"></i> Edit
 							</h:commandLink>				
 						</h:panelGroup>		 
 						
-						<h:link styleClass="btn dist-left" includeViewParams="true" outcome="#{wood_elementView.from}">
+						<h:link styleClass="btn dist-left" includeViewParams="true" outcome="#{woodElementView.from}">
 							<f:param name="id" value="#{param.eid}" 
 								disable="#{empty param.eid}"/>
 							<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" 
@@ -125,10 +125,10 @@
 					</h:panelGroup>
 				</h2>		
 				
-				<filter:filterPanel filters="#{wood_elementMeasurementSessionFilter}"
-					navigator="#{wood_elementView}"
-					render=":wood_element-view-form:results-tab"
-					renderAll=":wood_element-view-form:filters :wood_element-view-form:results-tab"/>
+				<filter:filterPanel filters="#{woodElementMeasurementSessionFilter}"
+					navigator="#{woodElementView}"
+					render=":woodelement-view-form:results-tab"
+					renderAll=":woodelement-view-form:filters :woodelement-view-form:results-tab"/>
 			</h:panelGroup>
 			
 			<h:panelGroup layout="block" id="tab">
@@ -146,31 +146,31 @@
 							<div class="control-group">
 								<label class="control-label bold">Tax Code</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.taxCode}" />
+									<h:outputText value="#{woodElementView.current.taxCode}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">Surname</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.surname}" />
+									<h:outputText value="#{woodElementView.current.surname}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">Name</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.name}" />
+									<h:outputText value="#{woodElementView.current.name}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">Sex</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.sex}" />
+									<h:outputText value="#{woodElementView.current.sex}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">Birthdate</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.birthDate}" >
+									<h:outputText value="#{woodElementView.current.birthDate}" >
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>	
 								</div>
@@ -178,55 +178,55 @@
 							<div class="control-group">
 								<label class="control-label bold">Birthplace</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.birthPlace}" />
+									<h:outputText value="#{woodElementView.current.birthPlace}" />
 								</div>
 							</div>														
 							<div class="control-group">
 								<label class="control-label bold">Residence</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.residence.place}" />
+									<h:outputText value="#{woodElementView.current.residence.place}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">Domicile</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.domicile.place}" />
+									<h:outputText value="#{woodElementView.current.domicile.place}" />
 								</div>
 							</div>							
 							<div class="control-group">
 								<label class="control-label bold">Nationality</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.nationality}" />
+									<h:outputText value="#{woodElementView.current.nationality}" />
 								</div>
 							</div>									
 							<div class="control-group">
 								<label class="control-label bold">Telephone</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.homePhone}" />
+									<h:outputText value="#{woodElementView.current.homePhone}" />
 								</div>
 							</div>		
 							<div class="control-group">
 								<label class="control-label bold">Mobile</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.workPhone}" />
+									<h:outputText value="#{woodElementView.current.workPhone}" />
 								</div>
 							</div>															
 							<div class="control-group">
 								<label class="control-label bold">Region</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.region}" />
+									<h:outputText value="#{woodElementView.current.region}" />
 								</div>
 							</div>									
 							<div class="control-group">
 								<label class="control-label bold">ASL</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.asl}" />
+									<h:outputText value="#{woodElementView.current.asl}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label bold">NHS Code</label>
 								<div class="controls align-txt">
-									<h:outputText value="#{wood_elementView.current.ssnCode}" />
+									<h:outputText value="#{woodElementView.current.ssnCode}" />
 								</div>
 							</div>																	
 						</h:panelGroup>	
@@ -235,51 +235,51 @@
 					<div class="tab-pane active" id="history">
 						<h:panelGroup id="results-tab" layout="block" class="tabbable tabs-left">
 							<ul class="nav nav-tabs">
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'ALL' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'ALL' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'ALL' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'ALL' )}"
 										value="All">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'BOOKED' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'BOOKED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'BOOKED' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'BOOKED' )}"
 										value="Booked">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'ACCEPTED' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'ACCEPTED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'ACCEPTED' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'ACCEPTED' )}"
 										value="Accepted">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>								
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'RUNNING' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'RUNNING' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'RUNNING' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'RUNNING' )}"
 										value="Running">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'SUSPENDED' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'SUSPENDED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'SUSPENDED' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'SUSPENDED' )}"
 										value="Suspended">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'DONE' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'DONE' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'DONE' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'DONE' )}"
 										value="Done">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'CONCLUDED' ) ? 'active' : ''}">
+								<li class="#{woodElementMeasurementSessionFilter.isSelectedList( 'CONCLUDED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementMeasurementSessionFilter.selectList( 'CONCLUDED' )}"
+										action="#{woodElementMeasurementSessionFilter.selectList( 'CONCLUDED' )}"
 										value="Concluded">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
@@ -291,28 +291,28 @@
 								
 									<h:panelGroup layout="block" id="navigator"
 										xmlns:nav="http://java.sun.com/jsf/composite/components/navigator">
-										<nav:navigator value="#{wood_elementView}"
-											render=":wood_element-view-form:navigator :wood_element-view-form:results" />
+										<nav:navigator value="#{woodElementView}"
+											render=":woodelement-view-form:navigator :woodelement-view-form:results" />
 									</h:panelGroup>
 			
 									<h:panelGroup layout="block" id="results">
-										<h:panelGroup rendered="#{empty wood_elementMeasurementSessionResults}">
+										<h:panelGroup rendered="#{empty woodRlementMeasurementSessionResults}">
 											<br />
 											<h:outputText styleClass="lead" value="No visit found" />
 										</h:panelGroup>
 			
 										<h:dataTable
 											styleClass="table table-bordered table-striped table-hover"
-											rowClasses="#{wood_elementView.rowStyleClasses}"
+											rowClasses="#{woodElementView.rowStyleClasses}"
 											columnClasses="datetime, agenda, crud-controls-3"
-											value="#{wood_elementMeasurementSessionResults}" var="measurementSession"
-											style="#{empty wood_elementMeasurementSessionResults ? 'display:none;' : ''}">
+											value="#{woodElementMeasurementSessionResults}" var="measurementSession"
+											style="#{empty woodElementMeasurementSessionResults ? 'display:none;' : ''}">
 											
 											<h:column>
 												<f:facet name="header">
 													Date
 												</f:facet>
-												<h:outputText value="#{measurementSession.survey_schedule.date}" >
+												<h:outputText value="#{measurementSession.surveySchedule.date}" >
 													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 												</h:outputText>								
 											</h:column>
@@ -321,9 +321,9 @@
 												<f:facet name="header">
 													Agenda
 												</f:facet>
-												<h:outputText value="#{measurementSession.survey_schedule.agenda.code}" />
+												<h:outputText value="#{measurementSession.surveySchedule.agenda.code}" />
 												 - 
-												<h:outputText value="#{measurementSession.survey_schedule.agenda.description}" />
+												<h:outputText value="#{measurementSession.surveySchedule.agenda.description}" />
 											</h:column>
 			
 											<h:column>
@@ -332,54 +332,54 @@
 												</f:facet>
 
 												<a4j:commandLink title="View report"
-														action="#{wood_elementView.initReports( measurementSession.id )}"
+														action="#{woodElementView.initReports( measurementSession.id )}"
 														styleClass="btn btn-primary pull-left dist-right tltip" 
-														rendered="#{wood_elementView.hasReport( measurementSession )}"
+														rendered="#{woodElementView.hasReport( measurementSession )}"
 														render=":report-form"
-														oncomplete="switchNumberOfReports( #{wood_elementView.reports.size()}, #{measurementSession.id}, #{wood_elementView.reports.get(0).getId()} );">
+														oncomplete="switchNumberOfReports( #{woodElementView.reports.size()}, #{measurementSession.id}, #{woodElementView.reports.get(0).getId()} );">
 													<i class="fw-icon-book fw-icon-large "></i>
 												</a4j:commandLink>
 
 												<h:link outcome="/pages/woodelements/measurementSession/measurementSession-view.xhtml" includeViewParams="true"
-													rendered="#{wood_elementView.hasView(measurementSession)}" title="View visit"
+													rendered="#{woodElementView.hasView(measurementSession)}" title="View visit"
 													styleClass="btn btn-info pull-left dist-right tltip">
 													<f:param name="id" value="#{measurementSession.id}" />
-													<f:param name="pid" value="#{wood_elementView.current.id}" />
+													<f:param name="pid" value="#{woodElementView.current.id}" />
 													<f:param name="from" value="#{view.viewId}" />
-													<f:param name="eid" value="#{wood_elementView.measurementSessionId}" disable="#{wood_elementView.measurementSessionId eq null}" />
+													<f:param name="eid" value="#{woodElementView.measurementSessionId}" disable="#{woodElementView.measurementSessionId eq null}" />
 													<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" 
 														disable="#{empty javax.enterprise.context.conversation.id}"/>	
 														<i class="fw-icon-zoom-in fw-icon-large"></i>
 												</h:link>
 												
 												<h:commandLink title="Start"
-													action="#{wood_elementView.run( measurementSession.id )}"
+													action="#{woodElementView.run( measurementSession.id )}"
 													styleClass="btn btn-success pull-left tltip"
-													rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasStart( measurementSession ) and not measurementSession.status.name.equals('To do')}">
+													rendered="#{woodElementView.measurementSessionId eq null and woodElementView.hasStart( measurementSession ) and not measurementSession.status.name.equals('To do')}">
 													<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign" />
 												</h:commandLink>																						
 																		
 												<h:commandLink title="Edit"
-														action="#{wood_elementView.run( measurementSession.id )}"
+														action="#{woodElementView.run( measurementSession.id )}"
 														styleClass="btn btn-info pull-left tltip"
-														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasModify( measurementSession )}">
+														rendered="#{woodElementView.measurementSessionId eq null and woodElementView.hasModify( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>
 			
 												<h:commandLink title="Resume"
-														action="#{wood_elementView.run( measurementSession.id )}"
+														action="#{woodElementView.run( measurementSession.id )}"
 														styleClass="btn btn-warning pull-left tltip" 
-														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasResume( measurementSession )}">
+														rendered="#{woodElementView.measurementSessionId eq null and woodElementView.hasResume( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>
 			
 												<h:commandLink title="Recover"
-														action="#{wood_elementView.run( measurementSession.id )}"
+														action="#{woodElementView.run( measurementSession.id )}"
 														styleClass="btn btn-danger pull-left tltip" 
-														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasRecover( measurementSession )}">
+														rendered="#{woodElementView.measurementSessionId eq null and woodElementView.hasRecover( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>
@@ -393,9 +393,9 @@
 					</div>
 				
 					<div class="tab-pane" id="fact-panel">
-						<h:panelGroup id="highlight" class="highlight" layout="block" rendered="#{not empty wood_elementView.factPanels}"
+						<h:panelGroup id="highlight" class="highlight" layout="block" rendered="#{not empty woodElementView.factPanels}"
 							xmlns:emp="http://java.sun.com/jsf/composite/components">
-							<emp:highlights panels="#{wood_elementView.factPanels}" />
+							<emp:highlights panels="#{woodElementView.factPanels}" />
 						</h:panelGroup>		
 					</div>				
 					
@@ -406,10 +406,10 @@
 							<h:panelGroup id="query-definition" layout="block" 
 								styleClass="container-fluid form-horizontal box-empty">
 								
-								<input type="hidden" name="taxcode" value="#{wood_elementView.current.taxCode}" />
+								<input type="hidden" name="taxcode" value="#{woodElementView.current.taxCode}" />
 								
 								<div class="control-group">
-									<label class="control-label bold align-txt" for="wood_element-view-form:parameter">Parametro</label>
+									<label class="control-label bold align-txt" for="woodelement-view-form:parameter">Parametro</label>
 									<div class="controls align-txt">
 										<h:selectOneMenu id="parameter" value="#{biohumoralParameterList.parameter}"
 											styleClass="#{ component.valid ? '' : 'vld-error'}" style="width: auto; height: 30px; ">
@@ -427,13 +427,13 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label bold" for="wood_element-view-form:start">A partire dal</label>
+									<label class="control-label bold" for="woodelement-view-form:start">A partire dal</label>
 									<div class="controls" id="start">
 										<filters:datePicker value="#{biohumoralParameterList.start}"  />
 									</div>
 								</div>	
 								<div class="control-group">
-									<label class="control-label bold" for="wood_element-view-form:end">Fino al</label>
+									<label class="control-label bold" for="woodelement-view-form:end">Fino al</label>
 									<div class="controls" id="end">
 										<filters:datePicker value="#{biohumoralParameterList.end}"  />
 									</div>
@@ -441,14 +441,14 @@
 								
 								<h:panelGroup layout="block" styleClass="pull-right">
 									<a4j:commandLink action="#{biohumoralParameterList.executeQuery()}" class="btn btn-primary dist-right"
-										render=":wood_element-view-form:query-results :msg" execute="@this,:wood_element-view-form:query-definition"
+										render=":woodelement-view-form:query-results :msg" execute="@this,:woodelement-view-form:query-definition"
 										onbegin="#{rich:component('loading-popup')}.show();" 
 										oncomplete="#{rich:component('loading-popup')}.hide();">
 										<i class="fw-icon-ok-sign fw-icon-large dist-right more-right"></i>
 										<h:outputText value="Applica" styleClass="bold" />
 									</a4j:commandLink>
 									<a4j:commandLink action="#{biohumoralParameterList.reset()}" class="btn dist-right" 
-										render=":wood_element-view-form:query-definition :wood_element-view-form:query-results" execute="@this">
+										render=":woodelement-view-form:query-definition :woodelement-view-form:query-results" execute="@this">
 										<i class="fw-icon-remove-sign fw-icon-large dist-right more-right"></i>
 										<h:outputText value="Reset" styleClass="bold" />
 									</a4j:commandLink>	
@@ -514,7 +514,7 @@
 						<h3>Select Report to print
 						
 							<a4j:commandLink styleClass="btn btn-primary pull-right dist-left"
-								onclick="openMoreThanOne(#{wood_elementView.selection});"
+								onclick="openMoreThanOne(#{woodElementView.selection});"
 								execute="@form">
 								<i class="fw-icon-step-forward dist-right"></i>
 								<h:outputText value="Confirm" styleClass="bold" />
@@ -541,8 +541,8 @@
 									name="report-toggle" /></td>
 								<td />
 							</tr>
-							<a4j:repeat var="report" value="#{wood_elementView.reports}"
-								rendered="#{not empty wood_elementView.reports and wood_elementView.reports.size() gt 0}"
+							<a4j:repeat var="report" value="#{woodElementView.reports}"
+								rendered="#{not empty woodElementView.reports and woodElementView.reports.size() gt 0}"
 								id="report-list">
 								<tr>
 									<td class="text-center"><input type="checkbox"
@@ -595,14 +595,14 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>#{wood_elementView.current.taxCode}</td>
-									<td>#{wood_elementView.current.surname}</td>
-									<td>#{wood_elementView.current.name}</td>
-									<td>#{wood_elementView.current.sex}</td>
-									<td><h:outputText value="#{wood_elementView.current.birthDate}">
+									<td>#{woodElementView.current.taxCode}</td>
+									<td>#{woodElementView.current.surname}</td>
+									<td>#{woodElementView.current.name}</td>
+									<td>#{woodElementView.current.sex}</td>
+									<td><h:outputText value="#{woodElementView.current.birthDate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText></td>
-									<td>#{wood_elementView.current.birthPlace}</td>
+									<td>#{woodElementView.current.birthPlace}</td>
 									<td class="action" />
 								</tr>
 							</tbody>
@@ -611,48 +611,48 @@
 						<br />
 
 						<h4>List of duplicate wood_elements</h4>
-						<h:dataTable value="#{wood_elementView.matchingWoodElements}" var="_wood_element"
+						<h:dataTable value="#{woodElementView.matchingWoodElements}" var="_wood_element"
 							styleClass="table table-striped table-bordered"
 							id="merger-list"
 							columnClasses="taxcode, col, col, sex, birth-date, col, action">
 
 							<h:column>
 								<f:facet name="header">Tax Code</f:facet>
-								<h:outputText value="#{_wood_element.taxCode}" />
+								<h:outputText value="#{_woodElement.taxCode}" />
 							</h:column>
 
 							<h:column>
 								<f:facet name="header">Surname</f:facet>
-								<h:outputText value="#{_wood_element.surname}" />
+								<h:outputText value="#{_woodElement.surname}" />
 							</h:column>
 
 							<h:column>
 								<f:facet name="header">Name</f:facet>
-								<h:outputText value="#{_wood_element.name}" />
+								<h:outputText value="#{_woodElement.name}" />
 							</h:column>
 
 							<h:column>
 								<f:facet name="header">Sex</f:facet>
-								<h:outputText value="#{_wood_element.sex}" />
+								<h:outputText value="#{_woodElement.sex}" />
 							</h:column>
 
 							<h:column>
 								<f:facet name="header">Birthdate</f:facet>
-								<h:outputText value="#{_wood_element.birthDate}">
+								<h:outputText value="#{_woodElement.birthDate}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</h:column>
 
 							<h:column>
 								<f:facet name="header">Birthplace</f:facet>
-								<h:outputText value="#{_wood_element.birthPlace}" />
+								<h:outputText value="#{_woodElement.birthPlace}" />
 							</h:column>
 
 							<h:column>
 								<a4j:commandLink styleClass="btn btn-primary pull-right tltip"
 									title="Unisci"
 									onclick="#{rich:component('loading-popup')}.show();"
-									action="#{wood_elementView.merge( _wood_element.id )}">
+									action="#{woodElementView.merge( _woodElement.id )}">
 									<i class="fw-icon-link"></i>
 								</a4j:commandLink>
 							</h:column>

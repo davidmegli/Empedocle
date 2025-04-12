@@ -40,10 +40,10 @@ public class MeasurementSessionTypeClonerTest {
 		
 		// authorizations
 		Authorization auth1 = AuthorizationFactory.createAuthorization();
-		auth1.setExamOperation( MeasurementSessionOperation.END_EXAMINATION );
+		auth1.setMeasurementSessionOperation( MeasurementSessionOperation.END_EXAMINATION );
 		auth1.setQualification( QualificationFactory.createQualification() );
 		Authorization auth2 = AuthorizationFactory.createAuthorization();
-		auth2.setExamOperation( MeasurementSessionOperation.END_EXAMINATION );
+		auth2.setMeasurementSessionOperation( MeasurementSessionOperation.END_EXAMINATION );
 		auth2.setQualification( QualificationFactory.createQualification() );
 		original.addAuthorization( auth1 );
 		original.addAuthorization( auth2 );
@@ -118,7 +118,7 @@ public class MeasurementSessionTypeClonerTest {
 	private boolean hasBeenCloned(Authorization auth, Set<Authorization> copiedSet) {
 		for( Authorization copy : copiedSet ) {
 			if( auth.getQualification().equals( copy.getQualification() ) &&
-					auth.getExamOperation().equals( copy.getExamOperation() ) )
+					auth.getMeasurementSessionOperation().equals( copy.getMeasurementSessionOperation() ) )
 				return true;
 		}
 		

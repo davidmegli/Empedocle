@@ -36,7 +36,7 @@ public class WoodElementConverter implements Converter {
             throw new ConverterException();
         }
 
-        return wood_element;
+        return woodElement;
 	}
 
 	@Override
@@ -50,10 +50,10 @@ public class WoodElementConverter implements Converter {
 	
 	//XXX aggiunto per evitare NullPointerException su agendaDao (non inizializzato in suggestionList)
 	private void lookup() {
-		if( wood_elementDao == null ) {
+		if( woodElementDao == null ) {
 			try {
 				InitialContext jndi = new InitialContext();
-				wood_elementDao = (WoodElementDao) jndi.lookup("java:module/WoodElementDaoBean");
+				woodElementDao = (WoodElementDao) jndi.lookup("java:module/WoodElementDaoBean");
 			} catch ( Exception e ) {
 				e.printStackTrace();
 			}

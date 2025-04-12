@@ -87,10 +87,10 @@ public class OfflineWoodElementReconciliator {
 				String slaveIdentifier = rs.getString( "id_ACE" );
 				String masterIdentifier = rs.getString( "master_id_ACE" );
 	
-				WoodElement slave = wood_elementDao.findByIdentifier( slaveIdentifier );
-				WoodElement master = wood_elementDao.findByIdentifier( masterIdentifier );
+				WoodElement slave = woodElementDao.findByIdentifier( slaveIdentifier );
+				WoodElement master = woodElementDao.findByIdentifier( masterIdentifier );
 	
-				WoodElementManager wood_elementManager = new WoodElementManager();
+				WoodElementManager woodElementManager = new WoodElementManager();
 				User author = userDao.findByUsername( "administrator" );
 				Time time = new Time( new Date() );
 				
@@ -103,12 +103,12 @@ public class OfflineWoodElementReconciliator {
 						// slave found, master not found
 	
 						// 1. a new wood_element with role master is created
-						master = wood_elementManager.createWoodElement( author, time );
+						master = woodElementManager.createWoodElement( author, time );
 						update( master, rs );
 						entityManager.persist( master );
 	
 						// 2. master and slave are merged
-						WoodElement result = wood_elementManager.merge( author, time, master, slave );
+						WoodElement result = woodElementManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
@@ -117,10 +117,10 @@ public class OfflineWoodElementReconciliator {
 					// master found
 					
 					// 1. master is updated
-					WoodElement copy = wood_elementManager.modify( author, time, master );
+					WoodElement copy = woodElementManager.modify( author, time, master );
 					update( copy, rs );
 					
-					WoodElement purged = wood_elementManager.purge( copy );
+					WoodElement purged = woodElementManager.purge( copy );
 					if ( purged != null ) {
 						master = purged;
 						entityManager.persist( master );
@@ -131,7 +131,7 @@ public class OfflineWoodElementReconciliator {
 					
 					if ( slave != null ) {
 						// 2. master and slave are merged
-						WoodElement result = wood_elementManager.merge( author, time, master, slave );
+						WoodElement result = woodElementManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
@@ -154,32 +154,32 @@ public class OfflineWoodElementReconciliator {
 		}
 	}
 	
-	private void update( WoodElement wood_element, ResultSet rs ) throws SQLException {
+	private void update( WoodElement woodElement, ResultSet rs ) throws SQLException {
 		
 		WoodElementIdentifier identifier = retrieveWoodElementIdentifier( rs.getString( "master_id_ACE" ) );
-		wood_element.setIdentifier( identifier );
+		woodElement.setIdentifier( identifier );
 		
-		wood_element.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
-		wood_element.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
-		wood_element.setName( check( rs.getString( "master_name" ) ) );
-		wood_element.setSurname( check( rs.getString( "master_surname" ) ) );
-		wood_element.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
-		wood_element.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
-		wood_element.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
+		woodElement.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
+		woodElement.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
+		woodElement.setName( check( rs.getString( "master_name" ) ) );
+		woodElement.setSurname( check( rs.getString( "master_surname" ) ) );
+		woodElement.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
+		woodElement.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
+		woodElement.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
 
 		if ( check( rs.getString( "master_residence_place" ) ) != null ) {
-			wood_element.setResidence( new Address() );
-			wood_element.getResidence().setPlace( rs.getString( "master_residence_place" ) );
+			woodElement.setResidence( new Address() );
+			woodElement.getResidence().setPlace( rs.getString( "master_residence_place" ) );
 		}
 		
 		if ( check( rs.getString( "master_domicile_place" ) )  != null ) {
-			wood_element.setDomicile( new Address() );
-			wood_element.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
+			woodElement.setDomicile( new Address() );
+			woodElement.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
 		}
 		
-		wood_element.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
-		wood_element.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
-		wood_element.setNationality( check( rs.getString( "master_nationality" ) ) );
+		woodElement.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
+		woodElement.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
+		woodElement.setNationality( check( rs.getString( "master_nationality" ) ) );
 	}
 	
 	private String check( String value ) {

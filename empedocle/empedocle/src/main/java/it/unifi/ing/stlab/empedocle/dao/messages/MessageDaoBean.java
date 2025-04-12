@@ -38,7 +38,7 @@ public class MessageDaoBean implements MessageDao {
 	public int countByWoodElementId(Long id) {
 		return ( (Long) entityManager.createQuery( 
 				"select count (distinct m ) from Message m "
-				+ "where m.wood_element.id = :id")
+				+ "where m.woodElement.id = :id")
 			.setParameter("id", id)
 			.getSingleResult() ).intValue();
 	}

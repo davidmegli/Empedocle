@@ -88,7 +88,7 @@ public class MeasurementSessionTypeDaoBean implements MeasurementSessionTypeDao{
 //		List<?> result = entityManager.createQuery(
 //			"select et " +
 //			" from MeasurementSession e " +
-//			"  join e.survey_schedule.services s " +
+//			"  join e.surveySchedule.services s " +
 //			"  join s.agenda.measurementSessionType et " +
 //			" where e.id = :id" )
 //			.setParameter("id", id )
@@ -99,7 +99,7 @@ public class MeasurementSessionTypeDaoBean implements MeasurementSessionTypeDao{
 		List<?> result = entityManager.createQuery(
 				"select et " +
 				" from MeasurementSession e " +
-				"  join e.survey_schedule.agenda.measurementSessionType et " +
+				"  join e.surveySchedule.agenda.measurementSessionType et " +
 				" where e.id = :id" )
 				.setParameter("id", id )
 				.setMaxResults( 1 )

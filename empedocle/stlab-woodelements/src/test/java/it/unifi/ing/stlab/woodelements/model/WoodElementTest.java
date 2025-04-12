@@ -9,54 +9,54 @@ public class WoodElementTest {
 
 	@Test
 	public void testSameAs1() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement1 = WoodElementFactory.createWoodElement();
 		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
 		identifier.setCode( "id" );
-		wood_element1.setIdentifier( identifier );
+		woodElement1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement2 = WoodElementFactory.createWoodElement();
 
-		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( false, woodElement1.sameAs( woodElement2 ) );
+		assertEquals( false, woodElement2.sameAs( woodElement1 ) );
 	}
 	
 	@Test
 	public void testSameAs2() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();		
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement1 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement2 = WoodElementFactory.createWoodElement();
 
-		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( true, woodElement1.sameAs( woodElement2 ) );
+		assertEquals( true, woodElement2.sameAs( woodElement1 ) );
 	}
 	
 	@Test
 	public void testSameAs3() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement1 = WoodElementFactory.createWoodElement();
 		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
 		identifier.setCode( "id" );
-		wood_element1.setIdentifier( identifier );
+		woodElement1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
-		wood_element2.setIdentifier( identifier );
+		WoodElement woodElement2 = WoodElementFactory.createWoodElement();
+		woodElement2.setIdentifier( identifier );
 
-		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( true, woodElement1.sameAs( woodElement2 ) );
+		assertEquals( true, woodElement2.sameAs( woodElement1 ) );
 	}
 	
 	@Test
 	public void testSameAs4() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement1 = WoodElementFactory.createWoodElement();
 		WoodElementIdentifier identifier1 = WoodElementFactory.createWoodElementIdentifier();
 		identifier1.setCode( "id1" );
-		wood_element1.setIdentifier( identifier1 );
+		woodElement1.setIdentifier( identifier1 );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		WoodElement woodElement2 = WoodElementFactory.createWoodElement();
 		WoodElementIdentifier identifier2 = WoodElementFactory.createWoodElementIdentifier();
 		identifier2.setCode( "id2" );
-		wood_element2.setIdentifier( identifier2 );
+		woodElement2.setIdentifier( identifier2 );
 
-		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( false, woodElement1.sameAs( woodElement2 ) );
+		assertEquals( false, woodElement2.sameAs( woodElement1 ) );
 	}	
 
 }

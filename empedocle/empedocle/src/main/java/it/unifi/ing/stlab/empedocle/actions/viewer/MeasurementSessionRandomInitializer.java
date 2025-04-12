@@ -76,13 +76,13 @@ public class MeasurementSessionRandomInitializer {
 		
 		Address domicile = new Address();
 		domicile.setPlace("VIA DI VILLA MAGNA 76 FIRENZE");
-		wood_element.setDomicile(domicile);
+		woodElement.setDomicile(domicile);
 		
 		Address residence = new Address();
 		residence.setPlace("PARCO DELLA VITTORIA XX FIRENZE");
-		wood_element.setResidence(residence);
+		woodElement.setResidence(residence);
 		
-		return wood_element;
+		return woodElement;
 	}
 	
 	private Agenda initAgenda(){

@@ -84,32 +84,32 @@ public class WoodElementList extends Navigator {
 
 	}
 
-	public String runDateless( Long woodElementId){ // when starting a "recovery" survey_schedule where a date can be chosen
-		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String runDateless( Long woodElementId){ // when starting a "recovery" surveySchedule where a date can be chosen
+		if( !woodElementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) wood_elementFilter
+		String selectedAgendaUuid = (String) woodElementFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
-		survey_schedule.setAgenda( agenda );
-		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		//survey_schedule.setDate( date );
-		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
+		SurveySchedule surveySchedule = SurveyScheduleFactory.createSurveySchedule();
+		surveySchedule.setAgenda( agenda );
+		surveySchedule.setWoodElement( woodElementDao.findById( woodElementId ) );
+		//surveySchedule.setDate( date );
+		surveySchedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		survey_schedule.setBookingCode( bookingCode  );
+		surveySchedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		survey_schedule.setAcceptanceCode( acceptanceCode );
+		surveySchedule.setAcceptanceCode( acceptanceCode );
 
 		MeasurementSession measurementSession = MeasurementSessionFactory.createMeasurementSession();
 		measurementSession.setStatus( MeasurementSessionStatus.TODO );
-		measurementSession.setSurveySchedule( survey_schedule );
+		measurementSession.setSurveySchedule( surveySchedule );
 		measurementSession.setLastUpdate( date );
 
 		try {
@@ -137,32 +137,32 @@ public class WoodElementList extends Navigator {
 			throw new RuntimeException( "measurementSession not found" );
 	}
 
-	public String run( Long wood_elementId ) {
-		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String run( Long woodElementId ) {
+		if( !woodElementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) wood_elementFilter
+		String selectedAgendaUuid = (String) woodElementFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
-		survey_schedule.setAgenda( agenda );
-		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		survey_schedule.setDate( date );
-		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
+		SurveySchedule surveySchedule = SurveyScheduleFactory.createSurveySchedule();
+		surveySchedule.setAgenda( agenda );
+		surveySchedule.setWoodElement( woodElementDao.findById( woodElementId ) );
+		surveySchedule.setDate( date );
+		surveySchedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		survey_schedule.setBookingCode( bookingCode  );
+		surveySchedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		survey_schedule.setAcceptanceCode( acceptanceCode );
+		surveySchedule.setAcceptanceCode( acceptanceCode );
 
 		MeasurementSession measurementSession = MeasurementSessionFactory.createMeasurementSession();
 		measurementSession.setStatus( MeasurementSessionStatus.TODO );
-		measurementSession.setSurveySchedule( survey_schedule );
+		measurementSession.setSurveySchedule( surveySchedule );
 		measurementSession.setLastUpdate( date );
 
 		try {
@@ -190,15 +190,15 @@ public class WoodElementList extends Navigator {
 			throw new RuntimeException( "measurementSession not found" );
 	}
 	
-	@Produces @RequestScoped @Named( "wood_elementResults" ) 
+	@Produces @RequestScoped @Named( "woodElementResults" )
 	public List<WoodElement> getResults() {
 		if ( getItemCount().intValue() == 0 )
 			return new ArrayList<>();
 
-		return wood_elementDao.find( wood_elementFilter,  getOffset(),  getLimit() );
+		return woodElementDao.find( woodElementFilter,  getOffset(),  getLimit() );
 	}
 	
-	public Boolean checkHistory( Long wood_elementId ){
+	public Boolean checkHistory( Long woodElementId ){
 		Set<Agenda> agendas = loggedUser.getAgendas();
 		
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>(
@@ -207,11 +207,11 @@ public class WoodElementList extends Navigator {
 						MeasurementSessionStatus.DONE, 
 						MeasurementSessionStatus.CONCLUDED));
 		
-		return measurementSessionDao.hasWoodElementHistory( wood_elementId, statuses, agendas );
+		return measurementSessionDao.hasWoodElementHistory( woodElementId, statuses, agendas );
 	}
 
-	public boolean isRemovable( Long wood_elementId ) {
-		return !measurementSessionDao.hasWoodElementHistory( wood_elementId );
+	public boolean isRemovable( Long woodElementId ) {
+		return !measurementSessionDao.hasWoodElementHistory( woodElementId );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -248,8 +248,8 @@ public class WoodElementList extends Navigator {
 		return "add-new";
 	}
 	
-	public String delete( Long wood_elementId ) {
-		wood_elementDao.deleteById( wood_elementId, loggedUser.getUser() );
+	public String delete( Long woodElementId ) {
+		woodElementDao.deleteById( woodElementId, loggedUser.getUser() );
 		
 		message( FacesMessage.SEVERITY_INFO, "WoodElement successfully deleted!", true );
 		return "delete";
@@ -266,7 +266,7 @@ public class WoodElementList extends Navigator {
 	@Override
 	public Integer getItemCount() {
 		if ( itemCount == null ) {
-			itemCount = wood_elementDao.count( wood_elementFilter );
+			itemCount = woodElementDao.count( woodElementFilter );
 		}
 		return itemCount;
 	}

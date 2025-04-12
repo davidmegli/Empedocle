@@ -16,101 +16,101 @@
 			.birth-date { width: 100px; }
 		</style>	
 	
-		<h:form id="wood_element-form">
+		<h:form id="woodelement-form">
 			<h:panelGroup id="filters" layout="block"
 				xmlns:filter="http://java.sun.com/jsf/composite/components/filters">
 				<h2>
 					Clinical Records
 					<h:panelGroup styleClass="pull-right align-btn ">
-						<h:commandLink title="Add" class="btn btn-primary" action="#{wood_elementList.addNew()}">
+						<h:commandLink title="Add" class="btn btn-primary" action="#{woodElementList.addNew()}">
 							<i class="fw-icon-plus-sign-alt dist-right"></i> Add
 						</h:commandLink>
 					</h:panelGroup>
 				</h2>
 
 				<filter:filterPanel
-					filters="#{wood_elementFilter}"
-					navigator="#{wood_elementList}"
-					render=":wood_element-form:navigator :wood_element-form:results"
-					renderAll=":wood_element-form:filters :wood_element-form:navigator
-						:wood_element-form:results" />
+					filters="#{woodElementFilter}"
+					navigator="#{woodElementList}"
+					render=":woodelement-form:navigator :woodelement-form:results"
+					renderAll=":woodelement-form:filters :woodelement-form:navigator
+						:woodelement-form:results" />
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" id="navigator"
 				xmlns:nav="http://java.sun.com/jsf/composite/components/navigator">
-				<nav:navigator value="#{wood_elementList}"
-					render=":wood_element-form:navigator :wood_element-form:results" />
+				<nav:navigator value="#{woodElementList}"
+					render=":woodelement-form:navigator :woodelement-form:results" />
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" id="results">
-				<!--<h:panelGroup rendered="#{empty wood_elementResults}">
+				<!--<h:panelGroup rendered="#{empty woodElementResults}">
 					<br />
 					<h:outputText styleClass="lead" value="Applicare almeno un Filtro Nome/Cognome per visualizzare la Lista Pazienti" />
 				</h:panelGroup>-->
 				
 				<h:dataTable styleClass="table table-bordered table-striped table-hover" 
-					value="#{wood_elementResults}" var="wood_element"
+					value="#{woodElementResults}" var="wood_element"
 					columnClasses="surname, name, sex, birth-date, birth-place, taxcode, crud-controls-3">
 								
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Surname"
 											styleClass="normal-text"
-											action="#{wood_elementFilter.toggle('Surname')}">
+											action="#{woodElementFilter.toggle('Surname')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":wood_element-form:results" execute="@none" />
-								<h:panelGroup rendered="#{wood_elementFilter.isSelected('Surname')}">
-									<i class="#{wood_elementFilter.isAscending('Surname') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":woodelement-form:results" execute="@none" />
+								<h:panelGroup rendered="#{woodElementFilter.isSelected('Surname')}">
+									<i class="#{woodElementFilter.isAscending('Surname') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not wood_elementFilter.isSelected('Surname')}">
+								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Surname')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						#{wood_element.surname}
+						#{woodElement.surname}
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
 							Name
 						</f:facet>
-						#{wood_element.name}
+						#{woodElement.name}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Sex"
 											styleClass="normal-text"
-											action="#{wood_elementFilter.toggle('Sex')}">
+											action="#{woodElementFilter.toggle('Sex')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":wood_element-form:results" execute="@none" />
-								<h:panelGroup rendered="#{wood_elementFilter.isSelected('Sex')}">
-									<i class="#{wood_elementFilter.isAscending('Sex') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":woodelement-form:results" execute="@none" />
+								<h:panelGroup rendered="#{woodElementFilter.isSelected('Sex')}">
+									<i class="#{woodElementFilter.isAscending('Sex') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not wood_elementFilter.isSelected('Sex')}">
+								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Sex')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>					
-						#{wood_element.sex}
+						#{woodElement.sex}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Birthdate"
 											styleClass="normal-text"
-											action="#{wood_elementFilter.toggle('Birthdate')}">
+											action="#{woodElementFilter.toggle('Birthdate')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":wood_element-form:results" execute="@none" />
-								<h:panelGroup rendered="#{wood_elementFilter.isSelected('Birthdate')}">
-									<i class="#{wood_elementFilter.isAscending('Birthdate') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":woodelement-form:results" execute="@none" />
+								<h:panelGroup rendered="#{woodElementFilter.isSelected('Birthdate')}">
+									<i class="#{woodElementFilter.isAscending('Birthdate') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not wood_elementFilter.isSelected('Birthdate')}">
+								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Birthdate')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						<h:outputText value="#{wood_element.birthDate}" >
+						<h:outputText value="#{woodElement.birthDate}" >
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</h:column>
@@ -119,25 +119,25 @@
 						<f:facet name="header">
 							<h:commandLink value="Birthplace"
 											styleClass="normal-text"
-											action="#{wood_elementFilter.toggle('Birthplace')}">
+											action="#{woodElementFilter.toggle('Birthplace')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":wood_element-form:results" execute="@none" />
-								<h:panelGroup rendered="#{wood_elementFilter.isSelected('Birthplace')}">
-									<i class="#{wood_elementFilter.isAscending('Birthplace') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":woodelement-form:results" execute="@none" />
+								<h:panelGroup rendered="#{woodElementFilter.isSelected('Birthplace')}">
+									<i class="#{woodElementFilter.isAscending('Birthplace') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not wood_elementFilter.isSelected('Birthplace')}">
+								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Birthplace')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						#{wood_element.birthPlace}
+						#{woodElement.birthPlace}
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
 							Tax Code
 						</f:facet>
-						#{wood_element.taxCode}
+						#{woodElement.taxCode}
 					</h:column>	
 	
 					<h:column>
@@ -146,17 +146,17 @@
 						</f:facet>
 
 						<h:commandLink title="Start Visit"
-									   action="#{wood_elementList.run( wood_element.id )}"
+									   action="#{woodElementList.run( woodElement.id )}"
 									   styleClass="btn btn-success pull-left tltip
-								#{not wood_elementFilter.isFilterSet('Visit for Agenda:') ? 'disabled' : ''}">
+								#{not woodElementFilter.isFilterSet('Visit for Agenda:') ? 'disabled' : ''}">
 							<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 							<i class="fw-icon-large fw-icon-play-sign"/>
 						</h:commandLink>
 
 						<h:commandLink title="View" class="btn btn-info pull-left tltip"
-										action="#{wood_elementList.view( wood_element.id )}" >
+										action="#{woodElementList.view( woodElement.id )}" >
 							<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
-							<i class="fw-icon-large #{wood_elementList.checkHistory( wood_element.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
+							<i class="fw-icon-large #{woodElementList.checkHistory( woodElement.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
 						</h:commandLink>
 
 						<h:panelGroup layout="block" styleClass="btn-group dropup pull-right dist-left" >
@@ -164,14 +164,14 @@
 								<span class="fw-icon-reorder"></span></a>
 							<ul class="dropdown-menu pull-right">
 								<li>
-									<h:commandLink action="#{wood_elementList.edit( wood_element.id )}"
-												   rendered="#{wood_elementList.checkRoleFor( 'edit' )}">
+									<h:commandLink action="#{woodElementList.edit( woodElement.id )}"
+												   rendered="#{woodElementList.checkRoleFor( 'edit' )}">
 										<i class="fw-icon-pencil dist-right "></i> Edit wood_element data
 									</h:commandLink>
 								</li>
 								<li>
-									<h:commandLink action="#{wood_elementList.delete( wood_element.id )}"
-												   rendered="#{wood_elementList.isRemovable( wood_element.id ) and wood_elementList.checkRoleFor( 'delete' )}"
+									<h:commandLink action="#{woodElementList.delete( woodElement.id )}"
+												   rendered="#{woodElementList.isRemovable( woodElement.id ) and woodElementList.checkRoleFor( 'delete' )}"
 												   onclick="if(!confirm('Delete selected wood_element?')) {return false;}" >
 										<i class="fw-icon-remove dist-right "></i> Remove wood_element
 									</h:commandLink>
@@ -180,13 +180,13 @@
 						</h:panelGroup>
 
 						<!--<h:commandLink title="Edit" class="btn btn-warning pull-left dist-left tltip"
-							action="#{wood_elementList.edit( wood_element.id )}"
-							rendered="#{wood_elementList.checkRoleFor( 'edit' )}">
+							action="#{woodElementList.edit( woodElement.id )}"
+							rendered="#{woodElementList.checkRoleFor( 'edit' )}">
 							<i class="fw-icon-pencil fw-icon-large"></i>
 						</h:commandLink>
 						<h:commandLink title="Elimina" class="btn btn-danger pull-left dist-left tltip"
-										action="#{wood_elementList.delete( wood_element.id )}"
-										rendered="#{wood_elementList.isRemovable( wood_element.id ) and wood_elementList.checkRoleFor( 'delete' )}"
+										action="#{woodElementList.delete( woodElement.id )}"
+										rendered="#{woodElementList.isRemovable( woodElement.id ) and woodElementList.checkRoleFor( 'delete' )}"
 										onclick="if(!confirm('Eliminare il paziente selezionato?')) {return false;}" >
 							<i class="fw-icon-remove fw-icon-large"></i>
 						</h:commandLink>-->

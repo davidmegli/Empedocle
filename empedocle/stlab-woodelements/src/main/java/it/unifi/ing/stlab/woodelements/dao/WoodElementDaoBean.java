@@ -169,30 +169,30 @@ public class WoodElementDaoBean implements WoodElementDao {
 		WoodElement master;
 		WoodElement slave;
 
-		WoodElementIdentifier woodElementIdentifier = wood_element.getIdentifier();
+		WoodElementIdentifier woodElementIdentifier = woodElement.getIdentifier();
 		WoodElementIdentifier otherIdentifier = other.getIdentifier();
-		if ( wood_elementIdentifier != null && otherIdentifier != null ) {
-			// merge between Book wood_element records
+		if ( woodElementIdentifier != null && otherIdentifier != null ) {
+			// merge between Book woodElement records
 			// master is the most recent record
-			if ( wood_element.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) { 
-				master = wood_element;
+			if ( woodElement.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) {
+				master = woodElement;
 				slave = other;
 			} else {
 				master = other;
-				slave = wood_element;
+				slave = woodElement;
 			}
 		} else {
-			if ( wood_elementIdentifier != null || otherIdentifier == null ) {
+			if ( woodElementIdentifier != null || otherIdentifier == null ) {
 				// there are two possible cases:
-				// - wood_element is the Book record and is the master
+				// - woodElement is the Book record and is the master
 				// - or both records are without an identifier and
-				// the current record (i.e., wood_element) is taken as the master
-				master = wood_element;
+				// the current record (i.e., woodElement) is taken as the master
+				master = woodElement;
 				slave = other;
 			} else {
 				// other is the Book record and is the master
 				master = other;
-				slave = wood_element;
+				slave = woodElement;
 			}
 		}
 

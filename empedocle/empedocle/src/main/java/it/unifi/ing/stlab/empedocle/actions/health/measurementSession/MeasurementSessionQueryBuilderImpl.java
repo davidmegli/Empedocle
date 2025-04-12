@@ -126,12 +126,12 @@ public class MeasurementSessionQueryBuilderImpl implements MeasurementSessionQue
 		
 		if(includeAuthorInQuery) {
 			buffer.append(" from MeasurementSession e, FactImpl f ")
-//					.append("join e.survey_schedule.services s ")
+//					.append("join e.surveySchedule.services s ")
 					.append("join f.context c ");
 		}
 		else {
 			buffer.append(" from MeasurementSession e ")
-//					.append("join e.survey_schedule.services s ")
+//					.append("join e.surveySchedule.services s ")
 					;
 		}
 		

@@ -27,10 +27,10 @@ public class MeasurementSessionFactQueryConstructor extends FactQueryConstructor
 		//scrivo la parte iniziale
 		sb.append( " select distinct ( factroot ) " )
 			.append( " from FactImpl factroot " )
-			.append( " join factroot.context.survey_schedule.wood_element.after aa " )
+			.append( " join factroot.context.surveySchedule.woodElement.after aa " )
 			.append( " where factroot.type = factroot.context.type.type " )
 			.append( " and aa.id = :pid " )
-			.append( " and factroot.context.survey_schedule.agenda in :agendas " )
+			.append( " and factroot.context.surveySchedule.agenda in :agendas " )
 			.append( " and factroot.destination is null " )
 			.append( " and factroot.status != :notStatus " )
 			.append( " and factroot.context.status in :contextStatuses " );
@@ -53,7 +53,7 @@ public class MeasurementSessionFactQueryConstructor extends FactQueryConstructor
 			
 		}
 		
-		sb.append( " order by factroot.context.survey_schedule.date desc " );
+		sb.append( " order by factroot.context.surveySchedule.date desc " );
 		
 		return sb.toString();
 	}

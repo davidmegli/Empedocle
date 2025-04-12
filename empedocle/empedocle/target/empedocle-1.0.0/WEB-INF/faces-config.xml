@@ -27,7 +27,7 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>wood_element-list</from-outcome>
+			<from-outcome>woodelement-list</from-outcome>
 			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -85,7 +85,7 @@
 	
 	
 	<!-- WoodElement navigation rules -->
-	<!-- from wood_element-list -->
+	<!-- from woodelement-list -->
 	<navigation-rule>
 		<from-view-id>/pages/woodelements/woodelement-list.xhtml</from-view-id>
 		<navigation-case>
@@ -94,11 +94,11 @@
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementList.selection}</value>
+					<value>#{woodElementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>wood_element-list</value>
+					<value>woodelement-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -112,7 +112,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementList.selection}</value>
+					<value>#{woodElementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -149,7 +149,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementList.measurementSessionId}</value>
+					<value>#{woodElementList.measurementSessionId}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -160,7 +160,7 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from wood_element-view -->
+	<!-- from woodelement-view -->
 	<navigation-rule>
 		<from-view-id>/pages/woodelements/woodelement-view.xhtml</from-view-id>
 		<navigation-case>
@@ -173,7 +173,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementList.selection}</value>
+					<value>#{woodElementList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -196,54 +196,54 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementView.selection}</value>
+					<value>#{woodElementView.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>		
 	</navigation-rule>
 	
-	<!-- from wood_element-edit -->
+	<!-- from woodelement-edit -->
 	<navigation-rule>
 		<from-view-id>/pages/woodelements/woodelement-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{wood_elementEdit.from eq 'list'}</if>
+			<if>#{woodElementEdit.from eq 'list'}</if>
 			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{wood_elementEdit.from eq 'view'}</if>
+			<if>#{woodElementEdit.from eq 'view'}</if>
 			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementEdit.id}</value>
+					<value>#{woodElementEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>wood_element-list</value>
+					<value>woodelement-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{wood_elementEdit.from eq 'view'}</if>
+			<if>#{woodElementEdit.from eq 'view'}</if>
 			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementEdit.id}</value>
+					<value>#{woodElementEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>wood_element-list</value>
+					<value>woodelement-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{wood_elementEdit.from eq 'list'}</if>
+			<if>#{woodElementEdit.from eq 'list'}</if>
 			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -274,7 +274,7 @@
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{measurementSessionList.wood_elementId}</value>
+					<value>#{measurementSessionList.woodElementId}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>

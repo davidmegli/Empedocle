@@ -48,8 +48,8 @@ public class FieldRetrieverTest {
 		surveySchedule.setAcceptanceCode( "1234" );
 		surveySchedule.setDate( c.getTime() );
 
-		WoodElement wood_element = WoodElementFactory.createWoodElement();
-		wood_element.setName( "Gino" );
+		WoodElement woodElement = WoodElementFactory.createWoodElement();
+		woodElement.setName( "Gino" );
 
 		User user = UserFactory.createUser();
 		user.setName( "Fabio" );
@@ -62,16 +62,16 @@ public class FieldRetrieverTest {
 		// user.addQualification(qualification2);
 
 		measurementSession.setSurveySchedule( surveySchedule );
-		surveySchedule.setWoodElement( wood_element );
+		surveySchedule.setWoodElement( woodElement );
 		measurementSession.setAuthor( user );
 
 		root.setContext( measurementSession );
 
-		WoodElementDao wood_elementDao = mock( WoodElementDao.class );
+		WoodElementDao woodElementDao = mock( WoodElementDao.class );
 
-		when( wood_elementDao.findLastVersionById( anyLong() ) ).thenReturn( wood_element );
+		when( woodElementDao.findLastVersionById( anyLong() ) ).thenReturn( woodElement );
 
-		FieldUtils.assignField( retriever, "wood_elementDao", wood_elementDao );
+		FieldUtils.assignField( retriever, "woodElementDao", woodElementDao );
 	}
 
 	@Test

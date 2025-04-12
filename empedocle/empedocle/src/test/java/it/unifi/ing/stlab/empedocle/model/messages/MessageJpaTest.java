@@ -17,11 +17,11 @@ import org.junit.Test;
 public class MessageJpaTest extends PersistenceTest {
 
 	protected String uuid;
-	private WoodElement wood_element;
+	private WoodElement woodElement;
 
 	@Override
 	protected void insertData() throws Exception {
-		wood_element = WoodElementFactory.createWoodElement();
+		woodElement = WoodElementFactory.createWoodElement();
 
 		Message message = MessageFactory.createMessage();
 		message.setDate( new Date( 1000 ) );
@@ -29,9 +29,9 @@ public class MessageJpaTest extends PersistenceTest {
 		message.setLevel( MessageLevel.INFO );
 		message.setSubject( "subject message" );
 		message.setBody( "body message" );
-		message.setWoodElement( wood_element );
+		message.setWoodElement(woodElement);
 
-		entityManager.persist( wood_element );
+		entityManager.persist(woodElement);
 		entityManager.persist( message );
 
 		uuid = message.getUuid();
@@ -50,7 +50,7 @@ public class MessageJpaTest extends PersistenceTest {
 		assertEquals( "body message", message.getBody() );
 		assertEquals( MessageLevel.INFO, message.getLevel() );
 		assertEquals( new Date( 1000 ), message.getDate() );
-		assertEquals( wood_element, message.getWoodElement() );
+		assertEquals(woodElement, message.getWoodElement() );
 	}
 
 }

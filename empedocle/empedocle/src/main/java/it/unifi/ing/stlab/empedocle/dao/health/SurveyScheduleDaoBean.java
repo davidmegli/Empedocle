@@ -25,8 +25,8 @@ public class SurveyScheduleDaoBean implements SurveyScheduleDao {
 				.createQuery(
 					"select a" + 
 					" from SurveySchedule a" +
-					" where a.wood_element in :wood_elements " )
-				.setParameter( "wood_elements", woodElements ).getResultList();
+					" where a.woodElement in :woodElements " )
+				.setParameter( "woodElements", woodElements ).getResultList();
 	}
 	
 	@Override
