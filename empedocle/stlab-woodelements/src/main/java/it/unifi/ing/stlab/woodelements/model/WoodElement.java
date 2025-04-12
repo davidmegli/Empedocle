@@ -29,7 +29,8 @@ public class WoodElement
 	
 	//FIXME DPB da cancellare
 	private String oldIdentifier;
-	
+
+	//FIXME: old patient attributes, delete
 	private String name;
 	private String surname;
 	private Sex sex;
@@ -44,6 +45,15 @@ public class WoodElement
 	private String workPhone;
 	private String nationality;
 	private String asl;
+
+	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
+	//WoodElement attributes
+	private String externalElementId;
+	private WoodElementType type;
+	private String specie;
+	private String placeOfOrigin;
+	private int age;
+	private String note;
 
 	
 	public WoodElement( String uuid ) {
@@ -293,8 +303,51 @@ public class WoodElement
 	public void setAsl(String asl) {
 		this.asl = asl;
 	}
-	
-	
+
+
+	public String getExternalElementId() {
+		return externalElementId;
+	}
+	public void setExternalElementId(String externalElementId) {
+		this.externalElementId = externalElementId;
+	}
+
+	@Enumerated( EnumType.STRING )
+	public WoodElementType getType() {
+		return type;
+	}
+	public void setType(WoodElementType type) {
+		this.type = type;
+	}
+
+	public String getSpecie() {
+		return specie;
+	}
+	public void setSpecie(String specie) {
+		this.specie = specie;
+	}
+
+	@Column( name = "place_of_origin" )
+	public String getPlaceOfOrigin(){
+		return placeOfOrigin;
+	}
+	public void setPlaceOfOrigin(String placeOfOrigin){
+		this.placeOfOrigin = placeOfOrigin;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	public void setAge() {
+		this.age = age;
+	}
+
+	private String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
 	
 	//
 	// Methods
