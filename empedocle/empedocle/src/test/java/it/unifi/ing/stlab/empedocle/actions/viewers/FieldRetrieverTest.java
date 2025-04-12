@@ -13,9 +13,9 @@ import org.junit.Test;
 
 import it.unifi.ing.stlab.empedocle.actions.viewer.FieldRetrieverBean;
 import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
-import it.unifi.ing.stlab.empedocle.model.health.Examination;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
@@ -40,7 +40,7 @@ public class FieldRetrieverTest {
 
 		root = FactFactory.createTextual();
 
-		Examination examination = ExaminationFactory.createExamination();
+		MeasurementSession measurementSession = MeasurementSessionFactory.createMeasurementSession();
 
 		Calendar c = Calendar.getInstance();
 		c.set( 2013, 04, 02 );
@@ -61,11 +61,11 @@ public class FieldRetrieverTest {
 		user.addQualification( qualification1 );
 		// user.addQualification(qualification2);
 
-		examination.setSurveySchedule( surveySchedule );
+		measurementSession.setSurveySchedule( surveySchedule );
 		surveySchedule.setWoodElement( wood_element );
-		examination.setAuthor( user );
+		measurementSession.setAuthor( user );
 
-		root.setContext( examination );
+		root.setContext( measurementSession );
 
 		WoodElementDao wood_elementDao = mock( WoodElementDao.class );
 

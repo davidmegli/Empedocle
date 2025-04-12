@@ -2,7 +2,7 @@ package it.unifi.ing.stlab.empedocle.visitor.fact;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import it.unifi.ing.stlab.empedocle.actions.health.examination.BasicFactTest;
+import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.BasicFactTest;
 import it.unifi.ing.stlab.empedocle.visitor.fact.tools.EmptyFactVisitor;
 import it.unifi.ing.stlab.reflection.impl.model.facts.FactImpl;
 import it.unifi.ing.stlab.reflection.impl.visitor.fact.FactCopyVisitor;

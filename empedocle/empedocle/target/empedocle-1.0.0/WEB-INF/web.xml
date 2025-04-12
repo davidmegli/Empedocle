@@ -96,8 +96,8 @@
 		<display-name>Basic user pages constraints</display-name>
 		<web-resource-collection>
 			<web-resource-name>Basic user pages</web-resource-name>
-			<url-pattern>/pages/examination/examination-list.jsf</url-pattern>
-			<url-pattern>/pages/examination/examination-running.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/measurementSession-list.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/measurementSession-running.jsf</url-pattern>
 			<url-pattern>/pages/woodelements/woodelement-list.jsf</url-pattern>
 			<url-pattern>/pages/woodelements/woodelement-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/panel/*</url-pattern>		
@@ -126,9 +126,9 @@
 		<web-resource-collection>
 			<web-resource-name>Administrator pages</web-resource-name>
 			<url-pattern>/pages/agendas/*</url-pattern>
-			<url-pattern>/pages/examination/types/examinationtype-list.jsf</url-pattern>
-			<url-pattern>/pages/examination/types/examinationtype-view.jsf</url-pattern>
-			<url-pattern>/pages/examination/types/examinationtype-edit.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/types/measurementSessiontype-list.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/types/measurementSessiontype-view.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/types/measurementSessiontype-edit.jsf</url-pattern>
 			<url-pattern>/pages/queries/*</url-pattern>
 			<url-pattern>/pages/types/*</url-pattern>
 			<url-pattern>/pages/viewer/*</url-pattern>
@@ -141,7 +141,7 @@
 			<url-pattern>/home.jsf</url-pattern>
 			<url-pattern>/pages/viewer/report-viewer.jsf</url-pattern>
 			<url-pattern>/pages/woodelements/woodelement-edit.jsf</url-pattern>
-			<url-pattern>/pages/examination/examination-edit.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/measurementSession-edit.jsf</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>administrator</role-name>
@@ -169,10 +169,10 @@
 		<role-name>wood_element merger</role-name> <!-- unione manuale di pazienti duplicati -->
 	</security-role>	
 	<security-role>
-		<role-name>examination rescuer</role-name> <!-- recupero visite in erogazione -->
+		<role-name>measurementSession rescuer</role-name> <!-- recupero visite in erogazione -->
 	</security-role>	
 	<security-role>
-		<role-name>examination editor</role-name> <!-- creazione nuovi pazienti e nuove visite -->
+		<role-name>measurementSession editor</role-name> <!-- creazione nuovi pazienti e nuove visite -->
 	</security-role>			
 	
 </web-app>

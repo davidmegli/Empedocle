@@ -19,7 +19,7 @@ public interface AgendaDao {
 	List<Agenda> findUnusedAgendasBySuggestion(String suggestion, int limit,
                                                List<Agenda> toExclude);
 	
-	List<Agenda> findByExaminationTypeId(Long id);
+	List<Agenda> findByMeasurementSessionTypeId(Long id);
 
 	Agenda findById(Long id);
 	Agenda findByCode(String code);

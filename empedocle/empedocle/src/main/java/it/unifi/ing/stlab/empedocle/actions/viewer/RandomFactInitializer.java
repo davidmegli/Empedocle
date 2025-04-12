@@ -26,8 +26,8 @@ public class RandomFactInitializer implements FactInitializer {
 		initializer.setPhenomenonDAO(phenomenonDAO);
 		result.accept(initializer);
 		
-		//ExaminationRandomInitializer visitaRandom = new ExaminationRandomInitializer();
-		//result.setContext(visitaRandom.initNewExamination());
+		//MeasurementSessionRandomInitializer visitaRandom = new MeasurementSessionRandomInitializer();
+		//result.setContext(visitaRandom.initNewMeasurementSession());
 		
 		return result;
 	}

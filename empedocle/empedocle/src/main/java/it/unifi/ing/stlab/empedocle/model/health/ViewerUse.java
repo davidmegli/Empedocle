@@ -21,7 +21,7 @@ import javax.persistence.TableGenerator;
 @Table(name="viewer_uses")
 public class ViewerUse implements Persistable {
 
-	private ExaminationTypeContext context;
+	private MeasurementSessionTypeContext context;
 	private Qualification qualification;
 	private Viewer viewer;
 	
@@ -61,10 +61,10 @@ public class ViewerUse implements Persistable {
 	
 	
 	@Enumerated(EnumType.STRING)
-	public ExaminationTypeContext getContext() {
+	public MeasurementSessionTypeContext getContext() {
 		return context;
 	}
-	public void setContext(ExaminationTypeContext context) {
+	public void setContext(MeasurementSessionTypeContext context) {
 		this.context = context;
 	}
 	

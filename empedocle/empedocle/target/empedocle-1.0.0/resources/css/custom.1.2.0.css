@@ -381,14 +381,14 @@ a.rmv-lnk {
   font-weight: bold;
 }
 
-/* examination-list - agenda tooltip helper */
+/* measurementSession-list - agenda tooltip helper */
 .info-hidden {
 	display: none;
 }
 
 
 
-/* utile per distinguere lo stato in examination-running */
+/* utile per distinguere lo stato in measurementSession-running */
 /*
 
 -- da cancellare se si tiene la tabella dello storico e non la lista--

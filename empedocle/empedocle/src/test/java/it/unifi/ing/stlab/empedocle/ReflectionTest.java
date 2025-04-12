@@ -1,12 +1,12 @@
 package it.unifi.ing.stlab.empedocle;
 
-import it.unifi.ing.stlab.empedocle.actions.health.examination.RecurrentFactHelper;
+import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.RecurrentFactHelper;
 import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelper;
 import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelperBean;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDaoBean;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationTypeDao;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationTypeDaoBean;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDaoBean;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDaoBean;
 import it.unifi.ing.stlab.empedocle.model.health.*;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
@@ -63,8 +63,8 @@ public class ReflectionTest extends JpaTest {
 	private FactDao factDao;
 	private TypeDao typeDao;
 	private ViewerDao viewerDao;
-	private ExaminationDao examinationDao;
-	private ExaminationTypeDao examinationTypeDao;
+	private MeasurementSessionDao measurementSessionDao;
+	private MeasurementSessionTypeDao measurementSessionTypeDao;
 	private GarbageCollectorHelper garbageCollector;
 		
 	@Parameters
@@ -93,17 +93,17 @@ public class ReflectionTest extends JpaTest {
 		viewerDao = new ViewerDaoBean();
 		FieldUtils.assignField( viewerDao, "entityManager", entityManager );
 
-		examinationDao = new ExaminationDaoBean();
-		FieldUtils.assignField( examinationDao, "entityManager", entityManager );
-		FieldUtils.assignField( examinationDao, "factDao", factDao );
-		FieldUtils.assignField( examinationDao, "typeDao", typeDao );
-		FieldUtils.assignField( examinationDao, "viewerDao", viewerDao );
+		measurementSessionDao = new MeasurementSessionDaoBean();
+		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
+		FieldUtils.assignField( measurementSessionDao, "factDao", factDao );
+		FieldUtils.assignField( measurementSessionDao, "typeDao", typeDao );
+		FieldUtils.assignField( measurementSessionDao, "viewerDao", viewerDao );
 		
-		examinationTypeDao = new ExaminationTypeDaoBean();
-		FieldUtils.assignField( examinationDao, "entityManager", entityManager );
+		measurementSessionTypeDao = new MeasurementSessionTypeDaoBean();
+		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 		
 		garbageCollector = new GarbageCollectorHelperBean();
-		FieldUtils.assignField( examinationDao, "entityManager", entityManager );
+		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 	}
 
 //	@Test
@@ -112,31 +112,31 @@ public class ReflectionTest extends JpaTest {
 		
 		timeTracker.start();
 		// Read
-		Examination examination = examinationDao.findById( new Long( 174350  ));
+		MeasurementSession measurementSession = measurementSessionDao.findById( new Long( 174350  ));
 		
 		// Start
-		ExaminationType examinationType = examinationTypeDao.findByExaminationId( examination.getId() );
+		MeasurementSessionType measurementSessionType = measurementSessionTypeDao.findByMeasurementSessionId( measurementSession.getId() );
 		User user = userDao.findByUsername( "administrator" );
 		
-		Type type = typeDao.fetchById( examinationType.getType().getId() );
+		Type type = typeDao.fetchById( measurementSessionType.getType().getId() );
 		FactFactoryVisitor factFactory = new FactFactoryVisitor( user, new Time( new Date( System.currentTimeMillis())));
 		type.accept( factFactory );
 		
 		Fact fact = factFactory.getResult();
-		AssignContextVisitor assignContext = new AssignContextVisitor( examination );
+		AssignContextVisitor assignContext = new AssignContextVisitor( measurementSession );
 		fact.accept( assignContext );
 		
 		FactDefaultInitializerVisitor assignDefault = new FactDefaultInitializerVisitor();
 		fact.accept( assignDefault );
 
-		RecurrentFactHelper recurrentHelper = new RecurrentFactHelper(examinationDao);
+		RecurrentFactHelper recurrentHelper = new RecurrentFactHelper(measurementSessionDao);
 		recurrentHelper.resumeRecurrentFacts(fact);
 		garbageCollector.flush();
 
-		examination.setStatus( ExaminationStatus.RUNNING );
-		examination.setType( examinationType );
-		examination.setLastUpdate( new Date( System.currentTimeMillis() ));
-		examination.setAuthor( user );
+		measurementSession.setStatus( MeasurementSessionStatus.RUNNING );
+		measurementSession.setType( measurementSessionType );
+		measurementSession.setLastUpdate( new Date( System.currentTimeMillis() ));
+		measurementSession.setAuthor( user );
 
 		factDao.save( fact );
 		entityManager.getTransaction().commit();
@@ -146,9 +146,9 @@ public class ReflectionTest extends JpaTest {
 		
 		Date date = new Date( System.currentTimeMillis() );
 		
-		examination.setStatus( ExaminationStatus.DONE );
-		examination.setWasDone( true );
-		examination.setLastUpdate( date );
+		measurementSession.setStatus( MeasurementSessionStatus.DONE );
+		measurementSession.setWasDone( true );
+		measurementSession.setLastUpdate( date );
 		FactManager factManager = new FactManager();
 		factManager.purge( (FactImpl)fact );
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
@@ -165,22 +165,22 @@ public class ReflectionTest extends JpaTest {
 		
 		timeTracker.start();
 		// Read
-		Examination examination = examinationDao.findById( new Long( 174350  ));
+		MeasurementSession measurementSession = measurementSessionDao.findById( new Long( 174350  ));
 		User user = userDao.findByUsername( "administrator" );
 		Date date = new Date( System.currentTimeMillis() );
 		Time time = new Time( date );
 
 		// Resume
 		entityManager.getTransaction().begin();
-		Fact source = factDao.findByContextId( examination.getId(), examination.getType().getType().getId() );
+		Fact source = factDao.findByContextId( measurementSession.getId(), measurementSession.getType().getType().getId() );
 		factDao.fetchById( ((FactImpl)source).getId() );
 
 		FactManager factManager = new FactManager();
 		Fact dest = factManager.modify( user, time, (FactImpl)source );
 
-		examination.setStatus( ExaminationStatus.RUNNING );
-		examination.setLastUpdate( date );
-		examination.setAuthor( user );
+		measurementSession.setStatus( MeasurementSessionStatus.RUNNING );
+		measurementSession.setLastUpdate( date );
+		measurementSession.setAuthor( user );
 
 		factDao.save( dest );
 		entityManager.getTransaction().commit();
@@ -188,8 +188,8 @@ public class ReflectionTest extends JpaTest {
 		// Suspend
 		entityManager.getTransaction().begin();
 
-		examination.setStatus( ExaminationStatus.SUSPENDED );
-		examination.setLastUpdate( date );
+		measurementSession.setStatus( MeasurementSessionStatus.SUSPENDED );
+		measurementSession.setLastUpdate( date );
 		factManager.purge( (FactImpl)dest );
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
 		entityManager.getTransaction().commit();
@@ -204,10 +204,10 @@ public class ReflectionTest extends JpaTest {
 		
 		timeTracker.start();
 
-		ExaminationDetails examinationDetails = examinationDao.fetchById( new Long( 174350  ), new Long( 1  ), ExaminationTypeContext.EDIT );
+		MeasurementSessionDetails measurementSessionDetails = measurementSessionDao.fetchById( new Long( 174350  ), new Long( 1  ), MeasurementSessionTypeContext.EDIT );
 	
-		examinationDetails.getFact().accept( new ReflectionFactVisitor( new ReflectionTypeVisitor()));
-		examinationDetails.getViewer().accept( new ReflectionViewerVisitor());
+		measurementSessionDetails.getFact().accept( new ReflectionFactVisitor( new ReflectionTypeVisitor()));
+		measurementSessionDetails.getViewer().accept( new ReflectionViewerVisitor());
 
 		timeTracker.stop();
 		printResult( timeTracker );

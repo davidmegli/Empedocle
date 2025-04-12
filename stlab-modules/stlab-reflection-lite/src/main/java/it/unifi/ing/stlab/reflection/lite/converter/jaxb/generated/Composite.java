@@ -71,7 +71,7 @@ public class Composite {
      * This is why there is not a <CODE>set</CODE> method for the children property.
      * 
      * <p>
-     * For example, to add a new item, do as follows:
+     * For measurementSessionple, to add a new item, do as follows:
      * <pre>
      *    getChildren().add(newItem);
      * </pre>

@@ -41,7 +41,7 @@
 		<class>it.unifi.ing.stlab.reflection.model.facts.links.FactRemoveLink</class>
 		<class>it.unifi.ing.stlab.reflection.model.facts.FactContext</class>
 		
-		<class>it.unifi.ing.stlab.empedocle.model.health.ExaminationType</class>
+		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>
 		
 		<class>it.unifi.ing.stlab.reflection.model.facts.values.FactValue</class>

@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.empedocle.actions.viewer;
 
 import it.unifi.ing.stlab.commons.cdi.HttpParam;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
-import it.unifi.ing.stlab.empedocle.model.health.ExaminationDetails;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionDetails;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.users.dao.UserDao;
@@ -21,13 +21,13 @@ import javax.inject.Named;
 public class ReportViewer {
 
 	@Inject @HttpParam("eid")	
-	private String examinationId;
+	private String measurementSessionId;
 	
 	@Inject @HttpParam("vid")	
 	private String viewerId;
 	
 	@Inject
-	private ExaminationDao examinationDao;
+	private MeasurementSessionDao measurementSessionDao;
 	
 	@Inject
 	private LoggedUser loggedUser;
@@ -35,30 +35,30 @@ public class ReportViewer {
 	@Inject
 	private UserDao userDao;
 	
-	private ExaminationDetails examDetails;
+	private MeasurementSessionDetails measurementSessionDetails;
 	
 	@PostConstruct
 	public void init(){
-		examDetails = examinationDao.fetchByExaminationViewer( Long.parseLong( examinationId ), getQualificationId(), Long.parseLong( viewerId ));
+		measurementSessionDetails = measurementSessionDao.fetchByMeasurementSessionViewer( Long.parseLong( measurementSessionId ), getQualificationId(), Long.parseLong( viewerId ));
 
 	}
 	
 	public boolean isDisplayable(){
-		return examDetails != null;
+		return measurementSessionDetails != null;
 	}
 	
 	public Fact getFact(){
-		if(examDetails == null)
+		if(measurementSessionDetails == null)
 			return null;
 		
-		return examDetails.getFact();
+		return measurementSessionDetails.getFact();
 	}
 	
 	public Viewer getViewer(){
-		if(examDetails == null)
+		if(measurementSessionDetails == null)
 			return null;
 		
-		return examDetails.getViewer();
+		return measurementSessionDetails.getViewer();
 	}
 	
 	private Long getQualificationId() {

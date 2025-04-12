@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.empedocle.actions.viewer;
 
-import it.unifi.ing.stlab.empedocle.model.health.Examination;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
@@ -52,15 +52,15 @@ public class FieldRetrieverBean implements FieldRetriever {
 
 	private void initJexlContext(Fact fact){
 		context = new MapContext();
-		Examination exam = ClassHelper.cast( fact.getContext(), Examination.class );
-		context.set( "SurveySchedule", exam.getSurveySchedule() );
-		WoodElement woodElement = exam.getSurveySchedule().getWoodElement();
+		MeasurementSession measurementSession = ClassHelper.cast( fact.getContext(), MeasurementSession.class );
+		context.set( "SurveySchedule", measurementSession.getSurveySchedule() );
+		WoodElement woodElement = measurementSession.getSurveySchedule().getWoodElement();
 		if( woodElement.getId() != null )
 			context.set( "WoodElement", woodElementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
 		else 
-			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by ExaminationRandomInitializer (invoked by ViewerPreview)
-		context.set( "Agenda", exam.getSurveySchedule().getAgenda() );
-		context.set( "User", exam.getAuthor() );
+			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by MeasurementSessionRandomInitializer (invoked by ViewerPreview)
+		context.set( "Agenda", measurementSession.getSurveySchedule().getAgenda() );
+		context.set( "User", measurementSession.getAuthor() );
 	}
 	
 	private String formatPath(String path){

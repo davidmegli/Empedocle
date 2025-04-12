@@ -810,7 +810,7 @@ B02#Antiemorragici#2
 B02A#Antifibrinolitici#3
 B02AA#Aminoacidi#4
 B02AA01#Acido aminocaproico#5
-B02AA02#Acido tranexamico#5
+B02AA02#Acido tranmeasurementSessionico#5
 B02AA03#Acido aminometilbenzoico#5
 B02AB#Inibitori delle proteasi#4
 B02AB01#Aprotinina#5
@@ -1088,7 +1088,7 @@ C01CA10#Metoxamina#5
 C01CA11#Mefentermina#5
 C01CA12#Dimetofrina#5
 C01CA13#Prenalterolo#5
-C01CA14#Dopexamina#5
+C01CA14#DopmeasurementSessionina#5
 C01CA15#Gepefrina#5
 C01CA16#Ibopamina#5
 C01CA17#Midodrina#5
@@ -3575,7 +3575,7 @@ M01AB13#Oxametacina#5
 M01AB14#Proglumetacina#5
 M01AB15#Ketorolac#5
 M01AB16#Aceclofenac#5
-M01AB17#Bufexamac#5
+M01AB17#BufmeasurementSessionac#5
 M01AB51#Indometacina, associazioni#5
 M01AB55#Diclofenac, associazioni#5
 M01AC#Oxicam-derivati#4
@@ -3666,7 +3666,7 @@ M02AA05#Benzidamina#5
 M02AA06#Etofenamato#5
 M02AA07#Piroxicam#5
 M02AA08#Felbinac#5
-M02AA09#Bufexamac#5
+M02AA09#BufmeasurementSessionac#5
 M02AA10#Ketoprofene#5
 M02AA11#Bendazac#5
 M02AA12#Naproxene#5
@@ -4386,7 +4386,7 @@ N06AX26#VORTIOXETINA#5
 N06B#Psicostimolanti, farmaci per l'ADHD e nootropi#3
 N06BA#Simpaticomimetici ad azione centrale#4
 N06BA01#Amfetamina#5
-N06BA02#Dexamfetamina#5
+N06BA02#DmeasurementSessionfetamina#5
 N06BA03#Metamfetamina#5
 N06BA04#Metilfenidato#5
 N06BA05#Pemolina#5
@@ -4396,7 +4396,7 @@ N06BA08#Fenozolone#5
 N06BA09#Atomoxetina#5
 N06BA10#Fenetillina#5
 N06BA11#Dexmetilfenidato#5
-N06BA12#lisdexamfetamine#5
+N06BA12#lisdmeasurementSessionfetamine#5
 N06BC#Derivati xantinici#4
 N06BC01#Caffeina#5
 N06BC02#Propentofillina#5

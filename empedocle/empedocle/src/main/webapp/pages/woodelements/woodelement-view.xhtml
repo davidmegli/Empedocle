@@ -36,13 +36,13 @@
 		
 		<script type="text/javascript">
       		//<![CDATA[
-	        function openMoreThanOne(examinationId){
+	        function openMoreThanOne(measurementSessionId){
 				var checkboxes = document.getElementsByName("report-checkbox");
 					
 				for (c in checkboxes) {
 					if (checkboxes[c].checked) {
 				    	window.open("../viewer/report-viewer.jsf"+
-						    			"?type=pdf&eid="+examinationId+
+						    			"?type=pdf&eid="+measurementSessionId+
 						    			"&vid="+checkboxes[c].value,
 						    			 "_blank", "", false);
 					}
@@ -51,19 +51,19 @@
 				$('#report-panel').modal('hide');
 			}
 
-			function switchNumberOfReports(numReports, examinationId, firstReport) {
+			function switchNumberOfReports(numReports, measurementSessionId, firstReport) {
 				if(numReports > 1) {
 					$('#report-panel').modal('show');
 				}
 				else {
-					openSingle(examinationId, firstReport);
+					openSingle(measurementSessionId, firstReport);
 				}
 				return false;
 			}
 				 
-			function openSingle(examinationId, firstReport){
+			function openSingle(measurementSessionId, firstReport){
 		    	window.open("../viewer/report-viewer.jsf"+
-				    			"?type=pdf&eid="+examinationId+
+				    			"?type=pdf&eid="+measurementSessionId+
 				    			"&vid="+firstReport,
 				    			 "_blank", "", false);
 			}
@@ -94,7 +94,7 @@
 					<span class='capitalize'>#{wood_elementView.current.name}</span>
 
 					<h:panelGroup layout="block" styleClass="pull-right align-btn">
-						<h:panelGroup styleClass="#{wood_elementView.examinationId eq null ? '' : 'hide'}">
+						<h:panelGroup styleClass="#{wood_elementView.measurementSessionId eq null ? '' : 'hide'}">
 							<!--<a4j:commandLink
 								oncomplete="$('#matching-panel').modal('show');"
 								styleClass="btn btn-primary #{not empty wood_elementView.matchingWoodElements and wood_elementView.checkRoleFor( 'merge' ) ? '' : 'hide'}">
@@ -125,7 +125,7 @@
 					</h:panelGroup>
 				</h2>		
 				
-				<filter:filterPanel filters="#{wood_elementExaminationFilter}"
+				<filter:filterPanel filters="#{wood_elementMeasurementSessionFilter}"
 					navigator="#{wood_elementView}"
 					render=":wood_element-view-form:results-tab"
 					renderAll=":wood_element-view-form:filters :wood_element-view-form:results-tab"/>
@@ -235,51 +235,51 @@
 					<div class="tab-pane active" id="history">
 						<h:panelGroup id="results-tab" layout="block" class="tabbable tabs-left">
 							<ul class="nav nav-tabs">
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'ALL' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'ALL' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'ALL' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'ALL' )}"
 										value="All">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'BOOKED' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'BOOKED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'BOOKED' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'BOOKED' )}"
 										value="Booked">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'ACCEPTED' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'ACCEPTED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'ACCEPTED' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'ACCEPTED' )}"
 										value="Accepted">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>								
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'RUNNING' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'RUNNING' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'RUNNING' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'RUNNING' )}"
 										value="Running">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'SUSPENDED' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'SUSPENDED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'SUSPENDED' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'SUSPENDED' )}"
 										value="Suspended">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'DONE' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'DONE' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'DONE' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'DONE' )}"
 										value="Done">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
 								</li>
-								<li class="#{wood_elementExaminationFilter.isSelectedList( 'CONCLUDED' ) ? 'active' : ''}">
+								<li class="#{wood_elementMeasurementSessionFilter.isSelectedList( 'CONCLUDED' ) ? 'active' : ''}">
 									<h:commandLink 
-										action="#{wood_elementExaminationFilter.selectList( 'CONCLUDED' )}"
+										action="#{wood_elementMeasurementSessionFilter.selectList( 'CONCLUDED' )}"
 										value="Concluded">
 										<f:ajax execute="@this" render="results-tab"/>
 									</h:commandLink> 
@@ -296,7 +296,7 @@
 									</h:panelGroup>
 			
 									<h:panelGroup layout="block" id="results">
-										<h:panelGroup rendered="#{empty wood_elementExaminationResults}">
+										<h:panelGroup rendered="#{empty wood_elementMeasurementSessionResults}">
 											<br />
 											<h:outputText styleClass="lead" value="No visit found" />
 										</h:panelGroup>
@@ -305,14 +305,14 @@
 											styleClass="table table-bordered table-striped table-hover"
 											rowClasses="#{wood_elementView.rowStyleClasses}"
 											columnClasses="datetime, agenda, crud-controls-3"
-											value="#{wood_elementExaminationResults}" var="examination"
-											style="#{empty wood_elementExaminationResults ? 'display:none;' : ''}">
+											value="#{wood_elementMeasurementSessionResults}" var="measurementSession"
+											style="#{empty wood_elementMeasurementSessionResults ? 'display:none;' : ''}">
 											
 											<h:column>
 												<f:facet name="header">
 													Date
 												</f:facet>
-												<h:outputText value="#{examination.survey_schedule.date}" >
+												<h:outputText value="#{measurementSession.survey_schedule.date}" >
 													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 												</h:outputText>								
 											</h:column>
@@ -321,9 +321,9 @@
 												<f:facet name="header">
 													Agenda
 												</f:facet>
-												<h:outputText value="#{examination.survey_schedule.agenda.code}" />
+												<h:outputText value="#{measurementSession.survey_schedule.agenda.code}" />
 												 - 
-												<h:outputText value="#{examination.survey_schedule.agenda.description}" />
+												<h:outputText value="#{measurementSession.survey_schedule.agenda.description}" />
 											</h:column>
 			
 											<h:column>
@@ -332,54 +332,54 @@
 												</f:facet>
 
 												<a4j:commandLink title="View report"
-														action="#{wood_elementView.initReports( examination.id )}"
+														action="#{wood_elementView.initReports( measurementSession.id )}"
 														styleClass="btn btn-primary pull-left dist-right tltip" 
-														rendered="#{wood_elementView.hasReport( examination )}"
+														rendered="#{wood_elementView.hasReport( measurementSession )}"
 														render=":report-form"
-														oncomplete="switchNumberOfReports( #{wood_elementView.reports.size()}, #{examination.id}, #{wood_elementView.reports.get(0).getId()} );">
+														oncomplete="switchNumberOfReports( #{wood_elementView.reports.size()}, #{measurementSession.id}, #{wood_elementView.reports.get(0).getId()} );">
 													<i class="fw-icon-book fw-icon-large "></i>
 												</a4j:commandLink>
 
-												<h:link outcome="/pages/woodelements/examination/examination-view.xhtml" includeViewParams="true"
-													rendered="#{wood_elementView.hasView(examination)}" title="View visit"
+												<h:link outcome="/pages/woodelements/measurementSession/measurementSession-view.xhtml" includeViewParams="true"
+													rendered="#{wood_elementView.hasView(measurementSession)}" title="View visit"
 													styleClass="btn btn-info pull-left dist-right tltip">
-													<f:param name="id" value="#{examination.id}" />
+													<f:param name="id" value="#{measurementSession.id}" />
 													<f:param name="pid" value="#{wood_elementView.current.id}" />
 													<f:param name="from" value="#{view.viewId}" />
-													<f:param name="eid" value="#{wood_elementView.examinationId}" disable="#{wood_elementView.examinationId eq null}" />
+													<f:param name="eid" value="#{wood_elementView.measurementSessionId}" disable="#{wood_elementView.measurementSessionId eq null}" />
 													<f:param name="cid" value="#{javax.enterprise.context.conversation.id}" 
 														disable="#{empty javax.enterprise.context.conversation.id}"/>	
 														<i class="fw-icon-zoom-in fw-icon-large"></i>
 												</h:link>
 												
 												<h:commandLink title="Start"
-													action="#{wood_elementView.run( examination.id )}"
+													action="#{wood_elementView.run( measurementSession.id )}"
 													styleClass="btn btn-success pull-left tltip"
-													rendered="#{wood_elementView.examinationId eq null and wood_elementView.hasStart( examination ) and not examination.status.name.equals('To do')}">
+													rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasStart( measurementSession ) and not measurementSession.status.name.equals('To do')}">
 													<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign" />
 												</h:commandLink>																						
 																		
 												<h:commandLink title="Edit"
-														action="#{wood_elementView.run( examination.id )}"
+														action="#{wood_elementView.run( measurementSession.id )}"
 														styleClass="btn btn-info pull-left tltip"
-														rendered="#{wood_elementView.examinationId eq null and wood_elementView.hasModify( examination )}">
+														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasModify( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>
 			
 												<h:commandLink title="Resume"
-														action="#{wood_elementView.run( examination.id )}"
+														action="#{wood_elementView.run( measurementSession.id )}"
 														styleClass="btn btn-warning pull-left tltip" 
-														rendered="#{wood_elementView.examinationId eq null and wood_elementView.hasResume( examination )}">
+														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasResume( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>
 			
 												<h:commandLink title="Recover"
-														action="#{wood_elementView.run( examination.id )}"
+														action="#{wood_elementView.run( measurementSession.id )}"
 														styleClass="btn btn-danger pull-left tltip" 
-														rendered="#{wood_elementView.examinationId eq null and wood_elementView.hasRecover( examination )}">
+														rendered="#{wood_elementView.measurementSessionId eq null and wood_elementView.hasRecover( measurementSession )}">
 														<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 													<i class="fw-icon-large fw-icon-play-sign"></i>
 												</h:commandLink>

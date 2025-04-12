@@ -8,7 +8,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.surveySchedule.SurveySchedule;
@@ -37,7 +37,7 @@ public class SurveyScheduleServiceTest extends PersistenceTest {
 	
 	protected WoodElementDao wood_elementDao;
 	protected ServiceDao serviceDao;
-	protected ExaminationDao examinationDao;		
+	protected MeasurementSessionDao measurementSessionDao;		
 	protected AgendaDao agendaDao;
 	protected UserDao userDao;
 	protected Logger logger;
@@ -49,7 +49,7 @@ public class SurveyScheduleServiceTest extends PersistenceTest {
 		
 		wood_elementDao = mock( WoodElementDao.class );
 		serviceDao = mock( ServiceDao.class );
-		examinationDao = mock( ExaminationDao.class );
+		measurementSessionDao = mock( MeasurementSessionDao.class );
 		agendaDao = mock( AgendaDao.class );
 		userDao = mock( UserDao.class );
 		logger = mock( Logger.class );
@@ -58,7 +58,7 @@ public class SurveyScheduleServiceTest extends PersistenceTest {
 		FieldUtils.assignField( surveyScheduleService, "entityManager", entityManager);
 		FieldUtils.assignField( surveyScheduleService, "wood_elementDao", wood_elementDao );
 		FieldUtils.assignField( surveyScheduleService, "serviceDao", serviceDao );
-		FieldUtils.assignField( surveyScheduleService, "examinationDao", examinationDao );
+		FieldUtils.assignField( surveyScheduleService, "measurementSessionDao", measurementSessionDao );
 		FieldUtils.assignField( surveyScheduleService, "agendaDao", agendaDao );
 		FieldUtils.assignField( surveyScheduleService, "userDao", userDao );
 		FieldUtils.assignField( surveyScheduleService, "logger", logger );
@@ -69,7 +69,7 @@ public class SurveyScheduleServiceTest extends PersistenceTest {
 
 		when( userDao.findByUsername( "administrator" )).thenReturn( null );
 		when( wood_elementDao.findByIdentifier( wood_elementDetails.getIdentifiers().getIdAce() )).thenReturn( null );
-		when( examinationDao.findBySurveyScheduleCodes(survey_scheduleDetails.getBookingCode(), surveyScheduleDetails.getAcceptanceCode()))
+		when( measurementSessionDao.findBySurveyScheduleCodes(survey_scheduleDetails.getBookingCode(), surveyScheduleDetails.getAcceptanceCode()))
 			.thenReturn( null );
 		when( serviceDao.find( surveyScheduleDetails.getServices().getService().get(0).getCode(), surveyScheduleDetails.getServices().getService().get(0).getDescription(), survey_scheduleDetails.getAgenda() )).thenReturn( null );
 		when( agendaDao.findByCode( surveyScheduleDetails.getAgenda() )).thenReturn( null );
