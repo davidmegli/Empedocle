@@ -304,7 +304,7 @@ public class WoodElement
 		this.asl = asl;
 	}
 
-
+	@Column( name = "external_element_id" )
 	public String getExternalElementId() {
 		return externalElementId;
 	}
