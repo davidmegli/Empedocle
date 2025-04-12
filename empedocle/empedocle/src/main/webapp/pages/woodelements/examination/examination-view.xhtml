@@ -28,9 +28,9 @@
 			<h:panelGroup layout="block" styleClass="page-title #{examinationView.getStyleClass( examinationView.current.examination )}">
 				<h2>
 					Visit of
-					#{examinationView.current.examination.appointment.wood_element.surname} #{examinationView.current.examination.appointment.wood_element.name}
+					#{examinationView.current.examination.survey_schedule.wood_element.surname} #{examinationView.current.examination.survey_schedule.wood_element.name}
 					del 
-					<h:outputText value="#{examinationView.current.examination.appointment.date}" >
+					<h:outputText value="#{examinationView.current.examination.survey_schedule.date}" >
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 					</h:outputText>
 					
@@ -49,7 +49,7 @@
 				<div class="container">
  					<div class="row">
 						<span class="bold span1">Agenda</span> 
-						<span class="span4">#{examinationView.current.examination.appointment.agenda.toString()}</span>
+						<span class="span4">#{examinationView.current.examination.survey_schedule.agenda.toString()}</span>
 						<br />
 						<span class="bold span1">Responsabile</span> 
 						<span class="span4">Dott. #{examinationView.current.examination.author.name.concat(' ').concat(examinationView.current.examination.author.surname)}</span>

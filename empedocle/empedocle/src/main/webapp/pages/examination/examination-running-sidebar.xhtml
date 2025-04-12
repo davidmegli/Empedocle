@@ -115,7 +115,7 @@
 					<dl>
 						<dt >Date</dt>
 						<dd>
-							<h:outputText rendered="#{not examinationRunning.dateFreeVisit}" value="#{examinationRunning.examinationDetails.examination.appointment.date}">
+							<h:outputText rendered="#{not examinationRunning.dateFreeVisit}" value="#{examinationRunning.examinationDetails.examination.survey_schedule.date}">
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 							</h:outputText>
 						</dd>
@@ -123,17 +123,17 @@
 							<h:outputText rendered="#{examinationRunning.dateFreeVisit}" value="Da indicare prima della conclusione"/>
 						</dd>
 						<dt>Agenda</dt>
-						<dd>#{examinationRunning.examinationDetails.examination.appointment.agenda.code} - #{examinationRunning.examinationDetails.examination.appointment.agenda.description}</dd>			
+						<dd>#{examinationRunning.examinationDetails.examination.survey_schedule.agenda.code} - #{examinationRunning.examinationDetails.examination.survey_schedule.agenda.description}</dd>
 						<h:panelGroup rendered="#{not examinationRunning.dateFreeVisit}">
 							<dt>Booking Code</dt>
-							<dd>#{examinationRunning.examinationDetails.examination.appointment.bookingCode}</dd>
+							<dd>#{examinationRunning.examinationDetails.examination.survey_schedule.bookingCode}</dd>
 							<dt>Acceptance Code</dt>
-							<dd>#{examinationRunning.examinationDetails.examination.appointment.acceptanceCode}</dd>
+							<dd>#{examinationRunning.examinationDetails.examination.survey_schedule.acceptanceCode}</dd>
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" rendered="#{not empty examinationRunning.examinationDetails.examination.appointment.listServices()}">		
+						<h:panelGroup layout="block" rendered="#{not empty examinationRunning.examinationDetails.examination.survey_schedule.listServices()}">
 							<dt>Services</dt>
-							<dd>#{examinationRunning.examinationDetails.examination.appointment.listServices()}</dd>	
+							<dd>#{examinationRunning.examinationDetails.examination.survey_schedule.listServices()}</dd>
 						</h:panelGroup>								
 					</dl>		
 				</div>
@@ -167,7 +167,7 @@
 										<f:facet name="header">
 											Date
 										</f:facet>
-										<h:outputText value="#{examination.appointment.date}" >
+										<h:outputText value="#{examination.survey_schedule.date}" >
 											<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 										</h:outputText>
 									</h:column>
@@ -176,9 +176,9 @@
 										<f:facet name="header">
 											Agenda
 										</f:facet>
-										<h:outputText value="#{examination.appointment.agenda.code}" />
+										<h:outputText value="#{examination.survey_schedule.agenda.code}" />
 										-
-										<h:outputText value="#{examination.appointment.agenda.description}" />
+										<h:outputText value="#{examination.survey_schedule.agenda.description}" />
 									</h:column>
 
 									<h:column>

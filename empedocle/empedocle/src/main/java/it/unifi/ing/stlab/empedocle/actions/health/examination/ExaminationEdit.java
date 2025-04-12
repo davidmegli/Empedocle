@@ -25,10 +25,10 @@ import it.unifi.ing.stlab.empedocle.actions.util.DateUtils;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
@@ -87,7 +87,7 @@ public class ExaminationEdit implements Serializable {
 	public void init() {
 		if( isNew() ) {
 			current = ExaminationFactory.createExamination();
-			current.setAppointment( AppointmentFactory.createAppointment() );
+			current.setSurveySchedule( SurveyScheduleFactory.createSurveySchedule() );
 		} else {
 			current = examinationDao.findById( Long.parseLong( id ) );
 		}
@@ -104,16 +104,16 @@ public class ExaminationEdit implements Serializable {
 	public String save() {
 		current.setLastUpdate( new Date() );
 		
-		String date = DateUtils.getString( current.getAppointment().getDate(), "yyyyMMddHHmm" );
-		String agendaCode = current.getAppointment().getAgenda().getCode();
+		String date = DateUtils.getString( current.getSurveySchedule().getDate(), "yyyyMMddHHmm" );
+		String agendaCode = current.getSurveySchedule().getAgenda().getCode();
 		
-		current.getAppointment().setBookingCode( "BOOK" + date + "AG" + agendaCode );
-		current.getAppointment().setAcceptanceCode( "ACC" + date +  "AG" + agendaCode );
+		current.getSurveySchedule().setBookingCode( "BOOK" + date + "AG" + agendaCode );
+		current.getSurveySchedule().setAcceptanceCode( "ACC" + date +  "AG" + agendaCode );
 		
 		try {
 			if ( isNew() ) {
 				current.setStatus( ExaminationStatus.TODO );
-				current.getAppointment().setStatus( AppointmentStatus.ACCEPTED );
+				current.getSurveySchedule().setStatus( SurveyScheduleStatus.ACCEPTED );
 
 				examinationDao.save( current );
 			} else {
@@ -131,9 +131,9 @@ public class ExaminationEdit implements Serializable {
 			if ( t instanceof ConstraintViolationException ) {
 				message( FacesMessage.SEVERITY_ERROR,
 						"Unable to perform the save: date '"
-								+ DateUtils.getString( current.getAppointment().getDate(), "dd/MM/yyyy HH:mm" )
+								+ DateUtils.getString( current.getSurveySchedule().getDate(), "dd/MM/yyyy HH:mm" )
 								+ "' already in use on the agenda'"
-								+ current.getAppointment().getAgenda().toString() + "'!",
+								+ current.getSurveySchedule().getAgenda().toString() + "'!",
 						true );
 			}
 		} catch ( Exception e ) {
@@ -242,14 +242,14 @@ public class ExaminationEdit implements Serializable {
 		agendaSuggestion = new AgendaSuggestion();
 		if ( !isNew() )
 			agendaSuggestion.setSuggestion( 
-					current.getAppointment().getAgenda().toString() );
+					current.getSurveySchedule().getAgenda().toString() );
 	}
 
 	private void initWoodElementSuggestion() {
 		woodElementSuggestion = new WoodElementSuggestion();
 		if ( !isNew() )
 			woodElementSuggestion.setSuggestion(
-					WoodElementUtils.toString( current.getAppointment().getWoodElement()) );
+					WoodElementUtils.toString( current.getSurveySchedule().getWoodElement()) );
 	}
 	
 	private void message( Severity severityInfo, String message, boolean keepMessages ) {

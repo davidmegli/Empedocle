@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.visitor.fact.tools.EmptyFactVisitor;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
@@ -76,9 +76,9 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		Fact destination = createEmptyCopy(root);
 		
 		Examination e = (Examination)root.getContext();
-		Appointment a = AppointmentFactory.createAppointment();
+		SurveySchedule a = SurveyScheduleFactory.createSurveySchedule();
 		a.setWoodElement(fakeWoodElement);
-		e.setAppointment(a);
+		e.setSurveySchedule(a);
 		
 		AssignContextVisitor acv = new AssignContextVisitor(e);
 		destination.accept(acv);

@@ -88,7 +88,7 @@ public class ExaminationTypeDaoBean implements ExaminationTypeDao{
 //		List<?> result = entityManager.createQuery(
 //			"select et " +
 //			" from Examination e " +
-//			"  join e.appointment.services s " +
+//			"  join e.survey_schedule.services s " +
 //			"  join s.agenda.examinationType et " +
 //			" where e.id = :id" )
 //			.setParameter("id", id )
@@ -99,7 +99,7 @@ public class ExaminationTypeDaoBean implements ExaminationTypeDao{
 		List<?> result = entityManager.createQuery(
 				"select et " +
 				" from Examination e " +
-				"  join e.appointment.agenda.examinationType et " +
+				"  join e.survey_schedule.agenda.examinationType et " +
 				" where e.id = :id" )
 				.setParameter("id", id )
 				.setMaxResults( 1 )

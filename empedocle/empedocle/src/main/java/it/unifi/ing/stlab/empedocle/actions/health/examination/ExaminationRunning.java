@@ -174,7 +174,7 @@ public class ExaminationRunning implements Serializable {
 
 			/*TEST*/
 			//caso in cui la visita è con Data libera, da specificare per completare l'erogazione
-			if(examination.getAppointment().getDate() == null){
+			if(examination.getSurveySchedule().getDate() == null){
 				setDateFreeVisit(true);
 				visitDate = new Date();
 			}
@@ -245,7 +245,7 @@ public class ExaminationRunning implements Serializable {
 
 	private void initLastWoodElementVersion( Examination examination ) {
 		lastWoodElementVersion = woodElementDao
-				.findLastVersionById( examination.getAppointment().getWoodElement().getId() );		
+				.findLastVersionById( examination.getSurveySchedule().getWoodElement().getId() );		
 	}
 
 	private void beginConversation() {
@@ -291,7 +291,7 @@ public class ExaminationRunning implements Serializable {
 			examination.setAuthor( user );
 
 			factDao.save( fact );
-		}catch(Exception e){ // quando la creazione del fact fallisce, si cancellano anche l'Appointment e la Examination relativi
+		}catch(Exception e){ // quando la creazione del fact fallisce, si cancellano anche l'SurveySchedule e la Examination relativi
 			examinationDao.deleteById(examination.getId());
 		}
 
@@ -482,13 +482,13 @@ public class ExaminationRunning implements Serializable {
 
 			if(dateFreeVisit){
 				if(visitDate != null){
-					examination.getAppointment().setDate(visitDate);
+					examination.getSurveySchedule().setDate(visitDate);
 					examination.setLastUpdate(visitDate);
-					/*String tmpDate = DateUtils.getString( examination.getAppointment().getDate(), "yyyyMMddHHmmss" );
-					String bookingCode = examination.getAppointment().getBookingCode().replaceAll("__", tmpDate );
-					String acceptanceCode = examination.getAppointment().getAcceptanceCode().replaceAll("__", tmpDate );
-					examination.getAppointment().setBookingCode(bookingCode);
-					examination.getAppointment().setAcceptanceCode(acceptanceCode);*/
+					/*String tmpDate = DateUtils.getString( examination.getSurveySchedule().getDate(), "yyyyMMddHHmmss" );
+					String bookingCode = examination.getSurveySchedule().getBookingCode().replaceAll("__", tmpDate );
+					String acceptanceCode = examination.getSurveySchedule().getAcceptanceCode().replaceAll("__", tmpDate );
+					examination.getSurveySchedule().setBookingCode(bookingCode);
+					examination.getSurveySchedule().setAcceptanceCode(acceptanceCode);*/
 				}
 			}
 			

@@ -82,7 +82,7 @@ it\unifi\ing\stlab\empedocle\actions\EntityView.class
 it\unifi\ing\stlab\empedocle\actions\util\taxcode\FiscalCodeNormalizer.class
 it\unifi\ing\stlab\empedocle\model\health\Service.class
 it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCTherapeuticMainGroupCode.class
-it\unifi\ing\stlab\empedocle\dao\health\AppointmentDao.class
+it\unifi\ing\stlab\empedocle\dao\health\SurveyScheduleDao.class
 it\unifi\ing\stlab\empedocle\model\Agenda.class
 it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCPharmacologicalSubGroupCode.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\ExaminationFilter$6.class
@@ -94,12 +94,12 @@ it\unifi\ing\stlab\empedocle\dao\health\ExaminationTypeDaoBean.class
 it\unifi\ing\stlab\empedocle\dao\health\ExaminationTypeDao.class
 it\unifi\ing\stlab\empedocle\dao\health\ServiceDaoBean.class
 it\unifi\ing\stlab\empedocle\scripts\reconciliator\OfflineWoodElementReconciliator.class
-it\unifi\ing\stlab\empedocle\model\health\AppointmentStatus.class
+it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleStatus.class
 it\unifi\ing\stlab\empedocle\actions\woodelements\WoodElementEdit.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\types\ExaminationTypeView.class
 it\unifi\ing\stlab\empedocle\visitor\factquery\EncodeExpressionBeanVisitor.class
 it\unifi\ing\stlab\empedocle\actions\messages\MessageView.class
-it\unifi\ing\stlab\empedocle\factory\health\AppointmentFactory.class
+it\unifi\ing\stlab\empedocle\factory\health\SurveyScheduleFactory.class
 it\unifi\ing\stlab\empedocle\scripts\reconciliator\OfflineWoodElementReconciliator$MySQLConnector.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\ExaminationRunning$1.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\types\ExaminationTypeEdit$ViewerSuggestion.class
@@ -159,7 +159,7 @@ it\unifi\ing\stlab\empedocle\actions\messages\MessageList.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\RecurrentFactHelper.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\ExaminationFilter$1.class
 it\unifi\ing\stlab\empedocle\actions\staff\panel\PanelView.class
-it\unifi\ing\stlab\empedocle\model\health\Appointment.class
+it\unifi\ing\stlab\empedocle\model\health\SurveySchedule.class
 it\unifi\ing\stlab\empedocle\model\messages\Message.class
 it\unifi\ing\stlab\empedocle\actions\woodelements\view\WoodElementView.class
 it\unifi\ing\stlab\empedocle\actions\util\GarbageCollectorHelper.class
@@ -174,7 +174,7 @@ it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCCode.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\types\ExaminationTypeEdit$4.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\consent\WoodElementConsentEnricher.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\types\ExaminationTypeEdit$TypeSuggestion.class
-it\unifi\ing\stlab\empedocle\dao\health\AppointmentDaoBean.class
+it\unifi\ing\stlab\empedocle\dao\health\SurveyScheduleDaoBean.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\types\ExaminationTypeFilter.class
 it\unifi\ing\stlab\empedocle\actions\util\taxcode\FiscalCodeValidatorException.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\statistics\export\visitor\StatisticsPathGeneratorVisitor.class

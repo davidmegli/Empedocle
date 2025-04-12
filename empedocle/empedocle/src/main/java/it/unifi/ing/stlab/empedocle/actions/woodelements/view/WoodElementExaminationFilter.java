@@ -16,7 +16,7 @@ import it.unifi.ing.stlab.empedocle.actions.health.examination.ExaminationListTy
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationQueryBuilder;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.filters.Filter;
@@ -57,7 +57,7 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 	}
 	
 	private void initFilterDefs() {
-		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.appointment.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
+		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.survey_schedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
 			
 			@Override
 			public List<SelectItem> getSelectItems(Object param, int offset, int limit) {
@@ -98,14 +98,14 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 	
 		} );
 		
-		addFilterDef( "Visited from", FilterType.DATE, "e.appointment.date >= :pamin", "pamin" );
-		addFilterDef( "Visited until", FilterType.DATE, "e.appointment.date <= :pamax", "pamax" );
+		addFilterDef( "Visited from", FilterType.DATE, "e.survey_schedule.date >= :pamin", "pamin" );
+		addFilterDef( "Visited until", FilterType.DATE, "e.survey_schedule.date <= :pamax", "pamax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );		
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.appointment.date asc", "e.appointment.date desc" );
+		addSort( "Date", "e.survey_schedule.date asc", "e.survey_schedule.date desc" );
 		
 		toggle( "Date" ); // ordinamento asc
 		toggle( "Date" ); // ordinamento desc
@@ -129,11 +129,11 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 		
 		buffer.append( "select count( distinct e ) " )		
 			  .append( " from Examination e " )
-			  .append( " join e.appointment.wood_element.after aa " )
+			  .append( " join e.survey_schedule.wood_element.after aa " )
 			  .append( " where aa.id = :id " )
-			  .append( " and e.appointment.agenda in :agendas " )
+			  .append( " and e.survey_schedule.agenda in :agendas " )
 			  .append( " and e.status in :ex_status " )
-			  .append( " and e.appointment.status in :ap_status");
+			  .append( " and e.survey_schedule.status in :ap_status");
 		
 		writeFilters( buffer );
 
@@ -156,11 +156,11 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 		
 		buffer.append( "select distinct e " )
 			  .append( " from Examination e " )
-			  .append( " join e.appointment.wood_element.after aa ")
+			  .append( " join e.survey_schedule.wood_element.after aa ")
 			  .append( " where aa.id = :id " )
-			  .append( " and e.appointment.agenda in :agendas " )			  
+			  .append( " and e.survey_schedule.agenda in :agendas " )			  
 			  .append( " and e.status in :ex_status " )
-			  .append( " and e.appointment.status in :ap_status");
+			  .append( " and e.survey_schedule.status in :ap_status");
 		
 		writeFilters( buffer );
 		
@@ -201,44 +201,44 @@ public class WoodElementExaminationFilter extends FilterBean implements Examinat
 					ExaminationStatus.DONE,
 					ExaminationStatus.CONCLUDED ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED, 
-					AppointmentStatus.BOOKED ));
+					SurveyScheduleStatus.ACCEPTED, 
+					SurveyScheduleStatus.BOOKED ));
 			break;
 		case BOOKED:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.TODO ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.BOOKED ));
+					SurveyScheduleStatus.BOOKED ));
 			break;
 		case ACCEPTED:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.TODO ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED ));
+					SurveyScheduleStatus.ACCEPTED ));
 			break;
 		case SUSPENDED:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.SUSPENDED ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED ));
+					SurveyScheduleStatus.ACCEPTED ));
 			break;
 		case RUNNING:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.RUNNING ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED ));
+					SurveyScheduleStatus.ACCEPTED ));
 			break;
 		case DONE:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.DONE ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED ));
+					SurveyScheduleStatus.ACCEPTED ));
 			break;
 		case CONCLUDED:
 			query.setParameter( "ex_status", Arrays.asList(
 					ExaminationStatus.CONCLUDED ));
 			query.setParameter( "ap_status", Arrays.asList( 
-					AppointmentStatus.ACCEPTED ));
+					SurveyScheduleStatus.ACCEPTED ));
 			break;
 		default:
 			break;

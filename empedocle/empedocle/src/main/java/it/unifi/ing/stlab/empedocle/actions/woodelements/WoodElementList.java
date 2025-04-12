@@ -18,11 +18,11 @@ import it.unifi.ing.stlab.empedocle.actions.util.DateUtils;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
 import it.unifi.ing.stlab.empedocle.dao.messages.MessageDao;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
@@ -84,7 +84,7 @@ public class WoodElementList extends Navigator {
 
 	}
 
-	public String runDateless( Long woodElementId){ // when starting a "recovery" appointment where a date can be chosen
+	public String runDateless( Long woodElementId){ // when starting a "recovery" survey_schedule where a date can be chosen
 		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
@@ -97,19 +97,19 @@ public class WoodElementList extends Navigator {
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		Appointment appointment = AppointmentFactory.createAppointment();
-		appointment.setAgenda( agenda );
-		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		//appointment.setDate( date );
-		appointment.setStatus( AppointmentStatus.ACCEPTED );
+		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
+		survey_schedule.setAgenda( agenda );
+		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
+		//survey_schedule.setDate( date );
+		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		appointment.setBookingCode( bookingCode  );
+		survey_schedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		appointment.setAcceptanceCode( acceptanceCode );
+		survey_schedule.setAcceptanceCode( acceptanceCode );
 
 		Examination examination = ExaminationFactory.createExamination();
 		examination.setStatus( ExaminationStatus.TODO );
-		examination.setAppointment( appointment );
+		examination.setSurveySchedule( survey_schedule );
 		examination.setLastUpdate( date );
 
 		try {
@@ -123,7 +123,7 @@ public class WoodElementList extends Navigator {
 		Examination examRecov = null;
 		try {
 			utx.begin();
-			examRecov = examinationDao.findByAppointmentCodes( bookingCode, acceptanceCode );
+			examRecov = examinationDao.findBySurveyScheduleCodes( bookingCode, acceptanceCode );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();
@@ -150,19 +150,19 @@ public class WoodElementList extends Navigator {
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		Appointment appointment = AppointmentFactory.createAppointment();
-		appointment.setAgenda( agenda );
-		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		appointment.setDate( date );
-		appointment.setStatus( AppointmentStatus.ACCEPTED );
+		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
+		survey_schedule.setAgenda( agenda );
+		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
+		survey_schedule.setDate( date );
+		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		appointment.setBookingCode( bookingCode  );
+		survey_schedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		appointment.setAcceptanceCode( acceptanceCode );
+		survey_schedule.setAcceptanceCode( acceptanceCode );
 
 		Examination examination = ExaminationFactory.createExamination();
 		examination.setStatus( ExaminationStatus.TODO );
-		examination.setAppointment( appointment );
+		examination.setSurveySchedule( survey_schedule );
 		examination.setLastUpdate( date );
 
 		try {
@@ -176,7 +176,7 @@ public class WoodElementList extends Navigator {
 		Examination examRecov = null;
 		try {
 			utx.begin();
-			examRecov = examinationDao.findByAppointmentCodes( bookingCode, acceptanceCode );
+			examRecov = examinationDao.findBySurveyScheduleCodes( bookingCode, acceptanceCode );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();

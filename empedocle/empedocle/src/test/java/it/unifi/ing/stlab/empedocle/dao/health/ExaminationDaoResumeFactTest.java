@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
@@ -75,8 +75,8 @@ public class ExaminationDaoResumeFactTest extends PersistenceTest {
 		entityManager.persist( p );
 		
 		examination = ExaminationFactory.createExamination();
-		examination.setAppointment(AppointmentFactory.createAppointment());
-		examination.getAppointment().setWoodElement(p);
+		examination.setSurveySchedule(SurveyScheduleFactory.createSurveySchedule());
+		examination.getSurveySchedule().setWoodElement(p);
 		examination.setStatus(ExaminationStatus.DONE);
 		entityManager.persist( examination );
 		

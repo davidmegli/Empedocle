@@ -126,12 +126,12 @@ public class ExaminationQueryBuilderImpl implements ExaminationQueryBuilder {
 		
 		if(includeAuthorInQuery) {
 			buffer.append(" from Examination e, FactImpl f ")
-//					.append("join e.appointment.services s ")
+//					.append("join e.survey_schedule.services s ")
 					.append("join f.context c ");
 		}
 		else {
 			buffer.append(" from Examination e ")
-//					.append("join e.appointment.services s ")
+//					.append("join e.survey_schedule.services s ")
 					;
 		}
 		

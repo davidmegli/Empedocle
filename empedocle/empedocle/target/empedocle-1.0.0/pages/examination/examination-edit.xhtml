@@ -38,7 +38,7 @@
 			<div class="control-group">
 				<label class="control-label bold" for="edit-form:date">* Date</label>
 				<div class="controls">
-					<h:inputText id="date" value="#{examinationEdit.current.appointment.date}" 
+					<h:inputText id="date" value="#{examinationEdit.current.survey_schedule.date}"
 						required="true" requiredMessage="'Date' is a required field!"
 						styleClass="#{ component.valid ? '' : 'vld-error'}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
@@ -51,7 +51,7 @@
 				<div class="controls">
 					<emp:suggestionList
 						bean="#{examinationEdit.agendaSuggestion}"
-						value="#{examinationEdit.current.appointment.agenda}"
+						value="#{examinationEdit.current.survey_schedule.agenda}"
 						suggestion="#{examinationEdit.agendaSuggestion.suggestion}"
 						converter="#{agendaConverter}"
 						required="true" requiredMessage="'Agenda' is a required field!"
@@ -64,7 +64,7 @@
 				<div class="controls">
 					<emp:suggestionList
 						bean="#{examinationEdit.wood_elementSuggestion}"
-						value="#{examinationEdit.current.appointment.wood_element}"
+						value="#{examinationEdit.current.survey_schedule.wood_element}"
 						suggestion="#{examinationEdit.wood_elementSuggestion.suggestion}"
 						converter="#{wood_elementConverter}"
 						required="true" requiredMessage="'WoodElement' is a required field!"

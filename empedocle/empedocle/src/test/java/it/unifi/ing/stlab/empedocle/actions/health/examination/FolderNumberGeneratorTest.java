@@ -1,9 +1,9 @@
 package it.unifi.ing.stlab.empedocle.actions.health.examination;
 
 import static org.junit.Assert.assertEquals;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.view.controllers.cardiology.FolderNumberGenerator;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
@@ -43,13 +43,13 @@ public class FolderNumberGeneratorTest extends PersistenceTest {
 		entityManager.persist(pi);
 		entityManager.persist(p);
 		
-		Appointment a = AppointmentFactory.createAppointment();
+		SurveySchedule a = SurveyScheduleFactory.createSurveySchedule();
 		a.setNumber("1234");
 		a.setWoodElement(p);
 		entityManager.persist(a);
 		
 		Examination e = ExaminationFactory.createExamination();
-		e.setAppointment(a);
+		e.setSurveySchedule(a);
 		entityManager.persist(e);
 		
 		QuantitativeType t = TypeFactory.createQuantitativeType();

@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.empedocle.model.health;
 
-public enum AppointmentStatus {
+public enum SurveyScheduleStatus {
 
 	BOOKED("booked", "Booked"), 
 	ACCEPTED("accepted", "Accepted"), 
@@ -9,7 +9,7 @@ public enum AppointmentStatus {
 	private final String id;
 	private final String name;
 
-	AppointmentStatus(String id, String name) {
+	SurveyScheduleStatus(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}

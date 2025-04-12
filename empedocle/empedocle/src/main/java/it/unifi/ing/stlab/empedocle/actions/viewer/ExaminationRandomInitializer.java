@@ -4,7 +4,7 @@ import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.Service;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
@@ -28,25 +28,25 @@ public class ExaminationRandomInitializer {
 		Agenda agenda = initAgenda();
 		Service service = initService( agenda );
 		WoodElement woodElement = initWoodElement();
-		Appointment appointment = initAppointment( woodElement, service );
-		examination.setAppointment( appointment );
+		SurveySchedule surveySchedule = initSurveySchedule( woodElement, service );
+		examination.setSurveySchedule( surveySchedule );
 		examination.setLastUpdate( new Date() );
 		examination.setAuthor( initUser() );
 		
 		return examination;
 	}
 	
-	private Appointment initAppointment(WoodElement woodElement, Service service){
-		Appointment appointment = new Appointment(UUID.randomUUID().toString());
-		appointment.setDate(new Date());
-		appointment.setAcceptanceCode("AXX120XX83149");
-		appointment.setBookingCode("0901XXX882XXX32");
-		appointment.setNumber("123456");
-		appointment.setWoodElement(woodElement);
-		appointment.addService(service);
-		appointment.setAgenda(service.getAgenda());
+	private SurveySchedule initSurveySchedule(WoodElement woodElement, Service service){
+		SurveySchedule surveySchedule = new SurveySchedule(UUID.randomUUID().toString());
+		surveySchedule.setDate(new Date());
+		surveySchedule.setAcceptanceCode("AXX120XX83149");
+		surveySchedule.setBookingCode("0901XXX882XXX32");
+		surveySchedule.setNumber("123456");
+		surveySchedule.setWoodElement(woodElement);
+		surveySchedule.addService(service);
+		surveySchedule.setAgenda(service.getAgenda());
 		
-		return appointment;
+		return surveySchedule;
 	}
 	
 	private Service initService(Agenda agenda) {

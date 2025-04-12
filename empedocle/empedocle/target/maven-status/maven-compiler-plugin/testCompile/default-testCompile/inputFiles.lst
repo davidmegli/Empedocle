@@ -20,13 +20,13 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\messages\MessageJpaTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\actions\converter\PlusSignConverterTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCCodeJpaImporter.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\AppointmentJpaTest.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleJpaTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\ExaminationJpaTest.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\services\appointments\AppointmentServiceTest.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\services\survey_schedules\SurveyScheduleServiceTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\actions\util\DateUtilsTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\actions\converter\DecimalNumberConverterTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\actions\health\examination\FolderNumberGeneratorTest.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\AppointmentTest.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\Icd9cmJpaTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\model\health\coding\icd9cm\ICD9CMCodeTest.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\test\java\it\unifi\ing\stlab\empedocle\actions\health\ExaminationTypeFilterTest.java

@@ -25,7 +25,7 @@
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="#{geneticController.isInformativeRecovered(value, viewer, value.context.appointment.wood_element.id)}">
+							<c:when test="#{geneticController.isInformativeRecovered(value, viewer, value.context.survey_schedule.wood_element.id)}">
 								<h:outputText value="#{geneticController.informative.phenomenon.name}" 
 												styleClass="outputValue_text" />
 							</c:when>
@@ -55,7 +55,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isAdviceRecovered(value, viewer, value.context.appointment.wood_element.id)}">
+					<c:when test="#{geneticController.isAdviceRecovered(value, viewer, value.context.survey_schedule.wood_element.id)}">
 						<h:outputText value="#{geneticController.advice.phenomenon.name}" 
 										styleClass="outputValue_text"/>
 					</c:when>
@@ -83,7 +83,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isParentVisitRecovered(value, viewer, value.context.appointment.wood_element.id)}">
+					<c:when test="#{geneticController.isParentVisitRecovered(value, viewer, value.context.survey_schedule.wood_element.id)}">
 						<h:outputText value="#{geneticController.parentVisit.phenomenon.name}" 
 										styleClass="outputValue_text" />
 					</c:when>
@@ -113,7 +113,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isFamilyAdviceRecovered(value, viewer, value.context.appointment.wood_element.id)}">
+					<c:when test="#{geneticController.isFamilyAdviceRecovered(value, viewer, value.context.survey_schedule.wood_element.id)}">
 						<h:outputText value="#{geneticController.familyAdvice.phenomenon.name}" 
 										styleClass="outputValue_text" />
 					</c:when>

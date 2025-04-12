@@ -23,7 +23,7 @@ public interface ExaminationDao {
 	boolean hasWoodElementHistory(Long woodElementId, Set<ExaminationStatus> statuses, Set<Agenda> agendas);
 	
 	Examination findById(Long id);
-	Examination findByAppointmentCodes(String bookingCode, String acceptanceCode);
+	Examination findBySurveyScheduleCodes(String bookingCode, String acceptanceCode);
 	List<Examination> find(ExaminationQueryBuilder builder, int offset, int limit);
 	List<Examination> findWoodElementLastExams(Long woodElementId, Long lastExamId, int numExams);
 	List<Examination> findWoodElementHistory(Long woodElementId,

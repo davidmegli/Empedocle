@@ -312,7 +312,7 @@
 												<f:facet name="header">
 													Date
 												</f:facet>
-												<h:outputText value="#{examination.appointment.date}" >
+												<h:outputText value="#{examination.survey_schedule.date}" >
 													<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 												</h:outputText>								
 											</h:column>
@@ -321,9 +321,9 @@
 												<f:facet name="header">
 													Agenda
 												</f:facet>
-												<h:outputText value="#{examination.appointment.agenda.code}" />
+												<h:outputText value="#{examination.survey_schedule.agenda.code}" />
 												 - 
-												<h:outputText value="#{examination.appointment.agenda.description}" />
+												<h:outputText value="#{examination.survey_schedule.agenda.description}" />
 											</h:column>
 			
 											<h:column>

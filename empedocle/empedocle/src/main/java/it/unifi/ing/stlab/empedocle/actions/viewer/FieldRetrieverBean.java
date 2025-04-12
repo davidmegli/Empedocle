@@ -53,13 +53,13 @@ public class FieldRetrieverBean implements FieldRetriever {
 	private void initJexlContext(Fact fact){
 		context = new MapContext();
 		Examination exam = ClassHelper.cast( fact.getContext(), Examination.class );
-		context.set( "Appointment", exam.getAppointment() );
-		WoodElement woodElement = exam.getAppointment().getWoodElement();
+		context.set( "SurveySchedule", exam.getSurveySchedule() );
+		WoodElement woodElement = exam.getSurveySchedule().getWoodElement();
 		if( woodElement.getId() != null )
 			context.set( "WoodElement", woodElementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
 		else 
 			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by ExaminationRandomInitializer (invoked by ViewerPreview)
-		context.set( "Agenda", exam.getAppointment().getAgenda() );
+		context.set( "Agenda", exam.getSurveySchedule().getAgenda() );
 		context.set( "User", exam.getAuthor() );
 	}
 	

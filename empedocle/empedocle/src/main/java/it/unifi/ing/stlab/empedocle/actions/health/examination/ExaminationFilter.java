@@ -21,7 +21,7 @@ import it.unifi.ing.stlab.empedocle.dao.health.ExaminationQueryBuilder;
 import it.unifi.ing.stlab.empedocle.dao.staff.StaffDao;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.Staff;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.entities.utils.DateHelper;
@@ -78,7 +78,7 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.appointment.date asc, e.appointment.wood_element.taxCode asc", "e.appointment.date desc, e.appointment.wood_element.taxCode desc" );
+		addSort( "Date", "e.survey_schedule.date asc, e.survey_schedule.wood_element.taxCode asc", "e.survey_schedule.date desc, e.survey_schedule.wood_element.taxCode desc" );
 		toggle( "Date" );
 	}
 
@@ -131,7 +131,7 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 	// se cerco le visite di una giornata, dovrò andare dalla mezzanotte di oggi alla mezzanotte di domani
 	private void initFilterDefs() {
 		
-		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.appointment.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
+		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.survey_schedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
 			
 			@Override
 			public List<SelectItem> getSelectItems(Object param, int offset, int limit) {
@@ -171,8 +171,8 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 			}
 		} );			
 			
-		addFilterDef( "Date - from", FilterType.DATE, "e.appointment.date >= :pamin", "pamin" );
-		addFilterDef( "Date - to", FilterType.DATE, "e.appointment.date <= :pamax", "pamax" );
+		addFilterDef( "Date - from", FilterType.DATE, "e.survey_schedule.date >= :pamin", "pamin" );
+		addFilterDef( "Date - to", FilterType.DATE, "e.survey_schedule.date <= :pamax", "pamax" );
 		
 		addFilterDef( "Assigned to", FilterType.SUGGESTION, "e.author.uuid = :puser", "puser", new SelectItemBuilder() {
 			@Override
@@ -190,12 +190,12 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 			}
 		} );		
 		
-		addFilterDef( "Tax Code", FilterType.TEXT, "e.appointment.wood_element.taxCode like :ptaxc", "ptaxc" );
-		addFilterDef( "Surname", FilterType.TEXT, "e.appointment.wood_element.surname like :psur", "psur" );
-		addFilterDef( "Name", FilterType.TEXT, "e.appointment.wood_element.name like :pname", "pname" );
-		addFilterDef( "Birthplace", FilterType.TEXT, "e.appointment.wood_element.birthPlace like :pbplace", "pbplace" );
-		addFilterDef( "Birthdate - from", FilterType.DATE, "e.appointment.wood_element.birthDate >= :pbmin", "pbmin" );
-		addFilterDef( "Birthdate - to", FilterType.DATE, "e.appointment.wood_element.birthDate <= :pbmax", "pbmax" );
+		addFilterDef( "Tax Code", FilterType.TEXT, "e.survey_schedule.wood_element.taxCode like :ptaxc", "ptaxc" );
+		addFilterDef( "Surname", FilterType.TEXT, "e.survey_schedule.wood_element.surname like :psur", "psur" );
+		addFilterDef( "Name", FilterType.TEXT, "e.survey_schedule.wood_element.name like :pname", "pname" );
+		addFilterDef( "Birthplace", FilterType.TEXT, "e.survey_schedule.wood_element.birthPlace like :pbplace", "pbplace" );
+		addFilterDef( "Birthdate - from", FilterType.DATE, "e.survey_schedule.wood_element.birthDate >= :pbmin", "pbmin" );
+		addFilterDef( "Birthdate - to", FilterType.DATE, "e.survey_schedule.wood_element.birthDate <= :pbmax", "pbmax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );
 	}
@@ -206,32 +206,32 @@ public class ExaminationFilter extends FilterBean implements ExaminationQueryBui
 		
 		// FIXME si può evitare l'uso dell'operatore IN ?
 		queryBuilders.put( ExaminationListType.ALL, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 		}});
 		queryBuilders.put( ExaminationListType.BOOKED, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.TODO ));
-			addPredefinedFilter( createFilter( "e.appointment.status = :pastatus", "pastatus", AppointmentStatus.BOOKED ));
+			addPredefinedFilter( createFilter( "e.survey_schedule.status = :pastatus", "pastatus", SurveyScheduleStatus.BOOKED ));
 		}} );
 		queryBuilders.put( ExaminationListType.ACCEPTED, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.TODO ));
-			addPredefinedFilter( createFilter( "e.appointment.status = :pastatus", "pastatus", AppointmentStatus.ACCEPTED ));
+			addPredefinedFilter( createFilter( "e.survey_schedule.status = :pastatus", "pastatus", SurveyScheduleStatus.ACCEPTED ));
 		}} );
 		queryBuilders.put( ExaminationListType.RUNNING, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.RUNNING ));
 		}} );
 		queryBuilders.put( ExaminationListType.SUSPENDED, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.SUSPENDED ));
 		}} );
 		queryBuilders.put( ExaminationListType.DONE, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.DONE ));
 		}} );
 		queryBuilders.put( ExaminationListType.CONCLUDED, new ExaminationQueryBuilderImpl( this ){{
-			addPredefinedFilter( createFilter( "e.appointment.agenda in :agendas", "agendas", agendas));			
+			addPredefinedFilter( createFilter( "e.survey_schedule.agenda in :agendas", "agendas", agendas));			
 			addPredefinedFilter( createFilter( "e.status = :pestatus", "pestatus", ExaminationStatus.CONCLUDED ));
 		}} );
 	}

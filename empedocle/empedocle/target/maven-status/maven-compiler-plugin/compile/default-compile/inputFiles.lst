@@ -1,4 +1,4 @@
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\Appointment.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\SurveySchedule.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\ViewerUseFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\woodelements\view\ExaminationView.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\adapters\LocalDateTimeAdapter.java
@@ -20,7 +20,7 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\messages\MessageQueryBuilder.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\health\services\CloseExamination.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\woodelements\view\WoodElementExaminationFilter.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\AppointmentDao.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\SurveyScheduleDao.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\ServiceDao.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\ExaminationTypeContext.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\util\taxcode\FiscalCodeValidatorException.java
@@ -30,7 +30,7 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\converter\PlusSignConverter.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\drugs\DrugIndexFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\messages\MessageList.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\AppointmentFactory.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\SurveyScheduleFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\ServiceFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\health\examination\ExaminationQueryBuilderImpl.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\factquery\DecodeExpressionBean.java
@@ -44,7 +44,7 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\visitor\fact\FactResumeVisitor.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\factquery\ExpressionBean.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\messages\MessageLevel.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\AppointmentStatus.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleStatus.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\factquery\FactQueryFilter.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCChemicalSubGroupCode.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\Staff.java
@@ -129,7 +129,7 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\coding\icd9cm\ICD9CMTopicCode.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\coding\atc\ATCPharmacologicalSubGroupCode.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\menu\HeaderMenu.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\AppointmentDaoBean.java
+C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\SurveyScheduleDaoBean.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\health\examination\RecurrentFactHelper.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\health\coding\atc\ATCCodeFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\actions\health\examination\ExaminationListType.java

@@ -63,10 +63,10 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.wood_element.after aa " +
+						" join factroot.context.survey_schedule.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
-						" and factroot.context.appointment.agenda in :agendas " +
+						" and factroot.context.survey_schedule.agenda in :agendas " +
 						" and factroot.destination is null " +
 						" and factroot.status != :notStatus " + 
 						" and factroot.context.status in :contextStatuses " +
@@ -74,7 +74,7 @@ public class ExaminationFactQueryConstructorTest {
 						" exists ( select fl0.target from FactLinkImpl fl0 where fl0.type = :type0 and " +
 								"fl0.target.text = :value0 and fl0.target.destination is null and " +
 								"fl0.target.status != :notStatus and fl0.target.context = factroot.context ) )" +
-						" order by factroot.context.appointment.date desc " , result );
+						" order by factroot.context.survey_schedule.date desc " , result );
 		
 		assertEquals( 2, builder.getAdditionalParams().size() );
 		
@@ -97,10 +97,10 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals(" select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.wood_element.after aa " +
+						" join factroot.context.survey_schedule.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
-						" and factroot.context.appointment.agenda in :agendas " +
+						" and factroot.context.survey_schedule.agenda in :agendas " +
 						" and factroot.destination is null " +
 						" and factroot.status != :notStatus " + 
 						" and factroot.context.status in :contextStatuses " +
@@ -108,7 +108,7 @@ public class ExaminationFactQueryConstructorTest {
 						" exists ( select fl0.target from FactLinkImpl fl0 where fl0.type = :type0 and " +
 								"fl0.target.quantity.value is not null and fl0.target.destination is null and " +
 								"fl0.target.status != :notStatus and fl0.target.context = factroot.context ) )" +
-						" order by factroot.context.appointment.date desc " , result );
+						" order by factroot.context.survey_schedule.date desc " , result );
 		
 		assertEquals( 1, builder.getAdditionalParams().size() );
 		
@@ -140,10 +140,10 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.wood_element.after aa " +
+						" join factroot.context.survey_schedule.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
-						" and factroot.context.appointment.agenda in :agendas " +
+						" and factroot.context.survey_schedule.agenda in :agendas " +
 						" and factroot.destination is null " +
 						" and factroot.status != :notStatus " + 
 						" and factroot.context.status in :contextStatuses " +
@@ -155,7 +155,7 @@ public class ExaminationFactQueryConstructorTest {
 						" exists ( select fl1.target from FactLinkImpl fl1 where fl1.type = :type1 and " +
 								"fl1.target.quantity.value > :value1 and fl1.target.destination is null and " +
 								"fl1.target.status != :notStatus and fl1.target.context = factroot.context ) )" +
-						" order by factroot.context.appointment.date desc " , result );
+						" order by factroot.context.survey_schedule.date desc " , result );
 		
 		assertEquals( 4, builder.getAdditionalParams().size() );
 		
@@ -195,10 +195,10 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.wood_element.after aa " +
+						" join factroot.context.survey_schedule.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
-						" and factroot.context.appointment.agenda in :agendas " +
+						" and factroot.context.survey_schedule.agenda in :agendas " +
 						" and factroot.destination is null " +
 						" and factroot.status != :notStatus " + 
 						" and factroot.context.status in :contextStatuses " +
@@ -214,7 +214,7 @@ public class ExaminationFactQueryConstructorTest {
 						" exists ( select fl2.target from FactLinkImpl fl2 where fl2.type = :type2 and " +
 								"fl2.target.quantity.value < :value2 and fl2.target.destination is null and " +
 								"fl2.target.status != :notStatus and fl2.target.context = factroot.context ) )" +
-						" order by factroot.context.appointment.date desc ", result );
+						" order by factroot.context.survey_schedule.date desc ", result );
 		
 		assertEquals( 6, builder.getAdditionalParams().size() );
 		
@@ -244,14 +244,14 @@ public class ExaminationFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.appointment.wood_element.after aa " +
+						" join factroot.context.survey_schedule.wood_element.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
-						" and factroot.context.appointment.agenda in :agendas " +
+						" and factroot.context.survey_schedule.agenda in :agendas " +
 						" and factroot.destination is null " +
 						" and factroot.status != :notStatus " + 
 						" and factroot.context.status in :contextStatuses " +
-						" order by factroot.context.appointment.date desc " , result );
+						" order by factroot.context.survey_schedule.date desc " , result );
 		
 	}
 	

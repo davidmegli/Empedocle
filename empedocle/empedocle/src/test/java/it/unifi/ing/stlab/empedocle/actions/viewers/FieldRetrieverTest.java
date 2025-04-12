@@ -12,9 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.unifi.ing.stlab.empedocle.actions.viewer.FieldRetrieverBean;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
@@ -44,9 +44,9 @@ public class FieldRetrieverTest {
 
 		Calendar c = Calendar.getInstance();
 		c.set( 2013, 04, 02 );
-		Appointment appointment = AppointmentFactory.createAppointment();
-		appointment.setAcceptanceCode( "1234" );
-		appointment.setDate( c.getTime() );
+		SurveySchedule surveySchedule = SurveyScheduleFactory.createSurveySchedule();
+		surveySchedule.setAcceptanceCode( "1234" );
+		surveySchedule.setDate( c.getTime() );
 
 		WoodElement wood_element = WoodElementFactory.createWoodElement();
 		wood_element.setName( "Gino" );
@@ -61,8 +61,8 @@ public class FieldRetrieverTest {
 		user.addQualification( qualification1 );
 		// user.addQualification(qualification2);
 
-		examination.setAppointment( appointment );
-		appointment.setWoodElement( wood_element );
+		examination.setSurveySchedule( surveySchedule );
+		surveySchedule.setWoodElement( wood_element );
 		examination.setAuthor( user );
 
 		root.setContext( examination );
@@ -84,7 +84,7 @@ public class FieldRetrieverTest {
 
 	@Test
 	public void testObtainFieldVisita() {
-		path = "Appointment.AcceptanceCode";
+		path = "SurveySchedule.AcceptanceCode";
 
 		String result = retriever.retrieve( root, path );
 
@@ -93,7 +93,7 @@ public class FieldRetrieverTest {
 
 	@Test
 	public void testObtainDateFormatted() {
-		path = "Appointment.Date";
+		path = "SurveySchedule.Date";
 
 		String result = retriever.retrieve( root, path );
 

@@ -44,7 +44,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 	@SuppressWarnings("unchecked")
 	public Fact resume(Fact f, WoodElement p) {
 		String q = "SELECT f FROM FactImpl f" +
-				" JOIN f.context.appointment.wood_element.after aa " +
+				" JOIN f.context.survey_schedule.wood_element.after aa " +
 				" WHERE f.type = :type" +
 				" AND aa.id = :wood_element" +
 				" AND f.context.status != :notStatusExam" +
@@ -76,8 +76,8 @@ public class ExaminationDaoBean implements ExaminationDao {
 				" from Examination e" +
 				" where e.author.userid = :id" +
 				" and e.status = :status " +
-				" and e.appointment.date >= :start " +
-				" and e.appointment.date <= :end";
+				" and e.survey_schedule.date >= :start " +
+				" and e.survey_schedule.date <= :end";
 		
 		return (Long)entityManager.createQuery(q)
 				.setParameter("id", userid)
@@ -119,10 +119,10 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		return ((Long)entityManager.createQuery("select count ( distinct e ) " +
 						  						" from Examination e " +
-						  						" join e.appointment.wood_element.after aa " +
+						  						" join e.survey_schedule.wood_element.after aa " +
 						  						" where aa.id = :pid " +
 												" and e.status in :statuses " +
-												" and e.appointment.agenda in :agendas " +
+												" and e.survey_schedule.agenda in :agendas " +
 												" and e.id != :examId ")						  						
 						  				.setParameter("pid", woodElementId)
 						  				.setParameter("examId", examFromId)
@@ -139,7 +139,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		 return ((Long) entityManager.createQuery("select count ( distinct e ) " +
 						 " from Examination e " +
-						 " join e.appointment.wood_element.after aa " +
+						 " join e.survey_schedule.wood_element.after aa " +
 						 " where aa.id = :pid ")
 				 .setParameter("pid", wood_elementId)
 				 .getSingleResult()).intValue() > 0;
@@ -154,7 +154,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 		StringBuffer query = new StringBuffer();
 		query.append("select e.id ")
 			.append(" from Examination e ")
-			.append(" join e.appointment a ")
+			.append(" join e.survey_schedule a ")
 			.append(" join a.agenda ag ")
 			.append(" join a.wood_element.after aa ")
 			.append(" where aa.id = :pid ");
@@ -204,12 +204,12 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		TypedQuery<Examination> query = entityManager.createQuery(
 			" select distinct e from Examination e " 
-					+ " join e.appointment.wood_element.after aa " 
+					+ " join e.survey_schedule.wood_element.after aa " 
 					+ " where e.status in :statuses " 
-					+ " and e.appointment.agenda in :agendas " 
+					+ " and e.survey_schedule.agenda in :agendas " 
 					+ " and e.id != :examId " 
 					+ " and aa.id = :pid " 
-					+ " order by e.appointment.date DESC", Examination.class );
+					+ " order by e.survey_schedule.date DESC", Examination.class );
 		
 		query.setParameter( "pid", wood_elementId )
 			.setParameter( "examId", examFromId )
@@ -228,10 +228,10 @@ public class ExaminationDaoBean implements ExaminationDao {
 	public List<Examination> findWoodElementLastExams( Long wood_elementId, Long lastExamId,  int examsNum){
 		TypedQuery<Examination> query = entityManager.createQuery(
 				" select distinct e from Examination e "
-						+ " join e.appointment.wood_element.after aa"
+						+ " join e.survey_schedule.wood_element.after aa"
 						+ " where e.id != :examId "
 						+ " and aa.id = :pid "
-						+ " order by e.appointment.date DESC", Examination.class );
+						+ " order by e.survey_schedule.date DESC", Examination.class );
 
 		query.setParameter( "pid", wood_elementId )
 				.setParameter( "examId", lastExamId );
@@ -338,7 +338,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		// pre-fetch dei services per poter leggere agenda
 		// FIXME serve ancora? adesso l'agenda è associata anche alla visita!
-		entityManager.createQuery("select a from Appointment a, FactImpl f left join fetch a.services ss where f.context = a and f.id = :id")
+		entityManager.createQuery("select a from SurveySchedule a, FactImpl f left join fetch a.services ss where f.context = a and f.id = :id")
 			.setParameter("id", getId( result.getFact() ) ).getResultList();
 		
 		if ( result.getViewer() == null ) return null;
@@ -371,7 +371,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 	
 	//TODO test
 	@Override
-	public Examination findByAppointmentCodes(String bookingCode, String acceptanceCode) {
+	public Examination findBySurveyScheduleCodes(String bookingCode, String acceptanceCode) {
 		if ( bookingCode == null && acceptanceCode == null ) 
 			throw new IllegalArgumentException( "bookingCode and acceptanceCode are null" );
 		
@@ -379,21 +379,21 @@ public class ExaminationDaoBean implements ExaminationDao {
 		
 		if ( acceptanceCode == null ) {
 			query = entityManager.createQuery( "select e" +
-					" from Examination e left join e.appointment" +
-					" where e.appointment.bookingCode = :bookingCode" )
+					" from Examination e left join e.survey_schedule" +
+					" where e.survey_schedule.bookingCode = :bookingCode" )
 					.setParameter( "bookingCode", bookingCode );
 			
 		} else if ( bookingCode == null ) {
 			query = entityManager.createQuery( "select e" +
-					" from Examination e left join e.appointment" +
-					" where e.appointment.acceptanceCode = :acceptanceCode" )
+					" from Examination e left join e.survey_schedule" +
+					" where e.survey_schedule.acceptanceCode = :acceptanceCode" )
 					.setParameter( "acceptanceCode", bookingCode );
 			
 		} else {
 			query = entityManager.createQuery( "select e" +
-					" from Examination e left join e.appointment" +
-					" where e.appointment.bookingCode = :bookingCode" +
-					" and e.appointment.acceptanceCode = :acceptanceCode" )
+					" from Examination e left join e.survey_schedule" +
+					" where e.survey_schedule.bookingCode = :bookingCode" +
+					" and e.survey_schedule.acceptanceCode = :acceptanceCode" )
 					.setParameter( "bookingCode", bookingCode )
 					.setParameter( "acceptanceCode", acceptanceCode );
 		}
@@ -426,7 +426,7 @@ public class ExaminationDaoBean implements ExaminationDao {
 	public void deleteById( Long id ) {
 		if ( id != null ) {
 			Examination exam = findById(id);
-			entityManager.remove( exam.getAppointment() );
+			entityManager.remove( exam.getSurveySchedule() );
 			entityManager.remove( exam );
 		}
 

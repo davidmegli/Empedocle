@@ -18,7 +18,7 @@ import it.unifi.ing.stlab.commons.cdi.ViewScoped;
 import it.unifi.ing.stlab.empedocle.actions.health.examination.ExaminationPrint;
 import it.unifi.ing.stlab.empedocle.actions.health.examination.ExaminationRowStyleHelper;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationTypeContext;
@@ -149,7 +149,7 @@ public class WoodElementView extends Navigator {
 		if ( examination == null ) return false;
 		
 		return ExaminationStatus.TODO.equals( examination.getStatus() ) &&
-				AppointmentStatus.ACCEPTED.equals( examination.getAppointment().getStatus() );
+				SurveyScheduleStatus.ACCEPTED.equals( examination.getSurveySchedule().getStatus() );
 	}
 	public boolean hasModify( Examination examination ) {
 		if ( examination == null ) return false;

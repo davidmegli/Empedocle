@@ -1,5 +1,5 @@
 /*
-package it.unifi.ing.stlab.empedocle.services.appointments;
+package it.unifi.ing.stlab.empedocle.services.surveySchedule;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,14 +11,14 @@ import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
 import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Appointment;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.AppointmentStatus;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Service;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.appointment.Services;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Identifiers;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.WoodElement;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Place;
-import it.unifi.ing.stlab.empedocle.services.appointments.jaxb.wood_element.Sex;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.surveySchedule.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.surveySchedule.SurveyScheduleStatus;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.surveySchedule.Service;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.surveySchedule.Services;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.wood_element.Identifiers;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.wood_element.WoodElement;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.wood_element.Place;
+import it.unifi.ing.stlab.empedocle.services.surveySchedules.jaxb.wood_element.Sex;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.test.FieldUtils;
 import it.unifi.ing.stlab.test.PersistenceTest;
@@ -31,9 +31,9 @@ import javax.transaction.UserTransaction;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-public class AppointmentServiceTest extends PersistenceTest {
+public class SurveyScheduleServiceTest extends PersistenceTest {
 	
-	private AppointmentServiceBean appointmentService;
+	private SurveyScheduleServiceBean surveyScheduleService;
 	
 	protected WoodElementDao wood_elementDao;
 	protected ServiceDao serviceDao;
@@ -45,7 +45,7 @@ public class AppointmentServiceTest extends PersistenceTest {
 	
 	@Override 
 	protected void insertData() throws Exception {
-		appointmentService = new AppointmentServiceBean();
+		surveyScheduleService = new SurveyScheduleServiceBean();
 		
 		wood_elementDao = mock( WoodElementDao.class );
 		serviceDao = mock( ServiceDao.class );
@@ -55,29 +55,29 @@ public class AppointmentServiceTest extends PersistenceTest {
 		logger = mock( Logger.class );
 		utx = mock( UserTransaction.class );
 		
-		FieldUtils.assignField( appointmentService, "entityManager", entityManager);
-		FieldUtils.assignField( appointmentService, "wood_elementDao", wood_elementDao );
-		FieldUtils.assignField( appointmentService, "serviceDao", serviceDao );
-		FieldUtils.assignField( appointmentService, "examinationDao", examinationDao );
-		FieldUtils.assignField( appointmentService, "agendaDao", agendaDao );
-		FieldUtils.assignField( appointmentService, "userDao", userDao );
-		FieldUtils.assignField( appointmentService, "logger", logger );
-		FieldUtils.assignField( appointmentService, "utx", utx );
+		FieldUtils.assignField( surveyScheduleService, "entityManager", entityManager);
+		FieldUtils.assignField( surveyScheduleService, "wood_elementDao", wood_elementDao );
+		FieldUtils.assignField( surveyScheduleService, "serviceDao", serviceDao );
+		FieldUtils.assignField( surveyScheduleService, "examinationDao", examinationDao );
+		FieldUtils.assignField( surveyScheduleService, "agendaDao", agendaDao );
+		FieldUtils.assignField( surveyScheduleService, "userDao", userDao );
+		FieldUtils.assignField( surveyScheduleService, "logger", logger );
+		FieldUtils.assignField( surveyScheduleService, "utx", utx );
 		
 		WoodElement wood_elementDetails = init_wood_elementDetails();
-		Appointment appointmentDetails = init_appointmentDetails();
+		SurveySchedule surveyScheduleDetails = init_surveyScheduleDetails();
 
 		when( userDao.findByUsername( "administrator" )).thenReturn( null );
 		when( wood_elementDao.findByIdentifier( wood_elementDetails.getIdentifiers().getIdAce() )).thenReturn( null );
-		when( examinationDao.findByAppointmentCodes(appointmentDetails.getBookingCode(), appointmentDetails.getAcceptanceCode()))
+		when( examinationDao.findBySurveyScheduleCodes(survey_scheduleDetails.getBookingCode(), surveyScheduleDetails.getAcceptanceCode()))
 			.thenReturn( null );
-		when( serviceDao.find( appointmentDetails.getServices().getService().get(0).getCode(), appointmentDetails.getServices().getService().get(0).getDescription(), appointmentDetails.getAgenda() )).thenReturn( null );
-		when( agendaDao.findByCode( appointmentDetails.getAgenda() )).thenReturn( null );
+		when( serviceDao.find( surveyScheduleDetails.getServices().getService().get(0).getCode(), surveyScheduleDetails.getServices().getService().get(0).getDescription(), survey_scheduleDetails.getAgenda() )).thenReturn( null );
+		when( agendaDao.findByCode( surveyScheduleDetails.getAgenda() )).thenReturn( null );
 		
 		doNothing().when( utx ).begin();
 		doNothing().when( utx ).commit();
 		doNothing().when( logger ).info( anyString() );
-		appointmentService.handleAppointment( "BOOK", new Date(), wood_elementDetails, appointmentDetails);
+		surveyScheduleService.handleSurveySchedule( "BOOK", new Date(), wood_elementDetails, surveyScheduleDetails);
 	}
 
 	@Test
@@ -94,15 +94,15 @@ public class AppointmentServiceTest extends PersistenceTest {
 		assertEquals( "agenda_code", agenda.getCode() );
 	}
 	
-	private Appointment init_appointmentDetails() {
-		Appointment appointmentDetails = new Appointment();
+	private SurveySchedule init_surveyScheduleDetails() {
+		SurveySchedule surveyScheduleDetails = new SurveySchedule();
 		
-		appointmentDetails.setDate( new Date() );
-		appointmentDetails.setStatus( AppointmentStatus.BOOKED );
-		appointmentDetails.setNumber( "number" );
-		appointmentDetails.setBookingCode( "booking_code" );
-		appointmentDetails.setAcceptanceCode( "acceptance_code" );
-		appointmentDetails.setAgenda( "agenda_code" );
+		surveyScheduleDetails.setDate( new Date() );
+		surveyScheduleDetails.setStatus( SurveyScheduleStatus.BOOKED );
+		surveyScheduleDetails.setNumber( "number" );
+		surveyScheduleDetails.setBookingCode( "booking_code" );
+		surveyScheduleDetails.setAcceptanceCode( "acceptance_code" );
+		surveyScheduleDetails.setAgenda( "agenda_code" );
 		
 		Services services = new Services();
 		Service service = new Service();
@@ -110,9 +110,9 @@ public class AppointmentServiceTest extends PersistenceTest {
 		service.setDescription( "service_description" );
 		services.getService().add( service );
 		
-		appointmentDetails.setServices( services );
+		surveyScheduleDetails.setServices( services );
 		
-		return appointmentDetails;
+		return surveyScheduleDetails;
 	}
 	
 	private WoodElement init_wood_elementDetails() {

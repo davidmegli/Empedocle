@@ -29,9 +29,9 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "appointments", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = "survey_schedules", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"booking_code", "acceptance_code" }))
-public class Appointment implements Persistable {
+public class SurveySchedule implements Persistable {
 
 	private PersistableImpl persistable;
 	
@@ -42,14 +42,14 @@ public class Appointment implements Persistable {
 	private Set<Service> services;
 	private Agenda agenda;
 	private WoodElement woodElement;
-	private AppointmentStatus status;
+	private SurveyScheduleStatus status;
 
 
-	public Appointment( String uuid ) {
+	public SurveySchedule( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		services = new HashSet<Service>();
 	}
-	protected Appointment() {
+	protected SurveySchedule() {
 		persistable = new PersistableImpl();
 		services = new HashSet<Service>();
 	}
@@ -60,7 +60,7 @@ public class Appointment implements Persistable {
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="appointment", 
+		pkColumnValue="survey_schedule", 
 		allocationSize = 50 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen" )	
 	public Long getId() {
@@ -114,8 +114,8 @@ public class Appointment implements Persistable {
 	
 	@ManyToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST } )
 	@JoinTable(
-		name = "appointment_services",
-	    joinColumns = { @JoinColumn( name = "appointment_id", referencedColumnName="id" ) },
+		name = "survey_schedule_services",
+	    joinColumns = { @JoinColumn( name = "survey_schedule_id", referencedColumnName="id" ) },
 	    inverseJoinColumns = { @JoinColumn( name = "service_id", referencedColumnName = "id") } )
 	protected Set<Service> getServices() {
 		return services;
@@ -159,10 +159,10 @@ public class Appointment implements Persistable {
 
 	
 	@Enumerated( EnumType.STRING )
-	public AppointmentStatus getStatus() {
+	public SurveyScheduleStatus getStatus() {
 		return status;
 	}
-	public void setStatus(AppointmentStatus status) {
+	public void setStatus(SurveyScheduleStatus status) {
 		this.status = status;
 	}
 	

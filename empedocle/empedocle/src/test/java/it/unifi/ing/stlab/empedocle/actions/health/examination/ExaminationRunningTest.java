@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.empedocle.actions.health.examination;
 
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationTypeFactory;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
@@ -31,7 +31,7 @@ public class ExaminationRunningTest extends PersistenceTest {
 		examinationRunning = new ExaminationRunning();
 		examinationRunning.setSummary(true);
 		examination = ExaminationFactory.createExamination();
-		examination.setAppointment(AppointmentFactory.createAppointment());
+		examination.setSurveySchedule(SurveyScheduleFactory.createSurveySchedule());
 		examination.setStatus(ExaminationStatus.DONE);
 		examination.setType(ExaminationTypeFactory.createExaminationType());
 	}

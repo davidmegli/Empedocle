@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.empedocle.actions.health.examination;
 
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class BasicFactTest {
 
 	protected FactContext context;
-	protected Appointment appointment;
+	protected SurveySchedule surveySchedule;
 	protected WoodElement wood_element;
 	protected Fact root;
 	
@@ -50,10 +50,10 @@ public class BasicFactTest {
 		author = UserFactory.createUser();
 		author.setUserid("usr");
 		Examination ex = ExaminationFactory.createExamination();
-		appointment = AppointmentFactory.createAppointment();
+		surveySchedule = SurveyScheduleFactory.createSurveySchedule();
 		wood_element = WoodElementFactory.createWoodElement();
-		ex.setAppointment(appointment);
-		appointment.setWoodElement(wood_element);
+		ex.setSurveySchedule(surveySchedule);
+		surveySchedule.setWoodElement(wood_element);
 		context = ex;
 		mng = new FactManager();
 		

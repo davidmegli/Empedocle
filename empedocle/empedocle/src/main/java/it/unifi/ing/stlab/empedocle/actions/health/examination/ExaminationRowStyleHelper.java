@@ -28,7 +28,7 @@ public class ExaminationRowStyleHelper {
 
 		switch (examination.getStatus()) {
 		case TODO:
-			switch (examination.getAppointment().getStatus()) {
+			switch (examination.getSurveySchedule().getStatus()) {
 			case BOOKED:
 				return "booked";
 			case ACCEPTED:

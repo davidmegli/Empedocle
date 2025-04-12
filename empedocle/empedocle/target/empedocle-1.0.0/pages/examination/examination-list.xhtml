@@ -192,13 +192,13 @@
 								style="#{empty examinationResults ? 'display:none;' : ''}">
 								
 								<c:set var="_wood_element"
-									value="#{examinationList.getLastWoodElementVersion( examination.appointment.wood_element.id )}" />
+									value="#{examinationList.getLastWoodElementVersion( examination.survey_schedule.wood_element.id )}" />
 								
 								<h:column>
 									<f:facet name="header">
 										Date
 									</f:facet>
-									<h:outputText value="#{examination.appointment.date}" >
+									<h:outputText value="#{examination.survey_schedule.date}" >
 										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 									</h:outputText>								
 									

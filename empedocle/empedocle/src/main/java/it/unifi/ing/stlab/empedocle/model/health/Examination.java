@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue( "EX" )
 public class Examination extends FactContext {
 
-	private Appointment appointment;
+	private SurveySchedule surveySchedule;
 	private ExaminationType type;
 	private ExaminationStatus status;
 	private Date lastUpdate;
@@ -35,12 +35,12 @@ public class Examination extends FactContext {
 	}
 
 	@ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
-	@JoinColumn( name = "appointment_id" )
-	public Appointment getAppointment() {
-		return appointment;
+	@JoinColumn( name = "survey_schedule_id" )
+	public SurveySchedule getSurveySchedule() {
+		return surveySchedule;
 	}
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
+	public void setSurveySchedule(SurveySchedule surveySchedule) {
+		this.surveySchedule = surveySchedule;
 	}
 	
 	@ManyToOne( fetch = FetchType.EAGER )

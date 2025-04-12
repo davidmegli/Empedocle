@@ -1,11 +1,11 @@
 package it.unifi.ing.stlab.reflection.dao.facts;
 
 import static org.junit.Assert.assertEquals;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ExaminationTypeFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Examination;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
 import it.unifi.ing.stlab.empedocle.model.health.ExaminationType;
@@ -45,7 +45,7 @@ public class SelectUserExaminationTest extends PersistenceTest {
 		Service s = ServiceFactory.createService();
 		entityManager.persist(s);
 		
-		Appointment a = AppointmentFactory.createAppointment();
+		SurveySchedule a = SurveyScheduleFactory.createSurveySchedule();
 		a.addService(s);
 		entityManager.persist(a);
 		
@@ -58,7 +58,7 @@ public class SelectUserExaminationTest extends PersistenceTest {
 		
 		e1 = ExaminationFactory.createExamination();
 		e1.setStatus(ExaminationStatus.SUSPENDED);
-		e1.setAppointment(a);
+		e1.setSurveySchedule(a);
 		e1.setType(et);
 		entityManager.persist(e1);
 		
@@ -72,7 +72,7 @@ public class SelectUserExaminationTest extends PersistenceTest {
 		
 		Examination e2 = ExaminationFactory.createExamination();
 		e2.setStatus(ExaminationStatus.CONCLUDED);
-		e2.setAppointment(a);
+		e2.setSurveySchedule(a);
 		e2.setType(et);
 		entityManager.persist(e2);
 		
@@ -85,7 +85,7 @@ public class SelectUserExaminationTest extends PersistenceTest {
 		
 		Examination e3 = ExaminationFactory.createExamination();
 		e3.setStatus(ExaminationStatus.SUSPENDED);
-		e3.setAppointment(a);
+		e3.setSurveySchedule(a);
 		e3.setType(et);
 		entityManager.persist(e3);
 		
@@ -109,7 +109,7 @@ public class SelectUserExaminationTest extends PersistenceTest {
 		
 		String q = "select distinct(e)" +
 				" from Examination e, FactImpl f" +
-//				" join e.appointment.services s" +   //XXX non serve
+//				" join e.survey_schedule.services s" +   //XXX non serve
 				" join f.context c" +
 				" where c.id = e.id" +
 				" and f.type = e.type.type" +

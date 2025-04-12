@@ -29,21 +29,21 @@ public class POIDataExporter {
 	public POIDataExporter(BaseExcelConfig config) {
 		super(config);
 
-		// single file, but one sheet for each type of appointment
+		// single file, but one sheet for each type of survey_schedule
 		workbook = new XSSFWorkbook();
-		// similarly, each type of appointment has its own structure
+		// similarly, each type of survey_schedule has its own structure
 		structures = new HashMap<String, Map<String,Integer>>();
 		// keeps track of the row number reached for each sheet
 		currentRowNumbers = new HashMap<String, Integer>();
 		
 	}
 
-	// note1: it is assumed that these are already root facts of appointments ok for export, meaning they are neither accepted nor booked
+	// note1: it is assumed that these are already root facts of survey_schedules ok for export, meaning they are neither accepted nor booked
 	@Override
 	public void export(List<Fact> roots) throws Exception {
 		for(Fact rootFact : roots) {
 
-			// if it's a 'new' type of appointment, create and initialize sheet and structure
+			// if it's a 'new' type of survey_schedule, create and initialize sheet and structure
 //			ExaminationType examinationType = ClassHelper.cast(rootFact.getContext(), Examination.class).getType();
 			Type rootType = rootFact.getType();
 			
@@ -60,14 +60,14 @@ public class POIDataExporter {
 				
 			}
 			
-			// create a new row for the appointment
+			// create a new row for the survey_schedule
 			Row row = createRow(
 						workbook.getSheet( buildSheetName(rootType) ),
 						currentRowNumbers.get( rootType.getName()  ) );
 			
 			// write the default rows containing WoodElement and Examination info
 			Examination e = ClassHelper.cast(rootFact.getContext(), Examination.class);
-			getConfig().writeDefaultColumns(e, e.getAppointment().getWoodElement(), row);
+			getConfig().writeDefaultColumns(e, e.getSurveySchedule().getWoodElement(), row);
 			
 			for(FactLink fl : rootFact.listChildrenOrdered()) {
 				if(fl.getTarget() != null ){

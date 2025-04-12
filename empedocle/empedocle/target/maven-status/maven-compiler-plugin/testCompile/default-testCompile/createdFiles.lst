@@ -9,7 +9,7 @@ it\unifi\ing\stlab\empedocle\model\health\coding\icd9cm\ICD9CMCodeJpaTest.class
 it\unifi\ing\stlab\empedocle\model\health\coding\icd9cm\ICD9CMCodeJpaImporter.class
 it\unifi\ing\stlab\empedocle\ReflectionTest.class
 it\unifi\ing\stlab\empedocle\TreeMapTest$ValueComparator.class
-it\unifi\ing\stlab\empedocle\model\health\AppointmentTest.class
+it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleTest.class
 it\unifi\ing\stlab\empedocle\dao\health\ExaminationDaoTest.class
 it\unifi\ing\stlab\empedocle\visitor\factquery\EncodeExpressionBeanVisitorTest.class
 it\unifi\ing\stlab\empedocle\model\health\drugs\DrugIndexImporter.class
@@ -22,7 +22,7 @@ it\unifi\ing\stlab\empedocle\actions\JpaGarbageActionTest.class
 it\unifi\ing\stlab\empedocle\model\health\drugs\DrugIndexJpaTest.class
 it\unifi\ing\stlab\empedocle\actions\health\ExaminationTypeEditTest.class
 it\unifi\ing\stlab\empedocle\actions\health\examination\FolderNumberGeneratorTest.class
-it\unifi\ing\stlab\empedocle\model\health\AppointmentJpaTest.class
+it\unifi\ing\stlab\empedocle\model\health\SurveyScheduleJpaTest.class
 it\unifi\ing\stlab\empedocle\actions\converter\PlusSignConverterTest.class
 it\unifi\ing\stlab\empedocle\model\messages\MessageJpaTest.class
 it\unifi\ing\stlab\empedocle\model\health\ServiceJpaTest.class
