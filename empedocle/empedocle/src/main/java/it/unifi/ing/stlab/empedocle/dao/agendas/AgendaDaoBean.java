@@ -199,7 +199,7 @@ public class AgendaDaoBean implements AgendaDao {
 	public Boolean checkUnusedAgendas( List<Agenda> exclude ) {
 		return entityManager.createQuery( 
 				" select count( a ) from Agenda a "
-					+ " where a.examinationType is null " 
+					+ " where a.measurementSessionType is null " 
 					+ " and a not in :excluded ", Long.class )
 				.setParameter( "excluded", exclude )
 				.getSingleResult()
@@ -210,7 +210,7 @@ public class AgendaDaoBean implements AgendaDao {
 	public Boolean checkUnusedAgendas() {
 		return entityManager.createQuery( 
 				" select count( a ) from Agenda a " 
-					+ " where a.examinationType is null ", Long.class )
+					+ " where a.measurementSessionType is null ", Long.class )
 				.getSingleResult()
 				.intValue() > 0;
 	}
@@ -219,7 +219,7 @@ public class AgendaDaoBean implements AgendaDao {
 	public List<Agenda> findUnusedAgendasBySuggestion( String suggestion, int limit ) {
 		TypedQuery<Agenda> query = entityManager.createQuery( 
 				" select a from Agenda a " 
-						+ " where a.examinationType is null "
+						+ " where a.measurementSessionType is null "
 						+ " and CONCAT( a.code, ' ', a.description ) like :suggestion" 
 						+ " order by a.code", Agenda.class );
 		
@@ -237,7 +237,7 @@ public class AgendaDaoBean implements AgendaDao {
 			List<Agenda> exclude ) {
 		TypedQuery<Agenda> query = entityManager.createQuery( 
 			" select a from Agenda a " 
-				+ " where a.examinationType is null "
+				+ " where a.measurementSessionType is null "
 				+ " and a not in :excluded "
 				+ " and CONCAT( a.code, ' ', a.description ) like :suggestion" 
 				+ " order by a.code", Agenda.class );
@@ -263,12 +263,12 @@ public class AgendaDaoBean implements AgendaDao {
 	}
 
 	@Override
-	public List<Agenda> findByExaminationTypeId( Long examTypeId ) {
+	public List<Agenda> findByMeasurementSessionTypeId( Long measurementSessionTypeId ) {
 		return entityManager.createQuery( 
 				" select a from Agenda a " 
-					+ " where a.examinationType.id = :id" 
+					+ " where a.measurementSessionType.id = :id" 
 					+ " order by a.code", Agenda.class )
-				.setParameter( "id", examTypeId )
+				.setParameter( "id", measurementSessionTypeId )
 				.getResultList();
 	}
 }

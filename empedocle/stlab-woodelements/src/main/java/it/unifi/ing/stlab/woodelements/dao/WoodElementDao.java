@@ -19,7 +19,7 @@ public interface WoodElementDao {
 	WoodElement findByIdentifier(String identifier);
 	
 	//XXX lasciato per garantire la compatibilità con il vecchio approccio,
-	// in cui gli appointment non venivano spostati nell'ultima versione
+	// in cui gli survey_schedule non venivano spostati nell'ultima versione
     WoodElement findLastVersionById(Long id);
 	
 	List<WoodElement> findByName(String name, String surname);

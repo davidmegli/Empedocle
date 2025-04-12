@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.empedocle.model;
 
-import it.unifi.ing.stlab.empedocle.model.health.ExaminationType;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 
@@ -24,7 +24,7 @@ public class Agenda implements Persistable {
 	private PersistableImpl persistable;
 	private String code;
 	private String description;
-	private ExaminationType examinationType;
+	private MeasurementSessionType measurementSessionType;
 	
 	public Agenda( String uuid ) {
 		persistable = new PersistableImpl( uuid );
@@ -77,12 +77,12 @@ public class Agenda implements Persistable {
 	}
 	
 	@ManyToOne( fetch = FetchType.EAGER )
-	@JoinColumn( name = "exam_type_id" )
-	public ExaminationType getExaminationType() {
-		return examinationType;
+	@JoinColumn( name = "measurementSession_type_id" )
+	public MeasurementSessionType getMeasurementSessionType() {
+		return measurementSessionType;
 	}
-	public void setExaminationType(ExaminationType examinationType) {
-		this.examinationType = examinationType;
+	public void setMeasurementSessionType(MeasurementSessionType measurementSessionType) {
+		this.measurementSessionType = measurementSessionType;
 	}
 	
 	

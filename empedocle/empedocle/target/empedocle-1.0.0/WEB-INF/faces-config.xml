@@ -32,8 +32,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>examination-list</from-outcome>
-			<to-view-id>/pages/examination/examination-list.xhtml</to-view-id>
+			<from-outcome>measurementSession-list</from-outcome>
+			<to-view-id>/pages/measurementSession/measurementSession-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -47,8 +47,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>examinationtype-list</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<from-outcome>measurementSessiontype-list</from-outcome>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -141,7 +141,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>run</from-outcome>
-			<to-view-id>/pages/examination/examination-running.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-running.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -149,7 +149,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{wood_elementList.examinationId}</value>
+					<value>#{wood_elementList.measurementSessionId}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -188,7 +188,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>run</from-outcome>
-			<to-view-id>/pages/examination/examination-running.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-running.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -250,13 +250,13 @@
 	</navigation-rule>
 	
 
-	<!-- Examination navigation rules -->
-	<!-- from examination-list -->
+	<!-- MeasurementSession navigation rules -->
+	<!-- from measurementSession-list -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/examination-list.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/measurementSession-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>run</from-outcome>
-			<to-view-id>/pages/examination/examination-running.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-running.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -264,7 +264,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{examinationList.selection}</value>
+					<value>#{measurementSessionList.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
@@ -274,17 +274,17 @@
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationList.wood_elementId}</value>
+					<value>#{measurementSessionList.wood_elementId}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>examination-list</value>
+					<value>measurementSession-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/examination/examination-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -292,13 +292,13 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{examinationList.selection}</value>
+					<value>#{measurementSessionList.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>add-new</from-outcome>
-			<to-view-id>/pages/examination/examination-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -308,54 +308,54 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/examination/examination-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from examination-edit -->
+	<!-- from measurementSession-edit -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/examination-edit.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/measurementSession-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<to-view-id>/pages/examination/examination-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/pages/examination/examination-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from examination-running -->
+	<!-- from measurementSession-running -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/examination-running.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/measurementSession-running.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>summary</from-outcome>
-			<to-view-id>/pages/examination/examination-summary.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-summary.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/examination/examination-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>switch-user</from-outcome>
-			<to-view-id>/pages/examination/examination-running.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-running.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationRunning.id}</value>
+					<value>#{measurementSessionRunning.id}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from examination-summary -->
+	<!-- from measurementSession-summary -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/examination-summary.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/measurementSession-summary.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
 			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
@@ -363,7 +363,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>run</from-outcome>
-			<to-view-id>/pages/examination/examination-running.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/measurementSession-running.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -763,23 +763,23 @@
 	</navigation-rule>
 	
 	
-	<!-- Examination type navigation rules -->
-	<!-- from examinationtype-list -->	
+	<!-- MeasurementSession type navigation rules -->
+	<!-- from measurementSessiontype-list -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/types/examinationtype-list.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>view</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-view.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeList.selection}</value>
+					<value>#{measurementSessionTypeList.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -791,13 +791,13 @@
 				</view-param>				
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeList.selection}</value>
+					<value>#{measurementSessionTypeList.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>copy</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -813,13 +813,13 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeList.selection}</value>
+					<value>#{measurementSessionTypeList.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>add-new</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -833,61 +833,61 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from examinationtype-edit -->
+	<!-- from measurementSessiontype-edit -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/types/examinationtype-edit.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{examinationTypeEdit.from eq 'view'}</if>
-			<to-view-id>/pages/examination/types/examinationtype-view.xhtml</to-view-id>
+			<if>#{measurementSessionTypeEdit.from eq 'view'}</if>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeEdit.id}</value>
+					<value>#{measurementSessionTypeEdit.id}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{examinationTypeEdit.from eq 'list'}</if>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<if>#{measurementSessionTypeEdit.from eq 'list'}</if>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{examinationTypeEdit.from eq 'view' and not examinationTypeEdit.copy}</if>
-			<to-view-id>/pages/examination/types/examinationtype-view.xhtml</to-view-id>
+			<if>#{measurementSessionTypeEdit.from eq 'view' and not measurementSessionTypeEdit.copy}</if>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeEdit.id}</value>
+					<value>#{measurementSessionTypeEdit.id}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{examinationTypeEdit.from eq 'list' or examinationTypeEdit.copy}</if>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<if>#{measurementSessionTypeEdit.from eq 'list' or measurementSessionTypeEdit.copy}</if>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>		
 	</navigation-rule>
 	
-	<!-- from examinationtype-view -->
+	<!-- from measurementSessiontype-view -->
 	<navigation-rule>
-		<from-view-id>/pages/examination/types/examinationtype-view.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>close</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -899,13 +899,13 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeView.id}</value>
+					<value>#{measurementSessionTypeView.id}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>copy</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-edit.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -921,13 +921,13 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{examinationTypeView.id}</value>
+					<value>#{measurementSessionTypeView.id}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/examination/types/examinationtype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

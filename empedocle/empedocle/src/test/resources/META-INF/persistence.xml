@@ -87,9 +87,9 @@
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.ExaminationType</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Examination</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Appointment</class> 
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>	
 		
@@ -207,9 +207,9 @@
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.ExaminationType</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Examination</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Appointment</class> 
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
 		
@@ -328,9 +328,9 @@
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.ExaminationType</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Examination</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Appointment</class> 
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
 		

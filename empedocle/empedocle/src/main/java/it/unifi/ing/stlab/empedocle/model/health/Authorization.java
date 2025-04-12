@@ -21,7 +21,7 @@ import javax.persistence.TableGenerator;
 public class Authorization implements Persistable {
 
 	private Qualification qualification;
-	private ExaminationOperation examOperation;
+	private MeasurementSessionOperation measurementSessionOperation;
 	
 	private PersistableImpl persistable;
 	
@@ -68,11 +68,11 @@ public class Authorization implements Persistable {
 	
 	
 	@Enumerated(EnumType.STRING)
-	public ExaminationOperation getExamOperation() {
-		return examOperation;
+	public MeasurementSessionOperation getExamOperation() {
+		return measurementSessionOperation;
 	}
-	public void setExamOperation(ExaminationOperation examOperation) {
-		this.examOperation = examOperation;
+	public void setExamOperation(MeasurementSessionOperation measurementSessionOperation) {
+		this.measurementSessionOperation = measurementSessionOperation;
 	}
 	
 	

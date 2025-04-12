@@ -16,7 +16,7 @@ public interface TypeDao {
 	Type findById(Long id);
 	Type findByUuid(String uuid);
 	Type findByName(String name);
-	Type findByExaminationType(Long examinationTypeId);
+	Type findByMeasurementSessionType(Long measurementSessionTypeId);
 
 	Type fetchById(Long id);
 	Type fetchByIdWithFullHierarchy(Long id);

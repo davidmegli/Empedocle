@@ -45,13 +45,13 @@ public class TypeDaoBean implements TypeDao {
 	}
 	
 	@Override
-	public Type findByExaminationType( Long examinationTypeId ) {
+	public Type findByMeasurementSessionType( Long measurementSessionTypeId ) {
 		List<Type> result = entityManager.createQuery(
-				"select t from Type t, ExaminationType et " 
+				"select t from Type t, MeasurementSessionType et " 
 					+ " where et.type = t " 
 					+ " and et.id = :id", Type.class )
 				.setMaxResults( 1 )
-				.setParameter( "id", examinationTypeId )
+				.setParameter( "id", measurementSessionTypeId )
 				.getResultList();
 		
 		if ( result.size() == 0 ) {
@@ -233,8 +233,8 @@ public class TypeDaoBean implements TypeDao {
 
 	@Override
 	public boolean checkForeignKeyRestrictions( Long id ) {
-		Boolean checkExaminationType = !entityManager.createQuery( 
-			"select t from Type t, ExaminationType et " 
+		Boolean checkMeasurementSessionType = !entityManager.createQuery( 
+			"select t from Type t, MeasurementSessionType et " 
 					+ " where et.type = t " 
 					+ " and t.id = :id" )
 				.setParameter( "id", id )
@@ -269,6 +269,6 @@ public class TypeDaoBean implements TypeDao {
 				.getResultList()
 				.isEmpty();
 
-		return checkExaminationType || checkViewer || checkFact || checkTypeLink;
+		return checkMeasurementSessionType || checkViewer || checkFact || checkTypeLink;
 	}	
 }

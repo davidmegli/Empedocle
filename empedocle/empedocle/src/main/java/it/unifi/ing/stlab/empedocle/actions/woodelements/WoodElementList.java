@@ -16,15 +16,15 @@ import javax.transaction.*;
 
 import it.unifi.ing.stlab.empedocle.actions.util.DateUtils;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
 import it.unifi.ing.stlab.empedocle.dao.messages.MessageDao;
-import it.unifi.ing.stlab.empedocle.factory.health.AppointmentFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.ExaminationFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.Appointment;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
-import it.unifi.ing.stlab.empedocle.model.health.Examination;
-import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
+import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.navigation.Navigator;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
@@ -61,7 +61,7 @@ public class WoodElementList extends Navigator {
 	private WoodElementDao woodElementDao;
 	
 	@Inject
-	private ExaminationDao examinationDao;
+	private MeasurementSessionDao measurementSessionDao;
 
 	@Inject
 	private AgendaDao agendaDao;
@@ -75,7 +75,7 @@ public class WoodElementList extends Navigator {
 	private String selection;
 	private Integer itemCount;
 
-	private String examinationId;
+	private String measurementSessionId;
 
 	@PostConstruct
 	public void init() {
@@ -84,7 +84,7 @@ public class WoodElementList extends Navigator {
 
 	}
 
-	public String runDateless( Long woodElementId){ // when starting a "recovery" appointment where a date can be chosen
+	public String runDateless( Long woodElementId){ // when starting a "recovery" survey_schedule where a date can be chosen
 		if( !wood_elementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
@@ -97,44 +97,44 @@ public class WoodElementList extends Navigator {
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		Appointment appointment = AppointmentFactory.createAppointment();
-		appointment.setAgenda( agenda );
-		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		//appointment.setDate( date );
-		appointment.setStatus( AppointmentStatus.ACCEPTED );
+		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
+		survey_schedule.setAgenda( agenda );
+		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
+		//survey_schedule.setDate( date );
+		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		appointment.setBookingCode( bookingCode  );
+		survey_schedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		appointment.setAcceptanceCode( acceptanceCode );
+		survey_schedule.setAcceptanceCode( acceptanceCode );
 
-		Examination examination = ExaminationFactory.createExamination();
-		examination.setStatus( ExaminationStatus.TODO );
-		examination.setAppointment( appointment );
-		examination.setLastUpdate( date );
+		MeasurementSession measurementSession = MeasurementSessionFactory.createMeasurementSession();
+		measurementSession.setStatus( MeasurementSessionStatus.TODO );
+		measurementSession.setSurveySchedule( survey_schedule );
+		measurementSession.setLastUpdate( date );
 
 		try {
 			utx.begin();
-			examinationDao.save( examination );
+			measurementSessionDao.save( measurementSession );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();
 		}
 
-		Examination examRecov = null;
+		MeasurementSession measurementSessionRecov = null;
 		try {
 			utx.begin();
-			examRecov = examinationDao.findByAppointmentCodes( bookingCode, acceptanceCode );
+			measurementSessionRecov = measurementSessionDao.findBySurveyScheduleCodes( bookingCode, acceptanceCode );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();
 		}
 
-		if ( examRecov != null ) {
-			examinationId = Long.toString( examRecov.getId() );
+		if ( measurementSessionRecov != null ) {
+			measurementSessionId = Long.toString( measurementSessionRecov.getId() );
 			conversation.begin();
 			return "run";
 		} else
-			throw new RuntimeException( "exam not found" );
+			throw new RuntimeException( "measurementSession not found" );
 	}
 
 	public String run( Long wood_elementId ) {
@@ -150,44 +150,44 @@ public class WoodElementList extends Navigator {
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
-		Appointment appointment = AppointmentFactory.createAppointment();
-		appointment.setAgenda( agenda );
-		appointment.setWoodElement( wood_elementDao.findById( wood_elementId ) );
-		appointment.setDate( date );
-		appointment.setStatus( AppointmentStatus.ACCEPTED );
+		SurveySchedule survey_schedule = SurveyScheduleFactory.createSurveySchedule();
+		survey_schedule.setAgenda( agenda );
+		survey_schedule.setWoodElement( wood_elementDao.findById( wood_elementId ) );
+		survey_schedule.setDate( date );
+		survey_schedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
-		appointment.setBookingCode( bookingCode  );
+		survey_schedule.setBookingCode( bookingCode  );
 		String acceptanceCode = "ACC" + DateUtils.getString( date, "yyyyMMddHHmmss" ) +  "AG" + agenda.getCode();
-		appointment.setAcceptanceCode( acceptanceCode );
+		survey_schedule.setAcceptanceCode( acceptanceCode );
 
-		Examination examination = ExaminationFactory.createExamination();
-		examination.setStatus( ExaminationStatus.TODO );
-		examination.setAppointment( appointment );
-		examination.setLastUpdate( date );
+		MeasurementSession measurementSession = MeasurementSessionFactory.createMeasurementSession();
+		measurementSession.setStatus( MeasurementSessionStatus.TODO );
+		measurementSession.setSurveySchedule( survey_schedule );
+		measurementSession.setLastUpdate( date );
 
 		try {
 			utx.begin();
-			examinationDao.save( examination );
+			measurementSessionDao.save( measurementSession );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();
 		}
 
-		Examination examRecov = null;
+		MeasurementSession measurementSessionRecov = null;
 		try {
 			utx.begin();
-			examRecov = examinationDao.findByAppointmentCodes( bookingCode, acceptanceCode );
+			measurementSessionRecov = measurementSessionDao.findBySurveyScheduleCodes( bookingCode, acceptanceCode );
 			utx.commit();
 		} catch ( NotSupportedException | SystemException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | RollbackException e ) {
 			e.printStackTrace();
 		}
 
-		if ( examRecov != null ) {
-			examinationId = Long.toString( examRecov.getId() );
+		if ( measurementSessionRecov != null ) {
+			measurementSessionId = Long.toString( measurementSessionRecov.getId() );
 			conversation.begin();
 			return "run";
 		} else
-			throw new RuntimeException( "exam not found" );
+			throw new RuntimeException( "measurementSession not found" );
 	}
 	
 	@Produces @RequestScoped @Named( "wood_elementResults" ) 
@@ -201,17 +201,17 @@ public class WoodElementList extends Navigator {
 	public Boolean checkHistory( Long wood_elementId ){
 		Set<Agenda> agendas = loggedUser.getAgendas();
 		
-		Set<ExaminationStatus> statuses = new HashSet<ExaminationStatus>(
+		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>(
 				Arrays.asList(
-						ExaminationStatus.SUSPENDED,
-						ExaminationStatus.DONE, 
-						ExaminationStatus.CONCLUDED));
+						MeasurementSessionStatus.SUSPENDED,
+						MeasurementSessionStatus.DONE, 
+						MeasurementSessionStatus.CONCLUDED));
 		
-		return examinationDao.hasWoodElementHistory( wood_elementId, statuses, agendas );
+		return measurementSessionDao.hasWoodElementHistory( wood_elementId, statuses, agendas );
 	}
 
 	public boolean isRemovable( Long wood_elementId ) {
-		return !examinationDao.hasWoodElementHistory( wood_elementId );
+		return !measurementSessionDao.hasWoodElementHistory( wood_elementId );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -270,8 +270,8 @@ public class WoodElementList extends Navigator {
 		}
 		return itemCount;
 	}
-	public String getExaminationId() {
-		return examinationId;
+	public String getMeasurementSessionId() {
+		return measurementSessionId;
 	}
 
 

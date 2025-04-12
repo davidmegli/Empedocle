@@ -125,8 +125,8 @@ public class OfflineWoodElementReconciliator {
 						master = purged;
 						entityManager.persist( master );
 						
-						//XXX per ora i riferimenti agli appointment rimangono sempre sullo stesso paziente
-						// updateAppointmentsReferences();
+						//XXX per ora i riferimenti agli survey_schedule rimangono sempre sullo stesso paziente
+						// updateSurveySchedulesReferences();
 					}
 					
 					if ( slave != null ) {

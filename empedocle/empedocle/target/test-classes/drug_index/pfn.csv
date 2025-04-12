@@ -145,7 +145,7 @@ im Ev 6 F 100 mg#Acido clodr.eg#Acido Clodronico Sale Disodico Tetraidrato#C###R
 5% Ung 30 G#Acido salicilico na#Acido Salicilico#C###SOP#G#D11AF#30578025#3.7#Nova Argentia Spa
 10% Ung30 G#Acido salicilico na#Acido Salicilico#C###SOP#G#D11AF#30578037#4#Nova Argentia Spa
 2% Ung 30 G#Acido salicilico na#Acido Salicilico#C###SOP#G#D11AF#30578013#3.5#Nova Argentia Spa
-IV Os 5 F 5 ml#Acido tranexamico#Acido Tranexamico#A###RR#G#B02AA02#35748019#3.96#Bioindustria L.i.m. Spa
+IV Os 5 F 5 ml#Acido tranmeasurementSessionico#Acido TranmeasurementSessionico#A###RR#G#B02AA02#35748019#3.96#Bioindustria L.i.m. Spa
 50% 10 ml#Acido tricloroacetico#Acido Tricloracetico#C###SOP#G#D11AF#31296015#3.9#Zeta Farmaceutici Spa
 50% 10 ml#Acido tricloroacetico#Acido Tricloracetico#C###SOP#G#D11AF#31039011#3.3#New.fa.dem. Srl
 20 Cps 300 M#Acido ursod.actavis#Acido Ursodesossicolico#A#2##RR#G#A05AA02#28366019#5.24#Actavis Italy Spa
@@ -3841,7 +3841,7 @@ fl 100 ml 0,2% W/w#Dettolmed#Benzalconio Cloruro#C###OTC#B#D08AJ01#39685019#4.99
 20 Cps 300 mg#Deursil#Acido Ursodesossicolico#A#2##RR#E#A05AA02#23605114#6.59#Sanofi-aventis Spa
 20 Cps 225 mg R P#Deursil#Acido Ursodesossicolico#A#2##RR#E#A05AA02#23605153#7.89#Sanofi-aventis Spa
 20 Cps 150 mg#Deursil#Acido Ursodesossicolico#A#2##RR#E#A05AA02#23605076#4.43#Sanofi-aventis Spa
-Coll 20 fl 1 D 1 mg/ml#Dexamono#Desametasone 21-fosfato Disodico#C###RR#E#S01BA01#37195029#11#Farmila-thea Farmaceutici Spa
+Coll 20 fl 1 D 1 mg/ml#DmeasurementSessionono#Desametasone 21-fosfato Disodico#C###RR#E#S01BA01#37195029#11#Farmila-thea Farmaceutici Spa
 20 Cpr 250 mg#Diabemide#Clorpropamide#A###RR#E#A10BB02#16891018#1.14#Lab.guidotti Spa
 40 Cpr 80 mg#Diabrezide#Gliclazide#A###RR#E#A10BB09#31844018#6.14#Molteni & C. F.lli Alitti Spa
 Scir 180 ml 66,7 G/100 M#Diacolon#Lattulosio#C###SOP#E#A06AD11#23002114#7.8#Piam Farmaceutici Spa
@@ -13351,9 +13351,9 @@ Os Gtt 10 ml#Tramadolo viatris#Tramadolo Cloridrato#A###RNR#E#N02AX02#35875018#4
 30 Cpr 200 mg+20 mg#Trandiur#Labetalolo + clortalidone#C###RR#E#C07CG01#24742025#11.47#Teofarma Srl
 14 Cps 2 mg#Trandolapril arr#Trandolapril#A###RR#G#C09AA10#38091157#4.09#Arrow Generics Ltd
 14 Cps 2 mg#Trandolapril m.g.#Trandolapril#A###RR#G#C09AA10#38260105#4.09#Mylan Spa
-30 Cps 500 mg#Tranex#Acido Tranexamico#A###RR#E#B02AA02#22019020#8.84#Malesci Spa Ist.farmacobiol.
-30 Cps 250 mg#Tranex#Acido Tranexamico#A###RR#E#B02AA02#22019018#4.93#Malesci Spa Ist.farmacobiol.
-Os IV 6 F 5 ml 500 mg#Tranex#Acido Tranexamico#A###RR#E#B02AA02#22019032#6.59#Malesci Spa Ist.farmacobiol.
+30 Cps 500 mg#Tranex#Acido TranmeasurementSessionico#A###RR#E#B02AA02#22019020#8.84#Malesci Spa Ist.farmacobiol.
+30 Cps 250 mg#Tranex#Acido TranmeasurementSessionico#A###RR#E#B02AA02#22019018#4.93#Malesci Spa Ist.farmacobiol.
+Os IV 6 F 5 ml 500 mg#Tranex#Acido TranmeasurementSessionico#A###RR#E#B02AA02#22019032#6.59#Malesci Spa Ist.farmacobiol.
 8 Cps 100 mg#Tranizolo#Itraconazolo#A###RR#E#J02AC02#37093046#9.06#Eg Spa
 Os Gtt 20 ml 0,5%#Tranquirit#Diazepam#C###RR1#E#N05BA01#20445021#5.8#Sanofi-aventis Spa
 10 Cer Medic 40 mg#Transact lat#Flurbiprofene#C###SOP#E#M02AA19#39281011#19.75#Bb Farma Srl
@@ -13553,8 +13553,8 @@ Os Sol 10 fl 50 mg/10 ml#Ubimaior#Ubidecarenone#C###SOP#E#C01EB09#25228065#21.22
 Iniet 50 Cart1:200000#Ubistesin#Articaina Cloridrato + adrenalina#C###USPL#H#N01BB58#29227016#35.64#3m Espe Ag
 Iniet 50 Cart1:100000#Ubistesin#Articaina Cloridrato + adrenalina#C###USPL#H#N01BB58#29227028#35.64#3m Espe Ag
 36 Cps 100 mg+224 mg#Uft#Tegafur + uracile#A###RNRL#E#L01BC53#34864052#308.36#Merck Serono Spa
-im IV Os 5 F 5 ml 500 mg#Ugurol#Acido Tranexamico#A###RR#E#B02AA02#21458029#3.96#Rottapharm Spa
-20 Cpr 250 mg#Ugurol#Acido Tranexamico#A###RR#E#B02AA02#21458017#3.72#Rottapharm Spa
+im IV Os 5 F 5 ml 500 mg#Ugurol#Acido TranmeasurementSessionico#A###RR#E#B02AA02#21458029#3.96#Rottapharm Spa
+20 Cpr 250 mg#Ugurol#Acido TranmeasurementSessionico#A###RR#E#B02AA02#21458017#3.72#Rottapharm Spa
 20 Cpr Riv 300 mg#Ulcex#Ranitidina Cloridrato#A#48##RR#E#A02BA02#25084056#9.27#Lab.guidotti Spa
 20 Cpr Riv 150 mg#Ulcex#Ranitidina Cloridrato#A#48##RR#E#A02BA02#25084017#4.11#Lab.guidotti Spa
 14 Cps Gastr 20 mg#Ulcezol#Omeprazolo#A#1+48##RR#E#A02BC01#38239012#6.08#S.f.group Srl

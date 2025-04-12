@@ -150,7 +150,7 @@ public class WoodElementEdit implements Serializable {
 					if ( purged != null ) {
 						wood_elementDao.save( purged );
 						wood_elementDao.update( original );
-	//					updateAppointmentsReferences( purged );
+	//					updateSurveySchedulesReferences( purged );
 						
 						id = purged.getId().toString();
 					}
@@ -239,12 +239,12 @@ public class WoodElementEdit implements Serializable {
 		facesContext.getExternalContext().getFlash().setKeepMessages( keepMessages );				
 	}	
 	
-//	private void updateAppointmentsReferences( WoodElement p ) {
-//		List<Appointment> appointments = appointmentDao.findByWoodElements( p.listBefore() );		
+//	private void updateSurveySchedulesReferences( WoodElement p ) {
+//		List<SurveySchedule> survey_schedules = survey_scheduleDao.findByWoodElements( p.listBefore() );		
 //		
-//		for( Appointment a : appointments ) {
+//		for( SurveySchedule a : survey_schedules ) {
 //			a.setWoodElement( p );
-//			appointmentDao.update( a );
+//			survey_scheduleDao.update( a );
 //		}
 //	}	
 }

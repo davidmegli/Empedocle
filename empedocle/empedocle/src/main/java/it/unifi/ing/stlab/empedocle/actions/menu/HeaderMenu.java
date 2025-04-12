@@ -30,7 +30,7 @@ public class HeaderMenu {
 	public boolean checkRoleFor( String operation ) {
 
 		switch ( operation ) {
-		case "examination-list":
+		case "measurementSession-list":
 			return true;
 			
 		case "configurability-item":
@@ -40,7 +40,7 @@ public class HeaderMenu {
 		case "type-list":
 		case "view-list":
 		case "fact-query-list":
-		case "examinationtype-list":
+		case "measurementSessiontype-list":
 			return loggedUser.hasRole( RoleType.DOMAIN_EXPERT ) ||  loggedUser.hasRole( RoleType.ADMINISTRATOR );
 			
 		case "staff-list":

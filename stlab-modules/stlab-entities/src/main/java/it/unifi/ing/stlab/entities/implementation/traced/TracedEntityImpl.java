@@ -115,7 +115,7 @@ public class TracedEntityImpl
 	public boolean isActive() {
 		if ( getDestination() == null ) return true;
 		
-		return getDestination().isTerminal(); //example delete
+		return getDestination().isTerminal(); //measurementSessionple delete
 	}
 
 

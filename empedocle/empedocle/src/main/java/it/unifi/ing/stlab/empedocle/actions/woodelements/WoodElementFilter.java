@@ -84,7 +84,7 @@ public class WoodElementFilter extends FilterBean implements QueryBuilder {
 	}
 
 	// specifically used to check if "Visita per Agenda:" has been set by the user
-	// (this enables to run a new examination in the specified Agenda
+	// (this enables to run a new measurementSession in the specified Agenda
 	public boolean isFilterSet( String filterName ) {
 		List<Filter> filters = getFilters();
 		if( filters.isEmpty() )

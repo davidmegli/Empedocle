@@ -12,10 +12,10 @@
     TARGET="rules:#pages#wood_elements#wood_element-list.xhtml"
     TITLE="wood_element-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="examination-list::#pages#examination#examination-list.xhtml"
-    NAME="output3" PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
-    TITLE="examination-list" model-entity="JSFProcessItemOutput"/>
+    ID="measurementSession-list::#pages#measurementSession#measurementSession-list.xhtml"
+    NAME="output3" PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
+    TITLE="measurementSession-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="staff-list::#pages#staff#staff-list.xhtml"
     NAME="output4" PATH="/pages/staff/staff-list.xhtml"
     TARGET="rules:#pages#staff#staff-list.xhtml" TITLE="staff-list" model-entity="JSFProcessItemOutput"/>
@@ -24,11 +24,11 @@
     PATH="/pages/agendas/agenda-list.xhtml"
     TARGET="rules:#pages#agendas#agenda-list.xhtml" TITLE="agenda-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="examinationtype-list::#pages#examination#types#examinationtype-list.xhtml"
+    ID="measurementSessiontype-list::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output6"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
-    TITLE="examinationtype-list" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    TITLE="measurementSessiontype-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="type-list::#pages#types#type-list.xhtml"
     NAME="output7" PATH="/pages/types/type-list.xhtml"
     TARGET="rules:#pages#types#type-list.xhtml" TITLE="type-list" model-entity="JSFProcessItemOutput"/>
@@ -81,9 +81,9 @@
     NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
     TARGET="rules:#pages#wood_elements#wood_element-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="run::#pages#examination#examination-running.xhtml" NAME="output"
-    PATH="/pages/examination/examination-running.xhtml"
-    TARGET="rules:#pages#examination#examination-running.xhtml"
+    ID="run::#pages#measurementSession#measurementSession-running.xhtml" NAME="output"
+    PATH="/pages/measurementSession/measurementSession-running.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="run" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -444,197 +444,197 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#home.xhtml" PATH="/home.xhtml"
   SHAPE="368,33,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#pages#examination#examination-list.xhtml"
-  PATH="/pages/examination/examination-list.xhtml" SHAPE="368,497,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#examination#examination-list.xhtml:0"
-   NAME="item" PATH="/pages/examination/examination-list.xhtml" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:#pages#measurementSession#measurementSession-list.xhtml"
+  PATH="/pages/measurementSession/measurementSession-list.xhtml" SHAPE="368,497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#measurementSession#measurementSession-list.xhtml:0"
+   NAME="item" PATH="/pages/measurementSession/measurementSession-list.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="run::#pages#examination#examination-running.xhtml" NAME="output"
-    PATH="/pages/examination/examination-running.xhtml"
-    TARGET="rules:#pages#examination#examination-running.xhtml"
+    ID="run::#pages#measurementSession#measurementSession-running.xhtml" NAME="output"
+    PATH="/pages/measurementSession/measurementSession-running.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="run" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="history::#pages#wood_elements#wood_element-view.xhtml"
     NAME="output1" PATH="/pages/woodelements/woodelement-view.xhtml"
     TARGET="rules:#pages#wood_elements#wood_element-view.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="edit::#pages#examination#examination-edit.xhtml" NAME="output2"
-    PATH="/pages/examination/examination-edit.xhtml"
-    TARGET="rules:#pages#examination#examination-edit.xhtml"
+    ID="edit::#pages#measurementSession#measurementSession-edit.xhtml" NAME="output2"
+    PATH="/pages/measurementSession/measurementSession-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-edit.xhtml"
     TITLE="edit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="add-new::#pages#examination#examination-edit.xhtml"
-    NAME="output3" PATH="/pages/examination/examination-edit.xhtml"
-    TARGET="rules:#pages#examination#examination-edit.xhtml"
+    ID="add-new::#pages#measurementSession#measurementSession-edit.xhtml"
+    NAME="output3" PATH="/pages/measurementSession/measurementSession-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-edit.xhtml"
     TITLE="add-new" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="delete::#pages#examination#examination-list.xhtml"
-    NAME="output4" PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
+    ID="delete::#pages#measurementSession#measurementSession-list.xhtml"
+    NAME="output4" PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
     TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#examination#examination-running.xhtml"
-  PATH="/pages/examination/examination-running.xhtml"
+ <PROCESS-ITEM NAME="rules:#pages#measurementSession#measurementSession-running.xhtml"
+  PATH="/pages/measurementSession/measurementSession-running.xhtml"
   SHAPE="640,817,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#examination#examination-running.xhtml:0" NAME="item"
-   PATH="/pages/examination/examination-running.xhtml" model-entity="JSFProcessItem">
+   ID="rules:#pages#measurementSession#measurementSession-running.xhtml:0" NAME="item"
+   PATH="/pages/measurementSession/measurementSession-running.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="summary::#pages#examination#examination-summary.xhtml"
-    NAME="output" PATH="/pages/examination/examination-summary.xhtml"
-    TARGET="rules:#pages#examination#examination-summary.xhtml"
+    ID="summary::#pages#measurementSession#measurementSession-summary.xhtml"
+    NAME="output" PATH="/pages/measurementSession/measurementSession-summary.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-summary.xhtml"
     TITLE="summary" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="list::#pages#examination#examination-list.xhtml" NAME="output1"
-    PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
+    ID="list::#pages#measurementSession#measurementSession-list.xhtml" NAME="output1"
+    PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
     TITLE="list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="switch-user::#pages#examination#examination-running.xhtml"
-    NAME="output3" PATH="/pages/examination/examination-running.xhtml"
-    TARGET="rules:#pages#examination#examination-running.xhtml"
+    ID="switch-user::#pages#measurementSession#measurementSession-running.xhtml"
+    NAME="output3" PATH="/pages/measurementSession/measurementSession-running.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="switch-user" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#examination#examination-edit.xhtml"
-  PATH="/pages/examination/examination-edit.xhtml" SHAPE="640,817,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#examination#examination-edit.xhtml:0"
-   NAME="item" PATH="/pages/examination/examination-edit.xhtml" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:#pages#measurementSession#measurementSession-edit.xhtml"
+  PATH="/pages/measurementSession/measurementSession-edit.xhtml" SHAPE="640,817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#measurementSession#measurementSession-edit.xhtml:0"
+   NAME="item" PATH="/pages/measurementSession/measurementSession-edit.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="save::#pages#examination#examination-list.xhtml" NAME="output"
-    PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
+    ID="save::#pages#measurementSession#measurementSession-list.xhtml" NAME="output"
+    PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
     TITLE="save" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="cancel::#pages#examination#examination-list.xhtml"
-    NAME="output1" PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
+    ID="cancel::#pages#measurementSession#measurementSession-list.xhtml"
+    NAME="output1" PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
     TITLE="cancel" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#examination#examination-summary.xhtml"
-  PATH="/pages/examination/examination-summary.xhtml"
+ <PROCESS-ITEM NAME="rules:#pages#measurementSession#measurementSession-summary.xhtml"
+  PATH="/pages/measurementSession/measurementSession-summary.xhtml"
   SHAPE="1168,1345,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#examination#examination-summary.xhtml:0" NAME="item"
-   PATH="/pages/examination/examination-summary.xhtml" model-entity="JSFProcessItem">
+   ID="rules:#pages#measurementSession#measurementSession-summary.xhtml:0" NAME="item"
+   PATH="/pages/measurementSession/measurementSession-summary.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="list::#pages#examination#examination-list.xhtml" NAME="output"
-    PATH="/pages/examination/examination-list.xhtml"
-    TARGET="rules:#pages#examination#examination-list.xhtml"
+    ID="list::#pages#measurementSession#measurementSession-list.xhtml" NAME="output"
+    PATH="/pages/measurementSession/measurementSession-list.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-list.xhtml"
     TITLE="list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="run::#pages#examination#examination-running.xhtml"
-    NAME="output1" PATH="/pages/examination/examination-running.xhtml"
-    TARGET="rules:#pages#examination#examination-running.xhtml"
+    ID="run::#pages#measurementSession#measurementSession-running.xhtml"
+    NAME="output1" PATH="/pages/measurementSession/measurementSession-running.xhtml"
+    TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="run" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
-  NAME="rules:#pages#examination#types#examinationtype-list.xhtml"
-  PATH="/pages/examination/types/examinationtype-list.xhtml"
+  NAME="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+  PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
   SHAPE="368,497,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#examination#types#examinationtype-list.xhtml:0"
+   ID="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml:0"
    NAME="item"
-   PATH="/pages/examination/types/examinationtype-list.xhtml" model-entity="JSFProcessItem">
+   PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="view::#pages#examination#types#examinationtype-view.xhtml"
+    ID="view::#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     NAME="output"
-    PATH="/pages/examination/types/examinationtype-view.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-view.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     TITLE="view" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="edit::#pages#examination#types#examinationtype-edit.xhtml"
+    ID="edit::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     NAME="output1"
-    PATH="/pages/examination/types/examinationtype-edit.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-edit.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="edit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="copy::#pages#examination#types#examinationtype-edit.xhtml"
+    ID="copy::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     NAME="output2"
-    PATH="/pages/examination/types/examinationtype-edit.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-edit.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="copy" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="add-new::#pages#examination#types#examinationtype-edit.xhtml"
+    ID="add-new::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     NAME="output3"
-    PATH="/pages/examination/types/examinationtype-edit.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-edit.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="add-new" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="delete::#pages#examination#types#examinationtype-list.xhtml"
+    ID="delete::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output4"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
-  NAME="rules:#pages#examination#types#examinationtype-view.xhtml"
-  PATH="/pages/examination/types/examinationtype-view.xhtml"
+  NAME="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
+  PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml"
   SHAPE="640,817,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#examination#types#examinationtype-view.xhtml:0"
+   ID="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml:0"
    NAME="item"
-   PATH="/pages/examination/types/examinationtype-view.xhtml" model-entity="JSFProcessItem">
+   PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="close::#pages#examination#types#examinationtype-list.xhtml"
+    ID="close::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     TITLE="close" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="edit::#pages#examination#types#examinationtype-edit.xhtml"
+    ID="edit::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     NAME="output1"
-    PATH="/pages/examination/types/examinationtype-edit.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-edit.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="edit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="copy::#pages#examination#types#examinationtype-edit.xhtml"
+    ID="copy::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     NAME="output2"
-    PATH="/pages/examination/types/examinationtype-edit.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-edit.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="copy" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="delete::#pages#examination#types#examinationtype-list.xhtml"
+    ID="delete::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output3"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
-  NAME="rules:#pages#examination#types#examinationtype-edit.xhtml"
-  PATH="/pages/examination/types/examinationtype-edit.xhtml"
+  NAME="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
+  PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml"
   SHAPE="640,817,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#examination#types#examinationtype-edit.xhtml:0"
+   ID="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml:0"
    NAME="item"
-   PATH="/pages/examination/types/examinationtype-edit.xhtml" model-entity="JSFProcessItem">
+   PATH="/pages/measurementSession/types/measurementSessiontype-edit.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="cancel::#pages#examination#types#examinationtype-view.xhtml"
+    ID="cancel::#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     NAME="output"
-    PATH="/pages/examination/types/examinationtype-view.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-view.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     TITLE="cancel" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="cancel::#pages#examination#types#examinationtype-list.xhtml"
+    ID="cancel::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output1"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     TITLE="cancel" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="save::#pages#examination#types#examinationtype-view.xhtml"
+    ID="save::#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     NAME="output2"
-    PATH="/pages/examination/types/examinationtype-view.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-view.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     TITLE="save" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="save::#pages#examination#types#examinationtype-list.xhtml"
+    ID="save::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     NAME="output3"
-    PATH="/pages/examination/types/examinationtype-list.xhtml"
-    TARGET="rules:#pages#examination#types#examinationtype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
     TITLE="save" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>

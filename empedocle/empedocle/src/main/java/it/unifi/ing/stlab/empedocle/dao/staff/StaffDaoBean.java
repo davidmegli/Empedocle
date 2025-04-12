@@ -119,8 +119,8 @@ public class StaffDaoBean implements StaffDao {
 
 	@Override
 	public Boolean checkForeignKeyRestrictions( Staff s ) {
-		Boolean checkExaminations = !entityManager.createQuery( 
-				"select e from Examination e " 
+		Boolean checkMeasurementSessions = !entityManager.createQuery( 
+				"select e from MeasurementSession e " 
 					+ " where e.author = :user" )
 				.setParameter( "user", s.getUser() )
 				.setMaxResults( 1 )
@@ -143,6 +143,6 @@ public class StaffDaoBean implements StaffDao {
 				.getResultList()
 				.isEmpty();		
 
-		return checkExaminations || checkFactActions || woodElementActions;
+		return checkMeasurementSessions || checkFactActions || woodElementActions;
 	}
 }

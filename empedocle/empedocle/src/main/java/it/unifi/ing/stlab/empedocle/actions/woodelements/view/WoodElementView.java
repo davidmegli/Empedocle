@@ -15,13 +15,13 @@ import javax.persistence.PersistenceContext;
 
 import it.unifi.ing.stlab.commons.cdi.HttpParam;
 import it.unifi.ing.stlab.commons.cdi.ViewScoped;
-import it.unifi.ing.stlab.empedocle.actions.health.examination.ExaminationPrint;
-import it.unifi.ing.stlab.empedocle.actions.health.examination.ExaminationRowStyleHelper;
-import it.unifi.ing.stlab.empedocle.dao.health.ExaminationDao;
-import it.unifi.ing.stlab.empedocle.model.health.AppointmentStatus;
-import it.unifi.ing.stlab.empedocle.model.health.Examination;
-import it.unifi.ing.stlab.empedocle.model.health.ExaminationStatus;
-import it.unifi.ing.stlab.empedocle.model.health.ExaminationTypeContext;
+import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.MeasurementSessionPrint;
+import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.MeasurementSessionRowStyleHelper;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
+import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionTypeContext;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.factquery.dao.FactQueryConstructor;
 import it.unifi.ing.stlab.navigation.Navigator;
@@ -49,10 +49,10 @@ public class WoodElementView extends Navigator {
 	private LoggedUser loggedUser;
 	
 	@Inject 
-	protected WoodElementExaminationFilter examinationFilter;
+	protected WoodElementMeasurementSessionFilter measurementSessionFilter;
 	
 	@Inject
-	private ExaminationPrint examinationPrint;
+	private MeasurementSessionPrint measurementSessionPrint;
 
 	@Inject
 	private FactQueryConstructor queryConstructor;
@@ -67,13 +67,13 @@ public class WoodElementView extends Navigator {
 	private String from;
 	
 	@Inject @HttpParam("eid")
-	private String examinationId;
+	private String measurementSessionId;
 	
 	//
 	// EJB injections
 	//
 	@Inject
-	private ExaminationDao examinationDao;
+	private MeasurementSessionDao measurementSessionDao;
 	
 	@Inject
 	private WoodElementDao woodElementDao;
@@ -101,30 +101,30 @@ public class WoodElementView extends Navigator {
 		current = wood_elementDao.findById( Long.parseLong( id ) );
 
 		initFilter();
-		setNavigationStatus( examinationFilter );
+		setNavigationStatus( measurementSessionFilter );
 		refreshCurrentPage();
 		
 		initFactPanels();
 		initMatchingWoodElements();
 	}
 
-	@Produces @RequestScoped @WoodElementExaminationResults @Named( "wood_elementExaminationResults" ) 
-	public List<Examination> getResults() {
+	@Produces @RequestScoped @WoodElementMeasurementSessionResults @Named( "wood_elementMeasurementSessionResults" ) 
+	public List<MeasurementSession> getResults() {
 		if ( getItemCount().intValue() == 0 ) 
-			return new ArrayList<Examination>();
-		return examinationDao.find( examinationFilter,  getOffset(),  getLimit() );
+			return new ArrayList<MeasurementSession>();
+		return measurementSessionDao.find( measurementSessionFilter,  getOffset(),  getLimit() );
 	}
 	
-	public boolean hasView( Examination examination ){
-		if ( examination == null ) return false;
+	public boolean hasView( MeasurementSession measurementSession ){
+		if ( measurementSession == null ) return false;
 		
-		return ( hasDone(examination) || hasConcluded(examination) || hasSuspended( examination ));
+		return ( hasDone(measurementSession) || hasConcluded(measurementSession) || hasSuspended( measurementSession ));
 	}
 	
-	public boolean hasReport( Examination examination ){
-		if ( examination == null ) return false;
+	public boolean hasReport( MeasurementSession measurementSession ){
+		if ( measurementSession == null ) return false;
 		
-		return ( hasDone(examination) || hasConcluded(examination) );
+		return ( hasDone(measurementSession) || hasConcluded(measurementSession) );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -145,26 +145,26 @@ public class WoodElementView extends Navigator {
 		}
 	}
 	
-	public boolean hasStart( Examination examination ) {
-		if ( examination == null ) return false;
+	public boolean hasStart( MeasurementSession measurementSession ) {
+		if ( measurementSession == null ) return false;
 		
-		return ExaminationStatus.TODO.equals( examination.getStatus() ) &&
-				AppointmentStatus.ACCEPTED.equals( examination.getAppointment().getStatus() );
+		return MeasurementSessionStatus.TODO.equals( measurementSession.getStatus() ) &&
+				SurveyScheduleStatus.ACCEPTED.equals( measurementSession.getSurveySchedule().getStatus() );
 	}
-	public boolean hasModify( Examination examination ) {
-		if ( examination == null ) return false;
+	public boolean hasModify( MeasurementSession measurementSession ) {
+		if ( measurementSession == null ) return false;
 		
-		return ExaminationStatus.DONE.equals( examination.getStatus() );
+		return MeasurementSessionStatus.DONE.equals( measurementSession.getStatus() );
 	}
-	public boolean hasResume( Examination examination ) {
-		if ( examination == null ) return false;
+	public boolean hasResume( MeasurementSession measurementSession ) {
+		if ( measurementSession == null ) return false;
 		
-		return ExaminationStatus.SUSPENDED.equals( examination.getStatus() );
+		return MeasurementSessionStatus.SUSPENDED.equals( measurementSession.getStatus() );
 	}
-	public boolean hasRecover( Examination examination ) {
-		if ( examination == null ) return false;
+	public boolean hasRecover( MeasurementSession measurementSession ) {
+		if ( measurementSession == null ) return false;
 		
-		return ExaminationStatus.RUNNING.equals( examination.getStatus() ) && checkRecoverability(examination);
+		return MeasurementSessionStatus.RUNNING.equals( measurementSession.getStatus() ) && checkRecoverability(measurementSession);
 	}
 
 	
@@ -186,7 +186,7 @@ public class WoodElementView extends Navigator {
 	
 	public void initReports( Long id ) {
 		selection = Long.toString( id );
-		reports = examinationPrint.initSelectedReports( examinationDao.findById( id ) );
+		reports = measurementSessionPrint.initSelectedReports( measurementSessionDao.findById( id ) );
 	}
 	
 	
@@ -205,8 +205,8 @@ public class WoodElementView extends Navigator {
 		return from;
 	}
 	
-	public String getExaminationId() {
-		return examinationId;
+	public String getMeasurementSessionId() {
+		return measurementSessionId;
 	}
 	
 	public WoodElement getCurrent() {
@@ -218,11 +218,11 @@ public class WoodElementView extends Navigator {
 	}
 	
 	public String getRowStyleClasses() {
-		return ExaminationRowStyleHelper.getRowStyleClasses( getResults() );
+		return MeasurementSessionRowStyleHelper.getRowStyleClasses( getResults() );
 	}
 	
-	public String getRowStyleClass( Examination exam ) {
-		return ExaminationRowStyleHelper.getRowStyleClass( exam );
+	public String getRowStyleClass( MeasurementSession measurementSession ) {
+		return MeasurementSessionRowStyleHelper.getRowStyleClass( measurementSession );
 	}
 	
 	public List<Viewer> getFactPanels() {
@@ -235,27 +235,27 @@ public class WoodElementView extends Navigator {
 	
 	@Override
 	public Integer getItemCount() {
-		return examinationDao.count( examinationFilter );
+		return measurementSessionDao.count( measurementSessionFilter );
 	}
 	
 	//
 	// private methods
 	//
-	private boolean hasDone( Examination examination ) {
-		return ExaminationStatus.DONE.equals( examination.getStatus() );
+	private boolean hasDone( MeasurementSession measurementSession ) {
+		return MeasurementSessionStatus.DONE.equals( measurementSession.getStatus() );
 	}
-	private boolean hasConcluded( Examination examination ) {
-		return ExaminationStatus.CONCLUDED.equals( examination.getStatus() );
+	private boolean hasConcluded( MeasurementSession measurementSession ) {
+		return MeasurementSessionStatus.CONCLUDED.equals( measurementSession.getStatus() );
 	}
-	private boolean hasSuspended( Examination examination ) {
-		return ExaminationStatus.SUSPENDED.equals( examination.getStatus() );
+	private boolean hasSuspended( MeasurementSession measurementSession ) {
+		return MeasurementSessionStatus.SUSPENDED.equals( measurementSession.getStatus() );
 	}
 	
-	private Boolean checkRecoverability( Examination examination ) {
-		if ( examination.getAuthor() == null )
+	private Boolean checkRecoverability( MeasurementSession measurementSession ) {
+		if ( measurementSession.getAuthor() == null )
 			return false;
 		else 
-			return examination.getAuthor().getUserid().equals( loggedUser.getUsername() ) 
+			return measurementSession.getAuthor().getUserid().equals( loggedUser.getUsername() ) 
 					|| checkRoleFor( "recover" );
 	}
 	
@@ -267,8 +267,8 @@ public class WoodElementView extends Navigator {
 		queryConstructor.addAdditionalParams( "pid", Long.parseLong( id ) );
 		queryConstructor.addAdditionalParams( "notStatus", FactStatus.REFUSED );
 		queryConstructor.addAdditionalParams( "agendas", loggedUser.getAgendas() );
-		queryConstructor.addAdditionalParams( "contextStatuses", Arrays.asList( ExaminationStatus.DONE,
-																				ExaminationStatus.CONCLUDED ) );
+		queryConstructor.addAdditionalParams( "contextStatuses", Arrays.asList( MeasurementSessionStatus.DONE,
+																				MeasurementSessionStatus.CONCLUDED ) );
 		factPanels = new ArrayList<Viewer>();
 		
 		//FIXME lo lascio così fino alla decisione di metterlo in un dao
@@ -276,7 +276,7 @@ public class WoodElementView extends Navigator {
 				" select vu.viewer.id from ViewerUse vu"
 				+ " where vu.context = :context"
 				+ " and vu.qualification.id = :qualificationId ", Long.class )
-				.setParameter( "context", ExaminationTypeContext.HIGHLIGHTS )
+				.setParameter( "context", MeasurementSessionTypeContext.HIGHLIGHTS )
 				.setParameter( "qualificationId", loggedUser.getUserQualification().getId() )
 				.getResultList();
 		
@@ -286,6 +286,6 @@ public class WoodElementView extends Navigator {
 	}
 	
 	private void initFilter() {
-		examinationFilter.setWoodElementId( Long.parseLong( id ) );
+		measurementSessionFilter.setWoodElementId( Long.parseLong( id ) );
 	}
 }

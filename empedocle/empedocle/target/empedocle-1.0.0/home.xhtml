@@ -28,27 +28,27 @@
 					<h:form>
 						<ul style="position:relative; left:50px;">
 							<li>Consult wood_elements' <h:commandLink action="wood_element-list" actionListener="#{headerMenu.endConversation}" value="Clinical Records" /> </li>
-							<li>View the <h:commandLink action="examination-list" actionListener="#{headerMenu.endConversation}" value="Scheduled Visits" /> for the day</li>
+							<li>View the <h:commandLink action="measurementSession-list" actionListener="#{headerMenu.endConversation}" value="Scheduled Visits" /> for the day</li>
 						</ul>
 					</h:form>
 				</div>
  			</div>	
 
  			<h:panelGroup styleClass="span3 home-rem-box pull-right" layout="block"
- 				rendered="#{examinationReminder.nSuspended gt 0 or examinationReminder.nRunning gt 0}">
+ 				rendered="#{measurementSessionReminder.nSuspended gt 0 or measurementSessionReminder.nRunning gt 0}">
  				<h:form>
 	 				Dear <strong>#{loggedUser.username}</strong>,
 	 				<ul class="unstyled home-rem-lst">
 	 					<li>
-	 						<h:panelGroup styleClass="alert" rendered="#{examinationReminder.nSuspended gt 0}">
-	 							hai <strong>#{examinationReminder.nSuspended}</strong> visite
-	 							<strong><h:commandLink value="SOSPESE" action="#{examinationReminder.listSuspendedExaminations}" /></strong>
+	 						<h:panelGroup styleClass="alert" rendered="#{measurementSessionReminder.nSuspended gt 0}">
+	 							hai <strong>#{measurementSessionReminder.nSuspended}</strong> visite
+	 							<strong><h:commandLink value="SOSPESE" action="#{measurementSessionReminder.listSuspendedMeasurementSessions}" /></strong>
 	 						</h:panelGroup>
 	 					</li>
 	 					<li>
-	 						<h:panelGroup styleClass="alert" rendered="#{examinationReminder.nRunning gt 0}">
-	 							You have <strong>#{examinationReminder.nRunning}</strong> visits
-	 							<strong><h:commandLink value="IN EROGAZIONE" action="#{examinationReminder.listRunningExaminations}" /></strong>
+	 						<h:panelGroup styleClass="alert" rendered="#{measurementSessionReminder.nRunning gt 0}">
+	 							You have <strong>#{measurementSessionReminder.nRunning}</strong> visits
+	 							<strong><h:commandLink value="IN EROGAZIONE" action="#{measurementSessionReminder.listRunningMeasurementSessions}" /></strong>
 	 						</h:panelGroup>
 	 					</li>
 	 				</ul>
