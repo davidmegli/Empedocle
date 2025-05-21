@@ -1,3 +1,4 @@
+
 package it.unifi.ing.stlab.users.model;
 
 import java.security.MessageDigest;
