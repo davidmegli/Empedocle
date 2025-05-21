@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/layout/template.xhtml">
+
+	<ui:define name="body">
+	
+	<style>
+		.col1 { width: 25%; }	
+		.col3 { width: 25%; }
+	</style>	
+	
+		<h:form id="measurementSessionType-form">
+			<h:panelGroup id="filters" layout="block" xmlns:filter="http://java.sun.com/jsf/composite/components/filters">
+				<h2>
+					Visit Structures
+
+					<h:panelGroup layout="block" styleClass="pull-right align-btn">
+						<h:commandLink title="Add" class="btn btn-primary" action="#{measurementSessionTypeList.addNew()}">
+							<i class="fw-icon-plus-sign-alt dist-right"></i> Add
+						</h:commandLink>
+					</h:panelGroup>
+				</h2>
+				
+				<filter:filterPanel filters="#{measurementSessionTypeFilter}" navigator="#{measurementSessionTypeList}"
+					render=":measurementSessionType-form:navigator :measurementSessionType-form:results"
+					renderAll=":measurementSessionType-form:filters :measurementSessionType-form:navigator :measurementSessionType-form:results"/>
+			</h:panelGroup>		
+			
+			<h:panelGroup layout="block" id="navigator" xmlns:nav="http://java.sun.com/jsf/composite/components/navigator">
+				<nav:navigator value="#{measurementSessionTypeList}" render=":measurementSessionType-form:navigator :measurementSessionType-form:results"/>
+			</h:panelGroup>			
+			
+			<h:panelGroup layout="block" id="results">
+				<h:panelGroup rendered="#{empty measurementSessionTypeResults}">
+					<br/>
+					<h:outputText styleClass="lead" value="No visit structure found"/>
+				</h:panelGroup>
+				
+				<h:dataTable styleClass="table table-bordered table-striped table-hover" 
+					value="#{measurementSessionTypeResults}" var="measurementSessionType"
+					columnClasses="col1, col2, col3, crud-controls-4" 
+					rendered="#{not empty measurementSessionTypeResults}" >
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink value="Name" styleClass="normal-text"
+								action="#{measurementSessionTypeFilter.toggle('Name')}">
+								<f:ajax render="@none" execute="@this" />
+								<f:ajax render=":measurementSessionType-form:results" execute="@none" />
+								<h:panelGroup rendered="#{measurementSessionTypeFilter.isSelected('Name')}">
+									<i class="#{measurementSessionTypeFilter.isAscending('Name') ?
+									'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{not measurementSessionTypeFilter.isSelected('Name')}">
+									<i class="fw-icon-sort" />
+								</h:panelGroup>
+							</h:commandLink>
+						</f:facet>
+						#{measurementSessionType.name}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							Description
+						</f:facet>
+						#{measurementSessionType.description}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink value="Type" styleClass="normal-text"
+								action="#{measurementSessionTypeFilter.toggle('Type')}">
+								<f:ajax render="@none" execute="@this" />
+								<f:ajax render=":measurementSessionType-form:results" execute="@none" />
+								<h:panelGroup rendered="#{measurementSessionTypeFilter.isSelected('Type')}">
+									<i class="#{measurementSessionTypeFilter.isAscending('Type') ?
+									'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{not measurementSessionTypeFilter.isSelected('Type')}">
+									<i class="fw-icon-sort" />
+								</h:panelGroup>
+							</h:commandLink>
+						</f:facet>
+						#{measurementSessionType.type.name}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							Actions
+						</f:facet>
+	
+						<h:commandLink title="View" class="btn btn-info pull-left tltip"
+							action="#{measurementSessionTypeList.view( measurementSessionType.id )}" >
+							<i class="fw-icon-large fw-icon-zoom-in"></i>
+						</h:commandLink>
+						
+						<h:commandLink title="Edit" class="btn btn-warning pull-left dist-left tltip"
+							action="#{measurementSessionTypeList.edit( measurementSessionType.id )}" >
+							<i class="fw-icon-pencil fw-icon-large"></i>
+						</h:commandLink>	
+							
+						<h:commandLink title="Delete" class="btn btn-danger pull-left dist-left tltip"
+										action="#{measurementSessionTypeList.delete( measurementSessionType.id )}"
+										rendered="#{measurementSessionTypeList.isRemovable( measurementSessionType.id )}"
+										onclick="if(!confirm('Delete selected visit structure?')) {return false;}" >
+							<i class="fw-icon-remove fw-icon-large"></i>
+						</h:commandLink>																		
+						
+						<h:panelGroup layout="block" styleClass="btn-group dropup pull-right" >
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
+								<span class="fw-icon-reorder"></span></a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+									<h:commandLink action="#{measurementSessionTypeList.copy( measurementSessionType.id )}">
+										<i class="fw-icon-copy dist-right"></i> Clone
+									</h:commandLink>
+								</li>
+							</ul>
+						</h:panelGroup>												
+					</h:column>						
+						
+				</h:dataTable>
+			</h:panelGroup>
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>
+</html>
