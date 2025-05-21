@@ -32,7 +32,7 @@ public class ObservableEntityManagerTest {
 	}
 	
 	@Test
-	public void testMergeObservableEntitys() {
+	public void testmergeObservableEntities() {
 		ObservableEntity merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
 												observable_entity1, observable_entity2 );
@@ -48,7 +48,7 @@ public class ObservableEntityManagerTest {
 	}
 	
 	@Test
-	public void testMergeObservableEntitys_Null() {
+	public void testmergeObservableEntities_Null() {
 		ObservableEntity merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
 												null, observable_entity2 );
