@@ -162,7 +162,7 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 	 * Manual Merge of observableEntities
 	 */
 	@Override
-	public ObservableEntity mergeObservableEntitys( Long observableEntityId, Long otherId, User author ) {
+	public ObservableEntity mergeObservableEntities( Long observableEntityId, Long otherId, User author ) {
 		ObservableEntity observableEntity = findById( observableEntityId );
 		ObservableEntity other = findById( otherId );
 

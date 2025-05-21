@@ -85,11 +85,11 @@ public class ObservableEntityDaoTest extends PersistenceTest {
 	}
 	
 	@Test
-	public void testMergeObservableEntitys() {
+	public void testmergeObservableEntities() {
 		ObservableEntity p4 = ObservableEntityFactory.createObservableEntity();
 		entityManager.persist( p4 );
 		
-		ObservableEntity result = dao.mergeObservableEntitys( p4.getId(), p3.getId(), author );
+		ObservableEntity result = dao.mergeObservableEntities( p4.getId(), p3.getId(), author );
 		
 		assertEquals( "1234", result.getIdentifier().getCode() );
 		assertEquals( "name", result.getName() );

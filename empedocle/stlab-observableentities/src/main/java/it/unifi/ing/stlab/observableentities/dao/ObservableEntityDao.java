@@ -31,7 +31,7 @@ public interface ObservableEntityDao {
 	
 	ObservableEntity fetchById(Long id);
 	
-	ObservableEntity mergeObservableEntitys(Long observableEntityId, Long otherId, User author);
+	ObservableEntity mergeObservableEntities(Long observableEntityId, Long otherId, User author);
 	
 	void save(ObservableEntity target);
 	void update(ObservableEntity target);
