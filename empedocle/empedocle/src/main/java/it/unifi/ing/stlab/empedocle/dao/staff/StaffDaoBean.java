@@ -135,14 +135,14 @@ public class StaffDaoBean implements StaffDao {
 				.getResultList()
 				.isEmpty();
 
-		Boolean woodElementActions = !entityManager.createQuery(
-				"select pa from WoodElementAction pa" 
+		Boolean observableEntityActions = !entityManager.createQuery(
+				"select pa from ObservableEntityAction pa" 
 					+ " where pa.author = :user" )
 				.setParameter( "user", s.getUser() )
 				.setMaxResults( 1 )
 				.getResultList()
 				.isEmpty();		
 
-		return checkMeasurementSessions || checkFactActions || woodElementActions;
+		return checkMeasurementSessions || checkFactActions || observableEntityActions;
 	}
 }

@@ -35,10 +35,10 @@ public class MessageDaoBean implements MessageDao {
 	}
 	
 	@Override
-	public int countByWoodElementId(Long id) {
+	public int countByObservableEntityId(Long id) {
 		return ( (Long) entityManager.createQuery( 
 				"select count (distinct m ) from Message m "
-				+ "where m.woodElement.id = :id")
+				+ "where m.observableEntity.id = :id")
 			.setParameter("id", id)
 			.getSingleResult() ).intValue();
 	}

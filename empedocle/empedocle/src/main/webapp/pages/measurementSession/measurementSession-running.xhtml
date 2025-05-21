@@ -67,8 +67,8 @@
 			<h:panelGroup layout="block" class="page-title" style="#{measurementSessionRunning.dateFreeVisit? 'border-bottom: none;' : ''}" >
 				<h2>
 					Visit of
-					<span style="text-transform:uppercase;">#{measurementSessionRunning.lastWoodElementVersion.surname}</span>
-					<span class='capitalize'>#{measurementSessionRunning.lastWoodElementVersion.name}</span>
+					<span style="text-transform:uppercase;">#{measurementSessionRunning.lastObservableEntityVersion.surname}</span>
+					<span class='capitalize'>#{measurementSessionRunning.lastObservableEntityVersion.name}</span>
 					<h:panelGroup layout="block" styleClass="pull-right">
 
 						<h:commandLink action="#{measurementSessionRunning.switchUser()}" class="btn dist-right align-btn" immediate="true">

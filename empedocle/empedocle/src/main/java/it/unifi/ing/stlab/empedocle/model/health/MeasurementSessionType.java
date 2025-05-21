@@ -22,7 +22,7 @@ import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.reflection.model.types.Type;
 
 @Entity
-@Table(name = "measurementSession_types")
+@Table(name = "measurement_session_types")
 public class MeasurementSessionType implements Persistable {
 
 	private PersistableImpl persistable;
@@ -53,7 +53,7 @@ public class MeasurementSessionType implements Persistable {
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="measurementSession_type", 
+		pkColumnValue="measurement_session_type", 
 		allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
@@ -109,7 +109,7 @@ public class MeasurementSessionType implements Persistable {
 	
 
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval=true)
-	@JoinColumn(name="measurementSession_type_id", nullable=false)
+	@JoinColumn(name="measurement_session_type_id", nullable=false)
 	public Set<ViewerUse> getViewers() {
 		return viewers;
 	}

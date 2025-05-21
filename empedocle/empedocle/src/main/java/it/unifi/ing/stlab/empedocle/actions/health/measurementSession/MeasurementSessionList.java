@@ -7,8 +7,8 @@ import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.RoleType;
 import it.unifi.ing.stlab.view.model.Viewer;
 
@@ -51,13 +51,13 @@ public class MeasurementSessionList extends Navigator {
 	private MeasurementSessionDao measurementSessionDao;
 	
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	//
 	// Local attributes
 	//
 	private String selection;
-	private String woodElementId;
+	private String observableEntityId;
 	private List<MeasurementSession> measurementSessionResults;
 	private List<Viewer> selectedReports;
 	private Integer itemCount;
@@ -144,7 +144,7 @@ public class MeasurementSessionList extends Navigator {
 						MeasurementSessionStatus.DONE, 
 						MeasurementSessionStatus.CONCLUDED));
 		
-		return measurementSessionDao.hasWoodElementHistory( pid, statuses, agendas );
+		return measurementSessionDao.hasObservableEntityHistory( pid, statuses, agendas );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -196,7 +196,7 @@ public class MeasurementSessionList extends Navigator {
 	}
 	
 	public String history( Long pid ){
-		woodElementId = Long.toString( pid );
+		observableEntityId = Long.toString( pid );
 		
 		return "history";
 	}
@@ -206,8 +206,8 @@ public class MeasurementSessionList extends Navigator {
 	// get methods
 	//
 	
-	public WoodElement getLastWoodElementVersion( Long pid ) {
-		return woodElementDao.findLastVersionById( pid );
+	public ObservableEntity getLastObservableEntityVersion( Long pid ) {
+		return observableEntityDao.findLastVersionById( pid );
 	}
 	
 	@Override
@@ -222,8 +222,8 @@ public class MeasurementSessionList extends Navigator {
 		return selection;
 	}
 	
-	public String getWoodElementId() {
-		return woodElementId;
+	public String getObservableEntityId() {
+		return observableEntityId;
 	}
 	
 	public List<Viewer> getSelectedReports(){

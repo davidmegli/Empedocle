@@ -16,7 +16,7 @@
 	<ui:define name="body">
 		<style>
 			#edit-form\:agenda .controls > input,
-			#edit-form\:wood_element .controls > input { width: 50%; }
+			#edit-form\:observable_entity .controls > input { width: 50%; }
 		</style>
 	
 		<h:form id="edit-form" styleClass="form-horizontal">
@@ -59,16 +59,16 @@
 				</div>
 			</h:panelGroup>
 			
-			<h:panelGroup layout="block" class="control-group" id="woodElement">
-				<label class="control-label bold" for="edit-form:wood_element">* WoodElement</label>
+			<h:panelGroup layout="block" class="control-group" id="observableEntity">
+				<label class="control-label bold" for="edit-form:observable_entity">* ObservableEntity</label>
 				<div class="controls">
 					<emp:suggestionList
-						bean="#{measurementSessionEdit.woodElementSuggestion}"
-						value="#{measurementSessionEdit.current.surveySchedule.woodElement}"
-						suggestion="#{measurementSessionEdit.woodElementSuggestion.suggestion}"
-						converter="#{woodElementConverter}"
-						required="true" requiredMessage="'WoodElement' is a required field!"
-						render=":edit-form:woodElement"/>
+						bean="#{measurementSessionEdit.observableEntitySuggestion}"
+						value="#{measurementSessionEdit.current.surveySchedule.observableEntity}"
+						suggestion="#{measurementSessionEdit.observableEntitySuggestion.suggestion}"
+						converter="#{observableEntityConverter}"
+						required="true" requiredMessage="'ObservableEntity' is a required field!"
+						render=":edit-form:observableEntity"/>
 				</div>
 			</h:panelGroup>
 		</h:form>

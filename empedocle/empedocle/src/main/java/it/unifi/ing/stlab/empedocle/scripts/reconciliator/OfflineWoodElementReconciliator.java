@@ -1,12 +1,12 @@
 package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
 
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
-import it.unifi.ing.stlab.woodelements.model.Address;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
-import it.unifi.ing.stlab.woodelements.model.Sex;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
+import it.unifi.ing.stlab.observableentities.model.Address;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
+import it.unifi.ing.stlab.observableentities.model.Sex;
 import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -30,7 +30,7 @@ import java.util.List;
 //@Startup
 @Singleton
 @TransactionManagement( TransactionManagementType.BEAN )
-public class OfflineWoodElementReconciliator {
+public class OfflineObservableEntityReconciliator {
 	
 	@PersistenceContext
 	private EntityManager entityManager;	
@@ -39,7 +39,7 @@ public class OfflineWoodElementReconciliator {
 	private UserTransaction utx;	
 	
 	@EJB
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	@EJB
 	private UserDao userDao;
@@ -49,14 +49,14 @@ public class OfflineWoodElementReconciliator {
 	
 	private MySQLConnector connector;
 	
-	private static final String DB_ADDRESS = "jdbc:mysql://localhost/empdb_dupl_wood_elements";
+	private static final String DB_ADDRESS = "jdbc:mysql://localhost/empdb_dupl_observable_entities";
 	private static final String DB_USER = "root";
 	private static final String DB_PASS = "root";
 	
 	@PostConstruct
 	@Remove
 	public void init() {
-        logger.info( "*** OfflineWoodElementReconciliator started ***" );
+        logger.info( "*** OfflineObservableEntityReconciliator started ***" );
         initConnection();
         doJob();
 	}
@@ -64,7 +64,7 @@ public class OfflineWoodElementReconciliator {
 	@PreDestroy //XXX non viene distrutto
 	public void destroy() {
 		closeConnection();
-		logger.info("*** OfflineWoodElementReconciliator stopped ***");
+		logger.info("*** OfflineObservableEntityReconciliator stopped ***");
 	}
 	
 	private void initConnection() {
@@ -73,42 +73,42 @@ public class OfflineWoodElementReconciliator {
 	
 	private void doJob() {
 		try {
-			ResultSet rs = connector.executeQuery( "SELECT * from wood_elements WHERE NOT master" );
+			ResultSet rs = connector.executeQuery( "SELECT * from observable_entities WHERE NOT master" );
 			int size = connector.count( rs );
-			logger.info( "Detected " + size + " wood_elements to be merged!" );
+			logger.info( "Detected " + size + " observable_entities to be merged!" );
 			
 			int current = 1;
 			int merged = 0;
 			while ( rs.next() ) {
-				logger.info( "Started " + current + "/" + size + " wood_elements" );
+				logger.info( "Started " + current + "/" + size + " observable_entities" );
 	
 				utx.begin();
 			
 				String slaveIdentifier = rs.getString( "id_ACE" );
 				String masterIdentifier = rs.getString( "master_id_ACE" );
 	
-				WoodElement slave = woodElementDao.findByIdentifier( slaveIdentifier );
-				WoodElement master = woodElementDao.findByIdentifier( masterIdentifier );
+				ObservableEntity slave = observableEntityDao.findByIdentifier( slaveIdentifier );
+				ObservableEntity master = observableEntityDao.findByIdentifier( masterIdentifier );
 	
-				WoodElementManager woodElementManager = new WoodElementManager();
+				ObservableEntityManager observableEntityManager = new ObservableEntityManager();
 				User author = userDao.findByUsername( "administrator" );
 				Time time = new Time( new Date() );
 				
 				if ( master == null ) {
 					// master not found
 					if ( slave == null ) {
-						// master and slave not found: wood_element not managed by empedocle
-						logger.error( "Cannot find the wood_elements you wish to merge" );
+						// master and slave not found: observable_entity not managed by empedocle
+						logger.error( "Cannot find the observable_entities you wish to merge" );
 					} else {
 						// slave found, master not found
 	
-						// 1. a new wood_element with role master is created
-						master = woodElementManager.createWoodElement( author, time );
+						// 1. a new observable_entity with role master is created
+						master = observableEntityManager.createObservableEntity( author, time );
 						update( master, rs );
 						entityManager.persist( master );
 	
 						// 2. master and slave are merged
-						WoodElement result = woodElementManager.merge( author, time, master, slave );
+						ObservableEntity result = observableEntityManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
@@ -117,32 +117,32 @@ public class OfflineWoodElementReconciliator {
 					// master found
 					
 					// 1. master is updated
-					WoodElement copy = woodElementManager.modify( author, time, master );
+					ObservableEntity copy = observableEntityManager.modify( author, time, master );
 					update( copy, rs );
 					
-					WoodElement purged = woodElementManager.purge( copy );
+					ObservableEntity purged = observableEntityManager.purge( copy );
 					if ( purged != null ) {
 						master = purged;
 						entityManager.persist( master );
 						
-						//XXX per ora i riferimenti agli survey_schedule rimangono sempre sullo stesso paziente
+						//XXX per ora i riferimenti agli survey_schedule rimangono sempre sullo stesso observable entity
 						// updateSurveySchedulesReferences();
 					}
 					
 					if ( slave != null ) {
 						// 2. master and slave are merged
-						WoodElement result = woodElementManager.merge( author, time, master, slave );
+						ObservableEntity result = observableEntityManager.merge( author, time, master, slave );
 						entityManager.persist( result );
 						logger.info( "Merged slave " + slaveIdentifier + " with master " + masterIdentifier );
 						merged++;
 					}
 				}
 				utx.commit();
-				logger.info( "Ended " + current + "/" + size + " wood_elements" );
+				logger.info( "Ended " + current + "/" + size + " observable_entities" );
 				current++;
 			}
 			rs.close();
-			logger.info( "Merged  " + merged + "/" + size + " wood_elements" );
+			logger.info( "Merged  " + merged + "/" + size + " observable_entities" );
 		} catch ( Exception e ) {
 			logger.error( e );
 			
@@ -154,56 +154,56 @@ public class OfflineWoodElementReconciliator {
 		}
 	}
 	
-	private void update( WoodElement woodElement, ResultSet rs ) throws SQLException {
+	private void update( ObservableEntity observableEntity, ResultSet rs ) throws SQLException {
 		
-		WoodElementIdentifier identifier = retrieveWoodElementIdentifier( rs.getString( "master_id_ACE" ) );
-		woodElement.setIdentifier( identifier );
+		ObservableEntityIdentifier identifier = retrieveObservableEntityIdentifier( rs.getString( "master_id_ACE" ) );
+		observableEntity.setIdentifier( identifier );
 		
-		woodElement.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
-		woodElement.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
-		woodElement.setName( check( rs.getString( "master_name" ) ) );
-		woodElement.setSurname( check( rs.getString( "master_surname" ) ) );
-		woodElement.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
-		woodElement.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
-		woodElement.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
+		observableEntity.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
+		observableEntity.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
+		observableEntity.setName( check( rs.getString( "master_name" ) ) );
+		observableEntity.setSurname( check( rs.getString( "master_surname" ) ) );
+		observableEntity.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
+		observableEntity.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
+		observableEntity.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
 
 		if ( check( rs.getString( "master_residence_place" ) ) != null ) {
-			woodElement.setResidence( new Address() );
-			woodElement.getResidence().setPlace( rs.getString( "master_residence_place" ) );
+			observableEntity.setResidence( new Address() );
+			observableEntity.getResidence().setPlace( rs.getString( "master_residence_place" ) );
 		}
 		
 		if ( check( rs.getString( "master_domicile_place" ) )  != null ) {
-			woodElement.setDomicile( new Address() );
-			woodElement.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
+			observableEntity.setDomicile( new Address() );
+			observableEntity.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
 		}
 		
-		woodElement.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
-		woodElement.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
-		woodElement.setNationality( check( rs.getString( "master_nationality" ) ) );
+		observableEntity.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
+		observableEntity.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
+		observableEntity.setNationality( check( rs.getString( "master_nationality" ) ) );
 	}
 	
 	private String check( String value ) {
 		return ( value != null && !value.isEmpty() ) ? value : null;
 	}
 
-	private WoodElementIdentifier retrieveWoodElementIdentifier( String code ){
-		WoodElementIdentifier identifier = null;
+	private ObservableEntityIdentifier retrieveObservableEntityIdentifier( String code ){
+		ObservableEntityIdentifier identifier = null;
 		
 		if ( code == null ) 
 			throw new IllegalArgumentException( "code is null" );
 		
-		List<WoodElementIdentifier> results =
+		List<ObservableEntityIdentifier> results =
 				entityManager.createQuery( " select pi " +
-									" from WoodElementIdentifier pi " +
+									" from ObservableEntityIdentifier pi " +
 									" where pi.code = :code ", 
-									WoodElementIdentifier.class )
+									ObservableEntityIdentifier.class )
 							.setParameter( "code", code )
 							.setFlushMode( FlushModeType.COMMIT )
 							.setMaxResults( 1 )
 							.getResultList();
 		
 		if ( results.size() == 0 ) {
-			identifier = WoodElementFactory.createWoodElementIdentifier();
+			identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 			identifier.setCode( code );
 			
 		} else {

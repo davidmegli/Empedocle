@@ -6,9 +6,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.view.controllers.cardiology.FolderNumberGenerator;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.UnitFactory;
 import it.unifi.ing.stlab.reflection.impl.factory.FactFactory;
@@ -35,9 +35,9 @@ public class FolderNumberGeneratorTest extends PersistenceTest {
 	
 	@Test
 	public void testGenerateFolderNumber() {
-		WoodElement p = WoodElementFactory.createWoodElement();
-		WoodElementIdentifier pi = WoodElementFactory.createWoodElementIdentifier();
-		pi.setCode( "paziente" );
+		ObservableEntity p = ObservableEntityFactory.createObservableEntity();
+		ObservableEntityIdentifier pi = ObservableEntityFactory.createObservableEntityIdentifier();
+		pi.setCode( "observable entity" );
 		p.setIdentifier(pi);
 		
 		entityManager.persist(pi);
@@ -45,7 +45,7 @@ public class FolderNumberGeneratorTest extends PersistenceTest {
 		
 		SurveySchedule a = SurveyScheduleFactory.createSurveySchedule();
 		a.setNumber("1234");
-		a.setWoodElement(p);
+		a.setObservableEntity(p);
 		entityManager.persist(a);
 		
 		MeasurementSession e = MeasurementSessionFactory.createMeasurementSession();

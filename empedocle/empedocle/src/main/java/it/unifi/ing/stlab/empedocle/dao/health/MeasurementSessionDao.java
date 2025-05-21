@@ -2,7 +2,7 @@ package it.unifi.ing.stlab.empedocle.dao.health;
 
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.*;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 
 import javax.ejb.Local;
@@ -15,18 +15,18 @@ public interface MeasurementSessionDao {
 
 	int count(MeasurementSessionQueryBuilder builder);
 	Long countByType(MeasurementSessionType type);
-	int countWoodElementHistory(Long woodElementId, Long measurementSessionFromId,
+	int countObservableEntityHistory(Long observableEntityId, Long measurementSessionFromId,
                             Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas);
 	Long countUserMeasurementSessionsByStatus(String userid, MeasurementSessionStatus status, Date start, Date end);
 	
-	boolean hasWoodElementHistory(Long woodElementId);
-	boolean hasWoodElementHistory(Long woodElementId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas);
+	boolean hasObservableEntityHistory(Long observableEntityId);
+	boolean hasObservableEntityHistory(Long observableEntityId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas);
 	
 	MeasurementSession findById(Long id);
 	MeasurementSession findBySurveyScheduleCodes(String bookingCode, String acceptanceCode);
 	List<MeasurementSession> find(MeasurementSessionQueryBuilder builder, int offset, int limit);
-	List<MeasurementSession> findWoodElementLastMeasurementSessions(Long woodElementId, Long lastMeasurementSessionId, int numMeasurementSessions);
-	List<MeasurementSession> findWoodElementHistory(Long woodElementId,
+	List<MeasurementSession> findObservableEntityLastMeasurementSessions(Long observableEntityId, Long lastMeasurementSessionId, int numMeasurementSessions);
+	List<MeasurementSession> findObservableEntityHistory(Long observableEntityId,
                                          Long measurementSessionFromId, Set<MeasurementSessionStatus> statuses,
                                          Set<Agenda> agendas, int offset, int limit);
 	
@@ -39,5 +39,5 @@ public interface MeasurementSessionDao {
 	void save(MeasurementSession e);
 	void deleteById(Long id) ;
 	
-	Fact resume(Fact f, WoodElement p);
+	Fact resume(Fact f, ObservableEntity p);
 }

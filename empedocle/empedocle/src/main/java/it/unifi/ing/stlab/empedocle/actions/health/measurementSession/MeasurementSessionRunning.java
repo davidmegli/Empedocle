@@ -10,8 +10,8 @@ import it.unifi.ing.stlab.empedocle.security.LoginBean;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
 import it.unifi.ing.stlab.reflection.impl.manager.FactManager;
@@ -65,8 +65,8 @@ public class MeasurementSessionRunning implements Serializable {
 	private MeasurementSessionDetails measurementSessionDetails;
 	private boolean summary;
 		
-	private WoodElement lastWoodElementVersion;
-	private List<MeasurementSession> woodElementLastMeasurementSessions;
+	private ObservableEntity lastObservableEntityVersion;
+	private List<MeasurementSession> observableEntityLastMeasurementSessions;
 
 	private List<Viewer> measurementSessionReports;
 	private String selection;
@@ -116,7 +116,7 @@ public class MeasurementSessionRunning implements Serializable {
 	private UserDao userDao;
 	
 	@EJB
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 
 	@EJB
 	private GarbageCollectorHelper garbageCollector;
@@ -166,10 +166,10 @@ public class MeasurementSessionRunning implements Serializable {
 				throw new IllegalArgumentException( "Visita non trovata" );
 			}
 			
-			initLastWoodElementVersion( measurementSession );
+			initLastObservableEntityVersion( measurementSession );
 
-			if(woodElementLastMeasurementSessions == null){
-				woodElementLastMeasurementSessions = measurementSessionDao.findWoodElementLastMeasurementSessions(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
+			if(observableEntityLastMeasurementSessions == null){
+				observableEntityLastMeasurementSessions = measurementSessionDao.findObservableEntityLastMeasurementSessions(lastObservableEntityVersion.getId(), Long.parseLong( id ), 10);
 			}
 
 			/*TEST*/
@@ -218,8 +218,8 @@ public class MeasurementSessionRunning implements Serializable {
 
 */
 
-	public List<MeasurementSession> getWoodElementLastMeasurementSessions(){
-		return this.woodElementLastMeasurementSessions;
+	public List<MeasurementSession> getObservableEntityLastMeasurementSessions(){
+		return this.observableEntityLastMeasurementSessions;
 	}
 
 	public void initReports( Long id ) {
@@ -243,9 +243,9 @@ public class MeasurementSessionRunning implements Serializable {
 	// Private methods
 	//
 
-	private void initLastWoodElementVersion( MeasurementSession measurementSession ) {
-		lastWoodElementVersion = woodElementDao
-				.findLastVersionById( measurementSession.getSurveySchedule().getWoodElement().getId() );		
+	private void initLastObservableEntityVersion( MeasurementSession measurementSession ) {
+		lastObservableEntityVersion = observableEntityDao
+				.findLastVersionById( measurementSession.getSurveySchedule().getObservableEntity().getId() );		
 	}
 
 	private void beginConversation() {
@@ -434,7 +434,7 @@ public class MeasurementSessionRunning implements Serializable {
 
 			conversation.end();
 			
-			return "woodelement-list";
+			return "observableentity-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
@@ -456,7 +456,7 @@ public class MeasurementSessionRunning implements Serializable {
 
 			conversation.end();
 			
-			return "woodelement-list";
+			return "observableentity-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
@@ -508,7 +508,7 @@ public class MeasurementSessionRunning implements Serializable {
 
 	public String close() {
 		conversation.end();
-		return "woodelement-list";
+		return "observableentity-list";
 	}
 	
 	public String switchUser() {
@@ -590,8 +590,8 @@ public class MeasurementSessionRunning implements Serializable {
 		facesContext.getExternalContext().getFlash().setKeepMessages( keepMessages );
 	}
 	
-	public WoodElement getLastWoodElementVersion() {
-		return lastWoodElementVersion;
+	public ObservableEntity getLastObservableEntityVersion() {
+		return lastObservableEntityVersion;
 	}
 
 	public String getMeasurementSessionId() {

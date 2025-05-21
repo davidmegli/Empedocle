@@ -1,13 +1,13 @@
-package it.unifi.ing.stlab.empedocle.actions.woodelements;
+package it.unifi.ing.stlab.empedocle.actions.observableentities;
 
 import it.unifi.ing.stlab.commons.cdi.HttpParam;
 import it.unifi.ing.stlab.empedocle.actions.util.taxcode.FiscalCodeValidator;
 import it.unifi.ing.stlab.empedocle.actions.util.taxcode.FiscalCodeValidatorException;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
-import it.unifi.ing.stlab.woodelements.model.Address;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
+import it.unifi.ing.stlab.observableentities.model.Address;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +30,7 @@ import java.util.Date;
 @Named
 @ConversationScoped
 @TransactionManagement( TransactionManagementType.BEAN )
-public class WoodElementEdit implements Serializable {
+public class ObservableEntityEdit implements Serializable {
 
 	private static final long serialVersionUID = -9188387601950001747L;
 
@@ -50,7 +50,7 @@ public class WoodElementEdit implements Serializable {
 	// EJB injections
 	//
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	@Resource
 	private UserTransaction utx;
@@ -67,23 +67,23 @@ public class WoodElementEdit implements Serializable {
 	//
 	// Local attributes
 	//
-	private WoodElement current;
-	private WoodElement original;
-	private WoodElementManager woodElementManager;
+	private ObservableEntity current;
+	private ObservableEntity original;
+	private ObservableEntityManager observableEntityManager;
 
 	
 	@PostConstruct
 	public void init() {
-		woodElementManager = new WoodElementManager();
+		observableEntityManager = new ObservableEntityManager();
 
 		try {
 			utx.begin();
 			
 			if ( isNew() ) {
-				current = woodElementManager.createWoodElement( loggedUser.getUser(), new Time( new Date() ) );
+				current = observableEntityManager.createObservableEntity( loggedUser.getUser(), new Time( new Date() ) );
 			} else {
-				original = woodElementDao.fetchById( Long.parseLong( id ) );
-				current = woodElementManager.modify(
+				original = observableEntityDao.fetchById( Long.parseLong( id ) );
+				current = observableEntityManager.modify(
 						loggedUser.getUser(), new Time( new Date() ), original );
 			}
 			initEmbeddedFields();
@@ -139,17 +139,17 @@ public class WoodElementEdit implements Serializable {
 			
 			if ( exists() ) {
 				message(FacesMessage.SEVERITY_ERROR,
-						"ERROR - WoodElement with Tax Code '"
+						"ERROR - ObservableEntity with Tax Code '"
 								+ current.getTaxCode() + "' is already registered!", true);
 			} else {
 				if ( isNew() ) {
-					woodElementDao.save(current);
+					observableEntityDao.save(current);
 				} else {
-					WoodElement purged = woodElementManager.purge( current );
+					ObservableEntity purged = observableEntityManager.purge( current );
 					
 					if ( purged != null ) {
-						woodElementDao.save( purged );
-						woodElementDao.update( original );
+						observableEntityDao.save( purged );
+						observableEntityDao.update( original );
 	//					updateSurveySchedulesReferences( purged );
 						
 						id = purged.getId().toString();
@@ -157,7 +157,7 @@ public class WoodElementEdit implements Serializable {
 				}
 				
 				message(FacesMessage.SEVERITY_INFO,
-						"WoodElement successfully saved!", true);
+						"ObservableEntity successfully saved!", true);
 			}
 		
 			utx.commit();
@@ -185,7 +185,7 @@ public class WoodElementEdit implements Serializable {
 		return from;
 	}
 	
-	public WoodElement getCurrent() {
+	public ObservableEntity getCurrent() {
 		return current;
 	}
 	
@@ -215,7 +215,7 @@ public class WoodElementEdit implements Serializable {
 	}
 
 	private boolean exists() {
-		WoodElement result = woodElementDao.findByTaxCode( current.getTaxCode() );
+		ObservableEntity result = observableEntityDao.findByTaxCode( current.getTaxCode() );
 		
 		if ( result == null ) return false;
 		else {
@@ -239,11 +239,11 @@ public class WoodElementEdit implements Serializable {
 		facesContext.getExternalContext().getFlash().setKeepMessages( keepMessages );				
 	}	
 	
-//	private void updateSurveySchedulesReferences( WoodElement p ) {
-//		List<SurveySchedule> survey_schedules = survey_scheduleDao.findByWoodElements( p.listBefore() );		
+//	private void updateSurveySchedulesReferences( ObservableEntity p ) {
+//		List<SurveySchedule> survey_schedules = survey_scheduleDao.findByObservableEntities( p.listBefore() );		
 //		
 //		for( SurveySchedule a : survey_schedules ) {
-//			a.setWoodElement( p );
+//			a.setObservableEntity( p );
 //			survey_scheduleDao.update( a );
 //		}
 //	}	

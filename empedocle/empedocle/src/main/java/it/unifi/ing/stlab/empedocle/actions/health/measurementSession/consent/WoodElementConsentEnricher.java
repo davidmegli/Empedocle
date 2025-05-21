@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.empedocle.actions.health.measurementSession.consent;
 
 import it.unifi.ing.stlab.empedocle.actions.util.DateUtils;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,17 +23,17 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 
-@Named("woodelement-consent")
+@Named("observableentity-consent")
 @RequestScoped
-@WebServlet(urlPatterns = "/woodelement-consent")
-public class WoodElementConsentEnricher extends HttpServlet {
+@WebServlet(urlPatterns = "/observableentity-consent")
+public class ObservableEntityConsentEnricher extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 
-	public WoodElementConsentEnricher() {
+	public ObservableEntityConsentEnricher() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class WoodElementConsentEnricher extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		WoodElement woodElement = woodElementDao.findById( new Long(request.getParameter("pid")));
+		ObservableEntity observableEntity = observableEntityDao.findById( new Long(request.getParameter("pid")));
 		
 		PdfReader reader = new PdfReader(
 				"http://" + request.getServerName() + ":" + request.getServerPort() 
@@ -68,15 +68,15 @@ public class WoodElementConsentEnricher extends HttpServlet {
 			
 			// print name and surname
 			over.setTextMatrix(120, 665);
-			over.showText(woodElement.getName() + " " + woodElement.getSurname());
+			over.showText(observableEntity.getName() + " " + observableEntity.getSurname());
 			
 			// print birth place
 			over.setTextMatrix(120, 648);
-			over.showText(woodElement.getBirthPlace());
+			over.showText(observableEntity.getBirthPlace());
 			
 			// print birth date
 			over.setTextMatrix(440, 648);
-			over.showText( DateUtils.getString(woodElement.getBirthDate(), "dd/MM/yyyy"));
+			over.showText( DateUtils.getString(observableEntity.getBirthDate(), "dd/MM/yyyy"));
 			
 			over.endText();
 			

@@ -77,28 +77,28 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle not-underline" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-					<h:outputText value="WoodElement Data" />
+					<h:outputText value="ObservableEntity Data" />
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
 				<div class="accordion-inner">
 					<dl>
 						<dt>Tax Code</dt>
-						<dd>#{measurementSessionRunning.lastWoodElementVersion.taxCode}</dd>
+						<dd>#{measurementSessionRunning.lastObservableEntityVersion.taxCode}</dd>
 						<dt>Surname</dt>
-						<dd>#{measurementSessionRunning.lastWoodElementVersion.surname}</dd>
+						<dd>#{measurementSessionRunning.lastObservableEntityVersion.surname}</dd>
 						<dt>Name</dt>
-						<dd>#{measurementSessionRunning.lastWoodElementVersion.name}</dd>
+						<dd>#{measurementSessionRunning.lastObservableEntityVersion.name}</dd>
 						<dt>Sex</dt>
-						<dd>#{measurementSessionRunning.lastWoodElementVersion.sex}</dd>
+						<dd>#{measurementSessionRunning.lastObservableEntityVersion.sex}</dd>
 						<dt>Birthdate</dt>
 						<dd>
-							<h:outputText value="#{measurementSessionRunning.lastWoodElementVersion.birthDate}">
+							<h:outputText value="#{measurementSessionRunning.lastObservableEntityVersion.birthDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy"/>
 							</h:outputText>
 						</dd>	
 						<dt>Birthplace</dt>
-						<dd>#{measurementSessionRunning.lastWoodElementVersion.birthPlace}</dd>
+						<dd>#{measurementSessionRunning.lastObservableEntityVersion.birthPlace}</dd>
 					</dl>
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 					<div id="collapseThree" class="accordion-body collapse in">
 						<div class="accordion-inner" style="padding: 9px 9px; font-size: smaller;">
 							<h:panelGroup layout="block" id="results">
-								<h:panelGroup rendered="#{empty measurementSessionRunning.woodElementLastMeasurementSessions}">
+								<h:panelGroup rendered="#{empty measurementSessionRunning.observableEntityLastMeasurementSessions}">
 									<br />
 									<h:outputText styleClass="lead" value="No visit found" />
 								</h:panelGroup>
@@ -159,8 +159,8 @@
 								<h:dataTable
 										styleClass="table table-striped table-hover"
 										columnClasses="datetime, agenda, action"
-										value="#{measurementSessionRunning.woodElementLastMeasurementSessions}" var="measurementSession"
-										rendered="#{not empty measurementSessionRunning.woodElementLastMeasurementSessions}"
+										value="#{measurementSessionRunning.observableEntityLastMeasurementSessions}" var="measurementSession"
+										rendered="#{not empty measurementSessionRunning.observableEntityLastMeasurementSessions}"
 										style="padding: 6px; ">
 
 									<h:column>
@@ -207,11 +207,11 @@
 											<i class="fw-icon-book fw-icon-large "></i>
 										</a4j:commandLink>
 
-										<h:link outcome="/pages/woodelements/measurementSession/measurementSession-view.xhtml" includeViewParams="true"
+										<h:link outcome="/pages/observableentities/measurementSession/measurementSession-view.xhtml" includeViewParams="true"
 												rendered="#{measurementSessionRunning.hasView(measurementSession)}" title="View visit"
 												styleClass="btn btn-info pull-left dist-right tltip">
 											<f:param name="id" value="#{measurementSession.id}" />
-											<f:param name="pid" value="#{measurementSessionRunning.lastWoodElementVersion.id}" />
+											<f:param name="pid" value="#{measurementSessionRunning.lastObservableEntityVersion.id}" />
 											<f:param name="from" value="#{view.viewId}" />
 											<f:param name="eid" value="#{measurementSessionRunning.measurementSessionId}" disable="#{measurementSessionRunning.measurementSessionId eq null}" />
 											<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"

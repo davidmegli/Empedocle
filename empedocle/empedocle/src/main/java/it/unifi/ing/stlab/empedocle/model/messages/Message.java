@@ -18,7 +18,7 @@ import javax.persistence.TableGenerator;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 @Entity
 @Table(name = "messages")
@@ -32,7 +32,7 @@ public class Message implements Persistable {
 	private MessageLevel level;
 	private Boolean isRead;
 	
-	private WoodElement woodElement;
+	private ObservableEntity observableEntity;
 
 
 	public Message( String uuid ) {
@@ -111,12 +111,12 @@ public class Message implements Persistable {
 	}
 	
 	@ManyToOne
-	@JoinColumn( name = "woodElement_id" )
-	public WoodElement getWoodElement() {
-		return woodElement;
+	@JoinColumn( name = "observable_entity_id" )
+	public ObservableEntity getObservableEntity() {
+		return observableEntity;
 	}
-	public void setWoodElement( WoodElement woodElement ) {
-		this.woodElement = woodElement;
+	public void setObservableEntity( ObservableEntity observableEntity ) {
+		this.observableEntity = observableEntity;
 	}
 	
 	@PrePersist

@@ -27,8 +27,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>woodelement-list</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<from-outcome>observableentity-list</from-outcome>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -84,27 +84,27 @@
 	</navigation-rule>
 	
 	
-	<!-- WoodElement navigation rules -->
-	<!-- from woodelement-list -->
+	<!-- ObservableEntity navigation rules -->
+	<!-- from observableentity-list -->
 	<navigation-rule>
-		<from-view-id>/pages/woodelements/woodelement-list.xhtml</from-view-id>
+		<from-view-id>/pages/observableentities/observableentity-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>view</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementList.selection}</value>
+					<value>#{observableEntityList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>woodelement-list</value>
+					<value>observableentity-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -112,7 +112,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementList.selection}</value>
+					<value>#{observableEntityList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -122,7 +122,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>add-new</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -136,7 +136,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -149,23 +149,23 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementList.measurementSessionId}</value>
+					<value>#{observableEntityList.measurementSessionId}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
-	<!-- from woodelement-view -->
+	<!-- from observableentity-view -->
 	<navigation-rule>
-		<from-view-id>/pages/woodelements/woodelement-view.xhtml</from-view-id>
+		<from-view-id>/pages/observableentities/observableentity-view.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edit</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-edit.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-edit.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>cid</name>
@@ -173,7 +173,7 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementList.selection}</value>
+					<value>#{observableEntityList.selection}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -183,7 +183,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -196,55 +196,55 @@
 				</view-param>
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementView.selection}</value>
+					<value>#{observableEntityView.selection}</value>
 				</view-param>
 			</redirect>
 		</navigation-case>		
 	</navigation-rule>
 	
-	<!-- from woodelement-edit -->
+	<!-- from observableentity-edit -->
 	<navigation-rule>
-		<from-view-id>/pages/woodelements/woodelement-edit.xhtml</from-view-id>
+		<from-view-id>/pages/observableentities/observableentity-edit.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{woodElementEdit.from eq 'list'}</if>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<if>#{observableEntityEdit.from eq 'list'}</if>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>save</from-outcome>
-			<if>#{woodElementEdit.from eq 'view'}</if>
-			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
+			<if>#{observableEntityEdit.from eq 'view'}</if>
+			<to-view-id>/pages/observableentities/observableentity-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementEdit.id}</value>
+					<value>#{observableEntityEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>woodelement-list</value>
+					<value>observableentity-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{woodElementEdit.from eq 'view'}</if>
-			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
+			<if>#{observableEntityEdit.from eq 'view'}</if>
+			<to-view-id>/pages/observableentities/observableentity-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{woodElementEdit.id}</value>
+					<value>#{observableEntityEdit.id}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
-					<value>woodelement-list</value>
+					<value>observableentity-list</value>
 				</view-param>
 			</redirect>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<if>#{woodElementEdit.from eq 'list'}</if>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<if>#{observableEntityEdit.from eq 'list'}</if>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -270,11 +270,11 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>history</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-view.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-view.xhtml</to-view-id>
 			<redirect include-view-params="true">
 				<view-param>
 					<name>id</name>
-					<value>#{measurementSessionList.woodElementId}</value>
+					<value>#{measurementSessionList.observableEntityId}</value>
 				</view-param>
 				<view-param>
 					<name>from</name>
@@ -358,7 +358,7 @@
 		<from-view-id>/pages/measurementSession/measurementSession-summary.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/pages/woodelements/woodelement-list.xhtml</to-view-id>
+			<to-view-id>/pages/observableentities/observableentity-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>

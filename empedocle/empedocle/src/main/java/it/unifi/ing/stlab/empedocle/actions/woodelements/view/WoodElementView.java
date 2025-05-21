@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.woodelements.view;
+package it.unifi.ing.stlab.empedocle.actions.observableentities.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +25,8 @@ import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionTypeContext;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.factquery.dao.FactQueryConstructor;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.model.facts.FactStatus;
 import it.unifi.ing.stlab.users.model.RoleType;
 import it.unifi.ing.stlab.view.dao.ViewerDao;
@@ -34,7 +34,7 @@ import it.unifi.ing.stlab.view.model.Viewer;
 
 @Named
 @ViewScoped
-public class WoodElementView extends Navigator {
+public class ObservableEntityView extends Navigator {
 	
 	//
 	// CDI injections
@@ -49,7 +49,7 @@ public class WoodElementView extends Navigator {
 	private LoggedUser loggedUser;
 	
 	@Inject 
-	protected WoodElementMeasurementSessionFilter measurementSessionFilter;
+	protected ObservableEntityMeasurementSessionFilter measurementSessionFilter;
 	
 	@Inject
 	private MeasurementSessionPrint measurementSessionPrint;
@@ -76,7 +76,7 @@ public class WoodElementView extends Navigator {
 	private MeasurementSessionDao measurementSessionDao;
 	
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	@Inject
 	private ViewerDao viewerDao;
@@ -84,13 +84,13 @@ public class WoodElementView extends Navigator {
 	//
 	// Local attributes
 	//
-	private WoodElement current;
+	private ObservableEntity current;
 
 	// Attributes for list
 	private String selection;
 	
 	// Attribute for merge
-	private List<WoodElement> matchingWoodElements;
+	private List<ObservableEntity> matchingObservableEntities;
 //
 	private List<Viewer> factPanels;
 	private List<Viewer> reports;
@@ -98,17 +98,17 @@ public class WoodElementView extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		current = woodElementDao.findById( Long.parseLong( id ) );
+		current = observableEntityDao.findById( Long.parseLong( id ) );
 
 		initFilter();
 		setNavigationStatus( measurementSessionFilter );
 		refreshCurrentPage();
 		
 		initFactPanels();
-		initMatchingWoodElements();
+		initMatchingObservableEntities();
 	}
 
-	@Produces @RequestScoped @WoodElementMeasurementSessionResults @Named( "woodElementMeasurementSessionResults" )
+	@Produces @RequestScoped @ObservableEntityMeasurementSessionResults @Named( "observableEntityMeasurementSessionResults" )
 	public List<MeasurementSession> getResults() {
 		if ( getItemCount().intValue() == 0 ) 
 			return new ArrayList<MeasurementSession>();
@@ -172,10 +172,10 @@ public class WoodElementView extends Navigator {
 	// navigation methods
 	//
 	public String merge( Long other ) {
-		WoodElement result = woodElementDao.mergeWoodElements( getCurrent().getId(), other,
+		ObservableEntity result = observableEntityDao.mergeObservableEntities( getCurrent().getId(), other,
 				loggedUser.getUser() );
 
-		return "woodelement-view?faces-redirect=true&from=woodelement-list&id=" + result.getId();
+		return "observableentity-view?faces-redirect=true&from=observableentity-list&id=" + result.getId();
 	}
 	
 	public String run( Long id ) {
@@ -209,7 +209,7 @@ public class WoodElementView extends Navigator {
 		return measurementSessionId;
 	}
 	
-	public WoodElement getCurrent() {
+	public ObservableEntity getCurrent() {
 		return current;
 	}
 	
@@ -229,8 +229,8 @@ public class WoodElementView extends Navigator {
 		return factPanels;
 	}
 
-	public List<WoodElement> getMatchingWoodElements() {
-		return matchingWoodElements;
+	public List<ObservableEntity> getMatchingObservableEntities() {
+		return matchingObservableEntities;
 	}
 	
 	@Override
@@ -259,8 +259,8 @@ public class WoodElementView extends Navigator {
 					|| checkRoleFor( "recover" );
 	}
 	
-	private void initMatchingWoodElements() {
-		matchingWoodElements = woodElementDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
+	private void initMatchingObservableEntities() {
+		matchingObservableEntities = observableEntityDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
 	}
 	
 	private void initFactPanels() {
@@ -286,6 +286,6 @@ public class WoodElementView extends Navigator {
 	}
 	
 	private void initFilter() {
-		measurementSessionFilter.setWoodElementId( Long.parseLong( id ) );
+		measurementSessionFilter.setObservableEntityId( Long.parseLong( id ) );
 	}
 }

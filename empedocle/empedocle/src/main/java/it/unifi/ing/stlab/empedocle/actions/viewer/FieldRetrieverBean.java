@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.empedocle.actions.viewer;
 
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.view.controllers.FieldRetriever;
 
@@ -25,7 +25,7 @@ import org.apache.commons.jexl2.MapContext;
 public class FieldRetrieverBean implements FieldRetriever {
 
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	private JexlEngine jexlEngine;
 	private JexlContext context;
@@ -54,11 +54,11 @@ public class FieldRetrieverBean implements FieldRetriever {
 		context = new MapContext();
 		MeasurementSession measurementSession = ClassHelper.cast( fact.getContext(), MeasurementSession.class );
 		context.set( "SurveySchedule", measurementSession.getSurveySchedule() );
-		WoodElement woodElement = measurementSession.getSurveySchedule().getWoodElement();
-		if( woodElement.getId() != null )
-			context.set( "WoodElement", woodElementDao.findLastVersionById( woodElement.getId()  ) ); // in the real scenario
+		ObservableEntity observableEntity = measurementSession.getSurveySchedule().getObservableEntity();
+		if( observableEntity.getId() != null )
+			context.set( "ObservableEntity", observableEntityDao.findLastVersionById( observableEntity.getId()  ) ); // in the real scenario
 		else 
-			context.set( "WoodElement", woodElement ); // only in the case of woodElement generated on-the-fly by MeasurementSessionRandomInitializer (invoked by ViewerPreview)
+			context.set( "ObservableEntity", observableEntity ); // only in the case of observableEntity generated on-the-fly by MeasurementSessionRandomInitializer (invoked by ViewerPreview)
 		context.set( "Agenda", measurementSession.getSurveySchedule().getAgenda() );
 		context.set( "User", measurementSession.getAuthor() );
 	}

@@ -65,9 +65,9 @@ public class POIDataExporter {
 						workbook.getSheet( buildSheetName(rootType) ),
 						currentRowNumbers.get( rootType.getName()  ) );
 			
-			// write the default rows containing WoodElement and MeasurementSession info
+			// write the default rows containing ObservableEntity and MeasurementSession info
 			MeasurementSession e = ClassHelper.cast(rootFact.getContext(), MeasurementSession.class);
-			getConfig().writeDefaultColumns(e, e.getSurveySchedule().getWoodElement(), row);
+			getConfig().writeDefaultColumns(e, e.getSurveySchedule().getObservableEntity(), row);
 			
 			for(FactLink fl : rootFact.listChildrenOrdered()) {
 				if(fl.getTarget() != null ){

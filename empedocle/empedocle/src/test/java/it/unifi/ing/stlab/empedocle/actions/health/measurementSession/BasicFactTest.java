@@ -4,8 +4,8 @@ import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.factory.FactLinkFactory;
@@ -30,7 +30,7 @@ public class BasicFactTest {
 
 	protected FactContext context;
 	protected SurveySchedule surveySchedule;
-	protected WoodElement woodElement;
+	protected ObservableEntity observableEntity;
 	protected Fact root;
 	
 	// Composite with two children txt
@@ -51,9 +51,9 @@ public class BasicFactTest {
 		author.setUserid("usr");
 		MeasurementSession ex = MeasurementSessionFactory.createMeasurementSession();
 		surveySchedule = SurveyScheduleFactory.createSurveySchedule();
-		woodElement = WoodElementFactory.createWoodElement();
+		observableEntity = ObservableEntityFactory.createObservableEntity();
 		ex.setSurveySchedule(surveySchedule);
-		surveySchedule.setWoodElement(woodElement);
+		surveySchedule.setObservableEntity(observableEntity);
 		context = ex;
 		mng = new FactManager();
 		

@@ -8,9 +8,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
@@ -46,7 +46,7 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	
 	protected CompositeFact newCompositeFact;
 	protected TextualFact newTextualFact;
-	protected WoodElement p;
+	protected ObservableEntity p;
 	protected User author;
 	protected MeasurementSession measurementSession;
 	
@@ -71,12 +71,12 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		author.setUserid("usr");
 		entityManager.persist(author);
 		
-		p = WoodElementFactory.createWoodElement();
+		p = ObservableEntityFactory.createObservableEntity();
 		entityManager.persist( p );
 		
 		measurementSession = MeasurementSessionFactory.createMeasurementSession();
 		measurementSession.setSurveySchedule(SurveyScheduleFactory.createSurveySchedule());
-		measurementSession.getSurveySchedule().setWoodElement(p);
+		measurementSession.getSurveySchedule().setObservableEntity(p);
 		measurementSession.setStatus(MeasurementSessionStatus.DONE);
 		entityManager.persist( measurementSession );
 		
@@ -137,10 +137,10 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	}
 	
 	@Test
-	public void testResumeUpdatedWoodElement() {
-		WoodElementManager woodElementManager = new WoodElementManager();
+	public void testResumeUpdatedObservableEntity() {
+		ObservableEntityManager observableEntityManager = new ObservableEntityManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		WoodElement pNew = woodElementManager.modify(author, time, p);
+		ObservableEntity pNew = observableEntityManager.modify(author, time, p);
 		entityManager.persist(pNew);
 		
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);

@@ -16,9 +16,9 @@ import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.impl.factory.FactFactory;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.test.FieldUtils;
@@ -48,8 +48,8 @@ public class FieldRetrieverTest {
 		surveySchedule.setAcceptanceCode( "1234" );
 		surveySchedule.setDate( c.getTime() );
 
-		WoodElement woodElement = WoodElementFactory.createWoodElement();
-		woodElement.setName( "Gino" );
+		ObservableEntity observableEntity = ObservableEntityFactory.createObservableEntity();
+		observableEntity.setName( "Gino" );
 
 		User user = UserFactory.createUser();
 		user.setName( "Fabio" );
@@ -62,21 +62,21 @@ public class FieldRetrieverTest {
 		// user.addQualification(qualification2);
 
 		measurementSession.setSurveySchedule( surveySchedule );
-		surveySchedule.setWoodElement( woodElement );
+		surveySchedule.setObservableEntity( observableEntity );
 		measurementSession.setAuthor( user );
 
 		root.setContext( measurementSession );
 
-		WoodElementDao woodElementDao = mock( WoodElementDao.class );
+		ObservableEntityDao observableEntityDao = mock( ObservableEntityDao.class );
 
-		when( woodElementDao.findLastVersionById( anyLong() ) ).thenReturn( woodElement );
+		when( observableEntityDao.findLastVersionById( anyLong() ) ).thenReturn( observableEntity );
 
-		FieldUtils.assignField( retriever, "woodElementDao", woodElementDao );
+		FieldUtils.assignField( retriever, "observableEntityDao", observableEntityDao );
 	}
 
 	@Test
 	public void testObtainFieldPaziente() {
-		path = "WoodElement.Name";
+		path = "ObservableEntity.Name";
 		String result = retriever.retrieve( root, path );
 
 		assertEquals( "Gino", result );

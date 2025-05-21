@@ -63,7 +63,7 @@ public class MeasurementSessionFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.surveySchedule.woodElement.after aa " +
+						" join factroot.context.surveySchedule.observableEntity.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.surveySchedule.agenda in :agendas " +
@@ -97,7 +97,7 @@ public class MeasurementSessionFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals(" select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.surveySchedule.woodElement.after aa " +
+						" join factroot.context.surveySchedule.observableEntity.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.surveySchedule.agenda in :agendas " +
@@ -140,7 +140,7 @@ public class MeasurementSessionFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.surveySchedule.woodElement.after aa " +
+						" join factroot.context.surveySchedule.observableEntity.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
 						" and factroot.context.surveySchedule.agenda in :agendas " +
@@ -195,7 +195,7 @@ public class MeasurementSessionFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.surveySchedule.woodElement.after aa " +
+						" join factroot.context.surveySchedule.observableEntity.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " + 
 						" and factroot.context.surveySchedule.agenda in :agendas " +
@@ -244,7 +244,7 @@ public class MeasurementSessionFactQueryConstructorTest {
 		assertNotNull( result );
 		assertEquals( " select distinct ( factroot ) " +
 						" from FactImpl factroot " +
-						" join factroot.context.surveySchedule.woodElement.after aa " +
+						" join factroot.context.surveySchedule.observableEntity.after aa " +
 						" where factroot.type = factroot.context.type.type " +
 						" and aa.id = :pid " +
 						" and factroot.context.surveySchedule.agenda in :agendas " +

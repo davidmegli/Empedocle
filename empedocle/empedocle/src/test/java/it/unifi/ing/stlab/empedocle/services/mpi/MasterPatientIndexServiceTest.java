@@ -16,50 +16,50 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergeInformation;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergeWoodElement;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.MergeObservableEntity;
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.ObjectFactory;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.WoodElementIdentification;
-import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.WoodElementIdentifiers;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.ObservableEntityIdentification;
+import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.ObservableEntityIdentifiers;
 import it.unifi.ing.stlab.empedocle.services.mpi.jaxb.UpdatePersonInformation;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementModifyAction;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityModifyAction;
 import it.unifi.ing.stlab.test.FieldUtils;
 import it.unifi.ing.stlab.test.PersistenceTest;
 import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.factory.UserFactory;
 
-public class MasterWoodElementIndexServiceTest extends PersistenceTest {
+public class MasterObservableEntityIndexServiceTest extends PersistenceTest {
 	
-	private MasterWoodElementIndexServiceImpl mpiService;
+	private MasterObservableEntityIndexServiceImpl mpiService;
 	
-	protected WoodElementDao woodElementDao;
+	protected ObservableEntityDao observableEntityDao;
 	protected UserDao userDao;
 	protected Logger logger;
 	protected UserTransaction utx;
 	
 	private UpdatePersonInformation updatePersonInformation;
-	private MergeWoodElement mergeWoodElement;
+	private MergeObservableEntity mergeObservableEntity;
 	
 	@Override 
 	protected void insertData() throws Exception {
-		mpiService = new MasterWoodElementIndexServiceImpl();
+		mpiService = new MasterObservableEntityIndexServiceImpl();
 		
-		woodElementDao = mock( WoodElementDao.class );
+		observableEntityDao = mock( ObservableEntityDao.class );
 		userDao = mock( UserDao.class );
-		logger = Logger.getLogger( MasterWoodElementIndexServiceImpl.class );
+		logger = Logger.getLogger( MasterObservableEntityIndexServiceImpl.class );
 		utx = mock( UserTransaction.class );
 		
 		FieldUtils.assignField( mpiService, "entityManager", entityManager);
-		FieldUtils.assignField( mpiService, "woodElementDao", woodElementDao );
+		FieldUtils.assignField( mpiService, "observableEntityDao", observableEntityDao );
 		FieldUtils.assignField( mpiService, "userDao", userDao );
 		FieldUtils.assignField( mpiService, "logger", logger );
 		FieldUtils.assignField( mpiService, "utx", utx );
 		
 		updatePersonInformation = initUpdatePersonInformation();
-		mergeWoodElement = initMergeWoodElement();
+		mergeObservableEntity = initMergeObservableEntity();
 
 		when( userDao.findByUsername( "administrator" )).thenReturn( UserFactory.createUser() );
 		
@@ -69,199 +69,199 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 	}
 
 	@Test
-	public void testUpdate_wood_elementNotFound() {
-		when( woodElementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
+	public void testUpdate_observable_entityNotFound() {
+		when( observableEntityDao.findByIdentifier( updatePersonInformation.getObservableEntityIdentification()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( null );
 		mpiService.update( updatePersonInformation );
 	}
 	
 	@Test
-	public void testUpdate_woodElementFound() {
-		WoodElement woodElement = WoodElementFactory.createWoodElement();
+	public void testUpdate_observableEntityFound() {
+		ObservableEntity observableEntity = ObservableEntityFactory.createObservableEntity();
 		
-		assertNull( woodElement.getDestination() );
+		assertNull( observableEntity.getDestination() );
 
-		when( woodElementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( wood_element );
+		when( observableEntityDao.findByIdentifier( updatePersonInformation.getObservableEntityIdentification()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( observable_entity );
 		mpiService.update( updatePersonInformation );
 		
-		// a new WoodElementModifyAction is created
-		assertNotNull( woodElement.getDestination() );
-		assertTrue( woodElement.getDestination() instanceof WoodElementModifyAction);
+		// a new ObservableEntityModifyAction is created
+		assertNotNull( observableEntity.getDestination() );
+		assertTrue( observableEntity.getDestination() instanceof ObservableEntityModifyAction);
 		
-		// the WoodElementModifyAction's source is wood_element
-		assertEquals( wood_element, ((WoodElementModifyAction) woodElement.getDestination()).getSource() );
+		// the ObservableEntityModifyAction's source is observable_entity
+		assertEquals( observable_entity, ((ObservableEntityModifyAction) observableEntity.getDestination()).getSource() );
 		
-		// the WoodElementModifyAction's target is a new wood_element with the data collected in updatePersonInformation
-		assertNotEquals( wood_element, ((WoodElementModifyAction) woodElement.getDestination()).getTarget() );
-		assertEquals( updatePersonInformation.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(),
-				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( updatePersonInformation.getWoodElementIdentification().getCognome(),
-				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getSurname() );
-		assertEquals( updatePersonInformation.getWoodElementIdentification().getNome(),
-				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getName() );
+		// the ObservableEntityModifyAction's target is a new observable_entity with the data collected in updatePersonInformation
+		assertNotEquals( observable_entity, ((ObservableEntityModifyAction) observableEntity.getDestination()).getTarget() );
+		assertEquals( updatePersonInformation.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(),
+				((ObservableEntityModifyAction) observableEntity.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( updatePersonInformation.getObservableEntityIdentification().getCognome(),
+				((ObservableEntityModifyAction) observableEntity.getDestination()).getTarget().getSurname() );
+		assertEquals( updatePersonInformation.getObservableEntityIdentification().getNome(),
+				((ObservableEntityModifyAction) observableEntity.getDestination()).getTarget().getName() );
 	}
 	
 	@Test
 	public void testMerge_masterAndSlaveNotFound() {
-		when( woodElementDao.findByIdentifier(
-				mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce() ) )
+		when( observableEntityDao.findByIdentifier(
+				mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce() ) )
 						.thenReturn( null );
-		mpiService.merge( mergeWoodElement );
+		mpiService.merge( mergeObservableEntity );
 	}
 	
 	@Test
 	public void testMerge_masterFoundSlaveNotFound() {
-		WoodElement master = WoodElementFactory.createWoodElement();
+		ObservableEntity master = ObservableEntityFactory.createObservableEntity();
 		
 		assertNull( master.getDestination() );
 
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
-		mpiService.merge( mergeWoodElement );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getObservableEntityIdentification()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( master );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getMergeInformation()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( null );
+		mpiService.merge( mergeObservableEntity );
 		
-		// a new WoodElementModifyAction is created
+		// a new ObservableEntityModifyAction is created
 		assertNotNull( master.getDestination() );
-		assertTrue( master.getDestination() instanceof WoodElementModifyAction);
+		assertTrue( master.getDestination() instanceof ObservableEntityModifyAction);
 		
-		// the WoodElementModifyAction's source is the master wood_element
-		assertEquals( master, ((WoodElementModifyAction) master.getDestination()).getSource() );
+		// the ObservableEntityModifyAction's source is the master observable_entity
+		assertEquals( master, ((ObservableEntityModifyAction) master.getDestination()).getSource() );
 		
-		// the WoodElementModifyAction's target is a new wood_element with the data collected in mergeWoodElement
-		assertNotEquals( master, ((WoodElementModifyAction) master.getDestination()).getTarget() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(),
-				((WoodElementModifyAction) master.getDestination()).getTarget().getIdentifier().getCode());
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(),
-				((WoodElementModifyAction) master.getDestination()).getTarget().getSurname() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(),
-				((WoodElementModifyAction) master.getDestination()).getTarget().getName() );
-		assertNull(((WoodElementModifyAction) master.getDestination()).getTarget().getDestination());
+		// the ObservableEntityModifyAction's target is a new observable_entity with the data collected in mergeObservableEntity
+		assertNotEquals( master, ((ObservableEntityModifyAction) master.getDestination()).getTarget() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(),
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getIdentifier().getCode());
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getCognome(),
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getSurname() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getNome(),
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getName() );
+		assertNull(((ObservableEntityModifyAction) master.getDestination()).getTarget().getDestination());
 	}
 	
 	@Test
 	public void testMerge_masterNotFoundSlaveFound() {
-		WoodElement slave = WoodElementFactory.createWoodElement();
+		ObservableEntity slave = ObservableEntityFactory.createObservableEntity();
 		
 		assertNull( slave.getDestination() );
 
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
-		mpiService.merge( mergeWoodElement );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getObservableEntityIdentification()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( null );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getMergeInformation()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( slave );
+		mpiService.merge( mergeObservableEntity );
 		
-		// a new WoodElementMergeAction is created to merge the slave wood_element and a new master wood_element generated ex-novo
+		// a new ObservableEntityMergeAction is created to merge the slave observable_entity and a new master observable_entity generated ex-novo
 		assertNotNull( slave.getDestination() );
-		assertTrue( slave.getDestination() instanceof WoodElementMergeAction);
+		assertTrue( slave.getDestination() instanceof ObservableEntityMergeAction);
 		
-		// the WoodElementMergeAction's source2 is the slave wood_element
-		assertEquals( slave, ((WoodElementMergeAction) slave.getDestination()).getSource2() );
+		// the ObservableEntityMergeAction's source2 is the slave observable_entity
+		assertEquals( slave, ((ObservableEntityMergeAction) slave.getDestination()).getSource2() );
 		
-		// the WoodElementMergeAction's source1 is the new master wood_element generated ex-novo starting from 
-		// the new data collected in mergeWoodElement
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
-				((WoodElementMergeAction) slave.getDestination()).getSource1().getIdentifier().getCode() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
-				((WoodElementMergeAction) slave.getDestination()).getSource1().getName() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
-				((WoodElementMergeAction) slave.getDestination()).getSource1().getSurname() );
+		// the ObservableEntityMergeAction's source1 is the new master observable_entity generated ex-novo starting from 
+		// the new data collected in mergeObservableEntity
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getSource1().getIdentifier().getCode() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getNome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getSource1().getName() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getCognome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getSource1().getSurname() );
 		
-		// the WoodElementMergeAction's target is a copy of the master wood_element
-		assertNotEquals( ((WoodElementMergeAction) slave.getDestination()).getSource1(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getName() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getSurname() );	
+		// the ObservableEntityMergeAction's target is a copy of the master observable_entity
+		assertNotEquals( ((ObservableEntityMergeAction) slave.getDestination()).getSource1(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getNome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getName() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getCognome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getSurname() );	
 	}
 	
 	@Test
 	public void testMerge_masterFoundSlaveFound() {
-		WoodElement master = WoodElementFactory.createWoodElement();
-		WoodElement slave = WoodElementFactory.createWoodElement();
+		ObservableEntity master = ObservableEntityFactory.createObservableEntity();
+		ObservableEntity slave = ObservableEntityFactory.createObservableEntity();
 		
 		assertNull( master.getDestination() );
 		assertNull( slave.getDestination() );
 
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
-				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
-		mpiService.merge( mergeWoodElement );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getObservableEntityIdentification()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( master );
+		when( observableEntityDao.findByIdentifier( mergeObservableEntity.getMergeInformation()
+				.getObservableEntityIdentifiers().getIdAce() ) ).thenReturn( slave );
+		mpiService.merge( mergeObservableEntity );
 		
 		assertNotNull( master.getDestination() );
 		assertNotNull( slave.getDestination() );
 		
-		// a new WoodElementModifyAction is created to update the master wood_element
-		assertTrue( master.getDestination() instanceof WoodElementModifyAction );
-		assertEquals( master, ((WoodElementModifyAction) master.getDestination()).getSource() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
-				((WoodElementModifyAction) master.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
-				((WoodElementModifyAction) master.getDestination()).getTarget().getName() );		
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
-				((WoodElementModifyAction) master.getDestination()).getTarget().getSurname() );				
+		// a new ObservableEntityModifyAction is created to update the master observable_entity
+		assertTrue( master.getDestination() instanceof ObservableEntityModifyAction );
+		assertEquals( master, ((ObservableEntityModifyAction) master.getDestination()).getSource() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(), 
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getNome(), 
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getName() );		
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getCognome(), 
+				((ObservableEntityModifyAction) master.getDestination()).getTarget().getSurname() );				
 
-		// a new WoodElementMergeAction is created to merge the updated version of master wood_element and the slave wood_element
-		assertTrue( slave.getDestination() instanceof WoodElementMergeAction );
-		// the WoodElementMergeAction's source1 is the copy of the master wood_element after the WoodElementModifyAction
-		assertEquals( ((WoodElementModifyAction) master.getDestination()).getTarget(), 
-				((WoodElementMergeAction) slave.getDestination()).getSource1() );
-		// the WoodElementMergeAction's source2 is the slave wood_element
-		assertEquals( slave, ((WoodElementMergeAction) slave.getDestination()).getSource2() );
-		// the WoodElementMergeAction's target is a copy of the master wood_element
-		assertNotEquals( ((WoodElementMergeAction) slave.getDestination()).getSource1(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getNome(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getName() );
-		assertEquals( mergeWoodElement.getWoodElementIdentification().getCognome(), 
-				((WoodElementMergeAction) slave.getDestination()).getTarget().getSurname() );	
+		// a new ObservableEntityMergeAction is created to merge the updated version of master observable_entity and the slave observable_entity
+		assertTrue( slave.getDestination() instanceof ObservableEntityMergeAction );
+		// the ObservableEntityMergeAction's source1 is the copy of the master observable_entity after the ObservableEntityModifyAction
+		assertEquals( ((ObservableEntityModifyAction) master.getDestination()).getTarget(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getSource1() );
+		// the ObservableEntityMergeAction's source2 is the slave observable_entity
+		assertEquals( slave, ((ObservableEntityMergeAction) slave.getDestination()).getSource2() );
+		// the ObservableEntityMergeAction's target is a copy of the master observable_entity
+		assertNotEquals( ((ObservableEntityMergeAction) slave.getDestination()).getSource1(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getObservableEntityIdentifiers().getIdAce(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getIdentifier().getCode() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getNome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getName() );
+		assertEquals( mergeObservableEntity.getObservableEntityIdentification().getCognome(), 
+				((ObservableEntityMergeAction) slave.getDestination()).getTarget().getSurname() );	
 	}
 	
 	private UpdatePersonInformation initUpdatePersonInformation() {
 		ObjectFactory of = new ObjectFactory();
 		UpdatePersonInformation upi = of.createUpdatePersonInformation();
 		
-		// create wood_element information with id ACE and some personal data
-		WoodElementIdentification identification = of.createWoodElementIdentification();
-		WoodElementIdentifiers identifiers = of.createWoodElementIdentifiers();
+		// create observable_entity information with id ACE and some personal data
+		ObservableEntityIdentification identification = of.createObservableEntityIdentification();
+		ObservableEntityIdentifiers identifiers = of.createObservableEntityIdentifiers();
 		identifiers.setIdAce( "p001" );
-		identification.setWoodElementIdentifiers( identifiers );
+		identification.setObservableEntityIdentifiers( identifiers );
 		identification.setCognome( "Rossi" );
 		identification.setNome( "Luca" );
 
-		// add wood_element information to upi
-		upi.setWoodElementIdentification( identification );
+		// add observable_entity information to upi
+		upi.setObservableEntityIdentification( identification );
 		
 		return upi;
 	}
 	
-	private MergeWoodElement initMergeWoodElement() {
+	private MergeObservableEntity initMergeObservableEntity() {
 		ObjectFactory of = new ObjectFactory();
-		MergeWoodElement mp = of.createMergeWoodElement();
+		MergeObservableEntity mp = of.createMergeObservableEntity();
 		
-		// create master wood_element information with id ACE and some personal data
-		WoodElementIdentification identification = of.createWoodElementIdentification();
-		WoodElementIdentifiers masterIdentifiers = of.createWoodElementIdentifiers();
+		// create master observable_entity information with id ACE and some personal data
+		ObservableEntityIdentification identification = of.createObservableEntityIdentification();
+		ObservableEntityIdentifiers masterIdentifiers = of.createObservableEntityIdentifiers();
 		masterIdentifiers.setIdAce( "master" );
-		identification.setWoodElementIdentifiers( masterIdentifiers );
+		identification.setObservableEntityIdentifiers( masterIdentifiers );
 		identification.setCognome( "Rossi" );
 		identification.setNome( "Luca" );
 		
-		// create slave wood_element information with id ACE
+		// create slave observable_entity information with id ACE
 		MergeInformation mergeInfo = of.createMergeInformation();
-		WoodElementIdentifiers slaveIdentifiers = of.createWoodElementIdentifiers();
+		ObservableEntityIdentifiers slaveIdentifiers = of.createObservableEntityIdentifiers();
 		slaveIdentifiers.setIdAce( "slave" );
-		mergeInfo.setWoodElementIdentifiers( slaveIdentifiers );
+		mergeInfo.setObservableEntityIdentifiers( slaveIdentifiers );
 		
 		// add master information to mp
-		mp.setWoodElementIdentification( identification );
+		mp.setObservableEntityIdentification( identification );
 		// add slave information to mp
 		mp.setMergeInformation( mergeInfo );
 		

@@ -191,8 +191,8 @@
 								value="#{measurementSessionResults}" var="measurementSession"
 								style="#{empty measurementSessionResults ? 'display:none;' : ''}">
 								
-								<c:set var="_wood_element"
-									value="#{measurementSessionList.getLastWoodElementVersion( measurementSession.surveySchedule.woodElement.id )}" />
+								<c:set var="_observable_entity"
+									value="#{measurementSessionList.getLastObservableEntityVersion( measurementSession.surveySchedule.observableEntity.id )}" />
 								
 								<h:column>
 									<f:facet name="header">
@@ -212,21 +212,21 @@
 									<f:facet name="header">
 										Surname
 									</f:facet>
-									#{_wood_element.surname}
+									#{_observable_entity.surname}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Name
 									</f:facet>
-									#{_wood_element.name}
+									#{_observable_entity.name}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Sex
 									</f:facet>
-									#{_wood_element.sex}
+									#{_observable_entity.sex}
 								</h:column>
 
 								<h:column>
@@ -234,7 +234,7 @@
 										Birthdate
 									</f:facet>
 									<h:outputText
-										value="#{_wood_element.birthDate}">
+										value="#{_observable_entity.birthDate}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>
 
@@ -244,14 +244,14 @@
 									<f:facet name="header">
 										Birthplace
 									</f:facet>
-									#{_wood_element.birthPlace}
+									#{_observable_entity.birthPlace}
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">
 										Tax Code
 									</f:facet>
-									#{_wood_element.taxCode}
+									#{_observable_entity.taxCode}
 								</h:column>
 
 								<h:column>
@@ -269,10 +269,10 @@
 									</a4j:commandLink>
 										
 									<h:commandLink title="Open record"
-										action="#{measurementSessionList.history( _wood_element.id )}"
+										action="#{measurementSessionList.history( _observable_entity.id )}"
 										styleClass="btn btn-info pull-left dist-right tltip">
 										<i class="fw-icon-large 
-											#{measurementSessionList.checkHistory( _wood_element.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
+											#{measurementSessionList.checkHistory( _observable_entity.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
 									</h:commandLink>
 									
 									<h:commandLink title="Start"

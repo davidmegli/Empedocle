@@ -98,8 +98,8 @@
 			<web-resource-name>Basic user pages</web-resource-name>
 			<url-pattern>/pages/measurementSession/measurementSession-list.jsf</url-pattern>
 			<url-pattern>/pages/measurementSession/measurementSession-running.jsf</url-pattern>
-			<url-pattern>/pages/woodelements/woodelement-list.jsf</url-pattern>
-			<url-pattern>/pages/woodelements/woodelement-view.jsf</url-pattern>
+			<url-pattern>/pages/observableentities/observableentity-list.jsf</url-pattern>
+			<url-pattern>/pages/observableentities/observableentity-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/panel/*</url-pattern>		
 			<url-pattern>/pages/messages/*</url-pattern>				
 			<url-pattern>/home.jsf</url-pattern>
@@ -135,12 +135,12 @@
 			<url-pattern>/pages/staff/staff-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/staff-edit.jsf</url-pattern>
 			<url-pattern>/pages/staff/staff-list.jsf</url-pattern>
-			<url-pattern>/pages/woodelements/woodelement-list.jsf</url-pattern>
-			<url-pattern>/pages/woodelements/woodelement-view.jsf</url-pattern>
+			<url-pattern>/pages/observableentities/observableentity-list.jsf</url-pattern>
+			<url-pattern>/pages/observableentities/observableentity-view.jsf</url-pattern>
 			<url-pattern>/pages/staff/panel/*</url-pattern>
 			<url-pattern>/home.jsf</url-pattern>
 			<url-pattern>/pages/viewer/report-viewer.jsf</url-pattern>
-			<url-pattern>/pages/woodelements/woodelement-edit.jsf</url-pattern>
+			<url-pattern>/pages/observableentities/observableentity-edit.jsf</url-pattern>
 			<url-pattern>/pages/measurementSession/measurementSession-edit.jsf</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
@@ -166,7 +166,7 @@
 		<role-name>data reviewer</role-name>	<!-- solo consultazione cartelle -->
 	</security-role>
 	<security-role>
-		<role-name>wood_element merger</role-name> <!-- unione manuale di pazienti duplicati -->
+		<role-name>observable_entity merger</role-name> <!-- unione manuale di pazienti duplicati -->
 	</security-role>	
 	<security-role>
 		<role-name>measurementSession rescuer</role-name> <!-- recupero visite in erogazione -->

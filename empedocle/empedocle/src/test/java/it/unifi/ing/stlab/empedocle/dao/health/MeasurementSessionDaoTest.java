@@ -56,31 +56,31 @@ public class MeasurementSessionDaoTest extends JpaTest {
 	}
 	
 	@Test
-	public void testFindWoodElementHistoryNullStatusesAndAgendas() {
-		List<MeasurementSession> measurementSessions = measurementSessionDao.findWoodElementHistory( new Long(83695), new Long(181896), null, null, 0, 5 );
+	public void testFindObservableEntityHistoryNullStatusesAndAgendas() {
+		List<MeasurementSession> measurementSessions = measurementSessionDao.findObservableEntityHistory( new Long(83695), new Long(181896), null, null, 0, 5 );
 		assertEquals(0, measurementSessions.size());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindWoodElementHistoryNullStatuses() {
+	public void testFindObservableEntityHistoryNullStatuses() {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "IMPORTCARDIO" ));
 		
-		measurementSessionDao.findWoodElementHistory( new Long(83695), new Long(181896), null, agendas, 0, 5 );
+		measurementSessionDao.findObservableEntityHistory( new Long(83695), new Long(181896), null, agendas, 0, 5 );
 	}
 	
 	@Test
-	public void testFindWoodElementHistoryNullAgendas() {
+	public void testFindObservableEntityHistoryNullAgendas() {
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>();
 		statuses.add( MeasurementSessionStatus.CONCLUDED );
 		statuses.add( MeasurementSessionStatus.DONE );
 		
-		List<MeasurementSession> measurementSessions = measurementSessionDao.findWoodElementHistory( new Long(83695), new Long(181896), statuses, null, 0, 5 );
+		List<MeasurementSession> measurementSessions = measurementSessionDao.findObservableEntityHistory( new Long(83695), new Long(181896), statuses, null, 0, 5 );
 		assertEquals(0, measurementSessions.size());
 	}		
 	
 	@Test
-	public void testFindWoodElementHistory() {
+	public void testFindObservableEntityHistory() {
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>();
 		statuses.add( MeasurementSessionStatus.CONCLUDED );
 		statuses.add( MeasurementSessionStatus.DONE );
@@ -88,22 +88,22 @@ public class MeasurementSessionDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		List<MeasurementSession> measurementSessions = measurementSessionDao.findWoodElementHistory( new Long(83695), new Long(181896), statuses, agendas, 0, 5 );
+		List<MeasurementSession> measurementSessions = measurementSessionDao.findObservableEntityHistory( new Long(83695), new Long(181896), statuses, agendas, 0, 5 );
 		assertEquals( 1, measurementSessions.size() );
 	}	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindWoodElementHistoryFail1() {
-		measurementSessionDao.findWoodElementHistory( null, new Long(181896), null, null, 0, 5 );
+	public void testFindObservableEntityHistoryFail1() {
+		measurementSessionDao.findObservableEntityHistory( null, new Long(181896), null, null, 0, 5 );
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFindWoodElementHistoryFail2() {
-		measurementSessionDao.findWoodElementHistory( new Long(83695), null, null, null, 0, 5 );
+	public void testFindObservableEntityHistoryFail2() {
+		measurementSessionDao.findObservableEntityHistory( new Long(83695), null, null, null, 0, 5 );
 	}
 	
 	@Test
-	public void testHasWoodElementHistory() {
+	public void testHasObservableEntityHistory() {
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>();
 		statuses.add( MeasurementSessionStatus.CONCLUDED );
 		statuses.add( MeasurementSessionStatus.DONE );
@@ -111,12 +111,12 @@ public class MeasurementSessionDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		boolean result = measurementSessionDao.hasWoodElementHistory( new Long(83695), statuses, agendas);
+		boolean result = measurementSessionDao.hasObservableEntityHistory( new Long(83695), statuses, agendas);
 		assertTrue(result);
 	}
 	
 	@Test
-	public void testCountWoodElementHistory() {
+	public void testCountObservableEntityHistory() {
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>();
 		statuses.add( MeasurementSessionStatus.CONCLUDED );
 		statuses.add( MeasurementSessionStatus.DONE );
@@ -124,18 +124,18 @@ public class MeasurementSessionDaoTest extends JpaTest {
 		Set<Agenda> agendas = new HashSet<Agenda>();
 		agendas.add( agendaDao.findByCode( "TESTCARDIO" ));
 		
-		int result = measurementSessionDao.countWoodElementHistory( new Long(83695), new Long(181896), statuses, agendas );
+		int result = measurementSessionDao.countObservableEntityHistory( new Long(83695), new Long(181896), statuses, agendas );
 		assertEquals( 1, result );
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCountWoodElementHistoryFail1() {
-		measurementSessionDao.countWoodElementHistory( null, new Long(181896), null, null);
+	public void testCountObservableEntityHistoryFail1() {
+		measurementSessionDao.countObservableEntityHistory( null, new Long(181896), null, null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCountWoodElementHistoryFail2() {
-		measurementSessionDao.countWoodElementHistory( new Long(82727), null, null, null);
+	public void testCountObservableEntityHistoryFail2() {
+		measurementSessionDao.countObservableEntityHistory( new Long(82727), null, null, null);
 	}
 	
 }

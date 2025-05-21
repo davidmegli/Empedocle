@@ -25,7 +25,7 @@
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="#{geneticController.isInformativeRecovered(value, viewer, value.context.surveySchedule.woodElement.id)}">
+							<c:when test="#{geneticController.isInformativeRecovered(value, viewer, value.context.surveySchedule.observableEntity.id)}">
 								<h:outputText value="#{geneticController.informative.phenomenon.name}" 
 												styleClass="outputValue_text" />
 							</c:when>
@@ -55,7 +55,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isAdviceRecovered(value, viewer, value.context.surveySchedule.woodElement.id)}">
+					<c:when test="#{geneticController.isAdviceRecovered(value, viewer, value.context.surveySchedule.observableEntity.id)}">
 						<h:outputText value="#{geneticController.advice.phenomenon.name}" 
 										styleClass="outputValue_text"/>
 					</c:when>
@@ -83,7 +83,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isParentVisitRecovered(value, viewer, value.context.surveySchedule.woodElement.id)}">
+					<c:when test="#{geneticController.isParentVisitRecovered(value, viewer, value.context.surveySchedule.observableEntity.id)}">
 						<h:outputText value="#{geneticController.parentVisit.phenomenon.name}" 
 										styleClass="outputValue_text" />
 					</c:when>
@@ -113,7 +113,7 @@
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="#{geneticController.isFamilyAdviceRecovered(value, viewer, value.context.surveySchedule.woodElement.id)}">
+					<c:when test="#{geneticController.isFamilyAdviceRecovered(value, viewer, value.context.surveySchedule.observableEntity.id)}">
 						<h:outputText value="#{geneticController.familyAdvice.phenomenon.name}" 
 										styleClass="outputValue_text" />
 					</c:when>
@@ -138,13 +138,13 @@
 		<table class="grid_table">
 			<tr>
 				<td>
-					<h:outputText value="Il/la paziente ha espresso il proprio consenso all'inserimento dei propri 
+					<h:outputText value="Il/la observable entity ha espresso il proprio consenso all'inserimento dei propri
 												dati nel Registro Toscano Malattie Rare"
 									styleClass="label_text" />
 				</td>
 				<td>
 					<c:choose>
-						<c:when test="#{geneticController.isRegisterRecovered(value, viewer, value.context.surveySchedule.woodElement.id)}">
+						<c:when test="#{geneticController.isRegisterRecovered(value, viewer, value.context.surveySchedule.observableEntity.id)}">
 							<h:outputText value="#{geneticController.register.phenomenon.name}" 
 											styleClass="outputValue_text" />
 						</c:when>

@@ -12,15 +12,15 @@ import javax.naming.InitialContext;
 
 import org.richfaces.component.UIParameter;
 
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 @Named
 @RequestScoped
-public class WoodElementConverter implements Converter {
+public class ObservableEntityConverter implements Converter {
 	
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -30,30 +30,30 @@ public class WoodElementConverter implements Converter {
         }
 
 		lookup();
-        WoodElement woodElement = woodElementDao.findByUuid( value );
+        ObservableEntity observableEntity = observableEntityDao.findByUuid( value );
 
-        if (woodElement == null) {
+        if (observableEntity == null) {
             throw new ConverterException();
         }
 
-        return woodElement;
+        return observableEntity;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (!(value instanceof WoodElement)) {
+		if (!(value instanceof ObservableEntity)) {
 			return null;
 		}
 
-		return ((WoodElement) value).getUuid();
+		return ((ObservableEntity) value).getUuid();
 	}
 	
 	//XXX aggiunto per evitare NullPointerException su agendaDao (non inizializzato in suggestionList)
 	private void lookup() {
-		if( woodElementDao == null ) {
+		if( observableEntityDao == null ) {
 			try {
 				InitialContext jndi = new InitialContext();
-				woodElementDao = (WoodElementDao) jndi.lookup("java:module/WoodElementDaoBean");
+				observableEntityDao = (ObservableEntityDao) jndi.lookup("java:module/ObservableEntityDaoBean");
 			} catch ( Exception e ) {
 				e.printStackTrace();
 			}

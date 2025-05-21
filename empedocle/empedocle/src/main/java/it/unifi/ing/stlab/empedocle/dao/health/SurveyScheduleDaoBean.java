@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 @Stateless
 @TransactionAttribute
@@ -20,13 +20,13 @@ public class SurveyScheduleDaoBean implements SurveyScheduleDao {
 
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public List<SurveySchedule> findByWoodElements( Set<WoodElement> woodElements ) {
+	public List<SurveySchedule> findByObservableEntities( Set<ObservableEntity> observableEntities ) {
 		return ( List<SurveySchedule> ) entityManager
 				.createQuery(
 					"select a" + 
 					" from SurveySchedule a" +
-					" where a.woodElement in :woodElements " )
-				.setParameter( "woodElements", woodElements ).getResultList();
+					" where a.observableEntity in :observableEntities " )
+				.setParameter( "observableEntities", observableEntities ).getResultList();
 	}
 	
 	@Override

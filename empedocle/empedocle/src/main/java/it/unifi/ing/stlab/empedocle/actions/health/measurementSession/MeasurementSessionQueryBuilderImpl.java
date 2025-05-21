@@ -83,8 +83,8 @@ public class MeasurementSessionQueryBuilderImpl implements MeasurementSessionQue
 		
 		StringBuffer buffer = buildSelectClause(false);
 		
-		// FIXME la query mi torna meno risultati di quanti dovrebbe -> ordinando per taxCode di woodElement, vengono trovate solo
-		// le visite che hanno paziente != null, a differenza del count che invece le trova tutte.
+		// FIXME la query mi torna meno risultati di quanti dovrebbe -> ordinando per taxCode di observableEntity, vengono trovate solo
+		// le visite che hanno observable entity != null, a differenza del count che invece le trova tutte.
 		
 		writeFilters(buffer);
 

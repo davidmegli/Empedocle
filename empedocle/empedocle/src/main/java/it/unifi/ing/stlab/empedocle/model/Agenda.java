@@ -77,7 +77,7 @@ public class Agenda implements Persistable {
 	}
 	
 	@ManyToOne( fetch = FetchType.EAGER )
-	@JoinColumn( name = "measurementSession_type_id" )
+	@JoinColumn( name = "measurement_session_type_id" )
 	public MeasurementSessionType getMeasurementSessionType() {
 		return measurementSessionType;
 	}

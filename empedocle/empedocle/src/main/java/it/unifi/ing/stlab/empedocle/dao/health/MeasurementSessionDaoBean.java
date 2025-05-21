@@ -3,7 +3,7 @@ package it.unifi.ing.stlab.empedocle.dao.health;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.*;
 import it.unifi.ing.stlab.entities.utils.ClassHelper;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
 import it.unifi.ing.stlab.reflection.impl.model.facts.FactImpl;
@@ -42,11 +42,11 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public Fact resume(Fact f, WoodElement p) {
+	public Fact resume(Fact f, ObservableEntity p) {
 		String q = "SELECT f FROM FactImpl f" +
-				" JOIN f.context.surveySchedule.woodElement.after aa " +
+				" JOIN f.context.surveySchedule.observableEntity.after aa " +
 				" WHERE f.type = :type" +
-				" AND aa.id = :wood_element" +
+				" AND aa.id = :observable_entity" +
 				" AND f.context.status != :notStatusMeasurementSession" +
 				" AND f.status != :notStatusFact" +
 				" AND f.destination is null" +
@@ -55,7 +55,7 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		List<Fact> result = entityManager.createQuery(q)
 			.setMaxResults(1)
 			.setParameter("type", f.getType())
-			.setParameter("wood_element", p.getId())
+			.setParameter("observable_entity", p.getId())
 			.setParameter("notStatusMeasurementSession", MeasurementSessionStatus.RUNNING)
 			.setParameter("notStatusFact", FactStatus.REFUSED)
 			// NB: f è ancora TRANSIENT !
@@ -112,19 +112,19 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 	}
 	
 	@Override
-	public int countWoodElementHistory(Long woodElementId, Long measurementSessionFromId,
+	public int countObservableEntityHistory(Long observableEntityId, Long measurementSessionFromId,
 			Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas ) {
-		if(woodElementId == null || measurementSessionFromId == null)
-			throw new IllegalArgumentException("id paziente o id esame sono nulli");
+		if(observableEntityId == null || measurementSessionFromId == null)
+			throw new IllegalArgumentException("id observable entity o id esame sono nulli");
 		
 		return ((Long)entityManager.createQuery("select count ( distinct e ) " +
 						  						" from MeasurementSession e " +
-						  						" join e.surveySchedule.woodElement.after aa " +
+						  						" join e.surveySchedule.observableEntity.after aa " +
 						  						" where aa.id = :pid " +
 												" and e.status in :statuses " +
 												" and e.surveySchedule.agenda in :agendas " +
 												" and e.id != :measurementSessionId ")						  						
-						  				.setParameter("pid", woodElementId)
+						  				.setParameter("pid", observableEntityId)
 						  				.setParameter("measurementSessionId", measurementSessionFromId)
 						  				.setParameter("statuses", statuses)
 						  				.setParameter("agendas", agendas)
@@ -133,30 +133,30 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 	}
 	
 	@Override
-	public boolean hasWoodElementHistory( Long woodElementId ) {
-		if( woodElementId == null )
-			throw new IllegalArgumentException("id paziente è nullo");
+	public boolean hasObservableEntityHistory( Long observableEntityId ) {
+		if( observableEntityId == null )
+			throw new IllegalArgumentException("id observable entity è nullo");
 		
 		 return ((Long) entityManager.createQuery("select count ( distinct e ) " +
 						 " from MeasurementSession e " +
-						 " join e.surveySchedule.woodElement.after aa " +
+						 " join e.surveySchedule.observableEntity.after aa " +
 						 " where aa.id = :pid ")
-				 .setParameter("pid", woodElementId)
+				 .setParameter("pid", observableEntityId)
 				 .getSingleResult()).intValue() > 0;
 	}
 	
 	// FIXME ripulire
 	@Override
-	public boolean hasWoodElementHistory(Long woodElementId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas ) {
-		if(woodElementId == null)
-			throw new IllegalArgumentException("id paziente è nullo");
+	public boolean hasObservableEntityHistory(Long observableEntityId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas ) {
+		if(observableEntityId == null)
+			throw new IllegalArgumentException("id observable entity è nullo");
 		
 		StringBuffer query = new StringBuffer();
 		query.append("select e.id ")
 			.append(" from MeasurementSession e ")
 			.append(" join e.surveySchedule a ")
 			.append(" join a.agenda ag ")
-			.append(" join a.woodElement.after aa ")
+			.append(" join a.observableEntity.after aa ")
 			.append(" where aa.id = :pid ");
 		
 		if(agendas != null && agendas.size() > 0) {
@@ -191,27 +191,27 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		return (entityManager.createQuery(query.toString())
 			.setMaxResults(1)
-			.setParameter("pid", woodElementId)
+			.setParameter("pid", observableEntityId)
 			.getResultList().size() > 0);
 	}
 	
 	@Override
 	// FIXME eliminare IN?
-	public List<MeasurementSession> findWoodElementHistory( Long woodElementId, Long measurementSessionFromId,
+	public List<MeasurementSession> findObservableEntityHistory( Long observableEntityId, Long measurementSessionFromId,
 			Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas, int offset, int limit ) {
-		if ( woodElementId == null || measurementSessionFromId == null )
-			throw new IllegalArgumentException( "id paziente o id esame sono nulli" );
+		if ( observableEntityId == null || measurementSessionFromId == null )
+			throw new IllegalArgumentException( "id observable entity o id esame sono nulli" );
 		
 		TypedQuery<MeasurementSession> query = entityManager.createQuery(
 			" select distinct e from MeasurementSession e " 
-					+ " join e.surveySchedule.woodElement.after aa "
+					+ " join e.surveySchedule.observableEntity.after aa "
 					+ " where e.status in :statuses " 
 					+ " and e.surveySchedule.agenda in :agendas " 
 					+ " and e.id != :measurementSessionId " 
 					+ " and aa.id = :pid " 
 					+ " order by e.surveySchedule.date DESC", MeasurementSession.class );
 		
-		query.setParameter( "pid", woodElementId )
+		query.setParameter( "pid", observableEntityId )
 			.setParameter( "measurementSessionId", measurementSessionFromId )
 			.setParameter( "statuses", statuses )
 			.setParameter( "agendas", agendas );
@@ -225,15 +225,15 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		return query.getResultList();
 	}
 
-	public List<MeasurementSession> findWoodElementLastMeasurementSessions( Long woodElementId, Long lastMeasurementSessionId,  int measurementSessionsNum){
+	public List<MeasurementSession> findObservableEntityLastMeasurementSessions( Long observableEntityId, Long lastMeasurementSessionId,  int measurementSessionsNum){
 		TypedQuery<MeasurementSession> query = entityManager.createQuery(
 				" select distinct e from MeasurementSession e "
-						+ " join e.surveySchedule.woodElement.after aa"
+						+ " join e.surveySchedule.observableEntity.after aa"
 						+ " where e.id != :measurementSessionId "
 						+ " and aa.id = :pid "
 						+ " order by e.surveySchedule.date DESC", MeasurementSession.class );
 
-		query.setParameter( "pid", woodElementId )
+		query.setParameter( "pid", observableEntityId )
 				.setParameter( "measurementSessionId", lastMeasurementSessionId );
 
 		query.setMaxResults( measurementSessionsNum );

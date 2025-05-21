@@ -27,7 +27,7 @@ public class MeasurementSessionFactQueryConstructor extends FactQueryConstructor
 		//scrivo la parte iniziale
 		sb.append( " select distinct ( factroot ) " )
 			.append( " from FactImpl factroot " )
-			.append( " join factroot.context.surveySchedule.woodElement.after aa " )
+			.append( " join factroot.context.surveySchedule.observableEntity.after aa " )
 			.append( " where factroot.type = factroot.context.type.type " )
 			.append( " and aa.id = :pid " )
 			.append( " and factroot.context.surveySchedule.agenda in :agendas " )

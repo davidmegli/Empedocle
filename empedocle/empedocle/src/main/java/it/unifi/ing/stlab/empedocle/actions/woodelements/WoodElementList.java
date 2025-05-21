@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.woodelements;
+package it.unifi.ing.stlab.empedocle.actions.observableentities;
 
 import java.util.*;
 
@@ -27,13 +27,13 @@ import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
 import it.unifi.ing.stlab.navigation.Navigator;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.RoleType;
 
 @Named
 @RequestScoped
-public class WoodElementList extends Navigator {
+public class ObservableEntityList extends Navigator {
 
 	private static final String ENROLLING_FILTER_NAME = "Visit for Agenda:";
 	//
@@ -46,7 +46,7 @@ public class WoodElementList extends Navigator {
 	private UserTransaction utx;
 	
 	@Inject 
-	protected WoodElementFilter woodElementFilter;
+	protected ObservableEntityFilter observableEntityFilter;
 	
 	@Inject
 	private LoggedUser loggedUser;
@@ -58,7 +58,7 @@ public class WoodElementList extends Navigator {
 	// EJB injections
 	//
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	@Inject
 	private MeasurementSessionDao measurementSessionDao;
@@ -79,27 +79,27 @@ public class WoodElementList extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		setNavigationStatus( woodElementFilter );
+		setNavigationStatus( observableEntityFilter );
 		refreshCurrentPage();
 
 	}
 
-	public String runDateless( Long woodElementId){ // when starting a "recovery" surveySchedule where a date can be chosen
-		if( !woodElementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String runDateless( Long observableEntityId){ // when starting a "recovery" surveySchedule where a date can be chosen
+		if( !observableEntityFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) woodElementFilter
+		String selectedAgendaUuid = (String) observableEntityFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
 		SurveySchedule surveySchedule = SurveyScheduleFactory.createSurveySchedule();
 		surveySchedule.setAgenda( agenda );
-		surveySchedule.setWoodElement( woodElementDao.findById( woodElementId ) );
+		surveySchedule.setObservableEntity( observableEntityDao.findById( observableEntityId ) );
 		//surveySchedule.setDate( date );
 		surveySchedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
@@ -137,22 +137,22 @@ public class WoodElementList extends Navigator {
 			throw new RuntimeException( "measurementSession not found" );
 	}
 
-	public String run( Long woodElementId ) {
-		if( !woodElementFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
+	public String run( Long observableEntityId ) {
+		if( !observableEntityFilter.isFilterSet( ENROLLING_FILTER_NAME ) ) {
 			message( FacesMessage.SEVERITY_WARN,
 					"It is necessary to specify the clinical study for enrollment "
 							+ "through the 'Visit for Agenda:' filter before proceeding with the visit!", true );
 			return "list";
 		}
 
-		String selectedAgendaUuid = (String) woodElementFilter
+		String selectedAgendaUuid = (String) observableEntityFilter
 				.getFilterByFilterDefName( ENROLLING_FILTER_NAME ).getValue();
 		Agenda agenda = agendaDao.findByUuid( selectedAgendaUuid );
 		Date date = new Date();
 
 		SurveySchedule surveySchedule = SurveyScheduleFactory.createSurveySchedule();
 		surveySchedule.setAgenda( agenda );
-		surveySchedule.setWoodElement( woodElementDao.findById( woodElementId ) );
+		surveySchedule.setObservableEntity( observableEntityDao.findById( observableEntityId ) );
 		surveySchedule.setDate( date );
 		surveySchedule.setStatus( SurveyScheduleStatus.ACCEPTED );
 		String bookingCode = "BOOK" + DateUtils.getString( date, "yyyyMMddHHmmss" ) + "AG" + agenda.getCode();
@@ -190,15 +190,15 @@ public class WoodElementList extends Navigator {
 			throw new RuntimeException( "measurementSession not found" );
 	}
 	
-	@Produces @RequestScoped @Named( "woodElementResults" )
-	public List<WoodElement> getResults() {
+	@Produces @RequestScoped @Named( "observableEntityResults" )
+	public List<ObservableEntity> getResults() {
 		if ( getItemCount().intValue() == 0 )
 			return new ArrayList<>();
 
-		return woodElementDao.find( woodElementFilter,  getOffset(),  getLimit() );
+		return observableEntityDao.find( observableEntityFilter,  getOffset(),  getLimit() );
 	}
 	
-	public Boolean checkHistory( Long woodElementId ){
+	public Boolean checkHistory( Long observableEntityId ){
 		Set<Agenda> agendas = loggedUser.getAgendas();
 		
 		Set<MeasurementSessionStatus> statuses = new HashSet<MeasurementSessionStatus>(
@@ -207,11 +207,11 @@ public class WoodElementList extends Navigator {
 						MeasurementSessionStatus.DONE, 
 						MeasurementSessionStatus.CONCLUDED));
 		
-		return measurementSessionDao.hasWoodElementHistory( woodElementId, statuses, agendas );
+		return measurementSessionDao.hasObservableEntityHistory( observableEntityId, statuses, agendas );
 	}
 
-	public boolean isRemovable( Long woodElementId ) {
-		return !measurementSessionDao.hasWoodElementHistory( woodElementId );
+	public boolean isRemovable( Long observableEntityId ) {
+		return !measurementSessionDao.hasObservableEntityHistory( observableEntityId );
 	}
 	
 	public boolean checkRoleFor( String operation ) {
@@ -248,10 +248,10 @@ public class WoodElementList extends Navigator {
 		return "add-new";
 	}
 	
-	public String delete( Long woodElementId ) {
-		woodElementDao.deleteById( woodElementId, loggedUser.getUser() );
+	public String delete( Long observableEntityId ) {
+		observableEntityDao.deleteById( observableEntityId, loggedUser.getUser() );
 		
-		message( FacesMessage.SEVERITY_INFO, "WoodElement successfully deleted!", true );
+		message( FacesMessage.SEVERITY_INFO, "ObservableEntity successfully deleted!", true );
 		return "delete";
 	}
 
@@ -266,7 +266,7 @@ public class WoodElementList extends Navigator {
 	@Override
 	public Integer getItemCount() {
 		if ( itemCount == null ) {
-			itemCount = woodElementDao.count( woodElementFilter );
+			itemCount = observableEntityDao.count( observableEntityFilter );
 		}
 		return itemCount;
 	}

@@ -74,7 +74,7 @@ public enum UpdateInfo {
 	VE, // Vendibile anche al di fuori di farmacie e parafarmacie
 	VF, // Vietata la prescrizione e la preparazione magistrale galenica
 	VG, // Vietata la prescrizione o la preparazione galenica a scopo dimagrante
-	VH, // Vietate le preparazioni galeniche a base dei principi attivi di cui al DM 4/8/2015 in associazione o piu prearazioni singole allo stesso paziente
+	VH, // Vietate le preparazioni galeniche a base dei principi attivi di cui al DM 4/8/2015 in associazione o piu prearazioni singole allo stesso observable entity
 	VM, // Non utilizzare al di sotto dei 12 anni
 	VN, // Principi attivi vietati nelle preparazioni galeniche magistrali
 	VR, // Non in cani di peso inferiore a 6 Kg

@@ -7,10 +7,10 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#home.xhtml" NAME="output1"
     PATH="/home.xhtml" TARGET="rules:#home.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="woodelement-list::#pages#woodelements#woodelement-list.xhtml" NAME="output2"
-    PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-list.xhtml"
-    TITLE="woodelement-list" model-entity="JSFProcessItemOutput"/>
+    ID="observableentity-list::#pages#observableentities#observableentity-list.xhtml" NAME="output2"
+    PATH="/pages/observableentities/observableentity-list.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-list.xhtml"
+    TITLE="observableentity-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="measurementSession-list::#pages#measurementSession#measurementSession-list.xhtml"
     NAME="output3" PATH="/pages/measurementSession/measurementSession-list.xhtml"
@@ -52,34 +52,34 @@
     TITLE="panel-view" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-list.xhtml"
-  PATH="/pages/woodelements/woodelement-list.xhtml" SHAPE="640,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-list.xhtml:0"
-   NAME="item" PATH="/pages/woodelements/woodelement-list.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="view::#pages#woodelements#woodelement-view.xhtml"
-    NAME="output" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="view" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="edit::#pages#woodelements#woodelement-edit.xhtml"
-    NAME="output1" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="add-new::#pages#woodelements#woodelement-edit.xhtml"
-    NAME="output2" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="add-new" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="delete::#pages#woodelements#woodelement-list.xhtml"
-    NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
+ <PROCESS-ITEM NAME="rules:#pages#observableentities#observableentity-list.xhtml"
+  PATH="/pages/observableentities/observableentity-list.xhtml" SHAPE="640,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#observableentities#observableentity-list.xhtml:0"
+   NAME="item" PATH="/pages/observableentities/observableentity-list.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="view::#pages#observableentities#observableentity-view.xhtml"
+    NAME="output" PATH="/pages/observableentities/observableentity-view.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-view.xhtml" TITLE="view" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="edit::#pages#observableentities#observableentity-edit.xhtml"
+    NAME="output1" PATH="/pages/observableentities/observableentity-edit.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="add-new::#pages#observableentities#observableentity-edit.xhtml"
+    NAME="output2" PATH="/pages/observableentities/observableentity-edit.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-edit.xhtml" TITLE="add-new" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="delete::#pages#observableentities#observableentity-list.xhtml"
+    NAME="output3" PATH="/pages/observableentities/observableentity-list.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-view.xhtml"
-  PATH="/pages/woodelements/woodelement-view.xhtml" SHAPE="912,33,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-view.xhtml:0"
-   NAME="item" PATH="/pages/woodelements/woodelement-view.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="edit::#pages#woodelements#woodelement-edit.xhtml"
-    NAME="output2" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="delete::#pages#woodelements#woodelement-list.xhtml"
-    NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
+ <PROCESS-ITEM NAME="rules:#pages#observableentities#observableentity-view.xhtml"
+  PATH="/pages/observableentities/observableentity-view.xhtml" SHAPE="912,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#observableentities#observableentity-view.xhtml:0"
+   NAME="item" PATH="/pages/observableentities/observableentity-view.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="edit::#pages#observableentities#observableentity-edit.xhtml"
+    NAME="output2" PATH="/pages/observableentities/observableentity-edit.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="delete::#pages#observableentities#observableentity-list.xhtml"
+    NAME="output3" PATH="/pages/observableentities/observableentity-list.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="run::#pages#measurementSession#measurementSession-running.xhtml" NAME="output"
     PATH="/pages/measurementSession/measurementSession-running.xhtml"
@@ -87,22 +87,22 @@
     TITLE="run" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-edit.xhtml"
-  PATH="/pages/woodelements/woodelement-edit.xhtml" SHAPE="368,1953,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-edit.xhtml:0"
-   NAME="item" PATH="/pages/woodelements/woodelement-edit.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="save::#pages#woodelements#woodelement-list.xhtml"
-    NAME="output" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="save::#pages#woodelements#woodelement-view.xhtml"
-    NAME="output1" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#woodelements#woodelement-view.xhtml"
-    NAME="output2" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#woodelements#woodelement-list.xhtml"
-    NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
+ <PROCESS-ITEM NAME="rules:#pages#observableentities#observableentity-edit.xhtml"
+  PATH="/pages/observableentities/observableentity-edit.xhtml" SHAPE="368,1953,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#observableentities#observableentity-edit.xhtml:0"
+   NAME="item" PATH="/pages/observableentities/observableentity-edit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="save::#pages#observableentities#observableentity-list.xhtml"
+    NAME="output" PATH="/pages/observableentities/observableentity-list.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-list.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="save::#pages#observableentities#observableentity-view.xhtml"
+    NAME="output1" PATH="/pages/observableentities/observableentity-view.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-view.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#observableentities#observableentity-view.xhtml"
+    NAME="output2" PATH="/pages/observableentities/observableentity-view.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-view.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#observableentities#observableentity-list.xhtml"
+    NAME="output3" PATH="/pages/observableentities/observableentity-list.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-list.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#types#type-list.xhtml"
@@ -453,9 +453,9 @@
     PATH="/pages/measurementSession/measurementSession-running.xhtml"
     TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="run" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="history::#pages#woodelements#woodelement-view.xhtml"
-    NAME="output1" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="history::#pages#observableentities#observableentity-view.xhtml"
+    NAME="output1" PATH="/pages/observableentities/observableentity-view.xhtml"
+    TARGET="rules:#pages#observableentities#observableentity-view.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="edit::#pages#measurementSession#measurementSession-edit.xhtml" NAME="output2"
     PATH="/pages/measurementSession/measurementSession-edit.xhtml"

@@ -3,7 +3,7 @@ package it.unifi.ing.stlab.empedocle.model.health;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 import java.util.Collections;
 import java.util.Date;
@@ -41,7 +41,7 @@ public class SurveySchedule implements Persistable {
 	private String acceptanceCode;
 	private Set<Service> services;
 	private Agenda agenda;
-	private WoodElement woodElement;
+	private ObservableEntity observableEntity;
 	private SurveyScheduleStatus status;
 
 
@@ -149,12 +149,12 @@ public class SurveySchedule implements Persistable {
 	
 	
 	@ManyToOne( fetch = FetchType.EAGER )
-	@JoinColumn( name = "woodElement_id" )
-	public WoodElement getWoodElement() {
-		return woodElement;
+	@JoinColumn( name = "observable_entity_id" )
+	public ObservableEntity getObservableEntity() {
+		return observableEntity;
 	}
-	public void setWoodElement(WoodElement pazient) {
-		this.woodElement = pazient;
+	public void setObservableEntity(ObservableEntity observableEntity) {
+		this.observableEntity = observableEntity;
 	}
 
 	

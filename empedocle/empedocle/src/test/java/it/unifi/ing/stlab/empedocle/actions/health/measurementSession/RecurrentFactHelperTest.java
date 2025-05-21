@@ -9,7 +9,7 @@ import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.visitor.fact.tools.EmptyFactVisitor;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.reflection.impl.visitor.fact.FactCopyVisitor;
 import it.unifi.ing.stlab.reflection.model.facts.Fact;
 import it.unifi.ing.stlab.reflection.model.facts.FactStatus;
@@ -30,13 +30,13 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 	private RecurrentFactHelper helper;
 	
 	@Mock private MeasurementSessionDao measurementSessionDao;
-	@Mock private WoodElement fakeWoodElement;
+	@Mock private ObservableEntity fakeObservableEntity;
 	
 	@Before
 	public void setUp() {
 		super.setUp();
 		helper = new RecurrentFactHelper(measurementSessionDao);
-		when(fakeWoodElement.getId()).thenReturn(1L);
+		when(fakeObservableEntity.getId()).thenReturn(1L);
 		
 	}
 	
@@ -49,7 +49,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		fake_return.setText("recuperata!");
 		fake_return.setContext(context);
 		
-		when(measurementSessionDao.resume(any(Fact.class), any(WoodElement.class))).thenReturn(fake_return);
+		when(measurementSessionDao.resume(any(Fact.class), any(ObservableEntity.class))).thenReturn(fake_return);
 		
 		helper.resumeRecurrentFacts(root);
 		
@@ -77,7 +77,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		
 		MeasurementSession e = (MeasurementSession)root.getContext();
 		SurveySchedule a = SurveyScheduleFactory.createSurveySchedule();
-		a.setWoodElement(fakeWoodElement);
+		a.setObservableEntity(fakeObservableEntity);
 		e.setSurveySchedule(a);
 		
 		AssignContextVisitor acv = new AssignContextVisitor(e);
@@ -85,7 +85,7 @@ public class RecurrentFactHelperTest extends BasicFactTest {
 		AssignStatusVisitor asv = new AssignStatusVisitor(FactStatus.DRAFT);
 		destination.accept(asv);
 		
-		when(measurementSessionDao.resume(any(Fact.class), any(WoodElement.class))).thenReturn(cmp);
+		when(measurementSessionDao.resume(any(Fact.class), any(ObservableEntity.class))).thenReturn(cmp);
 		
 		helper.resumeRecurrentFacts(destination);
 		

@@ -78,7 +78,7 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.surveySchedule.date asc, e.surveySchedule.woodElement.taxCode asc", "e.surveySchedule.date desc, e.surveySchedule.woodElement.taxCode desc" );
+		addSort( "Date", "e.surveySchedule.date asc, e.surveySchedule.observableEntity.taxCode asc", "e.surveySchedule.date desc, e.surveySchedule.observableEntity.taxCode desc" );
 		toggle( "Date" );
 	}
 
@@ -190,12 +190,12 @@ public class MeasurementSessionFilter extends FilterBean implements MeasurementS
 			}
 		} );		
 		
-		addFilterDef( "Tax Code", FilterType.TEXT, "e.surveySchedule.woodElement.taxCode like :ptaxc", "ptaxc" );
-		addFilterDef( "Surname", FilterType.TEXT, "e.surveySchedule.woodElement.surname like :psur", "psur" );
-		addFilterDef( "Name", FilterType.TEXT, "e.surveySchedule.woodElement.name like :pname", "pname" );
-		addFilterDef( "Birthplace", FilterType.TEXT, "e.surveySchedule.woodElement.birthPlace like :pbplace", "pbplace" );
-		addFilterDef( "Birthdate - from", FilterType.DATE, "eSurveySchedule.woodElement.birthDate >= :pbmin", "pbmin" );
-		addFilterDef( "Birthdate - to", FilterType.DATE, "e.surveySchedule.woodElement.birthDate <= :pbmax", "pbmax" );
+		addFilterDef( "Tax Code", FilterType.TEXT, "e.surveySchedule.observableEntity.taxCode like :ptaxc", "ptaxc" );
+		addFilterDef( "Surname", FilterType.TEXT, "e.surveySchedule.observableEntity.surname like :psur", "psur" );
+		addFilterDef( "Name", FilterType.TEXT, "e.surveySchedule.observableEntity.name like :pname", "pname" );
+		addFilterDef( "Birthplace", FilterType.TEXT, "e.surveySchedule.observableEntity.birthPlace like :pbplace", "pbplace" );
+		addFilterDef( "Birthdate - from", FilterType.DATE, "eSurveySchedule.observableEntity.birthDate >= :pbmin", "pbmin" );
+		addFilterDef( "Birthdate - to", FilterType.DATE, "e.surveySchedule.observableEntity.birthDate <= :pbmax", "pbmax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );
 	}

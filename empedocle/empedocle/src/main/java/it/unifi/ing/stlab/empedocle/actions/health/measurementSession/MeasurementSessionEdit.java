@@ -32,8 +32,8 @@ import it.unifi.ing.stlab.empedocle.model.health.SurveyScheduleStatus;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
 import it.unifi.ing.stlab.empedocle.security.LoggedUser;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 @Named
 @ConversationScoped
@@ -63,7 +63,7 @@ public class MeasurementSessionEdit implements Serializable {
 	private AgendaDao agendaDao;
 	
 	@Inject
-	private WoodElementDao woodElementDao;
+	private ObservableEntityDao observableEntityDao;
 	
 	@EJB
 	private ServiceDao serviceDao;
@@ -80,7 +80,7 @@ public class MeasurementSessionEdit implements Serializable {
 	private MeasurementSession current;
 
 	private AgendaSuggestion agendaSuggestion;
-	private WoodElementSuggestion woodElementSuggestion;
+	private ObservableEntitySuggestion observableEntitySuggestion;
 	
 
 	@PostConstruct
@@ -93,7 +93,7 @@ public class MeasurementSessionEdit implements Serializable {
 		}
 		
 		initAgendaSuggestion();
-		initWoodElementSuggestion();
+		initObservableEntitySuggestion();
 	}
 	
 	public String cancel() {
@@ -165,8 +165,8 @@ public class MeasurementSessionEdit implements Serializable {
 		return agendaSuggestion;
 	}
 	
-	public WoodElementSuggestion getWoodElementSuggestion() {
-		return woodElementSuggestion;
+	public ObservableEntitySuggestion getObservableEntitySuggestion() {
+		return observableEntitySuggestion;
 	}
 	
 	//
@@ -196,19 +196,19 @@ public class MeasurementSessionEdit implements Serializable {
 	}
 	
 	//
-	// Internal class for woodElement suggestion
+	// Internal class for observableEntity suggestion
 	//
-	public class WoodElementSuggestion implements SuggestionInterface {
+	public class ObservableEntitySuggestion implements SuggestionInterface {
 		
 		private String suggestion;
 
 		@Override
 		public List<SelectItem> autocomplete( String suggestion ) {
 			List<SelectItem> result = new ArrayList<SelectItem>();
-			List<WoodElement> pList = woodElementDao.findBySuggestion( suggestion, 0 );
+			List<ObservableEntity> pList = observableEntityDao.findBySuggestion( suggestion, 0 );
 			
-			for( WoodElement p : pList ){
-				result.add( new SelectItem( p.getUuid(), WoodElementUtils.toString( p )));
+			for( ObservableEntity p : pList ){
+				result.add( new SelectItem( p.getUuid(), ObservableEntityUtils.toString( p )));
 			}
 			return result;
 		}
@@ -224,9 +224,9 @@ public class MeasurementSessionEdit implements Serializable {
 	//
 	// Internal utility class
 	//
-	private static class WoodElementUtils {
+	private static class ObservableEntityUtils {
 		
-		public static String toString( WoodElement p ) {
+		public static String toString( ObservableEntity p ) {
 			return p.getSurname() + " " + p.getName() + " - " + p.getTaxCode();
 		}
 	}
@@ -245,11 +245,11 @@ public class MeasurementSessionEdit implements Serializable {
 					current.getSurveySchedule().getAgenda().toString() );
 	}
 
-	private void initWoodElementSuggestion() {
-		woodElementSuggestion = new WoodElementSuggestion();
+	private void initObservableEntitySuggestion() {
+		observableEntitySuggestion = new ObservableEntitySuggestion();
 		if ( !isNew() )
-			woodElementSuggestion.setSuggestion(
-					WoodElementUtils.toString( current.getSurveySchedule().getWoodElement()) );
+			observableEntitySuggestion.setSuggestion(
+					ObservableEntityUtils.toString( current.getSurveySchedule().getObservableEntity()) );
 	}
 	
 	private void message( Severity severityInfo, String message, boolean keepMessages ) {

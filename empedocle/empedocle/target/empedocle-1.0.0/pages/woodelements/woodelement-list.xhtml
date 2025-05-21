@@ -16,101 +16,101 @@
 			.birth-date { width: 100px; }
 		</style>	
 	
-		<h:form id="woodelement-form">
+		<h:form id="observableentity-form">
 			<h:panelGroup id="filters" layout="block"
 				xmlns:filter="http://java.sun.com/jsf/composite/components/filters">
 				<h2>
 					Clinical Records
 					<h:panelGroup styleClass="pull-right align-btn ">
-						<h:commandLink title="Add" class="btn btn-primary" action="#{woodElementList.addNew()}">
+						<h:commandLink title="Add" class="btn btn-primary" action="#{observableEntityList.addNew()}">
 							<i class="fw-icon-plus-sign-alt dist-right"></i> Add
 						</h:commandLink>
 					</h:panelGroup>
 				</h2>
 
 				<filter:filterPanel
-					filters="#{woodElementFilter}"
-					navigator="#{woodElementList}"
-					render=":woodelement-form:navigator :woodelement-form:results"
-					renderAll=":woodelement-form:filters :woodelement-form:navigator
-						:woodelement-form:results" />
+					filters="#{observableEntityFilter}"
+					navigator="#{observableEntityList}"
+					render=":observableentity-form:navigator :observableentity-form:results"
+					renderAll=":observableentity-form:filters :observableentity-form:navigator
+						:observableentity-form:results" />
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" id="navigator"
 				xmlns:nav="http://java.sun.com/jsf/composite/components/navigator">
-				<nav:navigator value="#{woodElementList}"
-					render=":woodelement-form:navigator :woodelement-form:results" />
+				<nav:navigator value="#{observableEntityList}"
+					render=":observableentity-form:navigator :observableentity-form:results" />
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" id="results">
-				<!--<h:panelGroup rendered="#{empty woodElementResults}">
+				<!--<h:panelGroup rendered="#{empty observableEntityResults}">
 					<br />
 					<h:outputText styleClass="lead" value="Applicare almeno un Filtro Nome/Cognome per visualizzare la Lista Pazienti" />
 				</h:panelGroup>-->
 				
 				<h:dataTable styleClass="table table-bordered table-striped table-hover" 
-					value="#{woodElementResults}" var="wood_element"
+					value="#{observableEntityResults}" var="observable_entity"
 					columnClasses="surname, name, sex, birth-date, birth-place, taxcode, crud-controls-3">
 								
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Surname"
 											styleClass="normal-text"
-											action="#{woodElementFilter.toggle('Surname')}">
+											action="#{observableEntityFilter.toggle('Surname')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":woodelement-form:results" execute="@none" />
-								<h:panelGroup rendered="#{woodElementFilter.isSelected('Surname')}">
-									<i class="#{woodElementFilter.isAscending('Surname') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":observableentity-form:results" execute="@none" />
+								<h:panelGroup rendered="#{observableEntityFilter.isSelected('Surname')}">
+									<i class="#{observableEntityFilter.isAscending('Surname') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Surname')}">
+								<h:panelGroup rendered="#{not observableEntityFilter.isSelected('Surname')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						#{woodElement.surname}
+						#{observableEntity.surname}
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
 							Name
 						</f:facet>
-						#{woodElement.name}
+						#{observableEntity.name}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Sex"
 											styleClass="normal-text"
-											action="#{woodElementFilter.toggle('Sex')}">
+											action="#{observableEntityFilter.toggle('Sex')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":woodelement-form:results" execute="@none" />
-								<h:panelGroup rendered="#{woodElementFilter.isSelected('Sex')}">
-									<i class="#{woodElementFilter.isAscending('Sex') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":observableentity-form:results" execute="@none" />
+								<h:panelGroup rendered="#{observableEntityFilter.isSelected('Sex')}">
+									<i class="#{observableEntityFilter.isAscending('Sex') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Sex')}">
+								<h:panelGroup rendered="#{not observableEntityFilter.isSelected('Sex')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>					
-						#{woodElement.sex}
+						#{observableEntity.sex}
 					</h:column>
 	
 					<h:column>
 						<f:facet name="header">
 							<h:commandLink value="Birthdate"
 											styleClass="normal-text"
-											action="#{woodElementFilter.toggle('Birthdate')}">
+											action="#{observableEntityFilter.toggle('Birthdate')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":woodelement-form:results" execute="@none" />
-								<h:panelGroup rendered="#{woodElementFilter.isSelected('Birthdate')}">
-									<i class="#{woodElementFilter.isAscending('Birthdate') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":observableentity-form:results" execute="@none" />
+								<h:panelGroup rendered="#{observableEntityFilter.isSelected('Birthdate')}">
+									<i class="#{observableEntityFilter.isAscending('Birthdate') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Birthdate')}">
+								<h:panelGroup rendered="#{not observableEntityFilter.isSelected('Birthdate')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						<h:outputText value="#{woodElement.birthDate}" >
+						<h:outputText value="#{observableEntity.birthDate}" >
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</h:column>
@@ -119,25 +119,25 @@
 						<f:facet name="header">
 							<h:commandLink value="Birthplace"
 											styleClass="normal-text"
-											action="#{woodElementFilter.toggle('Birthplace')}">
+											action="#{observableEntityFilter.toggle('Birthplace')}">
 								<f:ajax render="@none" execute="@this" />
-								<f:ajax render=":woodelement-form:results" execute="@none" />
-								<h:panelGroup rendered="#{woodElementFilter.isSelected('Birthplace')}">
-									<i class="#{woodElementFilter.isAscending('Birthplace') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
+								<f:ajax render=":observableentity-form:results" execute="@none" />
+								<h:panelGroup rendered="#{observableEntityFilter.isSelected('Birthplace')}">
+									<i class="#{observableEntityFilter.isAscending('Birthplace') ? 'fw-icon-sort-up' : 'fw-icon-sort-down'}" />
 								</h:panelGroup>
-								<h:panelGroup rendered="#{not woodElementFilter.isSelected('Birthplace')}">
+								<h:panelGroup rendered="#{not observableEntityFilter.isSelected('Birthplace')}">
 									<i class="fw-icon-sort" />
 								</h:panelGroup>
 							</h:commandLink>
 						</f:facet>
-						#{woodElement.birthPlace}
+						#{observableEntity.birthPlace}
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
 							Tax Code
 						</f:facet>
-						#{woodElement.taxCode}
+						#{observableEntity.taxCode}
 					</h:column>	
 	
 					<h:column>
@@ -146,17 +146,17 @@
 						</f:facet>
 
 						<h:commandLink title="Start Visit"
-									   action="#{woodElementList.run( woodElement.id )}"
+									   action="#{observableEntityList.run( observableEntity.id )}"
 									   styleClass="btn btn-success pull-left tltip
-								#{not woodElementFilter.isFilterSet('Visit for Agenda:') ? 'disabled' : ''}">
+								#{not observableEntityFilter.isFilterSet('Visit for Agenda:') ? 'disabled' : ''}">
 							<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
 							<i class="fw-icon-large fw-icon-play-sign"/>
 						</h:commandLink>
 
 						<h:commandLink title="View" class="btn btn-info pull-left tltip"
-										action="#{woodElementList.view( woodElement.id )}" >
+										action="#{observableEntityList.view( observableEntity.id )}" >
 							<a4j:ajax onbegin="#{rich:component('loading-popup')}.show();" />
-							<i class="fw-icon-large #{woodElementList.checkHistory( woodElement.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
+							<i class="fw-icon-large #{observableEntityList.checkHistory( observableEntity.id ) ? 'fw-icon-zoom-in' : 'fw-icon-search'}"></i>
 						</h:commandLink>
 
 						<h:panelGroup layout="block" styleClass="btn-group dropup pull-right dist-left" >
@@ -164,30 +164,30 @@
 								<span class="fw-icon-reorder"></span></a>
 							<ul class="dropdown-menu pull-right">
 								<li>
-									<h:commandLink action="#{woodElementList.edit( woodElement.id )}"
-												   rendered="#{woodElementList.checkRoleFor( 'edit' )}">
-										<i class="fw-icon-pencil dist-right "></i> Edit wood_element data
+									<h:commandLink action="#{observableEntityList.edit( observableEntity.id )}"
+												   rendered="#{observableEntityList.checkRoleFor( 'edit' )}">
+										<i class="fw-icon-pencil dist-right "></i> Edit observable_entity data
 									</h:commandLink>
 								</li>
 								<li>
-									<h:commandLink action="#{woodElementList.delete( woodElement.id )}"
-												   rendered="#{woodElementList.isRemovable( woodElement.id ) and woodElementList.checkRoleFor( 'delete' )}"
-												   onclick="if(!confirm('Delete selected wood_element?')) {return false;}" >
-										<i class="fw-icon-remove dist-right "></i> Remove wood_element
+									<h:commandLink action="#{observableEntityList.delete( observableEntity.id )}"
+												   rendered="#{observableEntityList.isRemovable( observableEntity.id ) and observableEntityList.checkRoleFor( 'delete' )}"
+												   onclick="if(!confirm('Delete selected observable_entity?')) {return false;}" >
+										<i class="fw-icon-remove dist-right "></i> Remove observable_entity
 									</h:commandLink>
 								</li>
 							</ul>
 						</h:panelGroup>
 
 						<!--<h:commandLink title="Edit" class="btn btn-warning pull-left dist-left tltip"
-							action="#{woodElementList.edit( woodElement.id )}"
-							rendered="#{woodElementList.checkRoleFor( 'edit' )}">
+							action="#{observableEntityList.edit( observableEntity.id )}"
+							rendered="#{observableEntityList.checkRoleFor( 'edit' )}">
 							<i class="fw-icon-pencil fw-icon-large"></i>
 						</h:commandLink>
 						<h:commandLink title="Elimina" class="btn btn-danger pull-left dist-left tltip"
-										action="#{woodElementList.delete( woodElement.id )}"
-										rendered="#{woodElementList.isRemovable( woodElement.id ) and woodElementList.checkRoleFor( 'delete' )}"
-										onclick="if(!confirm('Eliminare il paziente selezionato?')) {return false;}" >
+										action="#{observableEntityList.delete( observableEntity.id )}"
+										rendered="#{observableEntityList.isRemovable( observableEntity.id ) and observableEntityList.checkRoleFor( 'delete' )}"
+										onclick="if(!confirm('Eliminare il observable entity selezionato?')) {return false;}" >
 							<i class="fw-icon-remove fw-icon-large"></i>
 						</h:commandLink>-->
 					</h:column>								

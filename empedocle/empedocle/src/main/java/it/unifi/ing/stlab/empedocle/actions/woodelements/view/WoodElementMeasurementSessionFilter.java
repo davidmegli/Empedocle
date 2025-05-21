@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.actions.woodelements.view;
+package it.unifi.ing.stlab.empedocle.actions.observableentities.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +26,13 @@ import it.unifi.ing.stlab.filters.SelectItemBuilder;
 
 @Named
 @SessionScoped
-public class WoodElementMeasurementSessionFilter extends FilterBean implements MeasurementSessionQueryBuilder { 
+public class ObservableEntityMeasurementSessionFilter extends FilterBean implements MeasurementSessionQueryBuilder { 
 
 	private static final long serialVersionUID = -4636045233963106991L;
 
 	private MeasurementSessionListType selectedList;
 	
-	private Long woodElementId;
+	private Long observableEntityId;
 
 	@Inject
 	private LoggedUser loggedUser;
@@ -40,7 +40,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	@Inject
 	private AgendaDao agendaDao;
 	
-	public WoodElementMeasurementSessionFilter() {
+	public ObservableEntityMeasurementSessionFilter() {
 		setPageSize( 10 );
 		
 		// filters available
@@ -129,7 +129,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 		
 		buffer.append( "select count( distinct e ) " )		
 			  .append( " from MeasurementSession e " )
-			  .append( " join e.surveySchedule.woodElement.after aa " )
+			  .append( " join e.surveySchedule.observableEntity.after aa " )
 			  .append( " where aa.id = :id " )
 			  .append( " and e.surveySchedule.agenda in :agendas " )
 			  .append( " and e.status in :ex_status " )
@@ -156,7 +156,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 		
 		buffer.append( "select distinct e " )
 			  .append( " from MeasurementSession e " )
-			  .append( " join e.surveySchedule.woodElement.after aa ")
+			  .append( " join e.surveySchedule.observableEntity.after aa ")
 			  .append( " where aa.id = :id " )
 			  .append( " and e.surveySchedule.agenda in :agendas " )			  
 			  .append( " and e.status in :ex_status " )
@@ -189,7 +189,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	public void resolveParameters( Query query ) {
 		super.resolveParameters( query );
 		
-		query.setParameter( "id", woodElementId );
+		query.setParameter( "id", observableEntityId );
 		query.setParameter( "agendas",  loggedUser.getAgendas());		
 		
 		switch ( selectedList ) {
@@ -245,10 +245,10 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 		}
 	}
 
-	public Long getWoodElementId() {
-		return woodElementId;
+	public Long getObservableEntityId() {
+		return observableEntityId;
 	}
-	public void setWoodElementId( Long woodElementId ) {
-		this.woodElementId = woodElementId;
+	public void setObservableEntityId( Long observableEntityId ) {
+		this.observableEntityId = observableEntityId;
 	}
 }
