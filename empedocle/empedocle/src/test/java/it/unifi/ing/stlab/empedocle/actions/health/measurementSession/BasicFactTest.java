@@ -30,7 +30,7 @@ public class BasicFactTest {
 
 	protected FactContext context;
 	protected SurveySchedule surveySchedule;
-	protected WoodElement wood_element;
+	protected WoodElement woodElement;
 	protected Fact root;
 	
 	// Composite with two children txt
@@ -51,9 +51,9 @@ public class BasicFactTest {
 		author.setUserid("usr");
 		MeasurementSession ex = MeasurementSessionFactory.createMeasurementSession();
 		surveySchedule = SurveyScheduleFactory.createSurveySchedule();
-		wood_element = WoodElementFactory.createWoodElement();
+		woodElement = WoodElementFactory.createWoodElement();
 		ex.setSurveySchedule(surveySchedule);
-		surveySchedule.setWoodElement(wood_element);
+		surveySchedule.setWoodElement(woodElement);
 		context = ex;
 		mng = new FactManager();
 		

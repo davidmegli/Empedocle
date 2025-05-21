@@ -98,7 +98,7 @@ public class WoodElementView extends Navigator {
 
 	@PostConstruct
 	public void init() {
-		current = wood_elementDao.findById( Long.parseLong( id ) );
+		current = woodElementDao.findById( Long.parseLong( id ) );
 
 		initFilter();
 		setNavigationStatus( measurementSessionFilter );
@@ -108,7 +108,7 @@ public class WoodElementView extends Navigator {
 		initMatchingWoodElements();
 	}
 
-	@Produces @RequestScoped @WoodElementMeasurementSessionResults @Named( "wood_elementMeasurementSessionResults" ) 
+	@Produces @RequestScoped @WoodElementMeasurementSessionResults @Named( "woodElementMeasurementSessionResults" )
 	public List<MeasurementSession> getResults() {
 		if ( getItemCount().intValue() == 0 ) 
 			return new ArrayList<MeasurementSession>();
@@ -172,10 +172,10 @@ public class WoodElementView extends Navigator {
 	// navigation methods
 	//
 	public String merge( Long other ) {
-		WoodElement result = wood_elementDao.mergeWoodElements( getCurrent().getId(), other,
+		WoodElement result = woodElementDao.mergeWoodElements( getCurrent().getId(), other,
 				loggedUser.getUser() );
 
-		return "wood_element-view?faces-redirect=true&from=wood_element-list&id=" + result.getId();
+		return "woodelement-view?faces-redirect=true&from=woodelement-list&id=" + result.getId();
 	}
 	
 	public String run( Long id ) {
@@ -260,7 +260,7 @@ public class WoodElementView extends Navigator {
 	}
 	
 	private void initMatchingWoodElements() {
-		matchingWoodElements = wood_elementDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
+		matchingWoodElements = woodElementDao.findForMerge( current.getName(), current.getSurname(), current.getId() );
 	}
 	
 	private void initFactPanels() {

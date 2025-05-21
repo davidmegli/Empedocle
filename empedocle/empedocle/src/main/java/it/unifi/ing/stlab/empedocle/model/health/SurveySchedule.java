@@ -149,7 +149,7 @@ public class SurveySchedule implements Persistable {
 	
 	
 	@ManyToOne( fetch = FetchType.EAGER )
-	@JoinColumn( name = "wood_element_id" )
+	@JoinColumn( name = "woodElement_id" )
 	public WoodElement getWoodElement() {
 		return woodElement;
 	}

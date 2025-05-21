@@ -44,10 +44,10 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 	@SuppressWarnings("unchecked")
 	public Fact resume(Fact f, WoodElement p) {
 		String q = "SELECT f FROM FactImpl f" +
-				" JOIN f.context.survey_schedule.wood_element.after aa " +
+				" JOIN f.context.surveySchedule.woodElement.after aa " +
 				" WHERE f.type = :type" +
 				" AND aa.id = :wood_element" +
-				" AND f.context.status != :notStatusExam" +
+				" AND f.context.status != :notStatusMeasurementSession" +
 				" AND f.status != :notStatusFact" +
 				" AND f.destination is null" +
 				" ORDER BY f.origin.time DESC";
@@ -56,7 +56,7 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 			.setMaxResults(1)
 			.setParameter("type", f.getType())
 			.setParameter("wood_element", p.getId())
-			.setParameter("notStatusExam", MeasurementSessionStatus.RUNNING)
+			.setParameter("notStatusMeasurementSession", MeasurementSessionStatus.RUNNING)
 			.setParameter("notStatusFact", FactStatus.REFUSED)
 			// NB: f è ancora TRANSIENT !
 //			.setParameter("currFact", f)
@@ -76,8 +76,8 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 				" from MeasurementSession e" +
 				" where e.author.userid = :id" +
 				" and e.status = :status " +
-				" and e.survey_schedule.date >= :start " +
-				" and e.survey_schedule.date <= :end";
+				" and e.surveySchedule.date >= :start " +
+				" and e.surveySchedule.date <= :end";
 		
 		return (Long)entityManager.createQuery(q)
 				.setParameter("id", userid)
@@ -119,10 +119,10 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		return ((Long)entityManager.createQuery("select count ( distinct e ) " +
 						  						" from MeasurementSession e " +
-						  						" join e.survey_schedule.wood_element.after aa " +
+						  						" join e.surveySchedule.woodElement.after aa " +
 						  						" where aa.id = :pid " +
 												" and e.status in :statuses " +
-												" and e.survey_schedule.agenda in :agendas " +
+												" and e.surveySchedule.agenda in :agendas " +
 												" and e.id != :measurementSessionId ")						  						
 						  				.setParameter("pid", woodElementId)
 						  				.setParameter("measurementSessionId", measurementSessionFromId)
@@ -139,24 +139,24 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		 return ((Long) entityManager.createQuery("select count ( distinct e ) " +
 						 " from MeasurementSession e " +
-						 " join e.survey_schedule.wood_element.after aa " +
+						 " join e.surveySchedule.woodElement.after aa " +
 						 " where aa.id = :pid ")
-				 .setParameter("pid", wood_elementId)
+				 .setParameter("pid", woodElementId)
 				 .getSingleResult()).intValue() > 0;
 	}
 	
 	// FIXME ripulire
 	@Override
-	public boolean hasWoodElementHistory(Long wood_elementId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas ) {
-		if(wood_elementId == null)
+	public boolean hasWoodElementHistory(Long woodElementId, Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas ) {
+		if(woodElementId == null)
 			throw new IllegalArgumentException("id paziente è nullo");
 		
 		StringBuffer query = new StringBuffer();
 		query.append("select e.id ")
 			.append(" from MeasurementSession e ")
-			.append(" join e.survey_schedule a ")
+			.append(" join e.surveySchedule a ")
 			.append(" join a.agenda ag ")
-			.append(" join a.wood_element.after aa ")
+			.append(" join a.woodElement.after aa ")
 			.append(" where aa.id = :pid ");
 		
 		if(agendas != null && agendas.size() > 0) {
@@ -191,27 +191,27 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		return (entityManager.createQuery(query.toString())
 			.setMaxResults(1)
-			.setParameter("pid", wood_elementId)
+			.setParameter("pid", woodElementId)
 			.getResultList().size() > 0);
 	}
 	
 	@Override
 	// FIXME eliminare IN?
-	public List<MeasurementSession> findWoodElementHistory( Long wood_elementId, Long measurementSessionFromId, 
+	public List<MeasurementSession> findWoodElementHistory( Long woodElementId, Long measurementSessionFromId,
 			Set<MeasurementSessionStatus> statuses, Set<Agenda> agendas, int offset, int limit ) {
-		if ( wood_elementId == null || measurementSessionFromId == null )
+		if ( woodElementId == null || measurementSessionFromId == null )
 			throw new IllegalArgumentException( "id paziente o id esame sono nulli" );
 		
 		TypedQuery<MeasurementSession> query = entityManager.createQuery(
 			" select distinct e from MeasurementSession e " 
-					+ " join e.survey_schedule.wood_element.after aa " 
+					+ " join e.surveySchedule.woodElement.after aa "
 					+ " where e.status in :statuses " 
-					+ " and e.survey_schedule.agenda in :agendas " 
+					+ " and e.surveySchedule.agenda in :agendas " 
 					+ " and e.id != :measurementSessionId " 
 					+ " and aa.id = :pid " 
-					+ " order by e.survey_schedule.date DESC", MeasurementSession.class );
+					+ " order by e.surveySchedule.date DESC", MeasurementSession.class );
 		
-		query.setParameter( "pid", wood_elementId )
+		query.setParameter( "pid", woodElementId )
 			.setParameter( "measurementSessionId", measurementSessionFromId )
 			.setParameter( "statuses", statuses )
 			.setParameter( "agendas", agendas );
@@ -225,16 +225,16 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		return query.getResultList();
 	}
 
-	public List<MeasurementSession> findWoodElementLastExams( Long wood_elementId, Long lastExamId,  int measurementSessionsNum){
+	public List<MeasurementSession> findWoodElementLastMeasurementSessions( Long woodElementId, Long lastMeasurementSessionId,  int measurementSessionsNum){
 		TypedQuery<MeasurementSession> query = entityManager.createQuery(
 				" select distinct e from MeasurementSession e "
-						+ " join e.survey_schedule.wood_element.after aa"
+						+ " join e.surveySchedule.woodElement.after aa"
 						+ " where e.id != :measurementSessionId "
 						+ " and aa.id = :pid "
-						+ " order by e.survey_schedule.date DESC", MeasurementSession.class );
+						+ " order by e.surveySchedule.date DESC", MeasurementSession.class );
 
-		query.setParameter( "pid", wood_elementId )
-				.setParameter( "measurementSessionId", lastExamId );
+		query.setParameter( "pid", woodElementId )
+				.setParameter( "measurementSessionId", lastMeasurementSessionId );
 
 		query.setMaxResults( measurementSessionsNum );
 
@@ -360,7 +360,7 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		MeasurementSessionType type = findById( measurementSessionId ).getType();
 		
 		for (Authorization auth : type.listAuthorizations()) {
-			if( operation.equals( auth.getExamOperation() ) && 
+			if( operation.equals( auth.getMeasurementSessionOperation() ) && 
 					qualificationId.equals( auth.getQualification().getId() ) )
 				return true;
 		}
@@ -379,21 +379,21 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		if ( acceptanceCode == null ) {
 			query = entityManager.createQuery( "select e" +
-					" from MeasurementSession e left join e.survey_schedule" +
-					" where e.survey_schedule.bookingCode = :bookingCode" )
+					" from MeasurementSession e left join e.surveySchedule" +
+					" where e.surveySchedule.bookingCode = :bookingCode" )
 					.setParameter( "bookingCode", bookingCode );
 			
 		} else if ( bookingCode == null ) {
 			query = entityManager.createQuery( "select e" +
-					" from MeasurementSession e left join e.survey_schedule" +
-					" where e.survey_schedule.acceptanceCode = :acceptanceCode" )
+					" from MeasurementSession e left join e.surveySchedule" +
+					" where e.surveySchedule.acceptanceCode = :acceptanceCode" )
 					.setParameter( "acceptanceCode", bookingCode );
 			
 		} else {
 			query = entityManager.createQuery( "select e" +
-					" from MeasurementSession e left join e.survey_schedule" +
-					" where e.survey_schedule.bookingCode = :bookingCode" +
-					" and e.survey_schedule.acceptanceCode = :acceptanceCode" )
+					" from MeasurementSession e left join e.surveySchedule" +
+					" where e.surveySchedule.bookingCode = :bookingCode" +
+					" and e.surveySchedule.acceptanceCode = :acceptanceCode" )
 					.setParameter( "bookingCode", bookingCode )
 					.setParameter( "acceptanceCode", acceptanceCode );
 		}

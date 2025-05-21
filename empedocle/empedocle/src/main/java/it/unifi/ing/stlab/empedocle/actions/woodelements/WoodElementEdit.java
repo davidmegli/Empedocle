@@ -83,7 +83,7 @@ public class WoodElementEdit implements Serializable {
 				current = woodElementManager.createWoodElement( loggedUser.getUser(), new Time( new Date() ) );
 			} else {
 				original = woodElementDao.fetchById( Long.parseLong( id ) );
-				current = wood_elementManager.modify(
+				current = woodElementManager.modify(
 						loggedUser.getUser(), new Time( new Date() ), original );
 			}
 			initEmbeddedFields();
@@ -143,13 +143,13 @@ public class WoodElementEdit implements Serializable {
 								+ current.getTaxCode() + "' is already registered!", true);
 			} else {
 				if ( isNew() ) {
-					wood_elementDao.save(current);
+					woodElementDao.save(current);
 				} else {
-					WoodElement purged = wood_elementManager.purge( current );
+					WoodElement purged = woodElementManager.purge( current );
 					
 					if ( purged != null ) {
-						wood_elementDao.save( purged );
-						wood_elementDao.update( original );
+						woodElementDao.save( purged );
+						woodElementDao.update( original );
 	//					updateSurveySchedulesReferences( purged );
 						
 						id = purged.getId().toString();
@@ -215,7 +215,7 @@ public class WoodElementEdit implements Serializable {
 	}
 
 	private boolean exists() {
-		WoodElement result = wood_elementDao.findByTaxCode( current.getTaxCode() );
+		WoodElement result = woodElementDao.findByTaxCode( current.getTaxCode() );
 		
 		if ( result == null ) return false;
 		else {

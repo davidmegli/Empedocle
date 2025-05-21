@@ -41,7 +41,7 @@ public class MeasurementSessionTypeCloner {
 
 	private Authorization cloneAuthorization(Authorization auth) {
 		Authorization copy = AuthorizationFactory.createAuthorization();
-		copy.setExamOperation( auth.getExamOperation() );
+		copy.setMeasurementSessionOperation( auth.getMeasurementSessionOperation() );
 		copy.setQualification( auth.getQualification() );
 		
 		return copy;

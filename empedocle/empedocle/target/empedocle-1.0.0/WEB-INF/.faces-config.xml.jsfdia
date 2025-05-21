@@ -7,10 +7,10 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#home.xhtml" NAME="output1"
     PATH="/home.xhtml" TARGET="rules:#home.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="wood_element-list::#pages#wood_elements#wood_element-list.xhtml" NAME="output2"
+    ID="woodelement-list::#pages#woodelements#woodelement-list.xhtml" NAME="output2"
     PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-list.xhtml"
-    TITLE="wood_element-list" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#pages#woodelements#woodelement-list.xhtml"
+    TITLE="woodelement-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="measurementSession-list::#pages#measurementSession#measurementSession-list.xhtml"
     NAME="output3" PATH="/pages/measurementSession/measurementSession-list.xhtml"
@@ -52,34 +52,34 @@
     TITLE="panel-view" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#wood_elements#wood_element-list.xhtml"
+ <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-list.xhtml"
   PATH="/pages/woodelements/woodelement-list.xhtml" SHAPE="640,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#wood_elements#wood_element-list.xhtml:0"
+  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-list.xhtml:0"
    NAME="item" PATH="/pages/woodelements/woodelement-list.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="view::#pages#wood_elements#wood_element-view.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="view::#pages#woodelements#woodelement-view.xhtml"
     NAME="output" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-view.xhtml" TITLE="view" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="edit::#pages#wood_elements#wood_element-edit.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="view" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="edit::#pages#woodelements#woodelement-edit.xhtml"
     NAME="output1" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="add-new::#pages#wood_elements#wood_element-edit.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="add-new::#pages#woodelements#woodelement-edit.xhtml"
     NAME="output2" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-edit.xhtml" TITLE="add-new" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="delete::#pages#wood_elements#wood_element-list.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="add-new" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="delete::#pages#woodelements#woodelement-list.xhtml"
     NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#wood_elements#wood_element-view.xhtml"
+ <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-view.xhtml"
   PATH="/pages/woodelements/woodelement-view.xhtml" SHAPE="912,33,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#wood_elements#wood_element-view.xhtml:0"
+  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-view.xhtml:0"
    NAME="item" PATH="/pages/woodelements/woodelement-view.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="edit::#pages#wood_elements#wood_element-edit.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="edit::#pages#woodelements#woodelement-edit.xhtml"
     NAME="output2" PATH="/pages/woodelements/woodelement-edit.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="delete::#pages#wood_elements#wood_element-list.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-edit.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="delete::#pages#woodelements#woodelement-list.xhtml"
     NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="delete" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="run::#pages#measurementSession#measurementSession-running.xhtml" NAME="output"
     PATH="/pages/measurementSession/measurementSession-running.xhtml"
@@ -87,22 +87,22 @@
     TITLE="run" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#wood_elements#wood_element-edit.xhtml"
+ <PROCESS-ITEM NAME="rules:#pages#woodelements#woodelement-edit.xhtml"
   PATH="/pages/woodelements/woodelement-edit.xhtml" SHAPE="368,1953,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#pages#wood_elements#wood_element-edit.xhtml:0"
+  <PROCESS-ITEM ID="rules:#pages#woodelements#woodelement-edit.xhtml:0"
    NAME="item" PATH="/pages/woodelements/woodelement-edit.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="save::#pages#wood_elements#wood_element-list.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="save::#pages#woodelements#woodelement-list.xhtml"
     NAME="output" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-list.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="save::#pages#wood_elements#wood_element-view.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="save::#pages#woodelements#woodelement-view.xhtml"
     NAME="output1" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-view.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#wood_elements#wood_element-view.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="save" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#woodelements#woodelement-view.xhtml"
     NAME="output2" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-view.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#wood_elements#wood_element-list.xhtml"
+    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancel::#pages#woodelements#woodelement-list.xhtml"
     NAME="output3" PATH="/pages/woodelements/woodelement-list.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-list.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#pages#woodelements#woodelement-list.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#types#type-list.xhtml"
@@ -453,9 +453,9 @@
     PATH="/pages/measurementSession/measurementSession-running.xhtml"
     TARGET="rules:#pages#measurementSession#measurementSession-running.xhtml"
     TITLE="run" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="history::#pages#wood_elements#wood_element-view.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="history::#pages#woodelements#woodelement-view.xhtml"
     NAME="output1" PATH="/pages/woodelements/woodelement-view.xhtml"
-    TARGET="rules:#pages#wood_elements#wood_element-view.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#pages#woodelements#woodelement-view.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="edit::#pages#measurementSession#measurementSession-edit.xhtml" NAME="output2"
     PATH="/pages/measurementSession/measurementSession-edit.xhtml"

@@ -35,7 +35,7 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 	
 	private MasterWoodElementIndexServiceImpl mpiService;
 	
-	protected WoodElementDao wood_elementDao;
+	protected WoodElementDao woodElementDao;
 	protected UserDao userDao;
 	protected Logger logger;
 	protected UserTransaction utx;
@@ -47,13 +47,13 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 	protected void insertData() throws Exception {
 		mpiService = new MasterWoodElementIndexServiceImpl();
 		
-		wood_elementDao = mock( WoodElementDao.class );
+		woodElementDao = mock( WoodElementDao.class );
 		userDao = mock( UserDao.class );
 		logger = Logger.getLogger( MasterWoodElementIndexServiceImpl.class );
 		utx = mock( UserTransaction.class );
 		
 		FieldUtils.assignField( mpiService, "entityManager", entityManager);
-		FieldUtils.assignField( mpiService, "wood_elementDao", wood_elementDao );
+		FieldUtils.assignField( mpiService, "woodElementDao", woodElementDao );
 		FieldUtils.assignField( mpiService, "userDao", userDao );
 		FieldUtils.assignField( mpiService, "logger", logger );
 		FieldUtils.assignField( mpiService, "utx", utx );
@@ -70,41 +70,41 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 
 	@Test
 	public void testUpdate_wood_elementNotFound() {
-		when( wood_elementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
+		when( woodElementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
 		mpiService.update( updatePersonInformation );
 	}
 	
 	@Test
-	public void testUpdate_wood_elementFound() {
-		WoodElement wood_element = WoodElementFactory.createWoodElement();
+	public void testUpdate_woodElementFound() {
+		WoodElement woodElement = WoodElementFactory.createWoodElement();
 		
-		assertNull( wood_element.getDestination() );
+		assertNull( woodElement.getDestination() );
 
-		when( wood_elementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
+		when( woodElementDao.findByIdentifier( updatePersonInformation.getWoodElementIdentification()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( wood_element );
 		mpiService.update( updatePersonInformation );
 		
 		// a new WoodElementModifyAction is created
-		assertNotNull( wood_element.getDestination() );
-		assertTrue( wood_element.getDestination() instanceof WoodElementModifyAction);
+		assertNotNull( woodElement.getDestination() );
+		assertTrue( woodElement.getDestination() instanceof WoodElementModifyAction);
 		
 		// the WoodElementModifyAction's source is wood_element
-		assertEquals( wood_element, ((WoodElementModifyAction) wood_element.getDestination()).getSource() );
+		assertEquals( wood_element, ((WoodElementModifyAction) woodElement.getDestination()).getSource() );
 		
 		// the WoodElementModifyAction's target is a new wood_element with the data collected in updatePersonInformation
-		assertNotEquals( wood_element, ((WoodElementModifyAction) wood_element.getDestination()).getTarget() );
+		assertNotEquals( wood_element, ((WoodElementModifyAction) woodElement.getDestination()).getTarget() );
 		assertEquals( updatePersonInformation.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce(),
-				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getIdentifier().getCode() );
+				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getIdentifier().getCode() );
 		assertEquals( updatePersonInformation.getWoodElementIdentification().getCognome(),
-				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getSurname() );
+				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getSurname() );
 		assertEquals( updatePersonInformation.getWoodElementIdentification().getNome(),
-				((WoodElementModifyAction) wood_element.getDestination()).getTarget().getName() );
+				((WoodElementModifyAction) woodElement.getDestination()).getTarget().getName() );
 	}
 	
 	@Test
 	public void testMerge_masterAndSlaveNotFound() {
-		when( wood_elementDao.findByIdentifier(
+		when( woodElementDao.findByIdentifier(
 				mergeWoodElement.getWoodElementIdentification().getWoodElementIdentifiers().getIdAce() ) )
 						.thenReturn( null );
 		mpiService.merge( mergeWoodElement );
@@ -116,9 +116,9 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 		
 		assertNull( master.getDestination() );
 
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
 		mpiService.merge( mergeWoodElement );
 		
@@ -146,9 +146,9 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 		
 		assertNull( slave.getDestination() );
 
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( null );
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
 		mpiService.merge( mergeWoodElement );
 		
@@ -187,9 +187,9 @@ public class MasterWoodElementIndexServiceTest extends PersistenceTest {
 		assertNull( master.getDestination() );
 		assertNull( slave.getDestination() );
 
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getWoodElementIdentification()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( master );
-		when( wood_elementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
+		when( woodElementDao.findByIdentifier( mergeWoodElement.getMergeInformation()
 				.getWoodElementIdentifiers().getIdAce() ) ).thenReturn( slave );
 		mpiService.merge( mergeWoodElement );
 		

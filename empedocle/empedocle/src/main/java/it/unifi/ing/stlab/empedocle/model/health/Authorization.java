@@ -68,10 +68,10 @@ public class Authorization implements Persistable {
 	
 	
 	@Enumerated(EnumType.STRING)
-	public MeasurementSessionOperation getExamOperation() {
+	public MeasurementSessionOperation getMeasurementSessionOperation() {
 		return measurementSessionOperation;
 	}
-	public void setExamOperation(MeasurementSessionOperation measurementSessionOperation) {
+	public void setMeasurementSessionOperation(MeasurementSessionOperation measurementSessionOperation) {
 		this.measurementSessionOperation = measurementSessionOperation;
 	}
 	

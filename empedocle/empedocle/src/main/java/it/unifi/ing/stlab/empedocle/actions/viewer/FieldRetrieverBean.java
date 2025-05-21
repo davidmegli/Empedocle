@@ -56,9 +56,9 @@ public class FieldRetrieverBean implements FieldRetriever {
 		context.set( "SurveySchedule", measurementSession.getSurveySchedule() );
 		WoodElement woodElement = measurementSession.getSurveySchedule().getWoodElement();
 		if( woodElement.getId() != null )
-			context.set( "WoodElement", woodElementDao.findLastVersionById( wood_element.getId()  ) ); // in the real scenario
+			context.set( "WoodElement", woodElementDao.findLastVersionById( woodElement.getId()  ) ); // in the real scenario
 		else 
-			context.set( "WoodElement", wood_element ); // only in the case of wood_element generated on-the-fly by MeasurementSessionRandomInitializer (invoked by ViewerPreview)
+			context.set( "WoodElement", woodElement ); // only in the case of woodElement generated on-the-fly by MeasurementSessionRandomInitializer (invoked by ViewerPreview)
 		context.set( "Agenda", measurementSession.getSurveySchedule().getAgenda() );
 		context.set( "User", measurementSession.getAuthor() );
 	}

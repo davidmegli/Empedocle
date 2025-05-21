@@ -25,7 +25,7 @@ public interface MeasurementSessionDao {
 	MeasurementSession findById(Long id);
 	MeasurementSession findBySurveyScheduleCodes(String bookingCode, String acceptanceCode);
 	List<MeasurementSession> find(MeasurementSessionQueryBuilder builder, int offset, int limit);
-	List<MeasurementSession> findWoodElementLastExams(Long woodElementId, Long lastExamId, int numExams);
+	List<MeasurementSession> findWoodElementLastMeasurementSessions(Long woodElementId, Long lastMeasurementSessionId, int numMeasurementSessions);
 	List<MeasurementSession> findWoodElementHistory(Long woodElementId,
                                          Long measurementSessionFromId, Set<MeasurementSessionStatus> statuses,
                                          Set<Agenda> agendas, int offset, int limit);

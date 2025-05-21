@@ -138,9 +138,9 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	
 	@Test
 	public void testResumeUpdatedWoodElement() {
-		WoodElementManager wood_elementManager = new WoodElementManager();
+		WoodElementManager woodElementManager = new WoodElementManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		WoodElement pNew = wood_elementManager.modify(author, time, p);
+		WoodElement pNew = woodElementManager.modify(author, time, p);
 		entityManager.persist(pNew);
 		
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);

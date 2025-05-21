@@ -93,7 +93,7 @@ public class MeasurementSessionTypeEdit implements Serializable {
 	private SelectionBean<ViewerUse> viewerUseSelection;
 	private SelectionBean<Authorization> authorizationSelection;
 
-	private Long importFromExamTypeId;
+	private Long importFromMeasurementSessionTypeId;
 
 	@PostConstruct
 	public void init() {
@@ -212,7 +212,7 @@ public class MeasurementSessionTypeEdit implements Serializable {
 	//
 	// import methods
 	//
-	public List<SelectItem> listExamTypeImport() {
+	public List<SelectItem> listMeasurementSessionTypeImport() {
 		List<SelectItem> results = new ArrayList<SelectItem>();
 		
 		List<MeasurementSessionType> measurementSessionTypes;
@@ -229,34 +229,34 @@ public class MeasurementSessionTypeEdit implements Serializable {
 	}
 
 	public void importAgendas() {
-		List<Agenda> results = listAgendasFromExamTypeId();
+		List<Agenda> results = listAgendasFromMeasurementSessionTypeId();
 		
 		if( results != null ) {
 			for( Agenda agenda : results ) {
 				agenda.setMeasurementSessionType( current );
 				agendaSelection.getSelectedEntities().add( agenda );
 			}
-			resetImportFromExamTypeId();
+			resetImportFromMeasurementSessionTypeId();
 		}
 	}
 
-	public List<Agenda> listAgendasFromExamTypeId() {
-		if ( importFromExamTypeId == null )
+	public List<Agenda> listAgendasFromMeasurementSessionTypeId() {
+		if ( importFromMeasurementSessionTypeId == null )
 			return null;
 
-		return agendaDao.findByMeasurementSessionTypeId( importFromExamTypeId );
+		return agendaDao.findByMeasurementSessionTypeId( importFromMeasurementSessionTypeId );
 	}
 
-	public void resetImportFromExamTypeId() {
-		importFromExamTypeId = null;
+	public void resetImportFromMeasurementSessionTypeId() {
+		importFromMeasurementSessionTypeId = null;
 	}
 
-	public Long getImportFromExamTypeId() {
-		return importFromExamTypeId;
+	public Long getImportFromMeasurementSessionTypeId() {
+		return importFromMeasurementSessionTypeId;
 	}
 
-	public void setImportFromExamTypeId( Long fromId ) {
-		this.importFromExamTypeId = fromId;
+	public void setImportFromMeasurementSessionTypeId( Long fromId ) {
+		this.importFromMeasurementSessionTypeId = fromId;
 	}
 
 	

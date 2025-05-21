@@ -5,18 +5,18 @@ import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
 
 import javax.persistence.EntityManager;
 
-public class AgendaExamTypeBean {
+public class AgendaMeasurementSessionTypeBean {
 
 	private Agenda agenda;
 	private final MeasurementSessionType current;
 	private final EntityManager entityManager;
 
-	public AgendaExamTypeBean( MeasurementSessionType current, EntityManager entityManager ) {
+	public AgendaMeasurementSessionTypeBean(MeasurementSessionType current, EntityManager entityManager ) {
 		this.current = current;
 		this.entityManager = entityManager;
 	}
 
-	public AgendaExamTypeBean( Agenda agenda, MeasurementSessionType current, EntityManager entityManager ) {
+	public AgendaMeasurementSessionTypeBean(Agenda agenda, MeasurementSessionType current, EntityManager entityManager ) {
 		this.agenda = agenda;
 		this.current = current;
 		this.entityManager = entityManager;

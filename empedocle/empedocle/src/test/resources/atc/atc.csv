@@ -4709,7 +4709,7 @@ R01AX02#Retinolo#5
 R01AX03#Ipratropio bromuro#5
 R01AX05#Ritiometano#5
 R01AX06#Mupirocina#5
-R01AX07#Examidina#5
+R01AX07#MeasurementSessionidina#5
 R01AX08#Framicetina#5
 R01AX09#Acido ialuronico#5
 R01AX10#Vari#5
@@ -4739,7 +4739,7 @@ R02AA14#Ossichinolina#5
 R02AA15#Iodopovidone#5
 R02AA16#Benzalconio#5
 R02AA17#Cetrimonio#5
-R02AA18#Examidina#5
+R02AA18#MeasurementSessionidina#5
 R02AA19#Fenolo#5
 R02AA20#Vari#5
 R02AB#Antibiotici#4

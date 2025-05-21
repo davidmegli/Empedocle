@@ -57,7 +57,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	}
 	
 	private void initFilterDefs() {
-		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.survey_schedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
+		addFilterDef( "Agenda", FilterType.SUGGESTION, "e.surveySchedule.agenda.uuid = :pagenda", "pagenda", new SelectItemBuilder() {
 			
 			@Override
 			public List<SelectItem> getSelectItems(Object param, int offset, int limit) {
@@ -98,14 +98,14 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	
 		} );
 		
-		addFilterDef( "Visited from", FilterType.DATE, "e.survey_schedule.date >= :pamin", "pamin" );
-		addFilterDef( "Visited until", FilterType.DATE, "e.survey_schedule.date <= :pamax", "pamax" );
+		addFilterDef( "Visited from", FilterType.DATE, "e.surveySchedule.date >= :pamin", "pamin" );
+		addFilterDef( "Visited until", FilterType.DATE, "e.surveySchedule.date <= :pamax", "pamax" );
 		
 		setFilterDefsOrder( FilterDefsOrder.INSERTION );		
 	}
 	
 	private void initSorting() {
-		addSort( "Date", "e.survey_schedule.date asc", "e.survey_schedule.date desc" );
+		addSort( "Date", "e.surveySchedule.date asc", "e.surveySchedule.date desc" );
 		
 		toggle( "Date" ); // ordinamento asc
 		toggle( "Date" ); // ordinamento desc
@@ -129,11 +129,11 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 		
 		buffer.append( "select count( distinct e ) " )		
 			  .append( " from MeasurementSession e " )
-			  .append( " join e.survey_schedule.wood_element.after aa " )
+			  .append( " join e.surveySchedule.woodElement.after aa " )
 			  .append( " where aa.id = :id " )
-			  .append( " and e.survey_schedule.agenda in :agendas " )
+			  .append( " and e.surveySchedule.agenda in :agendas " )
 			  .append( " and e.status in :ex_status " )
-			  .append( " and e.survey_schedule.status in :ap_status");
+			  .append( " and e.surveySchedule.status in :ap_status");
 		
 		writeFilters( buffer );
 
@@ -156,11 +156,11 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 		
 		buffer.append( "select distinct e " )
 			  .append( " from MeasurementSession e " )
-			  .append( " join e.survey_schedule.wood_element.after aa ")
+			  .append( " join e.surveySchedule.woodElement.after aa ")
 			  .append( " where aa.id = :id " )
-			  .append( " and e.survey_schedule.agenda in :agendas " )			  
+			  .append( " and e.surveySchedule.agenda in :agendas " )			  
 			  .append( " and e.status in :ex_status " )
-			  .append( " and e.survey_schedule.status in :ap_status");
+			  .append( " and e.surveySchedule.status in :ap_status");
 		
 		writeFilters( buffer );
 		
@@ -189,7 +189,7 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	public void resolveParameters( Query query ) {
 		super.resolveParameters( query );
 		
-		query.setParameter( "id", wood_elementId );
+		query.setParameter( "id", woodElementId );
 		query.setParameter( "agendas",  loggedUser.getAgendas());		
 		
 		switch ( selectedList ) {
@@ -246,9 +246,9 @@ public class WoodElementMeasurementSessionFilter extends FilterBean implements M
 	}
 
 	public Long getWoodElementId() {
-		return wood_elementId;
+		return woodElementId;
 	}
-	public void setWoodElementId( Long wood_elementId ) {
-		this.wood_elementId = wood_elementId;
+	public void setWoodElementId( Long woodElementId ) {
+		this.woodElementId = woodElementId;
 	}
 }

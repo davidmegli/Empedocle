@@ -68,15 +68,15 @@ public class WoodElementConsentEnricher extends HttpServlet {
 			
 			// print name and surname
 			over.setTextMatrix(120, 665);
-			over.showText(woodElement.getName() + " " + wood_element.getSurname());
+			over.showText(woodElement.getName() + " " + woodElement.getSurname());
 			
 			// print birth place
 			over.setTextMatrix(120, 648);
-			over.showText(wood_element.getBirthPlace());
+			over.showText(woodElement.getBirthPlace());
 			
 			// print birth date
 			over.setTextMatrix(440, 648);
-			over.showText( DateUtils.getString(wood_element.getBirthDate(), "dd/MM/yyyy"));
+			over.showText( DateUtils.getString(woodElement.getBirthDate(), "dd/MM/yyyy"));
 			
 			over.endText();
 			

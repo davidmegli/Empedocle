@@ -66,7 +66,7 @@ public class MeasurementSessionRunning implements Serializable {
 	private boolean summary;
 		
 	private WoodElement lastWoodElementVersion;
-	private List<MeasurementSession> woodElementLastExams;
+	private List<MeasurementSession> woodElementLastMeasurementSessions;
 
 	private List<Viewer> measurementSessionReports;
 	private String selection;
@@ -168,8 +168,8 @@ public class MeasurementSessionRunning implements Serializable {
 			
 			initLastWoodElementVersion( measurementSession );
 
-			if(woodElementLastExams == null){
-				woodElementLastExams = measurementSessionDao.findWoodElementLastExams(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
+			if(woodElementLastMeasurementSessions == null){
+				woodElementLastMeasurementSessions = measurementSessionDao.findWoodElementLastMeasurementSessions(lastWoodElementVersion.getId(), Long.parseLong( id ), 10);
 			}
 
 			/*TEST*/
@@ -218,8 +218,8 @@ public class MeasurementSessionRunning implements Serializable {
 
 */
 
-	public List<MeasurementSession> getWoodElementLastExams(){
-		return this.woodElementLastExams;
+	public List<MeasurementSession> getWoodElementLastMeasurementSessions(){
+		return this.woodElementLastMeasurementSessions;
 	}
 
 	public void initReports( Long id ) {
@@ -230,7 +230,7 @@ public class MeasurementSessionRunning implements Serializable {
 	public String getSelection() {
 		return selection;
 	}
-	public List<Viewer> getExamReports(Long id) {
+	public List<Viewer> getMeasurementSessionReports(Long id) {
 		tmpID = id;
 		if (measurementSessionReports == null || measurementSessionReports.size() == 0) {
 			initReports( id );

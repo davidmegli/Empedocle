@@ -109,7 +109,7 @@ public class SelectUserMeasurementSessionTest extends PersistenceTest {
 		
 		String q = "select distinct(e)" +
 				" from MeasurementSession e, FactImpl f" +
-//				" join e.survey_schedule.services s" +   //XXX non serve
+//				" join e.surveySchedule.services s" +   //XXX non serve
 				" join f.context c" +
 				" where c.id = e.id" +
 				" and f.type = e.type.type" +

@@ -111,12 +111,12 @@ public class Message implements Persistable {
 	}
 	
 	@ManyToOne
-	@JoinColumn( name = "wood_element_id" )
+	@JoinColumn( name = "woodElement_id" )
 	public WoodElement getWoodElement() {
 		return woodElement;
 	}
 	public void setWoodElement( WoodElement woodElement ) {
-		this.woodElement = wood_element;
+		this.woodElement = woodElement;
 	}
 	
 	@PrePersist

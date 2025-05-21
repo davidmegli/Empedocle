@@ -115,7 +115,7 @@
 					<dl>
 						<dt >Date</dt>
 						<dd>
-							<h:outputText rendered="#{not measurementSessionRunning.dateFreeVisit}" value="#{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.date}">
+							<h:outputText rendered="#{not measurementSessionRunning.dateFreeVisit}" value="#{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.date}">
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 							</h:outputText>
 						</dd>
@@ -123,17 +123,17 @@
 							<h:outputText rendered="#{measurementSessionRunning.dateFreeVisit}" value="Da indicare prima della conclusione"/>
 						</dd>
 						<dt>Agenda</dt>
-						<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.agenda.code} - #{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.agenda.description}</dd>
+						<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.agenda.code} - #{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.agenda.description}</dd>
 						<h:panelGroup rendered="#{not measurementSessionRunning.dateFreeVisit}">
 							<dt>Booking Code</dt>
-							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.bookingCode}</dd>
+							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.bookingCode}</dd>
 							<dt>Acceptance Code</dt>
-							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.acceptanceCode}</dd>
+							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.acceptanceCode}</dd>
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" rendered="#{not empty measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.listServices()}">
+						<h:panelGroup layout="block" rendered="#{not empty measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.listServices()}">
 							<dt>Services</dt>
-							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.survey_schedule.listServices()}</dd>
+							<dd>#{measurementSessionRunning.measurementSessionDetails.measurementSession.surveySchedule.listServices()}</dd>
 						</h:panelGroup>								
 					</dl>		
 				</div>
@@ -151,7 +151,7 @@
 					<div id="collapseThree" class="accordion-body collapse in">
 						<div class="accordion-inner" style="padding: 9px 9px; font-size: smaller;">
 							<h:panelGroup layout="block" id="results">
-								<h:panelGroup rendered="#{empty measurementSessionRunning.wood_elementLastExams}">
+								<h:panelGroup rendered="#{empty measurementSessionRunning.woodElementLastMeasurementSessions}">
 									<br />
 									<h:outputText styleClass="lead" value="No visit found" />
 								</h:panelGroup>
@@ -159,15 +159,15 @@
 								<h:dataTable
 										styleClass="table table-striped table-hover"
 										columnClasses="datetime, agenda, action"
-										value="#{measurementSessionRunning.wood_elementLastExams}" var="measurementSession"
-										rendered="#{not empty measurementSessionRunning.wood_elementLastExams}"
+										value="#{measurementSessionRunning.woodElementLastMeasurementSessions}" var="measurementSession"
+										rendered="#{not empty measurementSessionRunning.woodElementLastMeasurementSessions}"
 										style="padding: 6px; ">
 
 									<h:column>
 										<f:facet name="header">
 											Date
 										</f:facet>
-										<h:outputText value="#{measurementSession.survey_schedule.date}" >
+										<h:outputText value="#{measurementSession.surveySchedule.date}" >
 											<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 										</h:outputText>
 									</h:column>
@@ -176,9 +176,9 @@
 										<f:facet name="header">
 											Agenda
 										</f:facet>
-										<h:outputText value="#{measurementSession.survey_schedule.agenda.code}" />
+										<h:outputText value="#{measurementSession.surveySchedule.agenda.code}" />
 										-
-										<h:outputText value="#{measurementSession.survey_schedule.agenda.description}" />
+										<h:outputText value="#{measurementSession.surveySchedule.agenda.description}" />
 									</h:column>
 
 									<h:column>
@@ -190,9 +190,9 @@
 														 action="#{measurementSessionRunning.initReports( measurementSession.id )}"
 														 styleClass="btn btn-primary tltip"
 														 rendered="#{measurementSessionRunning.hasReport( measurementSession ) and not measurementSessionRunning.has2Report( measurementSession )}"
-														 oncomplete="switchNumberOfReports( #{measurementSessionRunning.getExamReports(measurementSession.id).size()},
+														 oncomplete="switchNumberOfReports( #{measurementSessionRunning.getMeasurementSessionReports(measurementSession.id).size()},
 												 	#{measurementSession.id},
-												 	#{measurementSessionRunning.getExamReports(measurementSession.id).get(0).getId()} );">
+												 	#{measurementSessionRunning.getMeasurementSessionReports(measurementSession.id).get(0).getId()} );">
 											<i class="fw-icon-book fw-icon-large "></i>
 										</a4j:commandLink>
 
@@ -201,9 +201,9 @@
 														 styleClass="btn btn-primary pull-left dist-right tltip"
 														 rendered="#{measurementSessionRunning.hasReport( measurementSession ) and measurementSessionRunning.has2Report( measurementSession )}"
 														 render=":report-form"
-														 oncomplete="switchNumberOfReports( #{measurementSessionRunning.getExamReports(measurementSession.id).size()},
+														 oncomplete="switchNumberOfReports( #{measurementSessionRunning.getMeasurementSessionReports(measurementSession.id).size()},
 												 	#{measurementSession.id},
-												 	#{measurementSessionRunning.getExamReports(measurementSession.id).get(0).getId()} );">
+												 	#{measurementSessionRunning.getMeasurementSessionReports(measurementSession.id).get(0).getId()} );">
 											<i class="fw-icon-book fw-icon-large "></i>
 										</a4j:commandLink>
 

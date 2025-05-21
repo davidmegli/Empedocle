@@ -29,8 +29,8 @@ public class MessageFilter extends FilterBean implements MessageQueryBuilder {
 		addFilterDef( "Date - Starting from", FilterType.DATE, "m.date >= :pmin", "pmin" );
 		addFilterDef( "Date - Before", FilterType.DATE, "m.date <= :pmax", "pmax" );
 		addFilterDef( "Read", FilterType.BOOLEAN, "m.isRead = :pread", "pread");
-		addFilterDef( "Surname", FilterType.TEXT, "m.wood_element.surname like :psurname", "psurname" );
-		addFilterDef( "Name", FilterType.TEXT, "m.wood_element.name like :pname", "pname" );
+		addFilterDef( "Surname", FilterType.TEXT, "m.woodElement.surname like :psurname", "psurname" );
+		addFilterDef( "Name", FilterType.TEXT, "m.woodElement.name like :pname", "pname" );
 
 		setFilterDefsOrder(FilterDefsOrder.INSERTION);
 

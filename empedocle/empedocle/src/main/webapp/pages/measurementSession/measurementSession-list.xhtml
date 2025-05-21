@@ -192,13 +192,13 @@
 								style="#{empty measurementSessionResults ? 'display:none;' : ''}">
 								
 								<c:set var="_wood_element"
-									value="#{measurementSessionList.getLastWoodElementVersion( measurementSession.survey_schedule.wood_element.id )}" />
+									value="#{measurementSessionList.getLastWoodElementVersion( measurementSession.surveySchedule.woodElement.id )}" />
 								
 								<h:column>
 									<f:facet name="header">
 										Date
 									</f:facet>
-									<h:outputText value="#{measurementSession.survey_schedule.date}" >
+									<h:outputText value="#{measurementSession.surveySchedule.date}" >
 										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 									</h:outputText>								
 									
