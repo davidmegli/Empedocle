@@ -1,9 +1,9 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import it.unifi.ing.stlab.entities.utils.DateHelper;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.test.PersistenceTest;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
@@ -12,10 +12,10 @@ import java.sql.Date;
 
 import org.junit.Test;
 
-public class WoodElementJpaTest extends PersistenceTest {
+public class ObservableEntityJpaTest extends PersistenceTest {
 
 	protected String uuid;
-	protected WoodElementIdentifier identifier;
+	protected ObservableEntityIdentifier identifier;
 	protected TimeRange period;
 	
 	@Override
@@ -24,64 +24,64 @@ public class WoodElementJpaTest extends PersistenceTest {
 			new Time( DateHelper.createDate( "2013-03-01") ), 
 			new Time( DateHelper.createDate( "2013-03-31")));
 
-		WoodElement wood_element = WoodElementFactory.createWoodElement();
+		ObservableEntity observable_entity = ObservableEntityFactory.createObservableEntity();
 		
-		identifier = WoodElementFactory.createWoodElementIdentifier();
+		identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier.setCode( "id" );
-		wood_element.setIdentifier( identifier );
-		wood_element.setName( "name" );
-		wood_element.setSurname( "surname" );
-		wood_element.setSex( Sex.M );
-		wood_element.setBirthDate( new Date( DateHelper.createDate( "2013-03-01").getTime() ));
-		wood_element.setBirthPlace( "birthPlace" );
-		wood_element.setTaxCode( "taxCode" );
-		wood_element.setSsnCode( "ssnCode" );
+		observable_entity.setIdentifier( identifier );
+		observable_entity.setName( "name" );
+		observable_entity.setSurname( "surname" );
+		observable_entity.setSex( Sex.M );
+		observable_entity.setBirthDate( new Date( DateHelper.createDate( "2013-03-01").getTime() ));
+		observable_entity.setBirthPlace( "birthPlace" );
+		observable_entity.setTaxCode( "taxCode" );
+		observable_entity.setSsnCode( "ssnCode" );
 
 		Address residence = new Address();
 		residence.setPlace( "residence" );
-		wood_element.setResidence( residence );
+		observable_entity.setResidence( residence );
 
 		Address domicile = new Address();
 		domicile.setPlace( "domicile" );
-		wood_element.setDomicile( domicile );
+		observable_entity.setDomicile( domicile );
 		
-		wood_element.setRegion( "region" );
-		wood_element.setHomePhone( "homePhone" );
-		wood_element.setWorkPhone( "workPhone" );
-		wood_element.setNationality( "nationality" );
-		wood_element.setAsl( "asl" );
+		observable_entity.setRegion( "region" );
+		observable_entity.setHomePhone( "homePhone" );
+		observable_entity.setWorkPhone( "workPhone" );
+		observable_entity.setNationality( "nationality" );
+		observable_entity.setAsl( "asl" );
 		
-		entityManager.persist( wood_element );
+		entityManager.persist( observable_entity );
 
-		uuid = wood_element.getUuid();
+		uuid = observable_entity.getUuid();
 	}
 	
 	@Test
-	public void testWoodElement() {
-		WoodElement wood_element = (WoodElement)
+	public void testObservableEntity() {
+		ObservableEntity observable_entity = (ObservableEntity)
 			entityManager
 				.createQuery( 
 					"select p " +
-					" from WoodElement p " +
+					" from ObservableEntity p " +
 					" where p.uuid = :uuid" ).setParameter( "uuid", uuid ).getSingleResult();
 	
-		assertNotNull( wood_element );
+		assertNotNull( observable_entity );
 		
-		assertEquals( identifier, wood_element.getIdentifier());
-		assertEquals( "name", wood_element.getName());
-		assertEquals( "surname", wood_element.getSurname());
-		assertEquals( Sex.M, wood_element.getSex());
-		assertEquals( new Date( DateHelper.createDate( "2013-03-01").getTime() ), wood_element.getBirthDate());
-		assertEquals( "birthPlace", wood_element.getBirthPlace());
-		assertEquals( "taxCode", wood_element.getTaxCode());
-		assertEquals( "ssnCode", wood_element.getSsnCode());
-		assertEquals( "residence", wood_element.getResidence().getPlace());
-		assertEquals( "domicile", wood_element.getDomicile().getPlace());
-		assertEquals( "region", wood_element.getRegion());
-		assertEquals( "homePhone", wood_element.getHomePhone());
-		assertEquals( "workPhone", wood_element.getWorkPhone());
-		assertEquals( "nationality", wood_element.getNationality());
-		assertEquals( "asl", wood_element.getAsl());
+		assertEquals( identifier, observable_entity.getIdentifier());
+		assertEquals( "name", observable_entity.getName());
+		assertEquals( "surname", observable_entity.getSurname());
+		assertEquals( Sex.M, observable_entity.getSex());
+		assertEquals( new Date( DateHelper.createDate( "2013-03-01").getTime() ), observable_entity.getBirthDate());
+		assertEquals( "birthPlace", observable_entity.getBirthPlace());
+		assertEquals( "taxCode", observable_entity.getTaxCode());
+		assertEquals( "ssnCode", observable_entity.getSsnCode());
+		assertEquals( "residence", observable_entity.getResidence().getPlace());
+		assertEquals( "domicile", observable_entity.getDomicile().getPlace());
+		assertEquals( "region", observable_entity.getRegion());
+		assertEquals( "homePhone", observable_entity.getHomePhone());
+		assertEquals( "workPhone", observable_entity.getWorkPhone());
+		assertEquals( "nationality", observable_entity.getNationality());
+		assertEquals( "asl", observable_entity.getAsl());
 	}
 	
 }

@@ -1,8 +1,8 @@
-package it.unifi.ing.stlab.woodelements.model.actions;
+package it.unifi.ing.stlab.observableentities.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.DeleteActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.DeleteAction;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -14,35 +14,35 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "DL" )
-public class WoodElementDeleteAction
-	extends WoodElementAction
-	implements DeleteAction<WoodElement,WoodElementAction,User,Time> {
+public class ObservableEntityDeleteAction
+	extends ObservableEntityAction
+	implements DeleteAction<ObservableEntity,ObservableEntityAction,User,Time> {
 
-	public WoodElementDeleteAction(String uuid) {
+	public ObservableEntityDeleteAction(String uuid) {
 		super(uuid);
-		setDelegate( new DeleteActionImpl<WoodElement,WoodElementAction,User,Time>() );
+		setDelegate( new DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
-	protected WoodElementDeleteAction() {
+	protected ObservableEntityDeleteAction() {
 		super();
-		setDelegate( new DeleteActionImpl<WoodElement,WoodElementAction,User,Time>() );
+		setDelegate( new DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected DeleteActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
-		return (DeleteActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
+	protected DeleteActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
+		return (DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
-	public WoodElement getSource() {
+	public ObservableEntity getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(WoodElement source) {
+	protected void setSource(ObservableEntity source) {
 		getDelegate().setSource(source);
 	}
-	public void assignSource(WoodElement newSource) {
+	public void assignSource(ObservableEntity newSource) {
 		getDelegate().assignSource(newSource);
 	}
 }

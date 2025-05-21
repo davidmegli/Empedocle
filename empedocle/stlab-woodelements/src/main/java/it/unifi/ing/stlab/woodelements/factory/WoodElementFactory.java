@@ -1,20 +1,20 @@
-package it.unifi.ing.stlab.woodelements.factory;
+package it.unifi.ing.stlab.observableentities.factory;
 
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 
 import java.util.UUID;
 
-public class WoodElementFactory {
+public class ObservableEntityFactory {
 
-	public static WoodElement createWoodElement() {
-		WoodElement result = new WoodElement( UUID.randomUUID().toString() );
+	public static ObservableEntity createObservableEntity() {
+		ObservableEntity result = new ObservableEntity( UUID.randomUUID().toString() );
 		result.init();
 		return result;
 	}
 	
-	public static WoodElementIdentifier createWoodElementIdentifier() {
-		WoodElementIdentifier result = new WoodElementIdentifier( UUID.randomUUID().toString() );
+	public static ObservableEntityIdentifier createObservableEntityIdentifier() {
+		ObservableEntityIdentifier result = new ObservableEntityIdentifier( UUID.randomUUID().toString() );
 		return result;
 	}
 }

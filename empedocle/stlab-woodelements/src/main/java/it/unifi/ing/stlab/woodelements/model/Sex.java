@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 public enum Sex {
 	M("M"), F("F"), N("N.D.");

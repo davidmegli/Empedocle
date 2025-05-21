@@ -1,29 +1,29 @@
-package it.unifi.ing.stlab.woodelements.manager;
+package it.unifi.ing.stlab.observableentities.manager;
 
 import it.unifi.ing.stlab.entities.factory.AbstractActionFactory;
 import it.unifi.ing.stlab.entities.manager.AbstractTracedEntityManager;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityActionFactory;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
-public class WoodElementManager
-	extends AbstractTracedEntityManager<WoodElement,WoodElementAction,User,Time>{
+public class ObservableEntityManager
+	extends AbstractTracedEntityManager<ObservableEntity,ObservableEntityAction,User,Time>{
 
 	@Override
-	protected AbstractActionFactory<WoodElement, WoodElementAction, User, Time> getActionFactory() {
-		return new WoodElementActionFactory();
+	protected AbstractActionFactory<ObservableEntity, ObservableEntityAction, User, Time> getActionFactory() {
+		return new ObservableEntityActionFactory();
 	}
 
-	public WoodElement createWoodElement( User author, Time time ) {
-		return init( WoodElementFactory.createWoodElement(), author, time );
+	public ObservableEntity createObservableEntity( User author, Time time ) {
+		return init( ObservableEntityFactory.createObservableEntity(), author, time );
 	}
 	
-	public WoodElement merge( User author, Time time, WoodElement master, WoodElement slave ) {
-		return ((WoodElementMergeAction) getActionFactory()
+	public ObservableEntity merge( User author, Time time, ObservableEntity master, ObservableEntity slave ) {
+		return ((ObservableEntityMergeAction) getActionFactory()
 				.mergeAction(author, time, master, slave, master.copy()))
 				.getTarget();
 	}	

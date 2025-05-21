@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
@@ -13,19 +13,19 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 
 @Entity
-@Table( name = "wood_element_identifiers" )
-public class WoodElementIdentifier implements Persistable {
+@Table( name = "observable_entity_identifiers" )
+public class ObservableEntityIdentifier implements Persistable {
 
 	private PersistableImpl persistable;
 	
 	private String code;
 	private Long version;
 
-	public WoodElementIdentifier(){
+	public ObservableEntityIdentifier(){
 		persistable = new PersistableImpl();
 		
 	}
-	public WoodElementIdentifier(String uuid){
+	public ObservableEntityIdentifier(String uuid){
 		persistable = new PersistableImpl( uuid );
 	}
 	
@@ -36,7 +36,7 @@ public class WoodElementIdentifier implements Persistable {
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="wood_element_identifier", allocationSize = 1 )
+		pkColumnValue="observable_entity_identifier", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
 		return persistable.getId();

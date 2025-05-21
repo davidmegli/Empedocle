@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.dao;
+package it.unifi.ing.stlab.observableentities.dao;
 
 import java.util.Date;
 import java.util.List;
@@ -12,14 +12,14 @@ import javax.persistence.TypedQuery;
 import it.unifi.ing.stlab.commons.query.QueryBuilder;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
-import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
-public class WoodElementDaoBean implements WoodElementDao {
+public class ObservableEntityDaoBean implements ObservableEntityDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -31,7 +31,7 @@ public class WoodElementDaoBean implements WoodElementDao {
  
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<WoodElement> find(QueryBuilder builder, int offset, int limit) {
+	public List<ObservableEntity> find(QueryBuilder builder, int offset, int limit) {
 		Query query = builder
 			.getListQuery( entityManager )
 			.setFirstResult( offset );
@@ -40,25 +40,25 @@ public class WoodElementDaoBean implements WoodElementDao {
 			query.setMaxResults( limit );
 		}
 		
-		return (List<WoodElement>) query.getResultList();	
+		return (List<ObservableEntity>) query.getResultList();	
 	}
 	
 	@Override
-	public WoodElement findById(Long id) {
-		return entityManager.find(WoodElement.class, id);
+	public ObservableEntity findById(Long id) {
+		return entityManager.find(ObservableEntity.class, id);
 	}
 	
 	@Override
-	public WoodElement fetchById(Long id) {
+	public ObservableEntity fetchById(Long id) {
 		if ( id == null ) 
 			throw new IllegalArgumentException( "id is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from WoodElement p" +
+			" from ObservableEntity p" +
 			" left join fetch p.before b " + 
 			" left join fetch p.after a " + 
-			" where p.id = :pid", WoodElement.class )
+			" where p.id = :pid", ObservableEntity.class )
 			.setParameter( "pid", id )
 			.setMaxResults( 1 )
 			.getResultList();		
@@ -66,17 +66,17 @@ public class WoodElementDaoBean implements WoodElementDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (WoodElement)results.get( 0 );
+		return (ObservableEntity)results.get( 0 );
 	}	
 	
 	@Override
-	public WoodElement findByIdentifier(String identifier) {
+	public ObservableEntity findByIdentifier(String identifier) {
 		if ( identifier == null ) 
 			throw new IllegalArgumentException( "identifier is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from WoodElement p" +
+			" from ObservableEntity p" +
 			" where p.identifier.code = :identifier" +
 			" and p.destination is null" )
 			.setParameter( "identifier", identifier )
@@ -86,20 +86,20 @@ public class WoodElementDaoBean implements WoodElementDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (WoodElement)results.get( 0 );
+		return (ObservableEntity)results.get( 0 );
 	}
 	
 	@Override
-	public WoodElement findLastVersionById( Long id ) {
+	public ObservableEntity findLastVersionById( Long id ) {
 		if( id == null )
 			throw new IllegalArgumentException( "id is null" );
 		
-		List<WoodElement> results = entityManager.createQuery(
+		List<ObservableEntity> results = entityManager.createQuery(
 					" select p " +
-					" from WoodElement p " +
+					" from ObservableEntity p " +
 					" join p.before b " +
 					" where b.id = :pid " +
-					" and p.destination is null", WoodElement.class )
+					" and p.destination is null", ObservableEntity.class )
 				.setParameter( "pid", id )
 				.setMaxResults( 1 )
 				.getResultList();
@@ -111,15 +111,15 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 	
 	@Override
-	public WoodElementIdentifier findIdentifierByCode(String code) {
+	public ObservableEntityIdentifier findIdentifierByCode(String code) {
 		if ( code == null ) 
 			throw new IllegalArgumentException( "code is null" );
 		
-		List<WoodElementIdentifier> results =
+		List<ObservableEntityIdentifier> results =
 				entityManager.createQuery( " select pi " +
-									" from WoodElementIdentifier pi " +
+									" from ObservableEntityIdentifier pi " +
 									" where pi.code = :code ", 
-									WoodElementIdentifier.class )
+									ObservableEntityIdentifier.class )
 							.setParameter( "code", code )
 //							.setFlushMode(FlushModeType.COMMIT)
 							.setMaxResults( 1 )
@@ -132,26 +132,26 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 
 	@Override
-	public List<WoodElement> findByName(String name, String surname) {
+	public List<ObservableEntity> findByName(String name, String surname) {
 		return entityManager.createQuery( " select p "+
-									" from WoodElement p " +
+									" from ObservableEntity p " +
 									" where p.name = :name " +
 									" and p.surname = :surname " +
-									" and p.destination is null ", WoodElement.class )
+									" and p.destination is null ", ObservableEntity.class )
 					.setParameter( "name", name )
 					.setParameter( "surname", surname )
 					.getResultList();
 	}
 	
 	@Override
-	public List<WoodElement> findForMerge(String name, String surname, Long excludeId) {
+	public List<ObservableEntity> findForMerge(String name, String surname, Long excludeId) {
 		return entityManager.createQuery( " select p "+
-									" from WoodElement p " +
+									" from ObservableEntity p " +
 									" where p.name = :name " +
 									" and p.surname = :surname " +
 									" and p.destination is null " +
-								//	" and p.identifier is null " +  // to allow merging even between different woodElement records of the same woodElement in Book
-									" and p.id <> :notPid", WoodElement.class )
+								//	" and p.identifier is null " +  // to allow merging even between different observableEntity records of the same observableEntity in Book
+									" and p.id <> :notPid", ObservableEntity.class )
 					.setParameter( "name", name )
 					.setParameter( "surname", surname )
 					.setParameter( "notPid", excludeId )
@@ -159,46 +159,46 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 
 	/**
-	 * Manual Merge of woodElements
+	 * Manual Merge of observableEntities
 	 */
 	@Override
-	public WoodElement mergeWoodElements( Long woodElementId, Long otherId, User author ) {
-		WoodElement woodElement = findById( woodElementId );
-		WoodElement other = findById( otherId );
+	public ObservableEntity mergeObservableEntitys( Long observableEntityId, Long otherId, User author ) {
+		ObservableEntity observableEntity = findById( observableEntityId );
+		ObservableEntity other = findById( otherId );
 
-		WoodElement master;
-		WoodElement slave;
+		ObservableEntity master;
+		ObservableEntity slave;
 
-		WoodElementIdentifier woodElementIdentifier = wood_element.getIdentifier();
-		WoodElementIdentifier otherIdentifier = other.getIdentifier();
-		if ( wood_elementIdentifier != null && otherIdentifier != null ) {
-			// merge between Book wood_element records
+		ObservableEntityIdentifier observableEntityIdentifier = observableEntity.getIdentifier();
+		ObservableEntityIdentifier otherIdentifier = other.getIdentifier();
+		if ( observableEntityIdentifier != null && otherIdentifier != null ) {
+			// merge between Book observableEntity records
 			// master is the most recent record
-			if ( wood_element.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) { 
-				master = wood_element;
+			if ( observableEntity.getOrigin().getTime().compareTo( other.getOrigin().getTime() ) >= 0 ) {
+				master = observableEntity;
 				slave = other;
 			} else {
 				master = other;
-				slave = wood_element;
+				slave = observableEntity;
 			}
 		} else {
-			if ( wood_elementIdentifier != null || otherIdentifier == null ) {
+			if ( observableEntityIdentifier != null || otherIdentifier == null ) {
 				// there are two possible cases:
-				// - wood_element is the Book record and is the master
+				// - observableEntity is the Book record and is the master
 				// - or both records are without an identifier and
-				// the current record (i.e., wood_element) is taken as the master
-				master = wood_element;
+				// the current record (i.e., observableEntity) is taken as the master
+				master = observableEntity;
 				slave = other;
 			} else {
 				// other is the Book record and is the master
 				master = other;
-				slave = wood_element;
+				slave = observableEntity;
 			}
 		}
 
-		WoodElementManager manager = new WoodElementManager();
+		ObservableEntityManager manager = new ObservableEntityManager();
 		Time time = new Time( new Date() );
-		WoodElement result = manager.merge( author, time, master, slave );
+		ObservableEntity result = manager.merge( author, time, master, slave );
 		
 		entityManager.persist( result );
 		
@@ -206,13 +206,13 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 	
 	@Override
-	public void save( WoodElement target ) {
+	public void save( ObservableEntity target ) {
 		entityManager.persist( target );
 		flush();
 	}
 	
 	@Override
-	public void update( WoodElement target ) {
+	public void update( ObservableEntity target ) {
 		entityManager.merge( target );
 		flush();
 	}
@@ -221,8 +221,8 @@ public class WoodElementDaoBean implements WoodElementDao {
 	public void deleteById( Long id, User author ) {
 		
 		if( id != null ) {
-			WoodElementManager manager = new WoodElementManager();
-			WoodElement result = manager.delete( author, new Time( new Date() ), findById( id ));
+			ObservableEntityManager manager = new ObservableEntityManager();
+			ObservableEntity result = manager.delete( author, new Time( new Date() ), findById( id ));
 			entityManager.persist( result );
 		}
 	}	
@@ -232,13 +232,13 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 
 	@Override
-	public WoodElement findByTaxCode( String taxCode ) {
+	public ObservableEntity findByTaxCode( String taxCode ) {
 		if ( taxCode == null ) 
 			throw new IllegalArgumentException( "tax code is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from WoodElement p" +
+			" from ObservableEntity p" +
 			" where p.taxCode = :taxCode" +
 			" and p.destination is null" )
 			.setParameter( "taxCode", taxCode )
@@ -248,16 +248,16 @@ public class WoodElementDaoBean implements WoodElementDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (WoodElement)results.get( 0 );
+		return (ObservableEntity)results.get( 0 );
 	}
 
 	@Override
-	public List<WoodElement> findBySuggestion( String suggestion, int limit ) {
+	public List<ObservableEntity> findBySuggestion( String suggestion, int limit ) {
 		
-		TypedQuery<WoodElement> query = entityManager.createQuery(
-				" select p from WoodElement p " 
+		TypedQuery<ObservableEntity> query = entityManager.createQuery(
+				" select p from ObservableEntity p " 
 					+ " where CONCAT( p.surname, ' ', p.name, ' - ', p.taxCode ) like :suggestion " 
-					+ " and p.destination is null", WoodElement.class );
+					+ " and p.destination is null", ObservableEntity.class );
 		
 		query.setParameter( "suggestion", '%' + suggestion + '%');
 		
@@ -269,14 +269,14 @@ public class WoodElementDaoBean implements WoodElementDao {
 	}
 	
 	@Override
-	public WoodElement findByUuid( String uuid ) {
+	public ObservableEntity findByUuid( String uuid ) {
 		if (uuid == null || uuid.trim().isEmpty())
 			throw new IllegalArgumentException("Parametro uuid null");
 
-		List<WoodElement> results = entityManager.createQuery( 
+		List<ObservableEntity> results = entityManager.createQuery( 
 				"select p " 
-					+ " from WoodElement p " 
-					+ " where p.uuid = :uuid", WoodElement.class )
+					+ " from ObservableEntity p " 
+					+ " where p.uuid = :uuid", ObservableEntity.class )
 			.setParameter("uuid", uuid )
 			.setMaxResults( 1 )
 			.getResultList();

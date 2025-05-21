@@ -1,8 +1,8 @@
-package it.unifi.ing.stlab.woodelements.model.actions;
+package it.unifi.ing.stlab.observableentities.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.CreateActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.CreateAction;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -14,35 +14,35 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "CR" )
-public class WoodElementCreateAction
-	extends WoodElementAction
-	implements CreateAction<WoodElement,WoodElementAction,User,Time> {
+public class ObservableEntityCreateAction
+	extends ObservableEntityAction
+	implements CreateAction<ObservableEntity,ObservableEntityAction,User,Time> {
 
-	public WoodElementCreateAction(String uuid) {
+	public ObservableEntityCreateAction(String uuid) {
 		super(uuid);
-		setDelegate( new CreateActionImpl<WoodElement,WoodElementAction,User,Time>() ); 
+		setDelegate( new CreateActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() ); 
 		getDelegate().setDelegator( this );
 	}
-	protected WoodElementCreateAction() {
+	protected ObservableEntityCreateAction() {
 		super();
-		setDelegate( new CreateActionImpl<WoodElement,WoodElementAction,User,Time>() ); 
+		setDelegate( new CreateActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() ); 
 		getDelegate().setDelegator( this );
 	}
 
 	@Transient
-	public CreateActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
-		return (CreateActionImpl<WoodElement, WoodElementAction, User, Time>)super.getDelegate();
+	public CreateActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
+		return (CreateActionImpl<ObservableEntity, ObservableEntityAction, User, Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public WoodElement getTarget() {
+	public ObservableEntity getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(WoodElement target) {
+	protected void setTarget(ObservableEntity target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(WoodElement newTarget) {
+	public void assignTarget(ObservableEntity newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 }

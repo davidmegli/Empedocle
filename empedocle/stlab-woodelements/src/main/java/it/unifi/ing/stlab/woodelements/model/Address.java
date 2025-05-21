@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;

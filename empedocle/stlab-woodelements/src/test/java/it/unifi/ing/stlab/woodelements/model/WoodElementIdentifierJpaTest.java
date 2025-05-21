@@ -1,19 +1,19 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.test.PersistenceTest;
 
 import org.junit.Test;
 
-public class WoodElementIdentifierJpaTest extends PersistenceTest {
+public class ObservableEntityIdentifierJpaTest extends PersistenceTest {
 
 	protected String uuid;
 	
 	@Override
 	protected void insertData() throws Exception {
-		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
+		ObservableEntityIdentifier identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier.setCode( "IDENTIFIER001" );
 		
 		entityManager.persist( identifier );
@@ -22,12 +22,12 @@ public class WoodElementIdentifierJpaTest extends PersistenceTest {
 	}
 	
 	@Test
-	public void testWoodElement() {
-		WoodElementIdentifier identifier = (WoodElementIdentifier)
+	public void testObservableEntity() {
+		ObservableEntityIdentifier identifier = (ObservableEntityIdentifier)
 			entityManager
 				.createQuery( 
 					"select p " +
-					" from WoodElementIdentifier p " +
+					" from ObservableEntityIdentifier p " +
 					" where p.uuid = :uuid" ).setParameter( "uuid", uuid ).getSingleResult();
 	
 		assertNotNull( identifier );

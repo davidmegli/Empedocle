@@ -1,40 +1,40 @@
-package it.unifi.ing.stlab.woodelements.dao;
+package it.unifi.ing.stlab.observableentities.dao;
 
 import it.unifi.ing.stlab.commons.query.QueryBuilder;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface WoodElementDao {
+public interface ObservableEntityDao {
 
 	int count(QueryBuilder builder);
 	
-	List<WoodElement> find(QueryBuilder builder, int offset, int limit);
-	WoodElement findById(Long id);
-	WoodElement findByUuid(String value);
-	WoodElement findByIdentifier(String identifier);
+	List<ObservableEntity> find(QueryBuilder builder, int offset, int limit);
+	ObservableEntity findById(Long id);
+	ObservableEntity findByUuid(String value);
+	ObservableEntity findByIdentifier(String identifier);
 	
 	//XXX lasciato per garantire la compatibilità con il vecchio approccio,
 	// in cui gli survey_schedule non venivano spostati nell'ultima versione
-    WoodElement findLastVersionById(Long id);
+    ObservableEntity findLastVersionById(Long id);
 	
-	List<WoodElement> findByName(String name, String surname);
-	WoodElement findByTaxCode(String taxCode);
-	List<WoodElement> findBySuggestion(String suggestion, int limit);
-	List<WoodElement> findForMerge(String name, String surname, Long idExclude);
+	List<ObservableEntity> findByName(String name, String surname);
+	ObservableEntity findByTaxCode(String taxCode);
+	List<ObservableEntity> findBySuggestion(String suggestion, int limit);
+	List<ObservableEntity> findForMerge(String name, String surname, Long idExclude);
 	
-	WoodElementIdentifier findIdentifierByCode(String code);
+	ObservableEntityIdentifier findIdentifierByCode(String code);
 	
-	WoodElement fetchById(Long id);
+	ObservableEntity fetchById(Long id);
 	
-	WoodElement mergeWoodElements(Long woodElementId, Long otherId, User author);
+	ObservableEntity mergeObservableEntitys(Long observableEntityId, Long otherId, User author);
 	
-	void save(WoodElement target);
-	void update(WoodElement target);
-	void deleteById(Long woodElementId, User author);
+	void save(ObservableEntity target);
+	void update(ObservableEntity target);
+	void deleteById(Long observableEntityId, User author);
 
 }

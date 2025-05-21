@@ -1,11 +1,11 @@
-package it.unifi.ing.stlab.woodelements.manager;
+package it.unifi.ing.stlab.observableentities.manager;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
 import it.unifi.ing.stlab.users.factory.UserFactory;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -14,53 +14,53 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WoodElementManagerTest {
+public class ObservableEntityManagerTest {
 
-	protected WoodElementManager manager;
-	protected WoodElement wood_element1;
-	protected WoodElement wood_element2;
+	protected ObservableEntityManager manager;
+	protected ObservableEntity observable_entity1;
+	protected ObservableEntity observable_entity2;
 	
 	@Before
 	public void setUp() {
-		manager = new WoodElementManager();
+		manager = new ObservableEntityManager();
 		
-		wood_element1 = WoodElementFactory.createWoodElement();
-		wood_element1.setName( "Prova1" );
+		observable_entity1 = ObservableEntityFactory.createObservableEntity();
+		observable_entity1.setName( "Prova1" );
 		
-		wood_element2 = WoodElementFactory.createWoodElement();
-		wood_element2.setName( "Prova2" );
+		observable_entity2 = ObservableEntityFactory.createObservableEntity();
+		observable_entity2.setName( "Prova2" );
 	}
 	
 	@Test
-	public void testMergeWoodElements() {
-		WoodElement merged = manager.merge( UserFactory.createUser(), 
+	public void testMergeObservableEntitys() {
+		ObservableEntity merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
-												wood_element1, wood_element2 ); 
+												observable_entity1, observable_entity2 );
 		
 		assertNotNull( merged );
 		assertNotNull( merged.getName() );
-		assertEquals( wood_element1.getName(), merged.getName() );
-		assertTrue( merged.listBefore().contains( wood_element1 ) );
-		assertTrue( merged.listBefore().contains( wood_element2 ) );
-		assertEquals( WoodElementMergeAction.class, merged.getOrigin().getClass() );
-		assertEquals( wood_element1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
-		assertEquals( wood_element2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
+		assertEquals( observable_entity1.getName(), merged.getName() );
+		assertTrue( merged.listBefore().contains( observable_entity1 ) );
+		assertTrue( merged.listBefore().contains( observable_entity2 ) );
+		assertEquals( ObservableEntityMergeAction.class, merged.getOrigin().getClass() );
+		assertEquals( observable_entity1, ((ObservableEntityMergeAction)merged.getOrigin()).getSource1() );
+		assertEquals( observable_entity2, ((ObservableEntityMergeAction)merged.getOrigin()).getSource2() );
 	}
 	
 	@Test
-	public void testMergeWoodElements_Null() {
-		WoodElement merged = manager.merge( UserFactory.createUser(), 
+	public void testMergeObservableEntitys_Null() {
+		ObservableEntity merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
-												null, wood_element2 ); 
+												null, observable_entity2 );
 		
 		assertNotNull( merged );
 		assertNotNull( merged.getName() );
-		assertEquals( wood_element1.getName(), merged.getName() );
-		assertTrue( merged.listBefore().contains( wood_element1 ) );
-		assertTrue( merged.listBefore().contains( wood_element2 ) );
-		assertEquals( WoodElementMergeAction.class, merged.getOrigin().getClass() );
-		assertEquals( wood_element1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
-		assertEquals( wood_element2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
+		assertEquals( observable_entity1.getName(), merged.getName() );
+		assertTrue( merged.listBefore().contains( observable_entity1 ) );
+		assertTrue( merged.listBefore().contains( observable_entity2 ) );
+		assertEquals( ObservableEntityMergeAction.class, merged.getOrigin().getClass() );
+		assertEquals( observable_entity1, ((ObservableEntityMergeAction)merged.getOrigin()).getSource1() );
+		assertEquals( observable_entity2, ((ObservableEntityMergeAction)merged.getOrigin()).getSource2() );
 	}
 	
 	

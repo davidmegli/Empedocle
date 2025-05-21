@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.implementation.timed.TimedEntityImpl;
@@ -6,8 +6,8 @@ import it.unifi.ing.stlab.entities.implementation.traced.TracedEntityImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
@@ -16,16 +16,16 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table( name = "wood_elements" )
-public class WoodElement 
-	implements TracedEntity<WoodElement,WoodElementAction>,
+@Table( name = "observable_entities" )
+public class ObservableEntity 
+	implements TracedEntity<ObservableEntity,ObservableEntityAction>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
 	private PersistableImpl persistable;
-	private TracedEntityImpl<WoodElement,WoodElementAction> tracedEntity;
+	private TracedEntityImpl<ObservableEntity,ObservableEntityAction> tracedEntity;
 	private TimedEntityImpl<TimeRange,Time> timedEntity;
 	
-	private WoodElementIdentifier identifier;
+	private ObservableEntityIdentifier identifier;
 	
 	//FIXME DPB da cancellare
 	private String oldIdentifier;
@@ -46,26 +46,26 @@ public class WoodElement
 	private String nationality;
 	private String asl;
 
-	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
-	//WoodElement attributes
+	public enum ObservableEntityType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
+	//ObservableEntity attributes
 	private String externalElementId;
-	private WoodElementType type;
+	private ObservableEntityType type;
 	private String specie;
 	private String placeOfOrigin;
 	private int age;
 	private String note;
 
 	
-	public WoodElement( String uuid ) {
+	public ObservableEntity( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<WoodElement,WoodElementAction>();
+		tracedEntity = new TracedEntityImpl<ObservableEntity,ObservableEntityAction>();
 		tracedEntity.setDelegator( this );
 	}
-	protected WoodElement() {
+	protected ObservableEntity() {
 		persistable = new PersistableImpl();
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<WoodElement,WoodElementAction>();
+		tracedEntity = new TracedEntityImpl<ObservableEntity,ObservableEntityAction>();
 		tracedEntity.setDelegator( this );
 	}
 
@@ -75,7 +75,7 @@ public class WoodElement
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="wood_element", allocationSize = 1 )
+		pkColumnValue="observable_entity", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
 		return persistable.getId();
@@ -105,48 +105,48 @@ public class WoodElement
 	
 	@ManyToMany( fetch = FetchType.LAZY )
 	@JoinTable(
-		name = "wood_element_before",
-	    joinColumns = { @JoinColumn( name = "wood_element_id", referencedColumnName="id" ) },
-	    inverseJoinColumns = { @JoinColumn( name = "before_wood_element_id", referencedColumnName = "id") } )
-	protected Set<WoodElement> getBefore() {
+		name = "observable_entity_before",
+	    joinColumns = { @JoinColumn( name = "observable_entity_id", referencedColumnName="id" ) },
+	    inverseJoinColumns = { @JoinColumn( name = "before_observable_entity_id", referencedColumnName = "id") } )
+	protected Set<ObservableEntity> getBefore() {
 		return tracedEntity.getBefore();
 	}
-	protected void setBefore(Set<WoodElement> before) {
+	protected void setBefore(Set<ObservableEntity> before) {
 		tracedEntity.setBefore(before);
 	}
-	public Set<WoodElement> listBefore() {
+	public Set<ObservableEntity> listBefore() {
 		return tracedEntity.listBefore();
 	}
 
 	
 	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY )
-	protected Set<WoodElement> getAfter() {
+	protected Set<ObservableEntity> getAfter() {
 		return tracedEntity.getAfter();
 	}
-	protected void setAfter(Set<WoodElement> after) {
+	protected void setAfter(Set<ObservableEntity> after) {
 		tracedEntity.setAfter(after);
 	}
-	public Set<WoodElement> listAfter() {
+	public Set<ObservableEntity> listAfter() {
 		return tracedEntity.listAfter();
 	}
 
 	
 	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "origin_id" )
-	public WoodElementAction getOrigin() {
+	public ObservableEntityAction getOrigin() {
 		return tracedEntity.getOrigin();
 	}
-	protected void setOrigin(WoodElementAction origin) {
+	protected void setOrigin(ObservableEntityAction origin) {
 		tracedEntity.setOrigin(origin);
 	}
 
 	
 	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "dest_id" )
-	public WoodElementAction getDestination() {
+	public ObservableEntityAction getDestination() {
 		return tracedEntity.getDestination();
 	}
-	protected void setDestination(WoodElementAction destination) {
+	protected void setDestination(ObservableEntityAction destination) {
 		tracedEntity.setDestination(destination);
 	}
 
@@ -165,10 +165,10 @@ public class WoodElement
 	// Identifier
 	@ManyToOne( cascade=CascadeType.PERSIST )
 	@JoinColumn( name="identifier_id", nullable=true )
-	public WoodElementIdentifier getIdentifier() {
+	public ObservableEntityIdentifier getIdentifier() {
 		return identifier;
 	}
-	public void setIdentifier(WoodElementIdentifier identifier) {
+	public void setIdentifier(ObservableEntityIdentifier identifier) {
 		this.identifier = identifier;
 	}
 	
@@ -313,10 +313,10 @@ public class WoodElement
 	}
 
 	@Enumerated( EnumType.STRING )
-	public WoodElementType getType() {
+	public ObservableEntityType getType() {
 		return type;
 	}
-	public void setType(WoodElementType type) {
+	public void setType(ObservableEntityType type) {
 		this.type = type;
 	}
 
@@ -404,7 +404,7 @@ public class WoodElement
 	}
 	
 	@Override
-	public boolean sameAs(WoodElement entity) {
+	public boolean sameAs(ObservableEntity entity) {
 		return 
 			( identifier == null && entity.getIdentifier() == null || identifier != null && identifier.equals( entity.getIdentifier() ) ) &&
 			( isEmpty( name ) && isEmpty( entity.getName() ) || name != null && name.equals( entity.getName() )) &&
@@ -425,8 +425,8 @@ public class WoodElement
 	
 	
 	@Override
-	public WoodElement copy() {
-		WoodElement result = WoodElementFactory.createWoodElement();
+	public ObservableEntity copy() {
+		ObservableEntity result = ObservableEntityFactory.createObservableEntity();
 		result.setIdentifier( getIdentifier() );
 		result.setName( getName() );
 		result.setSurname( getSurname() );

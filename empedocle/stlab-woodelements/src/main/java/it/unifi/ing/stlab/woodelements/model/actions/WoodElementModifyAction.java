@@ -1,8 +1,8 @@
-package it.unifi.ing.stlab.woodelements.model.actions;
+package it.unifi.ing.stlab.observableentities.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.ModifyActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.ModifyAction;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -14,48 +14,48 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "MD" )
-public class WoodElementModifyAction
-	extends WoodElementAction
-	implements ModifyAction<WoodElement,WoodElementAction,User,Time> {
+public class ObservableEntityModifyAction
+	extends ObservableEntityAction
+	implements ModifyAction<ObservableEntity,ObservableEntityAction,User,Time> {
 
-	public WoodElementModifyAction(String uuid) {
+	public ObservableEntityModifyAction(String uuid) {
 		super(uuid);
-		setDelegate( new ModifyActionImpl<WoodElement,WoodElementAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
-	protected WoodElementModifyAction() {
+	protected ObservableEntityModifyAction() {
 		super();
-		setDelegate( new ModifyActionImpl<WoodElement,WoodElementAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected ModifyActionImpl<WoodElement,WoodElementAction,User,Time> getDelegate() {
-		return (ModifyActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
+	protected ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time> getDelegate() {
+		return (ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
-	public WoodElement getSource() {
+	public ObservableEntity getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(WoodElement source) {
+	protected void setSource(ObservableEntity source) {
 		getDelegate().setSource(source);
 	}
-	public void assignSource(WoodElement newSource) {
+	public void assignSource(ObservableEntity newSource) {
 		getDelegate().assignSource(newSource);
 	}
 
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public WoodElement getTarget() {
+	public ObservableEntity getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(WoodElement target) {
+	protected void setTarget(ObservableEntity target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(WoodElement newTarget) {
+	public void assignTarget(ObservableEntity newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 

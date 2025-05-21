@@ -1,62 +1,62 @@
-package it.unifi.ing.stlab.woodelements.model;
+package it.unifi.ing.stlab.observableentities.model;
 
 import static org.junit.Assert.assertEquals;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 
 import org.junit.Test;
 
-public class WoodElementTest {
+public class ObservableEntityTest {
 
 	@Test
 	public void testSameAs1() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
-		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
+		ObservableEntity observable_entity1 = ObservableEntityFactory.createObservableEntity();
+		ObservableEntityIdentifier identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier.setCode( "id" );
-		wood_element1.setIdentifier( identifier );
+		observable_entity1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		ObservableEntity observable_entity2 = ObservableEntityFactory.createObservableEntity();
 
-		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( false, observable_entity1.sameAs( observable_entity2 ) );
+		assertEquals( false, observable_entity2.sameAs( observable_entity1 ) );
 	}
 	
 	@Test
 	public void testSameAs2() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();		
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
+		ObservableEntity observable_entity1 = ObservableEntityFactory.createObservableEntity();
+		ObservableEntity observable_entity2 = ObservableEntityFactory.createObservableEntity();
 
-		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( true, observable_entity1.sameAs( observable_entity2 ) );
+		assertEquals( true, observable_entity2.sameAs( observable_entity1 ) );
 	}
 	
 	@Test
 	public void testSameAs3() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
-		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
+		ObservableEntity observable_entity1 = ObservableEntityFactory.createObservableEntity();
+		ObservableEntityIdentifier identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier.setCode( "id" );
-		wood_element1.setIdentifier( identifier );
+		observable_entity1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
-		wood_element2.setIdentifier( identifier );
+		ObservableEntity observable_entity2 = ObservableEntityFactory.createObservableEntity();
+		observable_entity2.setIdentifier( identifier );
 
-		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( true, observable_entity1.sameAs( observable_entity2 ) );
+		assertEquals( true, observable_entity2.sameAs( observable_entity1 ) );
 	}
 	
 	@Test
 	public void testSameAs4() {
-		WoodElement wood_element1 = WoodElementFactory.createWoodElement();
-		WoodElementIdentifier identifier1 = WoodElementFactory.createWoodElementIdentifier();
+		ObservableEntity observable_entity1 = ObservableEntityFactory.createObservableEntity();
+		ObservableEntityIdentifier identifier1 = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier1.setCode( "id1" );
-		wood_element1.setIdentifier( identifier1 );
+		observable_entity1.setIdentifier( identifier1 );
 
-		WoodElement wood_element2 = WoodElementFactory.createWoodElement();
-		WoodElementIdentifier identifier2 = WoodElementFactory.createWoodElementIdentifier();
+		ObservableEntity observable_entity2 = ObservableEntityFactory.createObservableEntity();
+		ObservableEntityIdentifier identifier2 = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier2.setCode( "id2" );
-		wood_element2.setIdentifier( identifier2 );
+		observable_entity2.setIdentifier( identifier2 );
 
-		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( false, observable_entity1.sameAs( observable_entity2 ) );
+		assertEquals( false, observable_entity2.sameAs( observable_entity1 ) );
 	}	
 
 }

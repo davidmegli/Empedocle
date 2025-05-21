@@ -456,7 +456,7 @@ public class MeasurementSessionRunning implements Serializable {
 
 			conversation.end();
 			
-			return "wood_element-list";
+			return "woodelement-list";
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
@@ -508,7 +508,7 @@ public class MeasurementSessionRunning implements Serializable {
 
 	public String close() {
 		conversation.end();
-		return "wood_element-list";
+		return "woodelement-list";
 	}
 	
 	public String switchUser() {

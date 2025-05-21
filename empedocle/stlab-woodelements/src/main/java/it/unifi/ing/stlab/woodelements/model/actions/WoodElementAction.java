@@ -1,10 +1,10 @@
-package it.unifi.ing.stlab.woodelements.model.actions;
+package it.unifi.ing.stlab.observableentities.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.implementation.traced.ActionImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.entities.model.traced.Action;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
@@ -28,31 +28,31 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
 @Entity
-@Table( name="wood_element_actions" )
+@Table( name="observable_entity_actions" )
 @Inheritance( strategy=InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( 
 	name= "from_class", 
 	discriminatorType=DiscriminatorType.STRING )
-public abstract class WoodElementAction 
-	implements Action<WoodElement,WoodElementAction,User,Time>, Persistable {
+public abstract class ObservableEntityAction 
+	implements Action<ObservableEntity,ObservableEntityAction,User,Time>, Persistable {
 
 	private PersistableImpl persistable;
-	private ActionImpl<WoodElement,WoodElementAction,User,Time> delegate;
+	private ActionImpl<ObservableEntity,ObservableEntityAction,User,Time> delegate;
 
-	public WoodElementAction( String uuid ) {
+	public ObservableEntityAction( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 	}
-	protected WoodElementAction() {
+	protected ObservableEntityAction() {
 		persistable = new PersistableImpl();
 	}
 
 	
 	
 	@Transient
-	protected ActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
+	protected ActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
 		return delegate;
 	}
-	protected void setDelegate(ActionImpl<WoodElement, WoodElementAction, User, Time> delegate) {
+	protected void setDelegate(ActionImpl<ObservableEntity, ObservableEntityAction, User, Time> delegate) {
 		this.delegate = delegate;
 	}
 	
@@ -63,7 +63,7 @@ public abstract class WoodElementAction
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="wood_element_action",
+		pkColumnValue="observable_entity_action",
 		allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
