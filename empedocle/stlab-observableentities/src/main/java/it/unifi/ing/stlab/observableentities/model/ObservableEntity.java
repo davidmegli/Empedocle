@@ -26,7 +26,8 @@ public class ObservableEntity
 	private TimedEntityImpl<TimeRange,Time> timedEntity;
 	
 	private ObservableEntityIdentifier identifier;
-	
+
+
 	//FIXME DPB da cancellare
 	private String oldIdentifier;
 
@@ -55,7 +56,7 @@ public class ObservableEntity
 	private int age;
 	private String note;
 
-	
+
 	public ObservableEntity( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
@@ -152,7 +153,7 @@ public class ObservableEntity
 
 
 	
-	// FIXME DPB da cancellare
+	//FIXME DPB da cancellare
 //	@Column( unique = true )
 	@Column( name="identifier" ) 
 	public String getOldIdentifier() {
@@ -161,7 +162,7 @@ public class ObservableEntity
 	public void setOldIdentifier(String oldIdentifier) {
 		this.oldIdentifier = oldIdentifier;
 	}
-	
+
 	// Identifier
 	@ManyToOne( cascade=CascadeType.PERSIST )
 	@JoinColumn( name="identifier_id", nullable=true )
@@ -172,7 +173,7 @@ public class ObservableEntity
 		this.identifier = identifier;
 	}
 	
-	
+
 	// Name
 	public String getName() {
 		return name;
@@ -338,7 +339,7 @@ public class ObservableEntity
 	public int getAge() {
 		return age;
 	}
-	public void setAge() {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
@@ -447,13 +448,13 @@ public class ObservableEntity
 			domicile.setPlace( getDomicile().getPlace() );
 			result.setDomicile( domicile );
 		}
-		
+
 		result.setRegion( getRegion() );
 		result.setHomePhone( getHomePhone() );
 		result.setWorkPhone( getWorkPhone() );
 		result.setNationality( getNationality() );
 		result.setAsl( getAsl() );
-		
+
 		return result;
 	}
 	

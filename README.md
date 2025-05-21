@@ -34,6 +34,12 @@ sourceCode/
     ```
     mvn clean install -DskipTests
     ```
+* stlab-observableentities
+  * Access the `sourceCode/empedocle/stlab-observableentities` folder via the terminal.
+  * Use the command:
+   ```
+    mvn clean install -DskipTests
+    ```
 * empedocle
   * Access the `sourceCode/empedocle/empedocle` folder via the terminal.
   * Use the command:
