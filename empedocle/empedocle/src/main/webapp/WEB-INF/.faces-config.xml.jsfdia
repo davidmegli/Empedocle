@@ -24,11 +24,11 @@
     PATH="/pages/agendas/agenda-list.xhtml"
     TARGET="rules:#pages#agendas#agenda-list.xhtml" TITLE="agenda-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="measurementSessiontype-list::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="measurementSessionType-list::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output6"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
-    TITLE="measurementSessiontype-list" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
+    TITLE="measurementSessionType-list" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="type-list::#pages#types#type-list.xhtml"
     NAME="output7" PATH="/pages/types/type-list.xhtml"
     TARGET="rules:#pages#types#type-list.xhtml" TITLE="type-list" model-entity="JSFProcessItemOutput"/>
@@ -531,13 +531,13 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
-  NAME="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
-  PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
+  NAME="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
+  PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
   SHAPE="368,497,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
-   ID="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml:0"
+   ID="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml:0"
    NAME="item"
-   PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml" model-entity="JSFProcessItem">
+   PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="view::#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     NAME="output"
@@ -563,10 +563,10 @@
     TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="add-new" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="delete::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="delete::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output4"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
     TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -579,10 +579,10 @@
    NAME="item"
    PATH="/pages/measurementSession/types/measurementSessiontype-view.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="close::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="close::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
     TITLE="close" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="edit::#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
@@ -597,10 +597,10 @@
     TARGET="rules:#pages#measurementSession#types#measurementSessiontype-edit.xhtml"
     TITLE="copy" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="delete::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="delete::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output3"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
     TITLE="delete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -619,10 +619,10 @@
     TARGET="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     TITLE="cancel" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="cancel::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="cancel::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output1"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
     TITLE="cancel" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="save::#pages#measurementSession#types#measurementSessiontype-view.xhtml"
@@ -631,10 +631,10 @@
     TARGET="rules:#pages#measurementSession#types#measurementSessiontype-view.xhtml"
     TITLE="save" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="save::#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    ID="save::#pages#measurementSession#types#measurementSessionType-list.xhtml"
     NAME="output3"
-    PATH="/pages/measurementSession/types/measurementSessiontype-list.xhtml"
-    TARGET="rules:#pages#measurementSession#types#measurementSessiontype-list.xhtml"
+    PATH="/pages/measurementSession/types/measurementSessionType-list.xhtml"
+    TARGET="rules:#pages#measurementSession#types#measurementSessionType-list.xhtml"
     TITLE="save" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>

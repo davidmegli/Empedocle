@@ -126,7 +126,7 @@
 		<web-resource-collection>
 			<web-resource-name>Administrator pages</web-resource-name>
 			<url-pattern>/pages/agendas/*</url-pattern>
-			<url-pattern>/pages/measurementSession/types/measurementSessiontype-list.jsf</url-pattern>
+			<url-pattern>/pages/measurementSession/types/measurementSessionType-list.jsf</url-pattern>
 			<url-pattern>/pages/measurementSession/types/measurementSessiontype-view.jsf</url-pattern>
 			<url-pattern>/pages/measurementSession/types/measurementSessiontype-edit.jsf</url-pattern>
 			<url-pattern>/pages/queries/*</url-pattern>

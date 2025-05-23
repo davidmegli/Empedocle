@@ -40,7 +40,7 @@ public class HeaderMenu {
 		case "type-list":
 		case "view-list":
 		case "fact-query-list":
-		case "measurementSessiontype-list":
+		case "measurementSessionType-list":
 			return loggedUser.hasRole( RoleType.DOMAIN_EXPERT ) ||  loggedUser.hasRole( RoleType.ADMINISTRATOR );
 			
 		case "staff-list":

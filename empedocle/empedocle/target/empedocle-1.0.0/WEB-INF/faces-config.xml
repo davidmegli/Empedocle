@@ -47,8 +47,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>measurementSessiontype-list</from-outcome>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<from-outcome>measurementSessionType-list</from-outcome>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -764,9 +764,9 @@
 	
 	
 	<!-- MeasurementSession type navigation rules -->
-	<!-- from measurementSessiontype-list -->
+	<!-- from measurementSessionType-list -->
 	<navigation-rule>
-		<from-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</from-view-id>
+		<from-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>view</from-outcome>
 			<to-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</to-view-id>
@@ -833,7 +833,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -855,7 +855,7 @@
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
 			<if>#{measurementSessionTypeEdit.from eq 'list'}</if>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -872,7 +872,7 @@
 		<navigation-case>
 			<from-outcome>save</from-outcome>
 			<if>#{measurementSessionTypeEdit.from eq 'list' or measurementSessionTypeEdit.copy}</if>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>		
 	</navigation-rule>
@@ -882,7 +882,7 @@
 		<from-view-id>/pages/measurementSession/types/measurementSessiontype-view.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>close</from-outcome>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -927,7 +927,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>delete</from-outcome>
-			<to-view-id>/pages/measurementSession/types/measurementSessiontype-list.xhtml</to-view-id>
+			<to-view-id>/pages/measurementSession/types/measurementSessionType-list.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
