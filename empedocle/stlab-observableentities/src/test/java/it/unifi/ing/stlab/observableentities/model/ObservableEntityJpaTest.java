@@ -29,27 +29,6 @@ public class ObservableEntityJpaTest extends PersistenceTest {
 		identifier = ObservableEntityFactory.createObservableEntityIdentifier();
 		identifier.setCode( "id" );
 		observable_entity.setIdentifier( identifier );
-		observable_entity.setName( "name" );
-		observable_entity.setSurname( "surname" );
-		observable_entity.setSex( Sex.M );
-		observable_entity.setBirthDate( new Date( DateHelper.createDate( "2013-03-01").getTime() ));
-		observable_entity.setBirthPlace( "birthPlace" );
-		observable_entity.setTaxCode( "taxCode" );
-		observable_entity.setSsnCode( "ssnCode" );
-
-		Address residence = new Address();
-		residence.setPlace( "residence" );
-		observable_entity.setResidence( residence );
-
-		Address domicile = new Address();
-		domicile.setPlace( "domicile" );
-		observable_entity.setDomicile( domicile );
-		
-		observable_entity.setRegion( "region" );
-		observable_entity.setHomePhone( "homePhone" );
-		observable_entity.setWorkPhone( "workPhone" );
-		observable_entity.setNationality( "nationality" );
-		observable_entity.setAsl( "asl" );
 		
 		entityManager.persist( observable_entity );
 
@@ -68,20 +47,6 @@ public class ObservableEntityJpaTest extends PersistenceTest {
 		assertNotNull( observable_entity );
 		
 		assertEquals( identifier, observable_entity.getIdentifier());
-		assertEquals( "name", observable_entity.getName());
-		assertEquals( "surname", observable_entity.getSurname());
-		assertEquals( Sex.M, observable_entity.getSex());
-		assertEquals( new Date( DateHelper.createDate( "2013-03-01").getTime() ), observable_entity.getBirthDate());
-		assertEquals( "birthPlace", observable_entity.getBirthPlace());
-		assertEquals( "taxCode", observable_entity.getTaxCode());
-		assertEquals( "ssnCode", observable_entity.getSsnCode());
-		assertEquals( "residence", observable_entity.getResidence().getPlace());
-		assertEquals( "domicile", observable_entity.getDomicile().getPlace());
-		assertEquals( "region", observable_entity.getRegion());
-		assertEquals( "homePhone", observable_entity.getHomePhone());
-		assertEquals( "workPhone", observable_entity.getWorkPhone());
-		assertEquals( "nationality", observable_entity.getNationality());
-		assertEquals( "asl", observable_entity.getAsl());
 	}
 	
 }

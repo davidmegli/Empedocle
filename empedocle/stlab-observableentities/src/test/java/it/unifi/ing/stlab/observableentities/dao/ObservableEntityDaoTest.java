@@ -35,8 +35,6 @@ public class ObservableEntityDaoTest extends PersistenceTest {
 		p1 = ObservableEntityFactory.createObservableEntity();
 		p1.setIdentifier( ObservableEntityFactory.createObservableEntityIdentifier() );
 		p1.getIdentifier().setCode( "1234" );
-		p1.setName( "name" );
-		p1.setSurname( "surname" );
 		entityManager.persist( p1 );
 		
 		p2 = ObservableEntityFactory.createObservableEntity();
@@ -74,11 +72,9 @@ public class ObservableEntityDaoTest extends PersistenceTest {
 	@Test
 	public void testFindForMerge() {
 		ObservableEntity p4 = ObservableEntityFactory.createObservableEntity();
-		p4.setName( "name" );
-		p4.setSurname( "surname" );
 		entityManager.persist( p4 );
 		
-		List<ObservableEntity> result = dao.findForMerge(p3.getName(), p3.getSurname(), p3.getId());
+		List<ObservableEntity> result = dao.findForMerge(p3.getId());
 		
 		assertEquals( 1, result.size() );
 		assertEquals( p4, result.get(0) );
@@ -89,19 +85,17 @@ public class ObservableEntityDaoTest extends PersistenceTest {
 		ObservableEntity p4 = ObservableEntityFactory.createObservableEntity();
 		entityManager.persist( p4 );
 		
-		ObservableEntity result = dao.mergeObservableEntities( p4.getId(), p3.getId(), author );
+		ObservableEntity result = dao.mergeObservableEntities(author );
 		
 		assertEquals( "1234", result.getIdentifier().getCode() );
-		assertEquals( "name", result.getName() );
-		assertEquals( "surname", result.getSurname() );
 	}
 
 	@Test
-	public void testFindByName() {
-		List<ObservableEntity> result = dao.findByName( "name", "surname" );
-		
-		assertEquals( 1, result.size() );
-		assertEquals( p3, result.get( 0 ) );
-	}
+//	public void testFindByName() {
+//		List<ObservableEntity> result = dao.findByName( "name", "surname" );
+//
+//		assertEquals( 1, result.size() );
+//		assertEquals( p3, result.get( 0 ) );
+//	}
 	
 }

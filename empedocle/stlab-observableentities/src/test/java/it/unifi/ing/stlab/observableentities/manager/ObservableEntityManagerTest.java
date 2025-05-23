@@ -38,8 +38,6 @@ public class ObservableEntityManagerTest {
 												observable_entity1, observable_entity2 );
 		
 		assertNotNull( merged );
-		assertNotNull( merged.getName() );
-		assertEquals( observable_entity1.getName(), merged.getName() );
 		assertTrue( merged.listBefore().contains( observable_entity1 ) );
 		assertTrue( merged.listBefore().contains( observable_entity2 ) );
 		assertEquals( ObservableEntityMergeAction.class, merged.getOrigin().getClass() );
@@ -54,8 +52,6 @@ public class ObservableEntityManagerTest {
 												null, observable_entity2 );
 		
 		assertNotNull( merged );
-		assertNotNull( merged.getName() );
-		assertEquals( observable_entity1.getName(), merged.getName() );
 		assertTrue( merged.listBefore().contains( observable_entity1 ) );
 		assertTrue( merged.listBefore().contains( observable_entity2 ) );
 		assertEquals( ObservableEntityMergeAction.class, merged.getOrigin().getClass() );
