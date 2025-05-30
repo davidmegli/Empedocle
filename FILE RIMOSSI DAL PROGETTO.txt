@@ -1,0 +1,360 @@
+
+FILE RIMOSSI DAL PROGETTO IN DATA 23/05, RELATIVI A PATIENT:
+
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/AltezzaPesoController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/DimensioneUlceraController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/FolderNumberGenerator.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/MedicazioneUlcereController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/NumeroCartellaCardiologiaController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/PercorsoWalkTestController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/RepertiMonoBidimensionaliController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/dermatology/NeviTotaliAtipiciController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/dermatology/SedeNevoController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/dermatology/StadiazioneTController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/dermatology/VisitaClinicaEsitoController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/ADLController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/BarthelIndexController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/CIRSController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/CSDDController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/GDSController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/IADLController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/MMSEController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/MNAController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/SPPBController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/SigaretteController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/UCLANPIController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/geriatrics/UCLANPITotalScoreController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/ophthalmology/ClinicalActivityScoreController.java
+empedocle/empedocle-viewers/src/main/java/it/unifi/ing/stlab/empedocle/view/controllers/ophthalmology/GeneticController.java
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/AltezzaPeso.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/AltezzaPesoView.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/DimensioneUlcera.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/NumeroCartella.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/PercorsoWalkTest.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/RepertiMonoBidimensionali.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/RepertiMonoBidimensionaliVers2.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/ReportMedicazioneUlcere.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/cardiology/ReportMedicazioneUlcereVers2.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/commons/ComboCustom.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/commons/DisplayPlusInput.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/commons/DisplayPlusOutput.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/commons/InputTextCustom.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/commons/YesNoCheckbox.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/NeviTotaliAtipici.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/SedeNevoEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/SedeNevoView.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/StadiazioneT.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/VisitaClinicaEsito.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/dermatology/man_front_back.svg
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/ADLEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/BarthelIndexEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/CIRSEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/CSDDEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/GDSEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/IADLEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/MMSEEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/MNAEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/SPPBEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/SigaretteEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/UCLANPIEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/geriatrics/UCLANPITotalScoreEdit.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/ophthalmology/ClinicalActivityScore.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/ophthalmology/Genetic.xhtml
+empedocle/empedocle-viewers/src/main/webapp/pages/viewer/component/ophthalmology/GeneticVers2.xhtml
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/AltezzaPesoControllerTest.java
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/DimensioneUlceraControllerTest.java
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/PercorsoWalkTestControllerTest.java
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/cardiology/RepertiMonoBidimensionaliControllerTest.java
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/dermatology/StadiazioneTControllerTest.java
+empedocle/empedocle-viewers/src/test/java/it/unifi/ing/stlab/empedocle/view/controllers/ophthalmology/GeneticControllerTest.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/consent/ObservableEntityConsentEnricher.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/statistics/StatisticsDownload.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/statistics/excel/POIDataExporter.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/statistics/export/config/ExcelConfig.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/statistics/export/visitor/StatisticsPathGeneratorVisitor.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/util/taxcode/FiscalCodeNormalizer.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/util/taxcode/FiscalCodeValidator.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/actions/util/taxcode/FiscalCodeValidatorException.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/Icd9cmFactory.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/coding/atc/ATCCodeFactory.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/coding/icd9cm/ICD9CMCodeFactory.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/drugs/DrugIndexFactory.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/Icd9cm.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCAnatomicalMainGroupCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCChemicalSubGroupCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCChemicalSubstanceCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCPharmacologicalSubGroupCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCTherapeuticMainGroupCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMCategoryCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMSubCategoryCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMSubClassificationCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMSubTopicCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMTopicCode.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/AifaNote.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/DrugClass.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/DrugIndex.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/DrugType.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/PrescriptionType.java
+empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/drugs/UpdateInfo.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/actions/health/measurementSession/statistics/export/visitor/BaseStatisticsTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/Icd9cmJpaTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCCodeJpaImporter.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCCodeJpaTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/atc/ATCCodeTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMCodeJpaImporter.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMCodeJpaTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/coding/icd9cm/ICD9CMCodeTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/drugs/DrugIndexImporter.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/model/health/drugs/DrugIndexJpaTest.java
+empedocle/empedocle/src/test/java/it/unifi/ing/stlab/empedocle/services/mpi/MasterPatientIndexServiceTest.java
+empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/Sex.java
+(END)
+
+
+ATTRIBUTI RIMOSSI DA PATIENT/OBSERVABLEENTITY
+
+//FIXME DPB da cancellare
+	private String oldIdentifier;
+
+	//FIXME: old patient attributes, delete
+	private String name;
+	private String surname;
+	private Sex sex;
+	private Date birthDate;
+	private String birthPlace;
+	private String taxCode;
+	private String ssnCode;
+	private Address residence;
+	private Address domicile;
+	private String region;
+	private String homePhone;
+	private String workPhone;
+	private String nationality;
+	private String asl;
+	
+	
+//WOODELEMENT
+	public enum ObservableEntityType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
+	//ObservableEntity attributes
+	private String externalElementId;
+	private ObservableEntityType type;
+	private String specie;
+	private String placeOfOrigin;
+	private int age;
+	private String note;
+	
+//FIXME DPB da cancellare
+//	@Column( unique = true )
+	@Column( name="identifier" ) 
+	public String getOldIdentifier() {
+		return oldIdentifier;
+	}
+	public void setOldIdentifier(String oldIdentifier) {
+		this.oldIdentifier = oldIdentifier;
+	}
+	
+	// Name
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	// Surname
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	
+	
+	@Enumerated( EnumType.STRING )
+	public Sex getSex() {
+		return sex; 
+	}
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+	
+	
+	@Temporal( TemporalType.TIMESTAMP )
+	@Column( name = "birth_date" )
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	
+	@Column( name = "birth_place" )
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}
+	
+	
+	@Column( name = "tax_code" )
+	public String getTaxCode() {
+		return taxCode;
+	}
+	public void setTaxCode(String taxCode) {
+		this.taxCode = taxCode;
+	}
+	
+	
+	@Column( name = "ssn_code" )
+	public String getSsnCode() {
+		return ssnCode;
+	}
+	public void setSsnCode(String ssnCode) {
+		this.ssnCode = ssnCode;
+	}
+	
+	
+	@AttributeOverrides({
+		@AttributeOverride( name="place",column=@Column(name="residence_place"))
+	 })	
+	@Embedded
+	public Address getResidence() {
+		return residence;
+	}
+	public void setResidence(Address residence) {
+		this.residence = residence;
+	}
+	
+	@AttributeOverrides({
+		@AttributeOverride( name="place",column=@Column(name="domicile_place"))
+	 })	
+	@Embedded
+	public Address getDomicile() {
+		return domicile;
+	}
+	public void setDomicile(Address domicile) {
+		this.domicile = domicile;
+	}
+	
+	
+	// Region
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	
+	
+	@Column( name = "home_phone" )
+	public String getHomePhone() {
+		return homePhone;
+	}
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+	
+	
+	@Column( name = "work_phone" )
+	public String getWorkPhone() {
+		return workPhone;
+	}
+	public void setWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+	}
+	
+	
+	// Nationality
+	public String getNationality() {
+		return nationality;
+	}
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	
+	
+	// Asl
+	public String getAsl() {
+		return asl;
+	}
+	public void setAsl(String asl) {
+		this.asl = asl;
+	}
+
+	@Column( name = "external_element_id" )
+	public String getExternalElementId() {
+		return externalElementId;
+	}
+	public void setExternalElementId(String externalElementId) {
+		this.externalElementId = externalElementId;
+	}
+
+	@Enumerated( EnumType.STRING )
+	public ObservableEntityType getType() {
+		return type;
+	}
+	public void setType(ObservableEntityType type) {
+		this.type = type;
+	}
+
+	public String getSpecie() {
+		return specie;
+	}
+	public void setSpecie(String specie) {
+		this.specie = specie;
+	}
+
+	@Column( name = "place_of_origin" )
+	public String getPlaceOfOrigin(){
+		return placeOfOrigin;
+	}
+	public void setPlaceOfOrigin(String placeOfOrigin){
+		this.placeOfOrigin = placeOfOrigin;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	private String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
+	
+	MODIFICHE A CASCATA RELATIVE AD ATTIBUTI RIMOSSI: 
+	JPAtest, metodi della classe
+	
+	da ObservableEntityDao e ObservableentityDaoBean rimuovo metodi: 
+	- List<ObservableEntity> findByName(String name, String surname);
+	-ObservableEntity findByTaxCode(String taxCode);
+	-List<ObservableEntity> findForMerge(String name, String surname, Long idExclude);
+	-ObservableEntityIdentifier findIdentifierByCode(String code);
+	- findForMarge()
+	-mergeObservableEntities()
+	-findBySuggestion
+	
+	Rimossi da ObservableEntityDaoTest:
+	-testFindByName()
+	-testFindForMerge()
+	-testMergeObservableentity()
+	
+	
+	TABELLE RIMOSSE: 
+	- update_infos
+	-aifa_notes
+	-atc
+	-icd9cm
+	-icd_9_cm
+	
+	
+
