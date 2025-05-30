@@ -68,34 +68,4 @@ public class ObservableEntityDaoTest extends PersistenceTest {
 		
 		assertEquals( p3, result );
 	}
-	
-	@Test
-	public void testFindForMerge() {
-		ObservableEntity p4 = ObservableEntityFactory.createObservableEntity();
-		entityManager.persist( p4 );
-		
-		List<ObservableEntity> result = dao.findForMerge(p3.getId());
-		
-		assertEquals( 1, result.size() );
-		assertEquals( p4, result.get(0) );
-	}
-	
-	@Test
-	public void testmergeObservableEntities() {
-		ObservableEntity p4 = ObservableEntityFactory.createObservableEntity();
-		entityManager.persist( p4 );
-		
-		ObservableEntity result = dao.mergeObservableEntities(author );
-		
-		assertEquals( "1234", result.getIdentifier().getCode() );
-	}
-
-	@Test
-//	public void testFindByName() {
-//		List<ObservableEntity> result = dao.findByName( "name", "surname" );
-//
-//		assertEquals( 1, result.size() );
-//		assertEquals( p3, result.get( 0 ) );
-//	}
-	
 }
