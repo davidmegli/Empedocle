@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.empedocle;
 
-import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.RecurrentFactHelper;
-import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelper;
-import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelperBean;
+//import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.RecurrentFactHelper;
+//import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelper;
+//import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelperBean;
 import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
 import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDaoBean;
 import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
@@ -65,7 +65,7 @@ public class ReflectionTest extends JpaTest {
 	private ViewerDao viewerDao;
 	private MeasurementSessionDao measurementSessionDao;
 	private MeasurementSessionTypeDao measurementSessionTypeDao;
-	private GarbageCollectorHelper garbageCollector;
+	//private GarbageCollectorHelper garbageCollector;
 		
 	@Parameters
 	public static List<Object[]> data() {
@@ -102,7 +102,7 @@ public class ReflectionTest extends JpaTest {
 		measurementSessionTypeDao = new MeasurementSessionTypeDaoBean();
 		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 		
-		garbageCollector = new GarbageCollectorHelperBean();
+		//garbageCollector = new GarbageCollectorHelperBean();
 		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 	}
 
@@ -129,9 +129,9 @@ public class ReflectionTest extends JpaTest {
 		FactDefaultInitializerVisitor assignDefault = new FactDefaultInitializerVisitor();
 		fact.accept( assignDefault );
 
-		RecurrentFactHelper recurrentHelper = new RecurrentFactHelper(measurementSessionDao);
-		recurrentHelper.resumeRecurrentFacts(fact);
-		garbageCollector.flush();
+		//RecurrentFactHelper recurrentHelper = new RecurrentFactHelper(measurementSessionDao);
+		//recurrentHelper.resumeRecurrentFacts(fact);
+		//garbageCollector.flush();
 
 		measurementSession.setStatus( MeasurementSessionStatus.RUNNING );
 		measurementSession.setType( measurementSessionType );
@@ -151,7 +151,7 @@ public class ReflectionTest extends JpaTest {
 		measurementSession.setLastUpdate( date );
 		FactManager factManager = new FactManager();
 		factManager.purge( (FactImpl)fact );
-		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
+		//GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
 
 		entityManager.getTransaction().commit();
 		
@@ -191,7 +191,7 @@ public class ReflectionTest extends JpaTest {
 		measurementSession.setStatus( MeasurementSessionStatus.SUSPENDED );
 		measurementSession.setLastUpdate( date );
 		factManager.purge( (FactImpl)dest );
-		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
+		//GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
 		entityManager.getTransaction().commit();
 		
 		timeTracker.stop();

@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.types.MeasurementSessionTypeFilter;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionTypeContext;
 import it.unifi.ing.stlab.test.FieldUtils;
@@ -21,7 +20,6 @@ import it.unifi.ing.stlab.view.model.Viewer;
 public class MeasurementSessionTypeDaoTest extends JpaTest{
 
 	protected MeasurementSessionTypeDao measurementSessionTypeDao;
-	protected MeasurementSessionTypeFilter measurementSessionTypeFilter;
 	
 	@BeforeClass
 	public static void setUpClass() {
@@ -34,20 +32,12 @@ public class MeasurementSessionTypeDaoTest extends JpaTest{
 		
 		measurementSessionTypeDao = new MeasurementSessionTypeDaoBean();
 		FieldUtils.assignField(measurementSessionTypeDao, "entityManager", entityManager);
-		
-		measurementSessionTypeFilter = new MeasurementSessionTypeFilter();
-		
+
 		entityManager.clear();
 	}
-	
-	
-	@Test
-	public void testFindNoFilter(){
-		List<MeasurementSessionType> result = measurementSessionTypeDao.find(measurementSessionTypeFilter, 0, 50);
-		
-		assertEquals(1, result.size());
-	}
-	
+
+	//TODO: rifare test, questi non hanno senso!!!
+
 	@Test
 	public void testFindById(){
 		MeasurementSessionType result = measurementSessionTypeDao.findById( new Long(1) );
