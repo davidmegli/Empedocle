@@ -15,6 +15,7 @@ import javax.faces.context.ExternalContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+//TODO: da modificare
 @Named
 @RequestScoped
 public class LoggedUser {

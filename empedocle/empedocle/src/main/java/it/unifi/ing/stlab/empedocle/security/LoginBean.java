@@ -7,6 +7,7 @@ import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+//TODO: da modificare
 @Named 
 @RequestScoped
 public class LoginBean {
