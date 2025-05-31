@@ -355,6 +355,8 @@ ATTRIBUTI RIMOSSI DA PATIENT/OBSERVABLEENTITY
 	-atc
 	-icd9cm
 	-icd_9_cm
+
+	RIMOSSI FILE IN Empedocle/empedocle/empedocle/actions/*
 	
 	
 
