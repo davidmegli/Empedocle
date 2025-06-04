@@ -10,19 +10,20 @@ import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMerge
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
-public class ObservableEntityManager
-	extends AbstractTracedEntityManager<ObservableEntity,ObservableEntityAction,User,Time>{
+public abstract class ObservableEntityManager
+	<T extends ObservableEntity, A extends ObservableEntityAction<T,A>>
+	extends AbstractTracedEntityManager<T,A,User,Time>{
 
 	@Override
-	protected AbstractActionFactory<ObservableEntity, ObservableEntityAction, User, Time> getActionFactory() {
+	protected AbstractActionFactory<T, A, User, Time> getActionFactory() {
 		return new ObservableEntityActionFactory();
 	}
 
-	public ObservableEntity createObservableEntity( User author, Time time ) {
+	public T createObservableEntity( User author, Time time ) {
 		return init( ObservableEntityFactory.createObservableEntity(), author, time );
 	}
 	
-	public ObservableEntity merge( User author, Time time, ObservableEntity master, ObservableEntity slave ) {
+	public T merge( User author, Time time, T master, T slave ) {
 		return ((ObservableEntityMergeAction) getActionFactory()
 				.mergeAction(author, time, master, slave, master.copy()))
 				.getTarget();

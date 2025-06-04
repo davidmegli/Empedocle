@@ -33,11 +33,12 @@ import javax.persistence.Transient;
 @DiscriminatorColumn( 
 	name= "from_class", 
 	discriminatorType=DiscriminatorType.STRING )
-public abstract class ObservableEntityAction 
-	implements Action<ObservableEntity,ObservableEntityAction,User,Time>, Persistable {
+public abstract class ObservableEntityAction
+		<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
+		implements Action<T, A, User, Time>, Persistable{
 
 	private PersistableImpl persistable;
-	private ActionImpl<ObservableEntity,ObservableEntityAction,User,Time> delegate;
+	private ActionImpl<T,A,User,Time> delegate;
 
 	public ObservableEntityAction( String uuid ) {
 		persistable = new PersistableImpl( uuid );
@@ -49,10 +50,10 @@ public abstract class ObservableEntityAction
 	
 	
 	@Transient
-	protected ActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
+	protected ActionImpl<T, A, User, Time> getDelegate() {
 		return delegate;
 	}
-	protected void setDelegate(ActionImpl<ObservableEntity, ObservableEntityAction, User, Time> delegate) {
+	protected void setDelegate(ActionImpl<T, A, User, Time> delegate) {
 		this.delegate = delegate;
 	}
 	

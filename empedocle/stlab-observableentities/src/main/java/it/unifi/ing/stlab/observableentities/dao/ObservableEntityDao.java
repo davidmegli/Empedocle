@@ -9,23 +9,23 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface ObservableEntityDao {
+public interface ObservableEntityDao <T extends ObservableEntity>{
 
 	int count(QueryBuilder builder);
 	
-	List<ObservableEntity> find(QueryBuilder builder, int offset, int limit);
-	ObservableEntity findById(Long id);
-	ObservableEntity findByUuid(String uuid);
-	ObservableEntity findByIdentifier(String identifier);
+	List<T> find(QueryBuilder builder, int offset, int limit);
+	T findById(Long id);
+	T findByUuid(String uuid);
+	T findByIdentifier(String identifier);
 	
 	//XXX lasciato per garantire la compatibilità con il vecchio approccio,
 	// in cui gli survey_schedule non venivano spostati nell'ultima versione
-    ObservableEntity findLastVersionById(Long id);
+    T findLastVersionById(Long id);
 
-	ObservableEntity fetchById(Long id);
+	T fetchById(Long id);
 
-	void save(ObservableEntity target);
-	void update(ObservableEntity target);
-	void deleteById(Long observableEntityId, User author);
+	void save(T target);
+	void update(T target);
+	void deleteById(Long id, User author);
 
 }

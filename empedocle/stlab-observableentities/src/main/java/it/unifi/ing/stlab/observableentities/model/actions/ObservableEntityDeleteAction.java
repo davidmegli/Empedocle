@@ -15,34 +15,35 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "DL" )
 public class ObservableEntityDeleteAction
+	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
-	implements DeleteAction<ObservableEntity,ObservableEntityAction,User,Time> {
+	implements DeleteAction<T,A,User,Time> {
 
 	public ObservableEntityDeleteAction(String uuid) {
 		super(uuid);
-		setDelegate( new DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	protected ObservableEntityDeleteAction() {
 		super();
-		setDelegate( new DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected DeleteActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
-		return (DeleteActionImpl<ObservableEntity,ObservableEntityAction,User,Time>)super.getDelegate();
+	protected DeleteActionImpl<T, A, User, Time> getDelegate() {
+		return (DeleteActionImpl<T,A,User,Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
-	public ObservableEntity getSource() {
+	public T getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(ObservableEntity source) {
+	protected void setSource(T source) {
 		getDelegate().setSource(source);
 	}
-	public void assignSource(ObservableEntity newSource) {
+	public void assignSource(T newSource) {
 		getDelegate().assignSource(newSource);
 	}
 }

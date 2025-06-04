@@ -15,47 +15,48 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MD" )
 public class ObservableEntityModifyAction
+	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
-	implements ModifyAction<ObservableEntity,ObservableEntityAction,User,Time> {
+	implements ModifyAction<T,A,User,Time> {
 
 	public ObservableEntityModifyAction(String uuid) {
 		super(uuid);
-		setDelegate( new ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	protected ObservableEntityModifyAction() {
 		super();
-		setDelegate( new ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new ModifyActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time> getDelegate() {
-		return (ModifyActionImpl<ObservableEntity,ObservableEntityAction,User,Time>)super.getDelegate();
+	protected ModifyActionImpl<T,A,User,Time> getDelegate() {
+		return (ModifyActionImpl<T,A,User,Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
-	public ObservableEntity getSource() {
+	public T getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(ObservableEntity source) {
+	protected void setSource(T source) {
 		getDelegate().setSource(source);
 	}
-	public void assignSource(ObservableEntity newSource) {
+	public void assignSource(T newSource) {
 		getDelegate().assignSource(newSource);
 	}
 
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public ObservableEntity getTarget() {
+	public T getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(ObservableEntity target) {
+	protected void setTarget(T target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(ObservableEntity newTarget) {
+	public void assignTarget(T newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 

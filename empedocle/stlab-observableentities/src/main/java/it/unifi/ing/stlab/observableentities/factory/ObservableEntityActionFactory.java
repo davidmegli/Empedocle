@@ -13,30 +13,32 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 import java.util.UUID;
 
-public class ObservableEntityActionFactory extends AbstractActionFactory<ObservableEntity,ObservableEntityAction,User,Time>{
+public abstract class ObservableEntityActionFactory
+		<T extends ObservableEntity, A extends ObservableEntityAction<T,A>>
+		extends AbstractActionFactory<T,A,User,Time>{
 
 	@Override
-	protected ObservableEntityAction createAction() {
+	protected A createAction() {
 		return new ObservableEntityCreateAction( UUID.randomUUID().toString() );
 	}
 
 	@Override
-	protected ObservableEntityAction modifyAction() {
+	protected A modifyAction() {
 		return new ObservableEntityModifyAction( UUID.randomUUID().toString() );
 	}
 
 	@Override
-	protected ObservableEntityAction mergeAction() {
+	protected A mergeAction() {
 		return new ObservableEntityMergeAction( UUID.randomUUID().toString() );
 	}
 
 	@Override
-	protected ObservableEntityAction splitAction() {
+	protected A splitAction() {
 		return new ObservableEntitySplitAction( UUID.randomUUID().toString() );
 	}
 
 	@Override
-	protected ObservableEntityAction deleteAction() {
+	protected A deleteAction() {
 		return new ObservableEntityDeleteAction( UUID.randomUUID().toString() );
 	}
 

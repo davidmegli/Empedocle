@@ -15,60 +15,61 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MR" )
 public class ObservableEntityMergeAction
+	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
-	implements MergeAction<ObservableEntity,ObservableEntityAction,User,Time> {
+	implements MergeAction<T,A,User,Time> {
 
 	public ObservableEntityMergeAction(String uuid) {
 		super(uuid);
-		setDelegate( new MergeActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new MergeActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	protected ObservableEntityMergeAction() {
 		super();
-		setDelegate( new MergeActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() );
+		setDelegate( new MergeActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	
 	@Transient
-	protected MergeActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
-		return (MergeActionImpl<ObservableEntity, ObservableEntityAction, User, Time>)super.getDelegate();
+	protected MergeActionImpl<T, A, User, Time> getDelegate() {
+		return (MergeActionImpl<T, A, User, Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "source1_id" )
-	public ObservableEntity getSource1() {
+	public T getSource1() {
 		return getDelegate().getSource1();
 	}
-	protected void setSource1(ObservableEntity source1) {
+	protected void setSource1(T source1) {
 		getDelegate().setSource1(source1);
 	}
-	public void assignSource1(ObservableEntity newSource1) {
+	public void assignSource1(T newSource1) {
 		getDelegate().assignSource1(newSource1);
 	}
 
 	
 	@ManyToOne
 	@JoinColumn( name = "source2_id" )
-	public ObservableEntity getSource2() {
+	public T getSource2() {
 		return getDelegate().getSource2();
 	}
-	protected void setSource2(ObservableEntity source2) {
+	protected void setSource2(T source2) {
 		getDelegate().setSource2(source2);
 	}
-	public void assignSource2(ObservableEntity newSource2) {
+	public void assignSource2(T newSource2) {
 		getDelegate().assignSource2(newSource2);
 	}
 
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public ObservableEntity getTarget() {
+	public T getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(ObservableEntity target) {
+	protected void setTarget(T target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(ObservableEntity newTarget) {
+	public void assignTarget(T newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 

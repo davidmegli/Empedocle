@@ -5,16 +5,16 @@ import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 
 import java.util.UUID;
 
-public class ObservableEntityFactory {
+public abstract class ObservableEntityFactory <T extends ObservableEntity, I extends ObservableEntityIdentifier> {
 
-	public static ObservableEntity createObservableEntity() {
-		ObservableEntity result = new ObservableEntity( UUID.randomUUID().toString() );
+	public static T createObservableEntity() {
+		T result = new T( UUID.randomUUID().toString() );
 		result.init();
 		return result;
 	}
 	
-	public static ObservableEntityIdentifier createObservableEntityIdentifier() {
-		ObservableEntityIdentifier result = new ObservableEntityIdentifier( UUID.randomUUID().toString() );
+	public static I createObservableEntityIdentifier() {
+		I result = new I( UUID.randomUUID().toString() );
 		return result;
 	}
 }

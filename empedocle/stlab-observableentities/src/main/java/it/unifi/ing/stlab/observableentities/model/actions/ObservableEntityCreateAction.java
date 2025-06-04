@@ -14,29 +14,30 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "CR" )
-public class ObservableEntityCreateAction
+public abstract class ObservableEntityCreateAction
+	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
-	implements CreateAction<ObservableEntity,ObservableEntityAction,User,Time> {
+	implements CreateAction<T,A,User,Time> {
 
 	public ObservableEntityCreateAction(String uuid) {
 		super(uuid);
-		setDelegate( new CreateActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() ); 
+		setDelegate( new CreateActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 	protected ObservableEntityCreateAction() {
 		super();
-		setDelegate( new CreateActionImpl<ObservableEntity,ObservableEntityAction,User,Time>() ); 
+		setDelegate( new CreateActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( this );
 	}
 
 	@Transient
-	public CreateActionImpl<ObservableEntity, ObservableEntityAction, User, Time> getDelegate() {
-		return (CreateActionImpl<ObservableEntity, ObservableEntityAction, User, Time>)super.getDelegate();
+	public CreateActionImpl<T, A, User, Time> getDelegate() {
+		return (CreateActionImpl<T, A, User, Time>)super.getDelegate();
 	}
 	
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
-	public ObservableEntity getTarget() {
+	public T getTarget() {
 		return getDelegate().getTarget();
 	}
 	protected void setTarget(ObservableEntity target) {

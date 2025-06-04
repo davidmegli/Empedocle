@@ -16,28 +16,30 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table( name = "observable_entities" )
-public class ObservableEntity 
-	implements TracedEntity<ObservableEntity,ObservableEntityAction>,
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class ObservableEntity
+	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>, I extends ObservableEntityIdentifier,
+			F extends ObservableEntityFactory>
+	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
 	private PersistableImpl persistable;
-	private TracedEntityImpl<ObservableEntity,ObservableEntityAction> tracedEntity;
+	private TracedEntityImpl<T,A> tracedEntity;
 	private TimedEntityImpl<TimeRange,Time> timedEntity;
 	
-	private ObservableEntityIdentifier identifier;
+	private I identifier;
 
 
 	public ObservableEntity( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<ObservableEntity,ObservableEntityAction>();
+		tracedEntity = new TracedEntityImpl<T,A>();
 		tracedEntity.setDelegator( this );
 	}
 	protected ObservableEntity() {
 		persistable = new PersistableImpl();
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
-		tracedEntity = new TracedEntityImpl<ObservableEntity,ObservableEntityAction>();
+		tracedEntity = new TracedEntityImpl<T,A>();
 		tracedEntity.setDelegator( this );
 	}
 
@@ -106,20 +108,20 @@ public class ObservableEntity
 	
 	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "origin_id" )
-	public ObservableEntityAction getOrigin() {
+	public A getOrigin() {
 		return tracedEntity.getOrigin();
 	}
-	protected void setOrigin(ObservableEntityAction origin) {
+	protected void setOrigin(A origin) {
 		tracedEntity.setOrigin(origin);
 	}
 
 	
 	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
 	@JoinColumn( name = "dest_id" )
-	public ObservableEntityAction getDestination() {
+	public A getDestination() {
 		return tracedEntity.getDestination();
 	}
-	protected void setDestination(ObservableEntityAction destination) {
+	protected void setDestination(A destination) {
 		tracedEntity.setDestination(destination);
 	}
 
@@ -127,10 +129,10 @@ public class ObservableEntity
 	// Identifier
 	@ManyToOne( cascade=CascadeType.PERSIST )
 	@JoinColumn( name="identifier_id", nullable=true )
-	public ObservableEntityIdentifier getIdentifier() {
+	public I getIdentifier() {
 		return identifier;
 	}
-	public void setIdentifier(ObservableEntityIdentifier identifier) {
+	public void setIdentifier(I identifier) {
 		this.identifier = identifier;
 	}
 	
@@ -176,15 +178,15 @@ public class ObservableEntity
 	}
 	
 	@Override
-	public boolean sameAs(ObservableEntity entity) {
+	public boolean sameAs(T entity) {
 		return 
 			( identifier == null && entity.getIdentifier() == null || identifier != null && identifier.equals( entity.getIdentifier() ) );
 	}
 	
 	
 	@Override
-	public ObservableEntity copy() {
-		ObservableEntity result = ObservableEntityFactory.createObservableEntity();
+	public T copy() {
+		T result = F.createObservableEntity();
 		result.setIdentifier( getIdentifier() );
 		return result;
 	}

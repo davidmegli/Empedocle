@@ -19,10 +19,18 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
-public class ObservableEntityDaoBean implements ObservableEntityDao {
+public abstract class ObservableEntityDaoBean<T extends ObservableEntity> implements ObservableEntityDao<T> {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
+
+	// Metodo astratto per ottenere la classe dell'entità concreta
+	protected abstract Class<T> getEntityClass();
+
+	// Metodo helper per ottenere il nome dell'entità per le query JPQL
+	protected String getEntityName() {
+		return getEntityClass().getSimpleName();
+	}
 	
 	@Override
 	public int count(QueryBuilder builder) {
@@ -32,7 +40,7 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ObservableEntity> find(QueryBuilder builder, int offset, int limit) {
+	public List<T> find(QueryBuilder builder, int offset, int limit) {
 		Query query = builder
 			.getListQuery( entityManager )
 			.setFirstResult( offset );
@@ -41,23 +49,23 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 			query.setMaxResults( limit );
 		}
 		
-		return (List<ObservableEntity>) query.getResultList();	
+		return (List<T>) query.getResultList();
 	}
 	
 	@Override
-	public ObservableEntity findById(Long id) {
-		return entityManager.find(ObservableEntity.class, id);
+	public T findById(Long id) {
+		return entityManager.find(getEntityClass(), id);
 	}
 
 	@Override
-	public ObservableEntity findByUuid(String uuid ) {
+	public T findByUuid(String uuid ) {
 		if (uuid == null || uuid.trim().isEmpty())
 			throw new IllegalArgumentException("Parametro uuid null");
 
-		List<ObservableEntity> results = entityManager.createQuery(
+		List<T> results = entityManager.createQuery(
 						"select p "
-								+ " from ObservableEntity p "
-								+ " where p.uuid = :uuid", ObservableEntity.class )
+								+ " from "+getEntityName()+" p "
+								+ " where p.uuid = :uuid", getEntityClass() )
 				.setParameter("uuid", uuid )
 				.setMaxResults( 1 )
 				.getResultList();
@@ -70,13 +78,13 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 	}
 
 	@Override
-	public ObservableEntity findByIdentifier(String identifier) {
+	public T findByIdentifier(String identifier) {
 		if ( identifier == null )
 			throw new IllegalArgumentException( "identifier is null" );
 
 		List<?> results = entityManager.createQuery(
 						"select p" +
-								" from ObservableEntity p" +
+								" from "+getEntityName()+" p" +
 								" where p.identifier.code = :identifier" +
 								" and p.destination is null" )
 				.setParameter( "identifier", identifier )
@@ -86,20 +94,20 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 		if ( results.size() == 0 )
 			return null;
 
-		return (ObservableEntity)results.get( 0 );
+		return (T)results.get( 0 );
 	}
 
 	@Override
-	public ObservableEntity findLastVersionById( Long id ) {
+	public T findLastVersionById( Long id ) {
 		if( id == null )
 			throw new IllegalArgumentException( "id is null" );
 
-		List<ObservableEntity> results = entityManager.createQuery(
+		List<T> results = entityManager.createQuery(
 						" select p " +
-								" from ObservableEntity p " +
+								" from "+getEntityName()+" p " +
 								" join p.before b " +
 								" where b.id = :pid " +
-								" and p.destination is null", ObservableEntity.class )
+								" and p.destination is null", getEntityClass() )
 				.setParameter( "pid", id )
 				.setMaxResults( 1 )
 				.getResultList();
@@ -111,16 +119,16 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 	}
 
 	@Override
-	public ObservableEntity fetchById(Long id) {
+	public T fetchById(Long id) {
 		if ( id == null ) 
 			throw new IllegalArgumentException( "id is null" );
 		
 		List<?> results = entityManager.createQuery( 
 			"select p" +
-			" from ObservableEntity p" +
+			" from "+getEntityName()+" p " +
 			" left join fetch p.before b " + 
 			" left join fetch p.after a " + 
-			" where p.id = :pid", ObservableEntity.class )
+			" where p.id = :pid", T.class )
 			.setParameter( "pid", id )
 			.setMaxResults( 1 )
 			.getResultList();		
@@ -128,32 +136,34 @@ public class ObservableEntityDaoBean implements ObservableEntityDao {
 		if ( results.size() == 0 )
 			return null;
 			
-		return (ObservableEntity)results.get( 0 );
+		return (T)results.get( 0 );
 	}	
 
 	@Override
-	public void save( ObservableEntity target ) {
+	public void save( T target ) {
 		entityManager.persist( target );
 		flush();
 	}
 	
 	@Override
-	public void update( ObservableEntity target ) {
+	public void update( T target ) {
 		entityManager.merge( target );
 		flush();
 	}
-	
 	@Override
-	public void deleteById( Long id, User author ) {
-		
-		if( id != null ) {
-			ObservableEntityManager manager = new ObservableEntityManager();
-			ObservableEntity result = manager.delete( author, new Time( new Date() ), findById( id ));
-			entityManager.persist( result );
+	public void deleteById(Long id, User author) {
+		if (id != null) {
+			T entityToDelete = findById(id);
+			if (entityToDelete != null) {
+				ObservableEntityManager manager = new ObservableEntityManager();
+				ObservableEntity result = manager.delete(author, new Time(new Date()), entityToDelete);
+				entityManager.persist(result);
+				flush();
+			}
 		}
-	}	
+	}
 	
-	private void flush() {
+	protected void flush() {
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
 	}
 

@@ -14,7 +14,7 @@ import javax.persistence.Version;
 
 @Entity
 @Table( name = "observable_entity_identifiers" )
-public class ObservableEntityIdentifier implements Persistable {
+public abstract class ObservableEntityIdentifier implements Persistable {
 
 	private PersistableImpl persistable;
 	
