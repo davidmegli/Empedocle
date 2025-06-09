@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "MR" )
-public class ObservableEntityMergeAction
+public abstract class ObservableEntityMergeAction
 	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
 	implements MergeAction<T,A,User,Time> {

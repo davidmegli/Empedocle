@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "SP" )
-public class ObservableEntitySplitAction
+public abstract class ObservableEntitySplitAction
 	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
 	implements SplitAction<T,A,User,Time> {
