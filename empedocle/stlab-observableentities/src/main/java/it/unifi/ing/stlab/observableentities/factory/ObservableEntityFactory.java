@@ -7,14 +7,25 @@ import java.util.UUID;
 
 public abstract class ObservableEntityFactory <T extends ObservableEntity, I extends ObservableEntityIdentifier> {
 
-	public static T createObservableEntity() {
-		T result = new T( UUID.randomUUID().toString() );
-		result.init();
-		return result;
-	}
-	
-	public static I createObservableEntityIdentifier() {
-		I result = new I( UUID.randomUUID().toString() );
-		return result;
-	}
+	public abstract T createObservableEntity();
+
+	public abstract I createObservableEntityIdentifier();
+	/*
+	// Example implementation of a concrete factory for a specific type of ObservableEntity
+	@Override
+    public WoodElement createObservableEntity() {
+        WoodElement result = new WoodElement(UUID.randomUUID().toString());
+        result.init();
+        return result;
+    }
+
+    @Override
+    public WoodElementIdentifier createObservableEntityIdentifier() {
+        return new WoodElementIdentifier(UUID.randomUUID().toString());
+    }
+	// Example usage:
+	WoodElementFactory factory = new WoodElementFactory();
+	WoodElement element = factory.createObservableEntity();
+	WoodElementIdentifier identifier = factory.createObservableEntityIdentifier();
+	 */
 }
