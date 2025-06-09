@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "MD" )
-public class ObservableEntityModifyAction
+public abstract class ObservableEntityModifyAction
 	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
 	implements ModifyAction<T,A,User,Time> {

@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue( "DL" )
-public class ObservableEntityDeleteAction
+public abstract class ObservableEntityDeleteAction
 	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 	extends ObservableEntityAction
 	implements DeleteAction<T,A,User,Time> {
