@@ -12,6 +12,13 @@ public abstract class ObservableEntityFactory <T extends ObservableEntity, I ext
 	public abstract I createObservableEntityIdentifier();
 	/*
 	// Example implementation of a concrete factory for a specific type of ObservableEntity
+
+	private static WoodElementFactory instance = new WoodElementFactory(); --> DA CONFERMARE
+
+	public static WoodElementFactory getInstance() {
+        return instance;
+    }
+
 	@Override
     public WoodElement createObservableEntity() {
         WoodElement result = new WoodElement(UUID.randomUUID().toString());

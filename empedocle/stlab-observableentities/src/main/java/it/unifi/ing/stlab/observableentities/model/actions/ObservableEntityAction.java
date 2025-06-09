@@ -37,8 +37,8 @@ public abstract class ObservableEntityAction
 		<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
 		implements Action<T, A, User, Time>, Persistable{
 
-	private PersistableImpl persistable;
-	private ActionImpl<T,A,User,Time> delegate;
+	protected PersistableImpl persistable;
+	protected ActionImpl<T,A,User,Time> delegate;
 
 	public ObservableEntityAction( String uuid ) {
 		persistable = new PersistableImpl( uuid );

@@ -16,10 +16,10 @@ import javax.persistence.Version;
 @Table( name = "observable_entity_identifiers" )
 public abstract class ObservableEntityIdentifier implements Persistable {
 
-	private PersistableImpl persistable;
+	protected PersistableImpl persistable;
 	
-	private String code;
-	private Long version;
+	protected String code;
+	protected Long version;
 
 	public ObservableEntityIdentifier(){
 		persistable = new PersistableImpl();

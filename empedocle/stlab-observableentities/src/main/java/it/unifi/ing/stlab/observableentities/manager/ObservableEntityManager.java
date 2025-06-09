@@ -11,8 +11,14 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 public abstract class ObservableEntityManager
-	<T extends ObservableEntity, A extends ObservableEntityAction<T,A>>
+	<T extends ObservableEntity, A extends ObservableEntityAction<T,A>, F extends ObservableEntityFactory<T,I>, I extends ObservableEntityIdentifier>
 	extends AbstractTracedEntityManager<T,A,User,Time>{
+
+	protected F observableEntityFactory;
+
+//	public WoodElementManager() {
+//		this.woodElementFactory = woodElementFactory.getInstance();
+//	}
 
 	@Override
 	protected AbstractActionFactory<T, A, User, Time> getActionFactory() {
@@ -20,7 +26,7 @@ public abstract class ObservableEntityManager
 	}
 
 	public T createObservableEntity( User author, Time time ) {
-		return init( ObservableEntityFactory.createObservableEntity(), author, time );
+		return init( observableEntityFactory.createObservableEntity(), author, time );
 	}
 	
 	public T merge( User author, Time time, T master, T slave ) {

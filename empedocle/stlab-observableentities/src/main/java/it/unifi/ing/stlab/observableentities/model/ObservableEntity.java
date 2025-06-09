@@ -23,11 +23,11 @@ public abstract class ObservableEntity
 	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
-	private PersistableImpl persistable;
-	private TracedEntityImpl<T,A> tracedEntity;
-	private TimedEntityImpl<TimeRange,Time> timedEntity;
+	protected PersistableImpl persistable;
+	protected TracedEntityImpl<T,A> tracedEntity;
+	protected TimedEntityImpl<TimeRange,Time> timedEntity;
 	
-	private I identifier;
+	protected I identifier;
 
 
 	public ObservableEntity( String uuid ) {
@@ -191,7 +191,7 @@ public abstract class ObservableEntity
 		return result;
 	}
 	
-	private boolean isEmpty( String s ) {
+	protected boolean isEmpty( String s ) {
         return s == null || "".equals(s.trim());
     }
 }
