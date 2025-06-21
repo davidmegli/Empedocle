@@ -158,6 +158,8 @@ public abstract class ObservableEntity
 		tracedEntity.init();
 	}
 
+	public abstract void update(); // ogni sottoclasse implementa la sua logica
+
 	public void delete() {
 		tracedEntity.delete();
 	}

@@ -7,9 +7,51 @@ import java.util.UUID;
 
 public abstract class ObservableEntityFactory <T extends ObservableEntity, I extends ObservableEntityIdentifier> {
 
-	public abstract T createObservableEntity();
+	public T create() {
+		T entity = createConcrateEntity();
+		entity.setUuid(generateUuid());
+		entity.init(); // logica comune
+		return entity;
+	}
+	public abstract I createIdentifier(){
+		I identifier = createConcrateIdentifier();
+		identifier.setUuid(generateUuid());
+		//identifier.init(); // logica  TODO:capire se aggiure metodo a Identifier o no
+		return identifier;
+	};
 
-	public abstract I createObservableEntityIdentifier();
+	protected abstract T createConcrateEntity();
+
+	protected abstract I createConcrateIdentifier();
+
+	private String generateUuid() {
+		return UUID.randomUUID().toString(); // generatore di ID
+	}
+	/*
+	@Override
+    protected WoodElement createConcreteEntity() {
+        return new WoodElement();
+    }
+
+    @Override
+    protected WoodElementIdentifier createConcreteIdentifier() {
+        return new WoodElementIdentifier();
+    }
+
+    @Override
+    public WoodElement create() {
+        WoodElement wood = super.create();
+        return wood;
+    }
+
+    @Override
+    protected WoodElementIdentifier createIdentifier() {
+        WoodElementIdentifier identifier = super.createIdentifier();
+        return identifier;
+    }
+	 */
+
+
 	/*
 	// Example implementation of a concrete factory for a specific type of ObservableEntity
 
