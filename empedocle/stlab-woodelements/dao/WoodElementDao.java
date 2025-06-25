@@ -8,6 +8,8 @@ import it.unifi.ing.stlab.users.model.User;
 import javax.ejb.Local;
 import java.util.List;
 
+//TODO: extend class
+
 @Local
 public interface WoodElementDao {
 

@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-import javax.persistence.Version;
+import javax.persistence.Version
 
 @Entity
 @Table( name = "observable_entity_identifiers" )

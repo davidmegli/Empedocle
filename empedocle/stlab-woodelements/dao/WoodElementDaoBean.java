@@ -18,6 +18,8 @@ import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
+//TODO: extend class
+
 @Stateless
 public class WoodElementDaoBean implements WoodElementDao {
 

@@ -10,6 +10,8 @@ import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
+//TODO: extend class
+
 public class WoodElementManager
 	extends AbstractTracedEntityManager<WoodElement,WoodElementAction,User,Time>{
 

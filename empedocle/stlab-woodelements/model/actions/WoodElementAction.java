@@ -27,6 +27,8 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
+//TODO: extend class
+
 @Entity
 @Table( name="wood_element_actions" )
 @Inheritance( strategy=InheritanceType.SINGLE_TABLE )

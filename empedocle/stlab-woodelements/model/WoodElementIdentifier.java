@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 
+//TODO: extend class
+
 @Entity
 @Table( name = "wood_element_identifiers" )
 public class WoodElementIdentifier implements Persistable {

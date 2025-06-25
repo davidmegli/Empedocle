@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+//TODO: extend class
+
 @Entity
 @DiscriminatorValue( "SP" )
 public class WoodElementSplitAction

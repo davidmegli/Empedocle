@@ -5,6 +5,8 @@ import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
 
 import java.util.UUID;
 
+//TODO: extend class
+
 public class WoodElementFactory {
 
 	public static WoodElement createWoodElement() {

@@ -23,13 +23,13 @@ public abstract class ObservableEntity
 	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
+	/Attributs
 	protected PersistableImpl persistable;
 	protected TracedEntityImpl<T,A> tracedEntity;
 	protected TimedEntityImpl<TimeRange,Time> timedEntity;
-	
 	protected I identifier;
 
-
+	/Constructors
 	public ObservableEntity( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
@@ -43,6 +43,7 @@ public abstract class ObservableEntity
 		tracedEntity.setDelegator( this );
 	}
 
+	/Setter and Getter
 	@Id
 	@TableGenerator( 
 		name="table_gen", 
@@ -55,19 +56,18 @@ public abstract class ObservableEntity
 	public Long getId() {
 		return persistable.getId();
 	}
-	protected void setId(Long id) {
+	public void setId(Long id) {
 		persistable.setId(id);
 	}
 
-	
 
-	// UUID
 	public String getUuid() {
 		return persistable.getUuid();
 	}
-	protected void setUuid(String uuid) {
+	public void setUuid(String uuid) {
 		persistable.setUuid(uuid);
 	}
+
 
 	@Embedded
 	public TimeRange getTimeRange() {
@@ -77,16 +77,16 @@ public abstract class ObservableEntity
 		timedEntity.setTimeRange(timeRange);
 	}
 
-	
+
 	@ManyToMany( fetch = FetchType.LAZY )
 	@JoinTable(
 		name = "observable_entity_before",
 	    joinColumns = { @JoinColumn( name = "observable_entity_id", referencedColumnName="id" ) },
 	    inverseJoinColumns = { @JoinColumn( name = "before_observable_entity_id", referencedColumnName = "id") } )
-	protected Set<ObservableEntity> getBefore() {
+	public Set<ObservableEntity> getBefore() {
 		return tracedEntity.getBefore();
 	}
-	protected void setBefore(Set<ObservableEntity> before) {
+	public void setBefore(Set<ObservableEntity> before) {
 		tracedEntity.setBefore(before);
 	}
 	public Set<ObservableEntity> listBefore() {
@@ -95,10 +95,10 @@ public abstract class ObservableEntity
 
 	
 	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY )
-	protected Set<ObservableEntity> getAfter() {
+	public Set<ObservableEntity> getAfter() {
 		return tracedEntity.getAfter();
 	}
-	protected void setAfter(Set<ObservableEntity> after) {
+	public void setAfter(Set<ObservableEntity> after) {
 		tracedEntity.setAfter(after);
 	}
 	public Set<ObservableEntity> listAfter() {
@@ -111,7 +111,7 @@ public abstract class ObservableEntity
 	public A getOrigin() {
 		return tracedEntity.getOrigin();
 	}
-	protected void setOrigin(A origin) {
+	public void setOrigin(A origin) {
 		tracedEntity.setOrigin(origin);
 	}
 
@@ -121,7 +121,7 @@ public abstract class ObservableEntity
 	public A getDestination() {
 		return tracedEntity.getDestination();
 	}
-	protected void setDestination(A destination) {
+	public void setDestination(A destination) {
 		tracedEntity.setDestination(destination);
 	}
 
