@@ -1,0 +1,14 @@
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityMergeAction.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/dao/ObservableEntityDao.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityCreateAction.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityAction.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/Address.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/ObservableEntity.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityModifyAction.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/ObservableEntityIdentifier.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/dao/ObservableEntityDaoBean.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/manager/ObservableEntityManager.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/factory/ObservableEntityFactory.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/factory/ObservableEntityActionFactory.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntitySplitAction.java
+/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityDeleteAction.java
