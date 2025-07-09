@@ -13,7 +13,7 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Version
 
 @Entity
-@Table( name = "observable_entity_identifiers" )
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class ObservableEntityIdentifier implements Persistable {
 
 	protected PersistableImpl persistable;
