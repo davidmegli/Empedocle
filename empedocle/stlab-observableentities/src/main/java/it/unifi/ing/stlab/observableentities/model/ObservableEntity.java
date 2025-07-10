@@ -23,13 +23,13 @@ public abstract class ObservableEntity
 	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
 
-	/Attributs
+	//Attributs
 	protected PersistableImpl persistable;
 	protected TracedEntityImpl<T,A> tracedEntity;
 	protected TimedEntityImpl<TimeRange,Time> timedEntity;
 	protected I identifier;
 
-	/Constructors
+	//Constructors
 	public ObservableEntity( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
@@ -43,7 +43,7 @@ public abstract class ObservableEntity
 		tracedEntity.setDelegator( this );
 	}
 
-	/Setter and Getter
+	//Setter and Getter
 	@Id
 	@TableGenerator( 
 		name="table_gen", 

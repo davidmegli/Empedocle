@@ -2,7 +2,6 @@
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/dao/ObservableEntityDao.java
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityCreateAction.java
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityAction.java
-/home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/Address.java
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/ObservableEntity.java
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/actions/ObservableEntityModifyAction.java
 /home/sara/IdeaProjects/Empedocle/empedocle/stlab-observableentities/src/main/java/it/unifi/ing/stlab/observableentities/model/ObservableEntityIdentifier.java
