@@ -2,13 +2,22 @@ package it.unifi.ing.stlab.woodelements.factory;
 
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
-import it.unifi.ing.stlab.observablenetities.model.ObservableEntityFactory;
+import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 
 import java.util.UUID;
 
-//TODO: extend class
-
 public class WoodElementFactory extends ObservableEntityFactory<WoodElement, WoodElementIdentifier> {
+
+	//---singleton----
+	//TODO: CAPIRE SE VA BENE
+	private static final WoodElementFactory instance = new WoodElementFactory();
+
+	public static WoodElementFactory getInstance() {
+		return instance;
+	}
+
+	private WoodElementFactory() {} // costruttore privato
+	//----------------
 
 	@Override
 	protected WoodElement createConcreteEntity() {
@@ -27,7 +36,7 @@ public class WoodElementFactory extends ObservableEntityFactory<WoodElement, Woo
 	}
 
 	@Override
-	protected WoodElementIdentifier createIdentifier() {
+	public WoodElementIdentifier createIdentifier() {
 		WoodElementIdentifier identifier = super.createIdentifier();
 		return identifier;
 }
