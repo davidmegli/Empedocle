@@ -14,7 +14,7 @@ public abstract class ObservableEntityManager
 	<T extends ObservableEntity, A extends ObservableEntityAction<T,A>, F extends ObservableEntityFactory<T,I>, I extends ObservableEntityIdentifier>
 	extends AbstractTracedEntityManager<T,A,User,Time>{
 
-	protected F observableEntityFactory;
+	protected F factory;
 
 //	public WoodElementManager() {
 //		this.woodElementFactory = woodElementFactory.getInstance();

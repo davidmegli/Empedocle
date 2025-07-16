@@ -14,14 +14,14 @@ import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unfi.ing.stlab.observableentities.dao.ObservableEntityDaoBean;
 import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
-//TODO: extend class
 
 @Stateless
-public class WoodElementDaoBean implements WoodElementDao {
+public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement> implements WoodElementDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
