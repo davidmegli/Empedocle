@@ -13,9 +13,11 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 import java.util.UUID;
 
-//TODO: extend class
 
-public class WoodElementActionFactory extends AbstractActionFactory<WoodElement,WoodElementAction,User,Time>{
+public class WoodElementActionFactory
+		extends ObservableEntityActionFactory<
+		WoodElement,
+		WoodElementAction>{
 
 	@Override
 	protected WoodElementAction createAction() {

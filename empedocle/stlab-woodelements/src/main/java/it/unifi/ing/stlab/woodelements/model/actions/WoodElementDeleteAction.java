@@ -12,39 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-//TODO: extend class
 
 @Entity
 @DiscriminatorValue( "DL" )
 public class WoodElementDeleteAction
-	extends WoodElementAction
-	implements DeleteAction<WoodElement,WoodElementAction,User,Time> {
+	extends ObservableEntityDeleteAction<
+		WoodElement,
+		WoodElementAction>{ {
 
 	public WoodElementDeleteAction(String uuid) {
 		super(uuid);
-		setDelegate( new DeleteActionImpl<WoodElement,WoodElementAction,User,Time>() );
-		getDelegate().setDelegator( this );
 	}
 	protected WoodElementDeleteAction() {
 		super();
-		setDelegate( new DeleteActionImpl<WoodElement,WoodElementAction,User,Time>() );
-		getDelegate().setDelegator( this );
 	}
-	
-	@Transient
-	protected DeleteActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
-		return (DeleteActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
-	}
-	
-	@ManyToOne
-	@JoinColumn( name = "source_id" )
-	public WoodElement getSource() {
-		return getDelegate().getSource();
-	}
-	protected void setSource(WoodElement source) {
-		getDelegate().setSource(source);
-	}
-	public void assignSource(WoodElement newSource) {
-		getDelegate().assignSource(newSource);
-	}
+
 }
