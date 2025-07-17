@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class ObservableEntity
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>, I extends ObservableEntityIdentifier,
+	<T extends ObservableEntity<T, A, I, F>, A extends ObservableEntityAction<T, A, ?,?>, I extends ObservableEntityIdentifier,
 			F extends ObservableEntityFactory>
 	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
@@ -34,13 +34,13 @@ public abstract class ObservableEntity
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
 		tracedEntity = new TracedEntityImpl<T,A>();
-		tracedEntity.setDelegator( this );
+		tracedEntity.setDelegator( (T) this );
 	}
 	protected ObservableEntity() {
 		persistable = new PersistableImpl();
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
 		tracedEntity = new TracedEntityImpl<T,A>();
-		tracedEntity.setDelegator( this );
+		tracedEntity.setDelegator( (T) this );
 	}
 
 	//Setter and Getter
@@ -83,25 +83,25 @@ public abstract class ObservableEntity
 		name = "observable_entity_before",
 	    joinColumns = { @JoinColumn( name = "observable_entity_id", referencedColumnName="id" ) },
 	    inverseJoinColumns = { @JoinColumn( name = "before_observable_entity_id", referencedColumnName = "id") } )
-	public Set<ObservableEntity> getBefore() {
+	public Set<T> getBefore() {
 		return tracedEntity.getBefore();
 	}
-	public void setBefore(Set<ObservableEntity> before) {
+	public void setBefore(Set<T> before) {
 		tracedEntity.setBefore(before);
 	}
-	public Set<ObservableEntity> listBefore() {
+	public Set<T> listBefore() {
 		return tracedEntity.listBefore();
 	}
 
 	
 	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY )
-	public Set<ObservableEntity> getAfter() {
+	public Set<T> getAfter() {
 		return tracedEntity.getAfter();
 	}
-	public void setAfter(Set<ObservableEntity> after) {
+	public void setAfter(Set<T> after) {
 		tracedEntity.setAfter(after);
 	}
-	public Set<ObservableEntity> listAfter() {
+	public Set<T> listAfter() {
 		return tracedEntity.listAfter();
 	}
 
@@ -184,14 +184,10 @@ public abstract class ObservableEntity
 		return 
 			( identifier == null && entity.getIdentifier() == null || identifier != null && identifier.equals( entity.getIdentifier() ) );
 	}
-	
-	
+
+
 	@Override
-	public T copy() {
-		T result = F.createObservableEntity();
-		result.setIdentifier( getIdentifier() );
-		return result;
-	}
+	public abstract T copy();
 	
 	protected boolean isEmpty( String s ) {
         return s == null || "".equals(s.trim());

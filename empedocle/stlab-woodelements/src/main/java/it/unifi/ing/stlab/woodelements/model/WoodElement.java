@@ -34,6 +34,7 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 	//constructors
 	public WoodElement( String uuid ) {
 		super(uuid);
+
 	}
 	public WoodElement() {
 		super();
@@ -116,7 +117,9 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 
 	@Override
 	public WoodElement copy() {
-		WoodElement result = WoodElementFactory.createWoodElement();
+		WoodElementFactory factory = new WoodElementFactory();
+		WoodElement result = factory.createConcreteElement();
+
 		result.setIdentifier(getIdentifier());
 		result.setExternalElementId(getExternalElementId());
 		result.setType(getType());
@@ -124,11 +127,8 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 		result.setPlaceOfOrigin(getPlaceOfOrigin());
 		result.setAge(getAge());
 		result.setNote(getNote());
+
 		return result;
 	}
-	
-	private boolean isEmpty( String s ) {
-        return s == null || "".equals(s.trim());
-    }
 }
 

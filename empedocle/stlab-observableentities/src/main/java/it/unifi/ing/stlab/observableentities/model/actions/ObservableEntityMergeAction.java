@@ -15,19 +15,19 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MR" )
 public abstract class ObservableEntityMergeAction
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-	extends ObservableEntityAction
+	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
+	extends ObservableEntityAction<T,A,User,Time>
 	implements MergeAction<T,A,User,Time> {
 
 	public ObservableEntityMergeAction(String uuid) {
 		super(uuid);
 		setDelegate( new MergeActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	protected ObservableEntityMergeAction() {
 		super();
 		setDelegate( new MergeActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator((A) this );
 	}
 	
 	@Transient

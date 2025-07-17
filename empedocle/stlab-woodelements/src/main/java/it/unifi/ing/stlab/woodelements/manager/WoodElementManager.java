@@ -18,7 +18,8 @@ public class WoodElementManager extends ObservableEntityManager<
 		WoodElementIdentifier> {
 
 	public WoodElementManager() {
-		this.factory = WoodElementFactory.getInstance();
+		this.factory = new WoodElementFactory();
+		this.actionFactory = new WoodElementActionFactory();
 	}
 
 	@Override

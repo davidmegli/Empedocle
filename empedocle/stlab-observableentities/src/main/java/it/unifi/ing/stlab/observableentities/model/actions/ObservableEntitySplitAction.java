@@ -15,19 +15,19 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "SP" )
 public abstract class ObservableEntitySplitAction
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-	extends ObservableEntityAction
+	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
+	extends ObservableEntityAction<T,A,User,Time>
 	implements SplitAction<T,A,User,Time> {
 
 	public ObservableEntitySplitAction(String uuid) {
 		super(uuid);
 		setDelegate( new SplitActionImpl<T,A,User,Time>());
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	protected ObservableEntitySplitAction() {
 		super();
 		setDelegate( new SplitActionImpl<T,A,User,Time>());
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	
 	@Transient

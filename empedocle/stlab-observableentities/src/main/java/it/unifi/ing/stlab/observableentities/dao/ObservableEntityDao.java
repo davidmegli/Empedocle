@@ -9,7 +9,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface ObservableEntityDao <T extends ObservableEntity>{
+public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>>{
 
 	int count(QueryBuilder builder);
 	

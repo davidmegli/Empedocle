@@ -15,19 +15,19 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MD" )
 public abstract class ObservableEntityModifyAction
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-	extends ObservableEntityAction
+	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
+	extends ObservableEntityAction<T,A,User,Time>
 	implements ModifyAction<T,A,User,Time> {
 
 	public ObservableEntityModifyAction(String uuid) {
 		super(uuid);
 		setDelegate( new ModifyActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	protected ObservableEntityModifyAction() {
 		super();
 		setDelegate( new ModifyActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	
 	@Transient

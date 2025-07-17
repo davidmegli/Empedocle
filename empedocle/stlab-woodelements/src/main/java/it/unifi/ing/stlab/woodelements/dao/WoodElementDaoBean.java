@@ -21,7 +21,7 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 
 @Stateless
-public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement> implements WoodElementDao {
+public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, WoodElementManger> implements WoodElementDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -218,16 +218,12 @@ public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement> imp
 		entityManager.merge( target );
 		flush();
 	}
-	
+
 	@Override
-	public void deleteById( Long id, User author ) {
-		
-		if( id != null ) {
-			WoodElementManager manager = new WoodElementManager();
-			WoodElement result = manager.delete( author, new Time( new Date() ), findById( id ));
-			entityManager.persist( result );
-		}
-	}	
+	public WoodElementManager getManager(){
+		return new WoodElementManager();
+	}
+
 	
 	private void flush() {
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));

@@ -15,19 +15,19 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "DL" )
 public abstract class ObservableEntityDeleteAction
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-	extends ObservableEntityAction
+	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
+	extends ObservableEntityAction<T,A,User,Time>
 	implements DeleteAction<T,A,User,Time> {
 
 	public ObservableEntityDeleteAction(String uuid) {
 		super(uuid);
 		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	protected ObservableEntityDeleteAction() {
 		super();
 		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A)this );
 	}
 	
 	@Transient

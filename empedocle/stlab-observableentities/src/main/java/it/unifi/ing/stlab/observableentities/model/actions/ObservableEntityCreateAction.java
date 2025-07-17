@@ -15,19 +15,19 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "CR" )
 public abstract class ObservableEntityCreateAction
-	<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-	extends ObservableEntityAction
+	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
+	extends ObservableEntityAction<T,A,User,Time>
 	implements CreateAction<T,A,User,Time> {
 
 	public ObservableEntityCreateAction(String uuid) {
 		super(uuid);
 		setDelegate( new CreateActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator( (A) this );
 	}
 	protected ObservableEntityCreateAction() {
 		super();
 		setDelegate( new CreateActionImpl<T,A,User,Time>() );
-		getDelegate().setDelegator( this );
+		getDelegate().setDelegator((A) this );
 	}
 
 	@Transient
@@ -40,10 +40,10 @@ public abstract class ObservableEntityCreateAction
 	public T getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(ObservableEntity target) {
+	protected void setTarget(T target) {
 		getDelegate().setTarget(target);
 	}
-	public void assignTarget(ObservableEntity newTarget) {
+	public void assignTarget(T newTarget) {
 		getDelegate().assignTarget(newTarget);
 	}
 }

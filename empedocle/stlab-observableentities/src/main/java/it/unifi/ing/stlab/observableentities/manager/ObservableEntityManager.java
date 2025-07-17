@@ -5,32 +5,38 @@ import it.unifi.ing.stlab.entities.manager.AbstractTracedEntityManager;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityActionFactory;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 public abstract class ObservableEntityManager
-	<T extends ObservableEntity, A extends ObservableEntityAction<T,A>, F extends ObservableEntityFactory<T,I>, I extends ObservableEntityIdentifier>
+	<T extends ObservableEntity<T, A, ?, ?>,
+			A extends ObservableEntityAction<T,A, User, Time>,
+			F extends ObservableEntityFactory<T,I>,
+			I extends ObservableEntityIdentifier>
 	extends AbstractTracedEntityManager<T,A,User,Time>{
 
 	protected F factory;
+	protected AbstractActionFactory<T, A, User, Time> actionFactory;
 
 //	public WoodElementManager() {
-//		this.woodElementFactory = woodElementFactory.getInstance();
+//		this.woodElementFactory = new WoodElementFactory();
+//		this.actionFactory = new WoodElementActionFactory();
 //	}
 
 	@Override
 	protected AbstractActionFactory<T, A, User, Time> getActionFactory() {
-		return new ObservableEntityActionFactory();
+		return actionFactory;
 	}
 
 	public T createObservableEntity( User author, Time time ) {
-		return init( observableEntityFactory.createObservableEntity(), author, time );
+		return init( factory.createConcreteEntity(), author, time );
 	}
 	
 	public T merge( User author, Time time, T master, T slave ) {
-		return ((ObservableEntityMergeAction) getActionFactory()
+		return (T) ((ObservableEntityMergeAction) getActionFactory()
 				.mergeAction(author, time, master, slave, master.copy()))
 				.getTarget();
 	}	

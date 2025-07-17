@@ -19,7 +19,7 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
-public abstract class ObservableEntityDaoBean<T extends ObservableEntity> implements ObservableEntityDao<T> {
+public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?, ?>, M extends ObservableEntityManager<T, ?,?,?>> implements ObservableEntityDao<T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -128,7 +128,7 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity> implem
 			" from "+getEntityName()+" p " +
 			" left join fetch p.before b " + 
 			" left join fetch p.after a " + 
-			" where p.id = :pid", T.class )
+			" where p.id = :pid", getEntityClass() )
 			.setParameter( "pid", id )
 			.setMaxResults( 1 )
 			.getResultList();		
@@ -150,13 +150,15 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity> implem
 		entityManager.merge( target );
 		flush();
 	}
+	public abstract M getManager();
+
 	@Override
 	public void deleteById(Long id, User author) {
 		if (id != null) {
 			T entityToDelete = findById(id);
 			if (entityToDelete != null) {
-				ObservableEntityManager manager = new ObservableEntityManager();
-				ObservableEntity result = manager.delete(author, new Time(new Date()), entityToDelete);
+				M manager= getManager();
+				T result = manager.delete(author, new Time(new Date()), entityToDelete);
 				entityManager.persist(result);
 				flush();
 			}

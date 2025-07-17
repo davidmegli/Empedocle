@@ -8,17 +8,6 @@ import java.util.UUID;
 
 public class WoodElementFactory extends ObservableEntityFactory<WoodElement, WoodElementIdentifier> {
 
-	//---singleton----
-	//TODO: CAPIRE SE VA BENE
-	private static final WoodElementFactory instance = new WoodElementFactory();
-
-	public static WoodElementFactory getInstance() {
-		return instance;
-	}
-
-	private WoodElementFactory() {} // costruttore privato
-	//----------------
-
 	@Override
 	protected WoodElement createConcreteEntity() {
 		return new WoodElement();

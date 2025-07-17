@@ -5,7 +5,8 @@ import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 
 import java.util.UUID;
 
-public abstract class ObservableEntityFactory <T extends ObservableEntity, I extends ObservableEntityIdentifier> {
+public abstract class ObservableEntityFactory
+		<T extends ObservableEntity<T, ?, ?, ?>, I extends ObservableEntityIdentifier> {
 
 	protected T create() {
 		T entity = createConcreteEntity();
@@ -13,7 +14,7 @@ public abstract class ObservableEntityFactory <T extends ObservableEntity, I ext
 		entity.init(); // logica comune
 		return entity;
 	}
-	protected abstract I createIdentifier(){
+	protected I createIdentifier(){
 		I identifier = createConcreteIdentifier();
 		identifier.setUuid(generateUuid());
 		//identifier.init(); // logica  TODO:capire se aggiure metodo a Identifier o no

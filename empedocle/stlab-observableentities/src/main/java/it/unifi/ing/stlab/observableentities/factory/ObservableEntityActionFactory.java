@@ -12,31 +12,22 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 public abstract class ObservableEntityActionFactory
-		<T extends ObservableEntity, A extends ObservableEntityAction<T,A>>
+		<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T,A, User, Time>>
 		extends AbstractActionFactory<T,A,User,Time>{
 
 	@Override
-	protected A createAction() {
-
-	}
+	protected abstract A createAction();
 
 	@Override
-	protected A modifyAction() {
-
-	}
+	protected abstract A modifyAction();
 
 	@Override
-	protected A mergeAction() {
-
-	}
+	protected abstract A mergeAction();
 
 	@Override
-	protected A splitAction() {
-
-	}
+	protected abstract A splitAction();
 
 	@Override
-	protected A deleteAction() {
-	}
+	protected abstract A deleteAction();
 
 }

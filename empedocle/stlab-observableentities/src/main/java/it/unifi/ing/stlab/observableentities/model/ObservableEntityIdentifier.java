@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -41,7 +43,7 @@ public abstract class ObservableEntityIdentifier implements Persistable {
 	public Long getId() {
 		return persistable.getId();
 	}
-	protected void setId(Long id) {
+	public void setId(Long id) {
 		persistable.setId(id);
 	}
 
@@ -50,7 +52,7 @@ public abstract class ObservableEntityIdentifier implements Persistable {
 	public String getUuid() {
 		return persistable.getUuid();
 	}
-	protected void setUuid(String uuid) {
+	public void setUuid(String uuid) {
 		persistable.setUuid(uuid);
 	}
 	

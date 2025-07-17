@@ -7,6 +7,7 @@ import it.unifi.ing.stlab.entities.model.traced.Action;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
+import it.unifi.ing.stlab.entities.model.traced.Actor;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -33,12 +34,15 @@ import javax.persistence.Transient;
 @DiscriminatorColumn( 
 	name= "from_class", 
 	discriminatorType=DiscriminatorType.STRING )
-public abstract class ObservableEntityAction
-		<T extends ObservableEntity, A extends ObservableEntityAction<T, A>>
-		implements Action<T, A, User, Time>, Persistable{
+public abstract class ObservableEntityAction<
+		T extends ObservableEntity<T, A, ?, ?>,
+		A extends ObservableEntityAction<T, A, U, H>,
+		U extends Actor,
+		H extends Time>
+		implements Action<T, A, U, H>, Persistable{
 
 	protected PersistableImpl persistable;
-	protected ActionImpl<T,A,User,Time> delegate;
+	protected ActionImpl<T,A,U,H> delegate;
 
 	public ObservableEntityAction( String uuid ) {
 		persistable = new PersistableImpl( uuid );
@@ -50,10 +54,10 @@ public abstract class ObservableEntityAction
 	
 	
 	@Transient
-	protected ActionImpl<T, A, User, Time> getDelegate() {
+	protected ActionImpl<T, A, U, H> getDelegate() {
 		return delegate;
 	}
-	protected void setDelegate(ActionImpl<T, A, User, Time> delegate) {
+	protected void setDelegate(ActionImpl<T, A,U, H> delegate) {
 		this.delegate = delegate;
 	}
 	
@@ -86,10 +90,10 @@ public abstract class ObservableEntityAction
 	
 	@ManyToOne( fetch = FetchType.LAZY )
 	@JoinColumn( name = "author_id" )
-	public User getAuthor() {
+	public U getAuthor() {
 		return delegate.getAuthor();
 	}
-	public void setAuthor(User author) {
+	public void setAuthor(U author) {
 		delegate.setAuthor( author );
 	}
 
@@ -97,13 +101,13 @@ public abstract class ObservableEntityAction
 		@AttributeOverride( name="date",column=@Column(name="action_time"))
 	 })	
 	@Embedded
-	public Time getTime() {
+	public H getTime() {
 		if ( delegate.getTime() == null ) {
-			return new Time( null );
+			return (H) new Time( null );
 		}
 		return delegate.getTime();
 	}
-	public void setTime(Time time) {
+	public void setTime(H time) {
 		delegate.setTime( time );
 	}
 	

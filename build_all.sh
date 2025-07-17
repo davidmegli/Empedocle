@@ -20,7 +20,7 @@ mvn clean install -DskipTests
 
 # Compilazione di stlab-woodelements
 echo "Building stlab-woodelements..."
-cd "$BASE_DIR/empedocle/stlab-observableentities" || exit
+cd "$BASE_DIR/empedocle/stlab-woodelements" || exit
 mvn clean install -DskipTests
 
 # Compilazione di empedocle
