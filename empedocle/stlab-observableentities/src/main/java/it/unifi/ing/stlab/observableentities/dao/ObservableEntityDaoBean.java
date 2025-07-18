@@ -20,7 +20,7 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
 public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?, ?>, M extends ObservableEntityManager<T, ?,?,?>>
-		implements ObservableEntityDao<T> {
+		implements ObservableEntityDao<T, M> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -151,7 +151,7 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 		entityManager.merge( target );
 		flush();
 	}
-	public abstract M getManager();
+
 
 	@Override
 	public void deleteById(Long id, User author) {

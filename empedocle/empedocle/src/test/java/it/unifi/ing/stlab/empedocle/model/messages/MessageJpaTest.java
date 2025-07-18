@@ -10,6 +10,8 @@ import it.unifi.ing.stlab.empedocle.model.messages.Message;
 import it.unifi.ing.stlab.empedocle.model.messages.MessageLevel;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.test.PersistenceTest;
 
 import org.junit.Test;
@@ -18,10 +20,12 @@ public class MessageJpaTest extends PersistenceTest {
 
 	protected String uuid;
 	private ObservableEntity observableEntity;
+	protected ObservableEntityDao observableEntityDao;
 
 	@Override
 	protected void insertData() throws Exception {
-		observableEntity = ObservableEntityFactory.createObservableEntity();
+		observableEntityDao = new WoodElementDaoBean();
+		observableEntity = observableEntityDao.getManager().getFactory().createConcreteEntity();
 
 		Message message = MessageFactory.createMessage();
 		message.setDate( new Date( 1000 ) );

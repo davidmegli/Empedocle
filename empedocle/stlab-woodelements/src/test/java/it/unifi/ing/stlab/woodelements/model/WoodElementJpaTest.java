@@ -17,16 +17,18 @@ public class WoodElementJpaTest extends PersistenceTest {
 	protected String uuid;
 	protected WoodElementIdentifier identifier;
 	protected TimeRange period;
+	protected WoodElementFactory factory;
 	
 	@Override
 	protected void insertData() throws Exception {
+		factory = new WoodElementFactory();
 		period = new TimeRange( 
 			new Time( DateHelper.createDate( "2013-03-01") ), 
 			new Time( DateHelper.createDate( "2013-03-31")));
 
-		WoodElement wood_element = WoodElementFactory.createWoodElement();
+		WoodElement wood_element = factory.createConcreteEntity();
 		
-		identifier = WoodElementFactory.createWoodElementIdentifier();
+		identifier = factory.createConcreteIdentifier();
 		identifier.setCode( "id" );
 		wood_element.setIdentifier( identifier );
 		

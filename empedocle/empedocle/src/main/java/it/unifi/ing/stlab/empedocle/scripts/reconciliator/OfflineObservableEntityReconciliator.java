@@ -3,10 +3,8 @@ package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
-import it.unifi.ing.stlab.observableentities.model.Address;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
-import it.unifi.ing.stlab.observableentities.model.Sex;
 import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -90,7 +88,8 @@ public class OfflineObservableEntityReconciliator {
 				ObservableEntity slave = observableEntityDao.findByIdentifier( slaveIdentifier );
 				ObservableEntity master = observableEntityDao.findByIdentifier( masterIdentifier );
 	
-				ObservableEntityManager observableEntityManager = new ObservableEntityManager();
+				//ObservableEntityManager observableEntityManager = new ObservableEntityManager();
+				ObservableEntityManager observableEntityManager = observableEntityDao.getManager();
 				User author = userDao.findByUsername( "administrator" );
 				Time time = new Time( new Date() );
 				
@@ -117,10 +116,10 @@ public class OfflineObservableEntityReconciliator {
 					// master found
 					
 					// 1. master is updated
-					ObservableEntity copy = observableEntityManager.modify( author, time, master );
+					ObservableEntity copy = (ObservableEntity) observableEntityManager.modify( author, time, master );
 					update( copy, rs );
 					
-					ObservableEntity purged = observableEntityManager.purge( copy );
+					ObservableEntity purged = (ObservableEntity) observableEntityManager.purge( copy );
 					if ( purged != null ) {
 						master = purged;
 						entityManager.persist( master );
@@ -158,28 +157,9 @@ public class OfflineObservableEntityReconciliator {
 		
 		ObservableEntityIdentifier identifier = retrieveObservableEntityIdentifier( rs.getString( "master_id_ACE" ) );
 		observableEntity.setIdentifier( identifier );
-		
-		observableEntity.setTaxCode( check( rs.getString( "master_tax_code" ) ) );
-		observableEntity.setSsnCode( check( rs.getString( "master_ssn_code" ) ) );
-		observableEntity.setName( check( rs.getString( "master_name" ) ) );
-		observableEntity.setSurname( check( rs.getString( "master_surname" ) ) );
-		observableEntity.setSex( Sex.valueOf( check( rs.getString( "master_sex" ) ) ) );
-		observableEntity.setBirthDate( rs.getDate( "master_birth_date" ) ) ;
-		observableEntity.setBirthPlace( check( rs.getString( "master_birth_place" ) ) );
 
-		if ( check( rs.getString( "master_residence_place" ) ) != null ) {
-			observableEntity.setResidence( new Address() );
-			observableEntity.getResidence().setPlace( rs.getString( "master_residence_place" ) );
-		}
-		
-		if ( check( rs.getString( "master_domicile_place" ) )  != null ) {
-			observableEntity.setDomicile( new Address() );
-			observableEntity.getDomicile().setPlace( rs.getString( "master_domicile_place" ) );
-		}
-		
-		observableEntity.setHomePhone( check( rs.getString( "master_home_phone" ) ) );
-		observableEntity.setWorkPhone( check( rs.getString( "master_work_phone" ) ) );
-		observableEntity.setNationality( check( rs.getString( "master_nationality" ) ) );
+		//TODO: aggiungere attributi woodelement???
+
 	}
 	
 	private String check( String value ) {
@@ -203,7 +183,7 @@ public class OfflineObservableEntityReconciliator {
 							.getResultList();
 		
 		if ( results.size() == 0 ) {
-			identifier = ObservableEntityFactory.createObservableEntityIdentifier();
+			identifier = observableEntityDao.getManager().getFactory().createConcreteIdentifier();
 			identifier.setCode( code );
 			
 		} else {

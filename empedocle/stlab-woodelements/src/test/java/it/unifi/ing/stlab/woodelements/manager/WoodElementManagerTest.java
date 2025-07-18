@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
 import it.unifi.ing.stlab.users.factory.UserFactory;
@@ -19,16 +20,18 @@ public class WoodElementManagerTest {
 	protected WoodElementManager manager;
 	protected WoodElement wood_element1;
 	protected WoodElement wood_element2;
+	protected WoodElementFactory factory;
 	
 	@Before
 	public void setUp() {
 		manager = new WoodElementManager();
+		factory = manager.getFactory();
 		
-		wood_element1 = WoodElementFactory.createWoodElement();
-		wood_element1.setName( "Prova1" );
+		wood_element1 = factory.createConcreteEntity();
+		wood_element1.setSpecie( "Naple" );
 		
-		wood_element2 = WoodElementFactory.createWoodElement();
-		wood_element2.setName( "Prova2" );
+		wood_element2 = factory.createConcreteEntity();
+		wood_element2.setSpecie( "Pine" );
 	}
 	
 	@Test

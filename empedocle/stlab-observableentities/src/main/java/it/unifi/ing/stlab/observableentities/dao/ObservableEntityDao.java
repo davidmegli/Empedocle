@@ -3,15 +3,17 @@ package it.unifi.ing.stlab.observableentities.dao;
 import it.unifi.ing.stlab.commons.query.QueryBuilder;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
 import it.unifi.ing.stlab.users.model.User;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>>{
+public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>, M extends ObservableEntityManager>{
 
 	int count(QueryBuilder builder);
+
 	
 	List<T> find(QueryBuilder builder, int offset, int limit);
 	T findById(Long id);
@@ -24,6 +26,7 @@ public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>>{
 
 	T fetchById(Long id);
 
+	M getManager();
 	void save(T target);
 	void update(T target);
 	void deleteById(Long id, User author);

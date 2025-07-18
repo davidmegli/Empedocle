@@ -11,6 +11,8 @@ import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;
@@ -49,6 +51,7 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	protected ObservableEntity p;
 	protected User author;
 	protected MeasurementSession measurementSession;
+	protected ObservableEntityDao observableEntityDao;
 	
 	@Override
 	public void setUp() throws Exception {
@@ -59,6 +62,8 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		
 		factDao = new FactDaoBean();
 		FieldUtils.assignField( factDao, "entityManager", entityManager );
+
+		observableEntityDao = new WoodElementDaoBean();
 		
 		setUpFacts();
 		
@@ -71,7 +76,7 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		author.setUserid("usr");
 		entityManager.persist(author);
 		
-		p = ObservableEntityFactory.createObservableEntity();
+		p = observableEntityDao.getManager().getFactory().createConcreteEntity();
 		entityManager.persist( p );
 		
 		measurementSession = MeasurementSessionFactory.createMeasurementSession();
@@ -138,9 +143,9 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	
 	@Test
 	public void testResumeUpdatedObservableEntity() {
-		ObservableEntityManager observableEntityManager = new ObservableEntityManager();
+		ObservableEntityManager observableEntityManager = observableEntityDao.getManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		ObservableEntity pNew = observableEntityManager.modify(author, time, p);
+		ObservableEntity pNew = (ObservableEntity) observableEntityManager.modify(author, time, p);
 		entityManager.persist(pNew);
 		
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);

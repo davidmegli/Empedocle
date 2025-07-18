@@ -10,10 +10,12 @@ import org.junit.Test;
 public class WoodElementIdentifierJpaTest extends PersistenceTest {
 
 	protected String uuid;
+	protected WoodElementFactory factory;
 	
 	@Override
 	protected void insertData() throws Exception {
-		WoodElementIdentifier identifier = WoodElementFactory.createWoodElementIdentifier();
+		factory = new WoodElementFactory();
+		WoodElementIdentifier identifier = factory.createConcreteIdentifier();
 		identifier.setCode( "IDENTIFIER001" );
 		
 		entityManager.persist( identifier );

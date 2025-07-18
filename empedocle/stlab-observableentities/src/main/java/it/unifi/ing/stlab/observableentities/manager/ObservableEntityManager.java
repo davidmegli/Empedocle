@@ -31,6 +31,14 @@ public abstract class ObservableEntityManager
 		return actionFactory;
 	}
 
+	public F getFactory() {
+		return factory;
+	}
+
+	public void setFactory(F factory) {
+		this.factory = factory;
+	}
+
 	public T createObservableEntity( User author, Time time ) {
 		return init( factory.createConcreteEntity(), author, time );
 	}

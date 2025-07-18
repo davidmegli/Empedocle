@@ -49,6 +49,11 @@
 		</dependency>
 		<dependency>
 			<groupId>it.unifi.ing.stlab</groupId>
+			<artifactId>stlab-woodelements</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>it.unifi.ing.stlab</groupId>
 			<artifactId>stlab-reflection</artifactId>
 			<version>1.0.0</version>
 		</dependency>
