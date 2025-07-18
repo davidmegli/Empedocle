@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.dao;
+/*package it.unifi.ing.stlab.woodelements.dao;
 
 import it.unifi.ing.stlab.commons.query.QueryBuilder;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
@@ -8,8 +8,6 @@ import javax.ejb.Local;
 
 @Local
 public interface WoodElementDao extends ObservableEntityDao<WoodElement>{
-	@Override
-	protected Class<WoodElement> getEntityClass() {
-		return WoodElement.class;
-	}
+
 }
+*/

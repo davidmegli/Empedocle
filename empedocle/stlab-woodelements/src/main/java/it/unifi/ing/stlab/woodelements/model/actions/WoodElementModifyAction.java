@@ -6,6 +6,7 @@ import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityModifyAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import javax.persistence.Entity;
 public class WoodElementModifyAction
 	extends ObservableEntityModifyAction<
 		WoodElement,
-		WoodElementAction> {
+		WoodElementModifyAction> {
 
 	public WoodElementModifyAction(String uuid) {
 		super(uuid);

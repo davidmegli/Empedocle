@@ -8,11 +8,12 @@ import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityDelet
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityModifyAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntitySplitAction;
+import it.unifi.ing.stlab.entities.model.traced.Action;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 public abstract class ObservableEntityActionFactory
-		<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T,A, User, Time>>
+		<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T,A,User,Time>>
 		extends AbstractActionFactory<T,A,User,Time>{
 
 	@Override

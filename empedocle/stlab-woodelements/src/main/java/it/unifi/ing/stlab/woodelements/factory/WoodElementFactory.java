@@ -9,12 +9,12 @@ import java.util.UUID;
 public class WoodElementFactory extends ObservableEntityFactory<WoodElement, WoodElementIdentifier> {
 
 	@Override
-	protected WoodElement createConcreteEntity() {
+	public WoodElement createConcreteEntity() {
 		return new WoodElement();
 	}
 
 	@Override
-	protected WoodElementIdentifier createConcreteIdentifier() {
+	public WoodElementIdentifier createConcreteIdentifier() {
 		return new WoodElementIdentifier();
 	}
 
@@ -28,4 +28,6 @@ public class WoodElementFactory extends ObservableEntityFactory<WoodElement, Woo
 	public WoodElementIdentifier createIdentifier() {
 		WoodElementIdentifier identifier = super.createIdentifier();
 		return identifier;
+	}
 }
+

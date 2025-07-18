@@ -1,7 +1,8 @@
 package it.unifi.ing.stlab.woodelements.model.actions;
 
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityCreateAction;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.Entity;
 public class WoodElementCreateAction
 	extends ObservableEntityCreateAction<
 		WoodElement,
-		WoodElementAction>{
+		WoodElementCreateAction>{
 
 	public WoodElementCreateAction(String uuid) {
 		super(uuid);

@@ -5,7 +5,8 @@ import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
+import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 //import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -13,7 +14,7 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 public class WoodElementManager extends ObservableEntityManager<
 		WoodElement,
-		WoodElementAction,
+		ObservableEntityAction,
 		WoodElementFactory,
 		WoodElementIdentifier> {
 
@@ -23,7 +24,7 @@ public class WoodElementManager extends ObservableEntityManager<
 	}
 
 	@Override
-	protected AbstractActionFactory<WoodElement, WoodElementAction, User, Time> getActionFactory() {
+	protected AbstractActionFactory<WoodElement, ObservableEntityAction, User, Time> getActionFactory() {
 		return new WoodElementActionFactory();
 	}
 

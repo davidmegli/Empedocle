@@ -12,8 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-@Entity
-@DiscriminatorValue( "MR" )
+
 public abstract class ObservableEntityMergeAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
 	extends ObservableEntityAction<T,A,User,Time>

@@ -7,8 +7,8 @@ import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
@@ -18,18 +18,21 @@ import java.util.Set;
 
 @Entity
 @Table( name = "wood_elements" )
-public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction, WoodElementIdentifier, WoodElementFactory> {
+public class WoodElement extends ObservableEntity<WoodElement, ObservableEntityAction, WoodElementIdentifier, WoodElementFactory> {
+
+	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
 
 	//attributs
 	private WoodElementIdentifier identifier;
-	@Enumerated(EnumType.STRING)
-	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
 	private String externalElementId;
+	@Enumerated(EnumType.STRING)
 	private WoodElementType type;
 	private String specie;
 	private String placeOfOrigin;
 	private int age;
 	private String note;
+
+
 
 	//constructors
 	public WoodElement( String uuid ) {
@@ -118,7 +121,7 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 	@Override
 	public WoodElement copy() {
 		WoodElementFactory factory = new WoodElementFactory();
-		WoodElement result = factory.createConcreteElement();
+		WoodElement result = factory.createConcreteEntity();
 
 		result.setIdentifier(getIdentifier());
 		result.setExternalElementId(getExternalElementId());
@@ -130,5 +133,7 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 
 		return result;
 	}
+
+	public void update(){};
 }
 

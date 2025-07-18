@@ -29,12 +29,12 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
 @Entity
-@Table( name="observable_entity_actions" )
+@Table( name="actions" )
 @Inheritance( strategy=InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( 
-	name= "from_class", 
+	name= "action_type",
 	discriminatorType=DiscriminatorType.STRING )
-public abstract class ObservableEntityAction<
+public class ObservableEntityAction<
 		T extends ObservableEntity<T, A, ?, ?>,
 		A extends ObservableEntityAction<T, A, U, H>,
 		U extends Actor,

@@ -19,7 +19,8 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 @Stateless
-public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?, ?>, M extends ObservableEntityManager<T, ?,?,?>> implements ObservableEntityDao<T> {
+public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?, ?>, M extends ObservableEntityManager<T, ?,?,?>>
+		implements ObservableEntityDao<T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

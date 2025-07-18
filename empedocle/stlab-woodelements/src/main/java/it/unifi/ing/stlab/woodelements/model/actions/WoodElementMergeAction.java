@@ -6,6 +6,7 @@ import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityMergeAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
+import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.persistence.Transient;
 public class WoodElementMergeAction
 	extends ObservableEntityMergeAction<
 		WoodElement,
-		WoodElementAction> {
+		WoodElementMergeAction> {
 
 	public WoodElementMergeAction(String uuid) {
 		super(uuid);

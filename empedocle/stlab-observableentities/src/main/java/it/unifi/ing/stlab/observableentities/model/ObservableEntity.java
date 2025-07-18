@@ -8,6 +8,7 @@ import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
+import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
@@ -18,7 +19,9 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class ObservableEntity
-	<T extends ObservableEntity<T, A, I, F>, A extends ObservableEntityAction<T, A, ?,?>, I extends ObservableEntityIdentifier,
+			<T extends ObservableEntity<T, A, I, F>,
+			A extends ObservableEntityAction<T, A, ?,?>,
+			I extends ObservableEntityIdentifier,
 			F extends ObservableEntityFactory>
 	implements TracedEntity<T,A>,
 				TimedEntity<TimeRange,Time>, Persistable {
