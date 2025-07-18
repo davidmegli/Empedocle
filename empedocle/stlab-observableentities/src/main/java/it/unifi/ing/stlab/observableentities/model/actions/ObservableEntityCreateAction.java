@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 
-public abstract class ObservableEntityCreateAction
+public class ObservableEntityCreateAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
 	extends ObservableEntityAction<T,A,User,Time>
 	implements CreateAction<T,A,User,Time> {
@@ -23,23 +23,20 @@ public abstract class ObservableEntityCreateAction
 		setDelegate( new CreateActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( (A) this );
 	}
-	protected ObservableEntityCreateAction() {
+	public ObservableEntityCreateAction() {
 		super();
 		setDelegate( new CreateActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator((A) this );
 	}
 
-	@Transient
 	public CreateActionImpl<T, A, User, Time> getDelegate() {
 		return (CreateActionImpl<T, A, User, Time>)super.getDelegate();
 	}
-	
-	@ManyToOne
-	@JoinColumn( name = "target_id" )
+
 	public T getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(T target) {
+	public void setTarget(T target) {
 		getDelegate().setTarget(target);
 	}
 	public void assignTarget(T newTarget) {

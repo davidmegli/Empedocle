@@ -19,14 +19,69 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MR" )
 public class WoodElementMergeAction
-	extends ObservableEntityMergeAction<
-		WoodElement,
-		WoodElementAction> {
+	extends WoodElementAction {
+
+	@Transient
+	private ObservableEntityMergeAction observableEntityMergeAction;
 
 	public WoodElementMergeAction(String uuid) {
 		super(uuid);
+		this.observableEntityMergeAction = new ObservableEntityMergeAction(uuid);
 	}
+
 	protected WoodElementMergeAction() {
 		super();
+		this.observableEntityMergeAction = new ObservableEntityMergeAction();
 	}
+
+	// Getters and setters
+	public ObservableEntityMergeAction<WoodElement, WoodElementAction> getObservableEntityMergeAction() {
+		return observableEntityMergeAction;
+	}
+	public void setObservableEntityMergeAction(ObservableEntityMergeAction<WoodElement, WoodElementAction> delegate) {
+		this.observableEntityMergeAction = delegate;
+	}
+	@Transient
+	public MergeActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
+		return (MergeActionImpl<WoodElement, WoodElementAction, User, Time>)super.getDelegate();
+	}
+
+	@ManyToOne
+	@JoinColumn( name = "source1_id" )
+	public WoodElement getSource1() {
+		return (WoodElement) observableEntityMergeAction.getSource1();
+	}
+	public void setSource1(WoodElement source1) {
+		observableEntityMergeAction.setSource1(source1);
+	}
+	public void assignSource1(WoodElement newSource1) {
+		observableEntityMergeAction.assignSource1(newSource1);
+	}
+
+
+	@ManyToOne
+	@JoinColumn( name = "source2_id" )
+	public WoodElement getSource2() {
+		return (WoodElement) observableEntityMergeAction.getSource2();
+	}
+	public void setSource2(WoodElement source2) {
+		observableEntityMergeAction.setSource2(source2);
+	}
+	public void assignSource2(WoodElement newSource2) {
+		observableEntityMergeAction.assignSource2(newSource2);
+	}
+
+
+	@ManyToOne
+	@JoinColumn( name = "target_id" )
+	public WoodElement getTarget() {
+		return (WoodElement) observableEntityMergeAction.getTarget();
+	}
+	public void setTarget(WoodElement target) {
+		observableEntityMergeAction.setTarget(target);
+	}
+	public void assignTarget(WoodElement newTarget) {
+		observableEntityMergeAction.assignTarget(newTarget);
+	}
+
 }

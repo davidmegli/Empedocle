@@ -18,7 +18,7 @@ import it.unifi.ing.stlab.entities.model.traced.Action;
 @Table(name = "wood_element_actions")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-		name = "from_class",	//TODO:cambiare con action_type??
+		name = "action_type",
 		discriminatorType = DiscriminatorType.STRING
 )
 public abstract class WoodElementAction

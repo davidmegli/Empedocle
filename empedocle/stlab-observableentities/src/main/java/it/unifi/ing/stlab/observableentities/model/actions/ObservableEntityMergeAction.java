@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 
-public abstract class ObservableEntityMergeAction
+public class ObservableEntityMergeAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
 	extends ObservableEntityAction<T,A,User,Time>
 	implements MergeAction<T,A,User,Time> {
@@ -23,14 +23,14 @@ public abstract class ObservableEntityMergeAction
 		setDelegate( new MergeActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( (A)this );
 	}
-	protected ObservableEntityMergeAction() {
+	public ObservableEntityMergeAction() {
 		super();
 		setDelegate( new MergeActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator((A) this );
 	}
 	
 	@Transient
-	protected MergeActionImpl<T, A, User, Time> getDelegate() {
+	public MergeActionImpl<T, A, User, Time> getDelegate() {
 		return (MergeActionImpl<T, A, User, Time>)super.getDelegate();
 	}
 	
@@ -39,7 +39,7 @@ public abstract class ObservableEntityMergeAction
 	public T getSource1() {
 		return getDelegate().getSource1();
 	}
-	protected void setSource1(T source1) {
+	public void setSource1(T source1) {
 		getDelegate().setSource1(source1);
 	}
 	public void assignSource1(T newSource1) {
@@ -52,7 +52,7 @@ public abstract class ObservableEntityMergeAction
 	public T getSource2() {
 		return getDelegate().getSource2();
 	}
-	protected void setSource2(T source2) {
+	public void setSource2(T source2) {
 		getDelegate().setSource2(source2);
 	}
 	public void assignSource2(T newSource2) {
@@ -65,7 +65,7 @@ public abstract class ObservableEntityMergeAction
 	public T getTarget() {
 		return getDelegate().getTarget();
 	}
-	protected void setTarget(T target) {
+	public void setTarget(T target) {
 		getDelegate().setTarget(target);
 	}
 	public void assignTarget(T newTarget) {

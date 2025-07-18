@@ -27,14 +27,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table( name="actions" )
-@Inheritance( strategy=InheritanceType.SINGLE_TABLE )
-@DiscriminatorColumn( 
-	name= "action_type",
-	discriminatorType=DiscriminatorType.STRING )
-public class ObservableEntityAction<
+//@Entity
+//@Table( name="actions" )
+//@Inheritance( strategy=InheritanceType.SINGLE_TABLE )
+//@DiscriminatorColumn(
+//	name= "action_type",
+//	discriminatorType=DiscriminatorType.STRING )
+@MappedSuperclass
+public abstract class ObservableEntityAction<
 		T extends ObservableEntity<T, A, ?, ?>,
 		A extends ObservableEntityAction<T, A, U, H>,
 		U extends Actor,

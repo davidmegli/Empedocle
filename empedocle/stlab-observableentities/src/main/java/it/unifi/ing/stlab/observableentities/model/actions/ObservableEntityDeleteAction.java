@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 
-public abstract class ObservableEntityDeleteAction
+public class ObservableEntityDeleteAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
 	extends ObservableEntityAction<T,A,User,Time>
 	implements DeleteAction<T,A,User,Time> {
@@ -23,23 +23,20 @@ public abstract class ObservableEntityDeleteAction
 		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( (A)this );
 	}
-	protected ObservableEntityDeleteAction() {
+	public ObservableEntityDeleteAction() {
 		super();
 		setDelegate( new DeleteActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( (A)this );
 	}
-	
-	@Transient
-	protected DeleteActionImpl<T, A, User, Time> getDelegate() {
+
+	public DeleteActionImpl<T, A, User, Time> getDelegate() {
 		return (DeleteActionImpl<T,A,User,Time>)super.getDelegate();
 	}
-	
-	@ManyToOne
-	@JoinColumn( name = "source_id" )
+
 	public T getSource() {
 		return getDelegate().getSource();
 	}
-	protected void setSource(T source) {
+	public void setSource(T source) {
 		getDelegate().setSource(source);
 	}
 	public void assignSource(T newSource) {
