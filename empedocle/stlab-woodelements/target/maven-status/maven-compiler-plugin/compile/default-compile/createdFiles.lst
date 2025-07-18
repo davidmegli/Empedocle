@@ -1,0 +1,7 @@
+it/unifi/ing/stlab/woodelements/model/WoodElementIdentifier.class
+it/unifi/ing/stlab/woodelements/model/actions/WoodElementSplitAction.class
+it/unifi/ing/stlab/woodelements/model/actions/WoodElementCreateAction.class
+it/unifi/ing/stlab/woodelements/model/WoodElement$WoodElementType.class
+it/unifi/ing/stlab/woodelements/model/actions/WoodElementAction.class
+it/unifi/ing/stlab/woodelements/factory/WoodElementFactory.class
+it/unifi/ing/stlab/woodelements/model/WoodElement.class

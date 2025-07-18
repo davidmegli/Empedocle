@@ -2,6 +2,7 @@ package it.unifi.ing.stlab.woodelements.factory;
 
 import it.unifi.ing.stlab.entities.factory.AbstractActionFactory;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementCreateAction;
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementDeleteAction;
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
@@ -18,30 +19,30 @@ import java.util.UUID;
 public class WoodElementActionFactory
 		extends ObservableEntityActionFactory<
 		WoodElement,
-		ObservableEntityAction>{
+		WoodElementAction>{
 
 
-	protected ObservableEntityAction createAction() {
+	protected WoodElementCreateAction createAction() {
 		return new WoodElementCreateAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected ObservableEntityAction modifyAction() {
+	protected WoodElementModifyAction modifyAction() {
 		return new WoodElementModifyAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected ObservableEntityAction mergeAction() {
+	protected WoodElementMergeAction mergeAction() {
 		return new WoodElementMergeAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected ObservableEntityAction splitAction() {
+	protected WoodElementSplitAction splitAction() {
 		return new WoodElementSplitAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected ObservableEntityAction deleteAction() {
+	protected WoodElementDeleteAction deleteAction() {
 		return new WoodElementDeleteAction( UUID.randomUUID().toString() );
 	}
 

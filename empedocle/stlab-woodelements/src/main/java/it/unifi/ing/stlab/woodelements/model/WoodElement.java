@@ -9,6 +9,7 @@ import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
@@ -18,7 +19,7 @@ import java.util.Set;
 
 @Entity
 @Table( name = "wood_elements" )
-public class WoodElement extends ObservableEntity<WoodElement, ObservableEntityAction, WoodElementIdentifier, WoodElementFactory> {
+public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction, WoodElementIdentifier, WoodElementFactory> {
 
 	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
 

@@ -18,7 +18,7 @@ import javax.persistence.Entity;
 public class WoodElementModifyAction
 	extends ObservableEntityModifyAction<
 		WoodElement,
-		WoodElementModifyAction> {
+		WoodElementAction> {
 
 	public WoodElementModifyAction(String uuid) {
 		super(uuid);

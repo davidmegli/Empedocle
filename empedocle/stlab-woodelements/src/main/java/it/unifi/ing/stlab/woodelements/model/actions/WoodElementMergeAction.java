@@ -21,7 +21,7 @@ import javax.persistence.Transient;
 public class WoodElementMergeAction
 	extends ObservableEntityMergeAction<
 		WoodElement,
-		WoodElementMergeAction> {
+		WoodElementAction> {
 
 	public WoodElementMergeAction(String uuid) {
 		super(uuid);

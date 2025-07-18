@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 public class WoodElementDeleteAction
 	extends ObservableEntityDeleteAction<
 		WoodElement,
-		WoodElementDeleteAction>{
+		WoodElementAction>{
 
 	public WoodElementDeleteAction(String uuid) {
 		super(uuid);

@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 public class WoodElementCreateAction
 	extends ObservableEntityCreateAction<
 		WoodElement,
-		WoodElementCreateAction>{
+		WoodElementAction>{
 
 	public WoodElementCreateAction(String uuid) {
 		super(uuid);

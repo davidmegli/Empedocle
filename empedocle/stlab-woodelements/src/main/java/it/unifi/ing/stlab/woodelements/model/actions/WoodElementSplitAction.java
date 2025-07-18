@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 public class WoodElementSplitAction
 		extends ObservableEntitySplitAction<
 		WoodElement,
-		WoodElementSplitAction> {
+		WoodElementAction> {
 
 	public WoodElementSplitAction(String uuid) {
 		super(uuid);

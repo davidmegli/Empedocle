@@ -28,8 +28,7 @@ public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, Woo
 		return WoodElement.class;
 	}
 
-	
-	@Override
+
 	public WoodElementIdentifier findIdentifierByCode(String code) {
 		if ( code == null ) 
 			throw new IllegalArgumentException( "code is null" );
@@ -53,7 +52,6 @@ public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, Woo
 	/**
 	 * Manual Merge of woodElements
 	 */
-	@Override
 	public WoodElement mergeWoodElements( Long woodElementId, Long otherId, User author ) {
 		WoodElement woodElement = findById( woodElementId );
 		WoodElement other = findById( otherId );
