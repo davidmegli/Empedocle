@@ -2,15 +2,15 @@
 setlocal
 set "BASE_DIR=%cd%"
 
-REM echo Building stlab-modules...
-REM pushd "%BASE_DIR%\stlab-modules"
-REM call mvn clean install -DskipTests
-REM popd
+echo Building stlab-modules...
+pushd "%BASE_DIR%\stlab-modules"
+call mvn clean install -DskipTests
+popd
 
-REM echo Building empedocle-viewers...
-REM pushd "%BASE_DIR%\empedocle\empedocle-viewers"
-REM call mvn clean install -DskipTests
-REM popd
+echo Building empedocle-viewers...
+pushd "%BASE_DIR%\empedocle\empedocle-viewers"
+call mvn clean install -DskipTests
+popd
 
 echo Building stlab-observableentities...
 pushd "%BASE_DIR%\empedocle\stlab-observableentities"

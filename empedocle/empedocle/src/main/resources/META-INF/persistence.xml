@@ -7,10 +7,12 @@
         
     <persistence-unit name="production">
 		<jta-data-source>empedocleDatasource</jta-data-source>
-		
+
 		<class>it.unifi.ing.stlab.users.model.User</class>
 		<class>it.unifi.ing.stlab.users.model.Role</class>
 		<class>it.unifi.ing.stlab.users.model.Qualification</class>
+
+		<class>it.unifi.ing.stlab.woodelements.model.WoodElement</class>
 
 		<class>it.unifi.ing.stlab.observableentities.model.ObservableEntity</class>
 		<class>it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier</class>
@@ -126,7 +128,7 @@
  		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>
  		
- 		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class>					
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class>
 
 		<!--"org.hibernate.dialect.MySQL5InnoDBDialect"-->
 
