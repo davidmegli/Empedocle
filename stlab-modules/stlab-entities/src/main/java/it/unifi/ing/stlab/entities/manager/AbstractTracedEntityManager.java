@@ -18,6 +18,7 @@ public abstract class AbstractTracedEntityManager
 	protected abstract AbstractActionFactory<T,A,U,H> getActionFactory();
 
 	public T modify( U author, H time, T source ) {
+		System.out.println("sono in AbstractTracedEntityManager");
 		if ( author == null || time == null || source == null )
 			throw new IllegalArgumentException();
 		

@@ -66,4 +66,26 @@ public class WoodElementModifyAction
 		observableEntityModifyAction.assignTarget(newTarget);
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	public User getAuthor() {
+		return observableEntityModifyAction.getAuthor();
+	}
+
+	public void setAuthor(User author) {
+		observableEntityModifyAction.setAuthor(author);
+	}
+
+	@javax.persistence.AttributeOverrides({
+			@javax.persistence.AttributeOverride(name = "date", column = @javax.persistence.Column(name = "action_time"))
+	})
+	@javax.persistence.Embedded
+	public Time getTime() {
+		return observableEntityModifyAction.getTime();
+	}
+
+	public void setTime(Time time) {
+		observableEntityModifyAction.setTime(time);
+	}
+
 }

@@ -29,12 +29,6 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 import javax.persistence.MappedSuperclass;
 
-//@Entity
-//@Table( name="actions" )
-//@Inheritance( strategy=InheritanceType.SINGLE_TABLE )
-//@DiscriminatorColumn(
-//	name= "action_type",
-//	discriminatorType=DiscriminatorType.STRING )
 @MappedSuperclass
 public abstract class ObservableEntityAction<
 		T extends ObservableEntity<T, A, ?, ?>,
@@ -98,6 +92,9 @@ public abstract class ObservableEntityAction<
 		return delegate.getAuthor();
 	}
 	public void setAuthor(U author) {
+		if (delegate == null) {
+			throw new IllegalStateException("Delegate is null in setAuthor(). Init missing?");
+		}
 		delegate.setAuthor( author );
 	}
 

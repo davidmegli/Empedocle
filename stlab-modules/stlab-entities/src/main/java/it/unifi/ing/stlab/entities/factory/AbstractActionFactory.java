@@ -32,8 +32,11 @@ public abstract class AbstractActionFactory
 	
 	@SuppressWarnings("unchecked")
 	public A modifyAction( U author, H time, T source, T target ) {
+		System.out.println("sono in AbstractActionFactory");
 		ModifyAction<T,A,U,H> action = (ModifyAction<T, A, U, H>) modifyAction();
-	
+
+		System.out.println(action);
+
 		action.setAuthor( author );
 		action.setTime( time );
 		action.assignSource( source );
