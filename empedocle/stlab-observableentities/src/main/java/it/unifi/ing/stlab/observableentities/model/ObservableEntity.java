@@ -81,7 +81,7 @@ public abstract class ObservableEntity
 	}
 
 
-	@ManyToMany( fetch = FetchType.LAZY )
+	@ManyToMany( fetch = FetchType.LAZY, targetEntity = ObservableEntity.class )
 	@JoinTable(
 		name = "observable_entity_before",
 	    joinColumns = { @JoinColumn( name = "observable_entity_id", referencedColumnName="id" ) },
@@ -97,7 +97,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY )
+	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY, targetEntity = ObservableEntity.class )
 	public Set<T> getAfter() {
 		return tracedEntity.getAfter();
 	}
@@ -109,7 +109,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST )
+	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST, targetEntity = ObservableEntity.class )
 	@JoinColumn( name = "origin_id" )
 	public A getOrigin() {
 		return tracedEntity.getOrigin();
@@ -119,7 +119,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, targetEntity = ObservableEntity.class )
 	@JoinColumn( name = "dest_id" )
 	public A getDestination() {
 		return tracedEntity.getDestination();
@@ -130,7 +130,7 @@ public abstract class ObservableEntity
 
 
 	// Identifier
-	@ManyToOne( cascade=CascadeType.PERSIST )
+	@ManyToOne( cascade=CascadeType.PERSIST, targetEntity = ObservableEntity.class )
 	@JoinColumn( name="identifier_id", nullable=true )
 	public I getIdentifier() {
 		return identifier;

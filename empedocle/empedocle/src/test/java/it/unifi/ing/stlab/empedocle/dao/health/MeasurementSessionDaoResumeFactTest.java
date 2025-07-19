@@ -13,6 +13,7 @@ import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
+import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
 import it.unifi.ing.stlab.reflection.impl.dao.FactDao;

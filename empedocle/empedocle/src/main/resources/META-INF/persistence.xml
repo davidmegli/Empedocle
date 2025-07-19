@@ -111,20 +111,20 @@
 		<class>it.unifi.ing.stlab.factquery.model.expression.AndExpression</class>
 		<class>it.unifi.ing.stlab.factquery.model.expression.OrExpression</class>
 		<class>it.unifi.ing.stlab.factquery.model.expression.ExpressionLink</class>
-		
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubClassificationCode</class> 		
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCAnatomicalMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCTherapeuticMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCPharmacologicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>		
+
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMTopicCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubTopicCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCategoryCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubCategoryCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubClassificationCode</class>
+
+   		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCAnatomicalMainGroupCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCTherapeuticMainGroupCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCPharmacologicalSubGroupCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>
  		
  		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class>					
 
