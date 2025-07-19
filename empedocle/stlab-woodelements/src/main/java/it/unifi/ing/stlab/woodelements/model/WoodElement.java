@@ -122,7 +122,7 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 	@Override
 	public WoodElement copy() {
 		WoodElementFactory factory = new WoodElementFactory();
-		WoodElement result = factory.createConcreteEntity();
+		WoodElement result = factory.create();
 
 		result.setIdentifier(getIdentifier());
 		result.setExternalElementId(getExternalElementId());

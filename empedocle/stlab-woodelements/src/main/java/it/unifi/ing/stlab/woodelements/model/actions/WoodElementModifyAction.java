@@ -20,7 +20,8 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MD" )
 public class WoodElementModifyAction
-	extends WoodElementAction {
+	extends WoodElementAction
+	implements ModifyAction<WoodElement, WoodElementAction, User, Time> {
 
 	@Transient
 	private ObservableEntityModifyAction observableEntityModifyAction;
@@ -28,6 +29,7 @@ public class WoodElementModifyAction
 	public WoodElementModifyAction(String uuid) {
 		super(uuid);
 		this.observableEntityModifyAction = new ObservableEntityModifyAction(uuid);
+		System.out.println("WOODELEMENTMODIFYACTION: "+ observableEntityModifyAction.getDelegate());
 	}
 	public WoodElementModifyAction() {
 		super();

@@ -37,13 +37,13 @@ public class WoodElementDaoTest extends PersistenceTest {
 	
 	@Override
 	public void insertData() {
-		p1 = factory.createConcreteEntity();
-		p1.setIdentifier( factory.createConcreteIdentifier() );
+		p1 = factory.create();
+		p1.setIdentifier( factory.createIdentifier() );
 		p1.getIdentifier().setCode( "1234" );
 		entityManager.persist( p1 );
 		
-		p2 = factory.createConcreteEntity();
-		p2.setIdentifier( factory.createConcreteIdentifier() );
+		p2 = factory.create();
+		p2.setIdentifier( factory.createIdentifier() );
 		p2.getIdentifier().setCode( "5678" );
 		entityManager.persist( p2 );
 		

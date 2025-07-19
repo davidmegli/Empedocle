@@ -40,13 +40,13 @@ public abstract class ObservableEntityManager
 	}
 
 	public T createObservableEntity( User author, Time time ) {
-		return init( factory.createConcreteEntity(), author, time );
+		return init( factory.create(), author, time );
 	}
-	
+
 	public T merge( User author, Time time, T master, T slave ) {
 		return (T) ((ObservableEntityMergeAction) getActionFactory()
 				.mergeAction(author, time, master, slave, master.copy()))
 				.getTarget();
-	}	
+	}
 
 }

@@ -26,9 +26,9 @@ public class WoodElementJpaTest extends PersistenceTest {
 			new Time( DateHelper.createDate( "2013-03-01") ), 
 			new Time( DateHelper.createDate( "2013-03-31")));
 
-		WoodElement wood_element = factory.createConcreteEntity();
+		WoodElement wood_element = factory.create();
 		
-		identifier = factory.createConcreteIdentifier();
+		identifier = factory.createIdentifier();
 		identifier.setCode( "id" );
 		wood_element.setIdentifier( identifier );
 		

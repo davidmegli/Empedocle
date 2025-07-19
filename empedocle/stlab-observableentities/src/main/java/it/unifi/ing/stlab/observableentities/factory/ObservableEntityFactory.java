@@ -8,22 +8,22 @@ import java.util.UUID;
 public abstract class ObservableEntityFactory
 		<T extends ObservableEntity<T, ?, ?, ?>, I extends ObservableEntityIdentifier> {
 
-	protected T create() {
+	public T create() {
 		T entity = createConcreteEntity();
 		entity.setUuid(generateUuid());
 		entity.init(); // logica comune
 		return entity;
 	}
-	protected I createIdentifier(){
+	public I createIdentifier(){
 		I identifier = createConcreteIdentifier();
 		identifier.setUuid(generateUuid());
 		//identifier.init(); // logica  TODO:capire se aggiure metodo a Identifier o no
 		return identifier;
 	};
 
-	public abstract T createConcreteEntity();
+	protected abstract T createConcreteEntity();
 
-	public abstract I createConcreteIdentifier();
+	protected abstract I createConcreteIdentifier();
 
 	private String generateUuid() {
 		return UUID.randomUUID().toString(); // generatore di ID

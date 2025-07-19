@@ -19,7 +19,8 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "MR" )
 public class WoodElementMergeAction
-	extends WoodElementAction {
+	extends WoodElementAction
+	implements MergeAction<WoodElement, WoodElementAction, User, Time> {
 
 	@Transient
 	private ObservableEntityMergeAction observableEntityMergeAction;

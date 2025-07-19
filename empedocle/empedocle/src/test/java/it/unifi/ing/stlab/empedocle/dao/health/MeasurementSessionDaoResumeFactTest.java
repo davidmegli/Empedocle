@@ -12,7 +12,9 @@ import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.factory.types.TypeLinkFactory;
@@ -49,10 +51,10 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	
 	protected CompositeFact newCompositeFact;
 	protected TextualFact newTextualFact;
-	protected ObservableEntity p;
+	protected WoodElement p;
 	protected User author;
 	protected MeasurementSession measurementSession;
-	protected ObservableEntityDao observableEntityDao;
+	protected WoodElementDaoBean observableEntityDao;
 	
 	@Override
 	public void setUp() throws Exception {
@@ -77,7 +79,10 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		author.setUserid("usr");
 		entityManager.persist(author);
 		
-		p = observableEntityDao.getManager().getFactory().createConcreteEntity();
+		p = observableEntityDao.getManager().getFactory().create();
+		System.out.println("Creating observable entity: " + p.getClass().getName());
+		System.out.println("Manager: " + observableEntityDao.getManager().getClass().getName());
+		System.out.println("Factory: " + observableEntityDao.getManager().getFactory().getClass().getName());
 		entityManager.persist( p );
 		
 		measurementSession = MeasurementSessionFactory.createMeasurementSession();
@@ -144,9 +149,9 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	
 	@Test
 	public void testResumeUpdatedObservableEntity() {
-		ObservableEntityManager observableEntityManager = observableEntityDao.getManager();
+		WoodElementManager observableEntityManager = observableEntityDao.getManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		ObservableEntity pNew = (ObservableEntity) observableEntityManager.modify(author, time, p);
+		ObservableEntity pNew = (WoodElement) observableEntityManager.modify(author, time, p);
 		entityManager.persist(pNew);
 		
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);

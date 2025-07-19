@@ -22,6 +22,7 @@ public class ObservableEntityModifyAction
 		super(uuid);
 		setDelegate( new ModifyActionImpl<T,A,User,Time>() );
 		getDelegate().setDelegator( (A)this );
+		System.out.println("OBSERVABLEENETITYMODIFYACTION: "+ getDelegate() );
 	}
 	public ObservableEntityModifyAction() {
 		super();

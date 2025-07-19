@@ -25,7 +25,7 @@ public class MessageJpaTest extends PersistenceTest {
 	@Override
 	protected void insertData() throws Exception {
 		observableEntityDao = new WoodElementDaoBean();
-		observableEntity = observableEntityDao.getManager().getFactory().createConcreteEntity();
+		observableEntity = observableEntityDao.getManager().getFactory().create();
 
 		Message message = MessageFactory.createMessage();
 		message.setDate( new Date( 1000 ) );

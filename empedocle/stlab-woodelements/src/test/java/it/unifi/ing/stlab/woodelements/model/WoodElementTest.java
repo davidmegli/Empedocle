@@ -17,12 +17,12 @@ public class WoodElementTest {
 
 	@Test
 	public void testSameAs1() {
-		WoodElement wood_element1 = factory.createConcreteEntity();
-		WoodElementIdentifier identifier = factory.createConcreteIdentifier();
+		WoodElement wood_element1 = factory.create();
+		WoodElementIdentifier identifier = factory.createIdentifier();
 		identifier.setCode( "id" );
 		wood_element1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = factory.createConcreteEntity();
+		WoodElement wood_element2 = factory.create();
 
 		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
 		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
@@ -30,8 +30,8 @@ public class WoodElementTest {
 	
 	@Test
 	public void testSameAs2() {
-		WoodElement wood_element1 = factory.createConcreteEntity();
-		WoodElement wood_element2 = factory.createConcreteEntity();
+		WoodElement wood_element1 = factory.create();
+		WoodElement wood_element2 = factory.create();
 
 		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
 		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
@@ -39,12 +39,12 @@ public class WoodElementTest {
 	
 	@Test
 	public void testSameAs3() {
-		WoodElement wood_element1 = factory.createConcreteEntity();
-		WoodElementIdentifier identifier = factory.createConcreteIdentifier();
+		WoodElement wood_element1 = factory.create();
+		WoodElementIdentifier identifier = factory.createIdentifier();
 		identifier.setCode( "id" );
 		wood_element1.setIdentifier( identifier );
 
-		WoodElement wood_element2 = factory.createConcreteEntity();
+		WoodElement wood_element2 = factory.create();
 		wood_element2.setIdentifier( identifier );
 
 		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
@@ -53,13 +53,13 @@ public class WoodElementTest {
 	
 	@Test
 	public void testSameAs4() {
-		WoodElement wood_element1 = factory.createConcreteEntity();
-		WoodElementIdentifier identifier1 = factory.createConcreteIdentifier();
+		WoodElement wood_element1 = factory.create();
+		WoodElementIdentifier identifier1 = factory.createIdentifier();
 		identifier1.setCode( "id1" );
 		wood_element1.setIdentifier( identifier1 );
 
-		WoodElement wood_element2 = factory.createConcreteEntity();
-		WoodElementIdentifier identifier2 = factory.createConcreteIdentifier();
+		WoodElement wood_element2 = factory.create();
+		WoodElementIdentifier identifier2 = factory.createIdentifier();
 		identifier2.setCode( "id2" );
 		wood_element2.setIdentifier( identifier2 );
 

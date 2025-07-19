@@ -19,7 +19,8 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "DL" )
 public class WoodElementDeleteAction
-	extends WoodElementAction {
+	extends WoodElementAction
+	implements DeleteAction<WoodElement, WoodElementAction, User, Time> {
 
 	@Transient
 	private ObservableEntityDeleteAction observableEntityDeleteAction;

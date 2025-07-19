@@ -15,7 +15,7 @@ public class WoodElementIdentifierJpaTest extends PersistenceTest {
 	@Override
 	protected void insertData() throws Exception {
 		factory = new WoodElementFactory();
-		WoodElementIdentifier identifier = factory.createConcreteIdentifier();
+		WoodElementIdentifier identifier = factory.createIdentifier();
 		identifier.setCode( "IDENTIFIER001" );
 		
 		entityManager.persist( identifier );

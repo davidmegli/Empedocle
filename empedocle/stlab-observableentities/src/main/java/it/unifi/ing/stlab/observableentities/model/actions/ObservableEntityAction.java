@@ -60,6 +60,8 @@ public abstract class ObservableEntityAction<
 		return delegate;
 	}
 	protected void setDelegate(ActionImpl<T, A,U, H> delegate) {
+
+		System.out.println("OBSERVABLEENTITYACTION: "+ delegate);
 		this.delegate = delegate;
 	}
 	

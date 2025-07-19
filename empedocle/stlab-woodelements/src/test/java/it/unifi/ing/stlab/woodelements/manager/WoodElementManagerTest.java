@@ -27,10 +27,10 @@ public class WoodElementManagerTest {
 		manager = new WoodElementManager();
 		factory = manager.getFactory();
 		
-		wood_element1 = factory.createConcreteEntity();
+		wood_element1 = factory.create();
 		wood_element1.setSpecie( "Naple" );
 		
-		wood_element2 = factory.createConcreteEntity();
+		wood_element2 = factory.create();
 		wood_element2.setSpecie( "Pine" );
 	}
 	

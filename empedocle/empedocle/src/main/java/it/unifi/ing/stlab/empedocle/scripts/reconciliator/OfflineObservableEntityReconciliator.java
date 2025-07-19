@@ -183,7 +183,7 @@ public class OfflineObservableEntityReconciliator {
 							.getResultList();
 		
 		if ( results.size() == 0 ) {
-			identifier = observableEntityDao.getManager().getFactory().createConcreteIdentifier();
+			identifier = observableEntityDao.getManager().getFactory().createIdentifier();
 			identifier.setCode( code );
 			
 		} else {

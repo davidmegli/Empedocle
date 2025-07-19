@@ -1,6 +1,7 @@
 package it.unifi.ing.stlab.woodelements.model.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.SplitActionImpl;
+import it.unifi.ing.stlab.entities.model.traced.actions.SplitAction;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntitySplitAction;
@@ -19,7 +20,8 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue( "SP" )
 public class WoodElementSplitAction
-		extends WoodElementAction {
+	extends WoodElementAction
+	implements SplitAction<WoodElement, WoodElementAction, User, Time> {
 
 	@Transient
 	private ObservableEntitySplitAction observableEntitySplitAction;
