@@ -66,6 +66,8 @@ public class WoodElementModifyAction
 		observableEntityModifyAction.assignTarget(newTarget);
 	}
 
+
+	//TODO: vedere meglio ----------------------
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	public User getAuthor() {
@@ -87,5 +89,6 @@ public class WoodElementModifyAction
 	public void setTime(Time time) {
 		observableEntityModifyAction.setTime(time);
 	}
+	//--------------------------------------------------
 
 }
