@@ -151,11 +151,16 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 	public void testResumeUpdatedObservableEntity() {
 		WoodElementManager observableEntityManager = observableEntityDao.getManager();
 		Time time = new Time(Calendar.getInstance().getTime());
-		ObservableEntity pNew = (WoodElement) observableEntityManager.modify(author, time, p);
+		WoodElement pNew = (WoodElement) observableEntityManager.modify(author, time, p);
+
+		System.out.println("pNew class: " + pNew.getClass());
+		System.out.println("pNew.getOrigin(): " + pNew.getOrigin());
+		System.out.println("pNew.getOrigin().getClass(): " + (pNew.getOrigin() != null ? pNew.getOrigin().getClass().getName() : "null"));
+		System.out.println("pNew.getBefore(): " + pNew.getBefore());
 		entityManager.persist(pNew);
-		
+
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);
-		
+
 		assertNotNull(resumed);
 		assertEquals("Textual type", resumed.getType().getName());
 		assertEquals(FactStatus.DRAFT, resumed.getStatus());

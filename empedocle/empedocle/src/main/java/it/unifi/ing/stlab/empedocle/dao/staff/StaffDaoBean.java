@@ -134,7 +134,7 @@ public class StaffDaoBean implements StaffDao {
 				.setMaxResults( 1 )
 				.getResultList()
 				.isEmpty();
-
+        //TODO: riguardare ObservableEntityAction
 		Boolean observableEntityActions = !entityManager.createQuery(
 				"select pa from ObservableEntityAction pa" 
 					+ " where pa.author = :user" )

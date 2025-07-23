@@ -23,59 +23,58 @@ public class WoodElementSplitAction
 	extends WoodElementAction
 	implements SplitAction<WoodElement, WoodElementAction, User, Time> {
 
-	@Transient
-	private ObservableEntitySplitAction observableEntitySplitAction;
-
 	public WoodElementSplitAction(String uuid) {
 		super(uuid);
-		this.observableEntitySplitAction = new ObservableEntitySplitAction(uuid);
+		setDelegate(new SplitActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 	public WoodElementSplitAction() {
 		super();
-		this.observableEntitySplitAction = new ObservableEntitySplitAction();
+		setDelegate(new SplitActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 
 	@Transient
 	public SplitActionImpl<WoodElement,WoodElementAction,User,Time> getDelegate() {
-		return (SplitActionImpl<WoodElement,WoodElementAction,User,Time>)observableEntitySplitAction.getDelegate();
+		return (SplitActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
 	}
 
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
 	public WoodElement getSource() {
-		return (WoodElement) observableEntitySplitAction.getSource();
+		return (WoodElement) getDelegate().getSource();
 	}
 	public void setSource(WoodElement source) {
-		observableEntitySplitAction.setSource(source);
+		getDelegate().setSource(source);
 	}
 	public void assignSource(WoodElement newSource) {
-		observableEntitySplitAction.assignSource(newSource);
+		getDelegate().assignSource(newSource);
 	}
 
 
 	@ManyToOne
 	@JoinColumn( name = "target1_id" )
 	public WoodElement getTarget1() {
-		return (WoodElement) observableEntitySplitAction.getTarget1();
+		return (WoodElement) getDelegate().getTarget1();
 	}
 	public void setTarget1(WoodElement target1) {
-		observableEntitySplitAction.setTarget1(target1);
+		getDelegate().setTarget1(target1);
 	}
 	public void assignTarget1(WoodElement newTarget1) {
-		observableEntitySplitAction.assignTarget1(newTarget1);
+		getDelegate().assignTarget1(newTarget1);
 	}
 
 
 	@ManyToOne
 	@JoinColumn( name = "target2_id" )
 	public WoodElement getTarget2() {
-		return (WoodElement) observableEntitySplitAction.getTarget2();
+		return (WoodElement) getDelegate().getTarget2();
 	}
 	public void setTarget2(WoodElement target2) {
-		observableEntitySplitAction.setTarget2(target2);
+		getDelegate().setTarget2(target2);
 	}
 	public void assignTarget2(WoodElement newTarget2) {
-		observableEntitySplitAction.assignTarget2(newTarget2);
+		getDelegate().assignTarget2(newTarget2);
 	}
 
 }

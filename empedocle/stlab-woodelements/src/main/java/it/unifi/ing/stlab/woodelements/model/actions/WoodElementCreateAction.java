@@ -21,44 +21,34 @@ public class WoodElementCreateAction
 	extends WoodElementAction
 	implements CreateAction<WoodElement, WoodElementAction, User, Time> {
 
-	@Transient
-	private ObservableEntityCreateAction observableEntityCreateAction;
-
 	public WoodElementCreateAction(String uuid) {
 		super(uuid);
-		this.observableEntityCreateAction = new ObservableEntityCreateAction(uuid);
+		setDelegate(new CreateActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 	protected WoodElementCreateAction() {
 		super();
-		this.observableEntityCreateAction = new ObservableEntityCreateAction();
-	}
-
-	// Getters and setters
-	public ObservableEntityCreateAction<WoodElement, WoodElementAction> getObservableEntityCreateAction() {
-		return observableEntityCreateAction;
-	}
-	public void setObservableEntityCreateAction(ObservableEntityCreateAction<WoodElement, WoodElementAction> delegate) {
-		this.observableEntityCreateAction = delegate;
+		setDelegate(new CreateActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 
 	// Delegated methods
 	@ManyToOne
 	@JoinColumn(name = "target_id")
 	public WoodElement getTarget() {
-		return (WoodElement) observableEntityCreateAction.getTarget();
+		return (WoodElement) getDelegate().getTarget();
 	}
 
 	public void setTarget(WoodElement target) {
-		observableEntityCreateAction.setTarget(target);
+		getDelegate().setTarget(target);
 	}
 
 	public void assignTarget(WoodElement newTarget) {
-		observableEntityCreateAction.assignTarget(newTarget);
+		getDelegate().assignTarget(newTarget);
 	}
 
 	@Transient
 	public CreateActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
-		return observableEntityCreateAction.getDelegate();
+		return (CreateActionImpl<WoodElement, WoodElementAction, User, Time>) super.getDelegate();
 	}
-
 }

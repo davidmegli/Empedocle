@@ -22,41 +22,31 @@ public class WoodElementDeleteAction
 	extends WoodElementAction
 	implements DeleteAction<WoodElement, WoodElementAction, User, Time> {
 
-	@Transient
-	private ObservableEntityDeleteAction observableEntityDeleteAction;
-
 	public WoodElementDeleteAction(String uuid) {
 		super(uuid);
-		this.observableEntityDeleteAction = new ObservableEntityDeleteAction(uuid);
+		setDelegate(new DeleteActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 	protected WoodElementDeleteAction() {
 		super();
-		this.observableEntityDeleteAction = new ObservableEntityDeleteAction();
+		setDelegate(new DeleteActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
-
-	// Getters and setters
-	public ObservableEntityDeleteAction<WoodElement, WoodElementAction> getObservableEntityDeleteAction() {
-		return observableEntityDeleteAction;
-	}
-	public void setObservableEntityDeleteAction(ObservableEntityDeleteAction<WoodElement, WoodElementAction> delegate) {
-		this.observableEntityDeleteAction = delegate;
-	}
-
 	@Transient
 	public DeleteActionImpl<WoodElement, WoodElementAction, User, Time> getDelegate() {
-		return observableEntityDeleteAction.getDelegate();
+		return (DeleteActionImpl<WoodElement, WoodElementAction, User, Time>)super.getDelegate();
 	}
 
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
 	public WoodElement getSource() {
-		return (WoodElement) observableEntityDeleteAction.getSource();
+		return (WoodElement) getDelegate().getSource();
 	}
 	public void setSource(WoodElement source) {
-		observableEntityDeleteAction.setSource(source);
+		getDelegate().setSource(source);
 	}
 	public void assignSource(WoodElement newSource) {
-		observableEntityDeleteAction.assignSource(newSource);
+		getDelegate().assignSource(newSource);
 	}
 
 }

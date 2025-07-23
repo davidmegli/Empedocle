@@ -19,16 +19,18 @@ public abstract class AbstractTracedEntityManager
 
 	public T modify( U author, H time, T source ) {
 		System.out.println("sono in AbstractTracedEntityManager");
-		if ( author == null || time == null || source == null )
+		if ( author == null || time == null || source == null ) {
+			System.out.println("eccezione 1");
 			throw new IllegalArgumentException();
-		
-		if ( !source.isActive() )
+		}
+		if ( !source.isActive() ) {
+			System.out.println("eccezione 2");
 			throw new IllegalArgumentException();
-		
+		}
 		T result = source.copy();
 		result.init();
 		getActionFactory().modifyAction(author, time, source, result);
-		
+		System.out.println("AbstractTracedEntityManager   result is"+ result);
 		return result;
 	}
 	

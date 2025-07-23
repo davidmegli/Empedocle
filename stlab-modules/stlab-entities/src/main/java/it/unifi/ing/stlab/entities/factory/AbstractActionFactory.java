@@ -35,8 +35,6 @@ public abstract class AbstractActionFactory
 		System.out.println("sono in AbstractActionFactory");
 		ModifyAction<T,A,U,H> action = (ModifyAction<T, A, U, H>) modifyAction();
 
-		System.out.println(action);
-
 		action.setAuthor( author );
 		action.setTime( time );
 		action.assignSource( source );

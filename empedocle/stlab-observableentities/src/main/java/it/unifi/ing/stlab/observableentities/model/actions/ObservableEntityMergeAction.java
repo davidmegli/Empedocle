@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-
+/*
+ * To create a specialized class see the comment in ObservableEntityCreateAction
+ * */
 public class ObservableEntityMergeAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>
 	extends ObservableEntityAction<T,A,User,Time>

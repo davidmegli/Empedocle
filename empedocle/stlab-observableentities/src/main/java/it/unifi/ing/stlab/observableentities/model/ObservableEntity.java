@@ -109,7 +109,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST, targetEntity = ObservableEntity.class )
+	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST)
 	@JoinColumn( name = "origin_id" )
 	public A getOrigin() {
 		return tracedEntity.getOrigin();
@@ -119,7 +119,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, targetEntity = ObservableEntity.class )
+	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn( name = "dest_id" )
 	public A getDestination() {
 		return tracedEntity.getDestination();
@@ -130,7 +130,7 @@ public abstract class ObservableEntity
 
 
 	// Identifier
-	@ManyToOne( cascade=CascadeType.PERSIST, targetEntity = ObservableEntity.class )
+	@ManyToOne( cascade=CascadeType.PERSIST)
 	@JoinColumn( name="identifier_id", nullable=true )
 	public I getIdentifier() {
 		return identifier;

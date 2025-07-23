@@ -1,3 +1,4 @@
+
 package it.unifi.ing.stlab.entities.manager;
 
 import it.unifi.ing.stlab.entities.factory.AbstractCompactLinkFactory;

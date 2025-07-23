@@ -31,6 +31,7 @@ public class WoodElementActionFactory
 
 		WoodElementModifyAction woodelementmodifyaction = new WoodElementModifyAction( UUID.randomUUID().toString() );
 		System.out.println("WOODELEMENTACTIONFACTORY: " + woodelementmodifyaction.getDelegate());
+		System.out.println("woodElementModifyAction is: " + woodelementmodifyaction);
 		return woodelementmodifyaction;
 	}
 

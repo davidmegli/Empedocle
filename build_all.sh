@@ -3,15 +3,15 @@
 # Directory principale del progetto
 BASE_DIR="$(pwd)"
 
-# Compilazione di stlab-modules
-echo "Building stlab-modules..."
-cd "$BASE_DIR/stlab-modules" || exit
-mvn clean install -DskipTests
-
-# Compilazione di empedocle-viewers
-echo "Building empedocle-viewers..."
-cd "$BASE_DIR/empedocle/empedocle-viewers" || exit
-mvn clean install -DskipTests
+## Compilazione di stlab-modules
+#echo "Building stlab-modules..."
+#cd "$BASE_DIR/stlab-modules" || exit
+#mvn clean install -DskipTests
+#
+## Compilazione di empedocle-viewers
+#echo "Building empedocle-viewers..."
+#cd "$BASE_DIR/empedocle/empedocle-viewers" || exit
+#mvn clean install -DskipTests
 
 # Compilazione di stlab-observableentities
 echo "Building stlab-observableentities..."

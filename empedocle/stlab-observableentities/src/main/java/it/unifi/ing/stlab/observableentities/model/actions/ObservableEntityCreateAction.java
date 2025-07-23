@@ -12,6 +12,58 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+/*
+ * To create a specialized CreateAction for a specific ObservableEntity type, follow these steps:
+ *
+ * 1. Create a concrete subclass (e.g., MyEntityCreateAction) extending your specific Action base class
+ *    (e.g., MyEntityAction) and implementing CreateAction<T, A, User, Time>.
+ *
+ * 2. In the constructor, initialize and set the delegate:
+ *      setDelegate(new CreateActionImpl<>());
+ *      getDelegate().setDelegator(this);
+ *
+ * 3. Override the methods getTarget(), setTarget(T), assignTarget(T), and getDelegate()
+ *    delegating them to the CreateActionImpl.
+ *
+ * Example:
+ *
+ * @Entity
+ * @DiscriminatorValue("CR")
+ * public class MyEntityCreateAction extends MyEntityAction
+ *       implements CreateAction<MyEntity, MyEntityAction, User, Time> {
+ *
+ *     public MyEntityCreateAction(String uuid) {
+ *         super(uuid);
+ *         setDelegate(new CreateActionImpl<>());
+ *         getDelegate().setDelegator(this);
+ *     }
+ *
+ *     protected MyEntityCreateAction() {
+ *         super();
+ *         setDelegate(new CreateActionImpl<>());
+ *         getDelegate().setDelegator(this);
+ *     }
+ *
+ *     @ManyToOne
+ *     @JoinColumn(name = "target_id")
+ *     public MyEntity getTarget() {
+ *         return getDelegate().getTarget();
+ *     }
+ *
+ *     public void setTarget(MyEntity target) {
+ *         getDelegate().setTarget(target);
+ *     }
+ *
+ *     public void assignTarget(MyEntity newTarget) {
+ *         getDelegate().assignTarget(newTarget);
+ *     }
+ *
+ *     @Transient
+ *     public CreateActionImpl<MyEntity, MyEntityAction, User, Time> getDelegate() {
+ *         return (CreateActionImpl<MyEntity, MyEntityAction, User, Time>) super.getDelegate();
+ *     }
+ * }
+ */
 
 public class ObservableEntityCreateAction
 	<T extends ObservableEntity<T, A, ?, ?>, A extends ObservableEntityAction<T, A,User,Time>>

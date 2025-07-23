@@ -23,72 +23,45 @@ public class WoodElementModifyAction
 	extends WoodElementAction
 	implements ModifyAction<WoodElement, WoodElementAction, User, Time> {
 
-	@Transient
-	private ObservableEntityModifyAction observableEntityModifyAction;
-
 	public WoodElementModifyAction(String uuid) {
 		super(uuid);
-		this.observableEntityModifyAction = new ObservableEntityModifyAction(uuid);
-		System.out.println("WOODELEMENTMODIFYACTION: "+ observableEntityModifyAction.getDelegate());
+		setDelegate(new ModifyActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 	public WoodElementModifyAction() {
 		super();
-		this.observableEntityModifyAction = new ObservableEntityModifyAction();
+		setDelegate(new ModifyActionImpl<>());
+		getDelegate().setDelegator(this);
 	}
 
 	@Transient
 	public ModifyActionImpl<WoodElement,WoodElementAction,User,Time> getDelegate() {
-		return (ModifyActionImpl<WoodElement,WoodElementAction,User,Time>)observableEntityModifyAction.getDelegate();
+		return (ModifyActionImpl<WoodElement,WoodElementAction,User,Time>)super.getDelegate();
 	}
 
 	@ManyToOne
 	@JoinColumn( name = "source_id" )
 	public WoodElement getSource() {
-		return (WoodElement) observableEntityModifyAction.getSource();
+		return (WoodElement) getDelegate().getSource();
 	}
 	public void setSource(WoodElement source) {
-		observableEntityModifyAction.setSource(source);
+		getDelegate().setSource(source);
 	}
 	public void assignSource(WoodElement newSource) {
-		observableEntityModifyAction.assignSource(newSource);
+		getDelegate().assignSource(newSource);
 	}
 
 
 	@ManyToOne
 	@JoinColumn( name = "target_id" )
 	public WoodElement getTarget() {
-		return (WoodElement) observableEntityModifyAction.getTarget();
+		return (WoodElement) getDelegate().getTarget();
 	}
 	public void setTarget(WoodElement target) {
-		observableEntityModifyAction.setTarget(target);
+		getDelegate().setTarget(target);
 	}
 	public void assignTarget(WoodElement newTarget) {
-		observableEntityModifyAction.assignTarget(newTarget);
+		getDelegate().assignTarget(newTarget);
 	}
-
-
-	//TODO: vedere meglio ----------------------
-	@ManyToOne
-	@JoinColumn(name = "author_id")
-	public User getAuthor() {
-		return observableEntityModifyAction.getAuthor();
-	}
-
-	public void setAuthor(User author) {
-		observableEntityModifyAction.setAuthor(author);
-	}
-
-	@javax.persistence.AttributeOverrides({
-			@javax.persistence.AttributeOverride(name = "date", column = @javax.persistence.Column(name = "action_time"))
-	})
-	@javax.persistence.Embedded
-	public Time getTime() {
-		return observableEntityModifyAction.getTime();
-	}
-
-	public void setTime(Time time) {
-		observableEntityModifyAction.setTime(time);
-	}
-	//--------------------------------------------------
 
 }
