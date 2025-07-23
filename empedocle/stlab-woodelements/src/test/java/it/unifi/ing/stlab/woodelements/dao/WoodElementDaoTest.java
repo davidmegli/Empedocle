@@ -14,6 +14,7 @@ import it.unifi.ing.stlab.users.model.time.Time;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class WoodElementDaoTest extends PersistenceTest {
@@ -24,19 +25,18 @@ public class WoodElementDaoTest extends PersistenceTest {
 	protected User author;
 	protected WoodElementManager manager;
 	protected WoodElementFactory factory;
-	
-	@Override
+
+	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		manager = new WoodElementManager();
-		factory = manager.getFactory();
-		
 		dao = new WoodElementDaoBean();
 		FieldUtils.assignField( dao, "entityManager", entityManager );
 	}
 	
 	@Override
 	public void insertData() {
+		manager = new WoodElementManager();
+		factory = manager.getFactory();
 		p1 = factory.create();
 		p1.setIdentifier( factory.createIdentifier() );
 		p1.getIdentifier().setCode( "1234" );

@@ -13,10 +13,10 @@ BASE_DIR="$(pwd)"
 #cd "$BASE_DIR/empedocle/empedocle-viewers" || exit
 #mvn clean install -DskipTests
 
-# Compilazione di stlab-observableentities
-echo "Building stlab-observableentities..."
-cd "$BASE_DIR/empedocle/stlab-observableentities" || exit
-mvn clean install -DskipTests
+## Compilazione di stlab-observableentities
+#echo "Building stlab-observableentities..."
+#cd "$BASE_DIR/empedocle/stlab-observableentities" || exit
+#mvn clean install -DskipTests
 
 # Compilazione di stlab-woodelements
 echo "Building stlab-woodelements..."
