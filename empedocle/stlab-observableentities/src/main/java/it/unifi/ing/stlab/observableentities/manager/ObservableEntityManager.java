@@ -44,9 +44,11 @@ public abstract class ObservableEntityManager
 	}
 
 	public T merge( User author, Time time, T master, T slave ) {
+		T copy = (master != null) ? master.copy() : (slave != null ? slave.copy() : null);
 		return (T) ((ObservableEntityMergeAction) getActionFactory()
-				.mergeAction(author, time, master, slave, master.copy()))
+				.mergeAction(author, time, master, slave, copy))
 				.getTarget();
 	}
+
 
 }

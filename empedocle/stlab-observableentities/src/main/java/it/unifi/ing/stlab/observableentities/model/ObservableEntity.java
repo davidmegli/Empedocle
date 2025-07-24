@@ -37,6 +37,7 @@ public abstract class ObservableEntity
 		persistable = new PersistableImpl( uuid );
 		timedEntity = new TimedEntityImpl<TimeRange, Time>();
 		tracedEntity = new TracedEntityImpl<T,A>();
+
 		tracedEntity.setDelegator( (T) this );
 	}
 	protected ObservableEntity() {

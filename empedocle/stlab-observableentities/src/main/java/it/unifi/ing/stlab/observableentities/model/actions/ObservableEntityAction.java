@@ -47,15 +47,11 @@ public abstract class ObservableEntityAction<
 		persistable = new PersistableImpl();
 	}
 
-	
-	
 	@Transient
 	protected ActionImpl<T, A, U, H> getDelegate() {
 		return delegate;
 	}
 	protected void setDelegate(ActionImpl<T, A,U, H> delegate) {
-
-		System.out.println("OBSERVABLEENTITYACTION: "+ delegate);
 		this.delegate = delegate;
 	}
 	

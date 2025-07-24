@@ -80,9 +80,6 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		entityManager.persist(author);
 		
 		p = observableEntityDao.getManager().getFactory().create();
-		System.out.println("Creating observable entity: " + p.getClass().getName());
-		System.out.println("Manager: " + observableEntityDao.getManager().getClass().getName());
-		System.out.println("Factory: " + observableEntityDao.getManager().getFactory().getClass().getName());
 		entityManager.persist( p );
 		
 		measurementSession = MeasurementSessionFactory.createMeasurementSession();
@@ -152,11 +149,6 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		WoodElementManager observableEntityManager = observableEntityDao.getManager();
 		Time time = new Time(Calendar.getInstance().getTime());
 		WoodElement pNew = (WoodElement) observableEntityManager.modify(author, time, p);
-
-		System.out.println("pNew class: " + pNew.getClass());
-		System.out.println("pNew.getOrigin(): " + pNew.getOrigin());
-		System.out.println("pNew.getOrigin().getClass(): " + (pNew.getOrigin() != null ? pNew.getOrigin().getClass().getName() : "null"));
-		System.out.println("pNew.getBefore(): " + pNew.getBefore());
 		entityManager.persist(pNew);
 
 		Fact resumed = measurementSessionDao.resume(newTextualFact, pNew);

@@ -36,10 +36,10 @@ public class WoodElementManagerTest {
 	
 	@Test
 	public void testmergeWoodElements() {
-		WoodElement merged = manager.merge( UserFactory.createUser(), 
+				WoodElement merged = manager.merge( UserFactory.createUser(),
 												new Time( new Date() ), 
 												wood_element1, wood_element2 );
-		
+
 		assertNotNull( merged );
 		assertTrue( merged.listBefore().contains( wood_element1 ) );
 		assertTrue( merged.listBefore().contains( wood_element2 ) );
@@ -53,12 +53,17 @@ public class WoodElementManagerTest {
 		WoodElement merged = manager.merge( UserFactory.createUser(), 
 												new Time( new Date() ), 
 												null, wood_element2 );
-		
 		assertNotNull( merged );
-		assertTrue( merged.listBefore().contains( wood_element1 ) );
-		assertTrue( merged.listBefore().contains( wood_element2 ) );
+		Boolean found = false;
+		for(WoodElement before : merged.listBefore()){
+			if (before.sameAs(wood_element2)){
+				found=true;
+				break;
+			}
+		}
+		assertTrue( found );
 		assertEquals( WoodElementMergeAction.class, merged.getOrigin().getClass() );
-		assertEquals( wood_element1, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
+		assertEquals( null, ((WoodElementMergeAction)merged.getOrigin()).getSource1() );
 		assertEquals( wood_element2, ((WoodElementMergeAction)merged.getOrigin()).getSource2() );
 	}
 	

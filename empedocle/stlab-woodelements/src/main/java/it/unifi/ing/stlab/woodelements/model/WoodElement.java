@@ -24,7 +24,6 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
 
 	//attributs
-	private WoodElementIdentifier identifier;
 	private String externalElementId;
 	@Enumerated(EnumType.STRING)
 	private WoodElementType type;

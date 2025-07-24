@@ -1,6 +1,7 @@
 package it.unifi.ing.stlab.woodelements.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 
 import org.junit.Test;
@@ -24,8 +25,9 @@ public class WoodElementTest {
 
 		WoodElement wood_element2 = factory.create();
 
-		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
+
+		assertFalse(wood_element1.sameAs(wood_element2));
+		assertFalse(wood_element2.sameAs(wood_element1));
 	}
 	
 	@Test
