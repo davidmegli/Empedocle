@@ -37,7 +37,7 @@ public class WoodElementActionResource {
 
         WoodElementSplitAction action = actionFactory.splitAction();
         action.assignSource(source);
-        action.assignTarget(t1);
+        action.assignTarget1(t1);
         action.assignTarget2(t2);
 
         return Response.ok().build();

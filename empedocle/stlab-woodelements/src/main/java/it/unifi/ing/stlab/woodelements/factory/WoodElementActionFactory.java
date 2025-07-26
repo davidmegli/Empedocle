@@ -22,28 +22,28 @@ public class WoodElementActionFactory
 		WoodElementAction>{
 
 
-	protected WoodElementAction createAction() {
+	public WoodElementAction createAction() {
 		return new WoodElementCreateAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected WoodElementAction modifyAction() {
+	public WoodElementAction modifyAction() {
 		WoodElementModifyAction woodelementmodifyaction = new WoodElementModifyAction( UUID.randomUUID().toString() );
 		return woodelementmodifyaction;
 	}
 
 
-	protected WoodElementAction mergeAction() {
+	public WoodElementAction mergeAction() {
 		return new WoodElementMergeAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected WoodElementAction splitAction() {
+	public WoodElementAction splitAction() {
 		return new WoodElementSplitAction( UUID.randomUUID().toString() );
 	}
 
 
-	protected WoodElementAction deleteAction() {
+	public WoodElementAction deleteAction() {
 		return new WoodElementDeleteAction( UUID.randomUUID().toString() );
 	}
 

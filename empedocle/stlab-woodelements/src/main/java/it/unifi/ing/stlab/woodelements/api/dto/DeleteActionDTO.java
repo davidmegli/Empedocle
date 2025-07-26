@@ -1,10 +1,10 @@
 package it.unifi.ing.stlab.woodelements.api.dto;
 
 public class DeleteActionDTO {
-    public String sourceId;
+    public Long sourceId;
     public DeleteActionDTO() {
     }
-    public DeleteActionDTO(String sourceId) {
+    public DeleteActionDTO(Long sourceId) {
         this.sourceId = sourceId;
     }
 }

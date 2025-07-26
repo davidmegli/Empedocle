@@ -1,13 +1,13 @@
 package it.unifi.ing.stlab.woodelements.api.dto;
 
 public class ModifyActionDTO {
-    public String sourceId;
-    public String targetId;
+    public Long sourceId;
+    public Long targetId;
 
     public ModifyActionDTO() {
     }
 
-    public ModifyActionDTO(String sourceId, String targetId) {
+    public ModifyActionDTO(Long sourceId, Long targetId) {
         this.sourceId = sourceId;
         this.targetId = targetId;
     }

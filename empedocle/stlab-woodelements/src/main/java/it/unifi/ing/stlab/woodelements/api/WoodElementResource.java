@@ -30,15 +30,6 @@ public class WoodElementResource {
     private WoodElementFactory factory;
 
     @GET
-    @Operation(summary = "Get all wood elements", description = "Returns a list of all existing wood elements")
-    @APIResponse(responseCode = "200", description = "List of wood elements successfully retrieved")
-    public List<WoodElementDTO> list() {
-        return dao.listAll().stream()
-                .map(WoodElementMapper::toDto)
-                .collect(Collectors.toList());
-    }
-
-    @GET
     @Path("/{id}")
     @Operation(summary = "Get a wood element by ID", description = "Returns a single wood element by its external ID")
     @APIResponse(responseCode = "200", description = "Wood element found")

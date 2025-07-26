@@ -17,18 +17,18 @@ public abstract class ObservableEntityActionFactory
 		extends AbstractActionFactory<T,A,User,Time>{
 
 	@Override
-	protected abstract A createAction();
+	public abstract A createAction();
 
 	@Override
-	protected abstract A modifyAction();
+	public abstract A modifyAction();
 
 	@Override
-	protected abstract A mergeAction();
+	public abstract A mergeAction();
 
 	@Override
-	protected abstract A splitAction();
+	public abstract A splitAction();
 
 	@Override
-	protected abstract A deleteAction();
+	public abstract A deleteAction();
 
 }
