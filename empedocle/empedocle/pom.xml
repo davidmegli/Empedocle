@@ -22,13 +22,6 @@
 			<version>1.0.0</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>it.unifi.ing.stlab</groupId>
-			<artifactId>empedocle-api</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
 		<dependency>
 			<groupId>it.unifi.ing.stlab</groupId>
 			<artifactId>stlab-filters</artifactId>

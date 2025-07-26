@@ -17,11 +17,6 @@ pushd "%BASE_DIR%\empedocle\stlab-woodelements"
 call mvn clean install -DskipTests
 popd
 
-echo Building empedocle-api...
-pushd "%BASE_DIR%\empedocle\empedocle-api"
-call mvn clean install -DskipTests
-popd
-
 echo Building empedocle...
 pushd "%BASE_DIR%\empedocle\empedocle"
 call mvn clean install -DskipTests
