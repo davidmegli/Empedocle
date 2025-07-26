@@ -7,7 +7,6 @@ public class AgendaDTO {
     public String code;
     public String description;
     public Long measurementSessionTypeId;
-
     public AgendaDTO() {
     }
 

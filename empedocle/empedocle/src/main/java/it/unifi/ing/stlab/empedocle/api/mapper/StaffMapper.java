@@ -16,20 +16,20 @@ public class StaffMapper {
         StaffDTO dto = new StaffDTO();
         dto.id = entity.getId();
         dto.uuid = entity.getUuid();
-        dto.number = entity.number;
+        dto.number = entity.getNumber();
 
-        if (entity.user != null) {
-            dto.userId = entity.user.getId();
-            dto.username = entity.user.getUserid();
+        if (entity.getUser() != null) {
+            dto.userId = entity.getUser().getId();
+            dto.username = entity.getUser().getUserid();
         }
 
-        if (entity.phenomenon != null) {
-            dto.phenomenonId = entity.phenomenon.getId();
-            dto.phenomenonName = entity.phenomenon.getName();
+        if (entity.getPhenomenon() != null) {
+            dto.phenomenonId = entity.getPhenomenon().getId();
+            dto.phenomenonName = entity.getPhenomenon().getName();
         }
 
-        if (entity.defaultAgenda != null) {
-            dto.defaultAgendaId = entity.defaultAgenda.getId();
+        if (entity.getPhenomenon() != null) {
+            dto.defaultAgendaId = entity.getDefaultAgenda().getId();
         }
 
         dto.agendaIds = entity.listAgendas().stream()

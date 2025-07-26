@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.dto;
+package it.unifi.ing.stlab.empedocle.api.dto;
 
 import java.util.Set;
 

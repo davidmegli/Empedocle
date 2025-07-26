@@ -5,10 +5,22 @@ import it.unifi.ing.stlab.empedocle.api.mapper.ServiceMapper;
 import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
 import it.unifi.ing.stlab.empedocle.model.health.Service;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
+import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
+import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import java.util.UUID;
+
 
 @Path("/services")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,10 +42,10 @@ public class ServiceResource {
 
     @POST
     public Response create(ServiceDTO dto) {
-        Service entity = new Service(java.util.UUID.randomUUID().toString());
+        Service entity = ServiceFactory.createService();
 
-        Agenda agenda = new Agenda();
-        agenda.setId(dto.agendaId);
+        Agenda agenda = AgendaFactory.createAgenda();
+        //agenda.setId(dto.agendaId);
 
         ServiceMapper.updateEntity(entity, dto, agenda);
         // Aggiungi persistenza se hai serviceDao.save(entity);
@@ -51,8 +63,7 @@ public class ServiceResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        Agenda agenda = new Agenda();
-        agenda.setId(dto.agendaId);
+        Agenda agenda = entity.getAgenda();
 
         ServiceMapper.updateEntity(entity, dto, agenda);
         // Aggiungi persistenza se hai serviceDao.update(entity);

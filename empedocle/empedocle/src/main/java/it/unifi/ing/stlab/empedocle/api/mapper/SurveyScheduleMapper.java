@@ -2,6 +2,9 @@ package it.unifi.ing.stlab.empedocle.api.mapper;
 
 import it.unifi.ing.stlab.empedocle.api.dto.SurveyScheduleDTO;
 import it.unifi.ing.stlab.empedocle.model.health.*;
+import it.unifi.ing.stlab.empedocle.model.Agenda;
+import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+
 
 import java.util.Set;
 import java.util.stream.Collectors;

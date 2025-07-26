@@ -6,9 +6,13 @@ import it.unifi.ing.stlab.empedocle.api.mapper.StaffMapper;
 import it.unifi.ing.stlab.empedocle.model.Staff;
 
 import javax.ejb.EJB;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 
 @Path("/staff")
 @Produces(MediaType.APPLICATION_JSON)

@@ -5,17 +5,17 @@ import java.util.Set;
 
 public class SurveyScheduleDTO {
 
-    private Long id;
-    private String uuid;
-    private Date date;
-    private String number;
-    private String bookingCode;
-    private String acceptanceCode;
-    private String status;
+    public Long id;
+    public String uuid;
+    public Date date;
+    public String number;
+    public String bookingCode;
+    public String acceptanceCode;
+    public String status;
 
-    private Long agendaId;
-    private Long observableEntityId;
-    private Set<Long> serviceIds;
+    public Long agendaId;
+    public Long observableEntityId;
+    public Set<Long> serviceIds;
 
     public SurveyScheduleDTO() {
     }

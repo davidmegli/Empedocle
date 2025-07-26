@@ -5,10 +5,15 @@ import it.unifi.ing.stlab.empedocle.api.mapper.MessageMapper;
 import it.unifi.ing.stlab.empedocle.dao.messages.MessageDao;
 import it.unifi.ing.stlab.empedocle.model.messages.Message;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
+import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import java.util.UUID;
+
 
 @Path("/messages")
 @Produces(MediaType.APPLICATION_JSON)
@@ -33,7 +38,9 @@ public class MessageResource {
     public Response create(MessageDTO dto) {
         Message message = new Message(java.util.UUID.randomUUID().toString());
 
-        ObservableEntity observable = new ObservableEntity();
+        WoodElementManager manager = new WoodElementManager();
+
+        ObservableEntity observable = manager.getFactory().create();
         observable.setId(dto.observableEntityId);
 
         MessageMapper.updateEntity(message, dto, observable);
@@ -52,9 +59,7 @@ public class MessageResource {
         if (message == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
-        ObservableEntity observable = new ObservableEntity();
-        observable.setId(dto.observableEntityId);
+        ObservableEntity observable = message.getObservableEntity();
 
         MessageMapper.updateEntity(message, dto, observable);
 
