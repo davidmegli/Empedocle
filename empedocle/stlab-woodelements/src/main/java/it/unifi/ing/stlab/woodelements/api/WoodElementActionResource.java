@@ -35,7 +35,7 @@ public class WoodElementActionResource {
         WoodElement t1 = dao.findById(dto.target1Id);
         WoodElement t2 = dao.findById(dto.target2Id);
 
-        WoodElementSplitAction action = actionFactory.splitAction();
+        WoodElementSplitAction action = ( WoodElementSplitAction ) actionFactory.splitAction();
         action.assignSource(source);
         action.assignTarget1(t1);
         action.assignTarget2(t2);
@@ -52,7 +52,7 @@ public class WoodElementActionResource {
         WoodElement s1 = dao.findById(dto.source1Id);
         WoodElement s2 = dao.findById(dto.source2Id);
 
-        WoodElementMergeAction action = actionFactory.mergeAction();
+        WoodElementMergeAction action = ( WoodElementMergeAction ) actionFactory.mergeAction();
         action.assignTarget(t);
         action.assignSource1(s1);
         action.assignSource2(s2);
@@ -68,7 +68,7 @@ public class WoodElementActionResource {
         WoodElement source = dao.findById(dto.sourceId);
         WoodElement target = dao.findById(dto.targetId);
 
-        WoodElementModifyAction action = actionFactory.modifyAction();
+        WoodElementModifyAction action = ( WoodElementModifyAction ) actionFactory.modifyAction();
         action.assignSource(source);
         action.assignTarget(target);
 
@@ -82,7 +82,7 @@ public class WoodElementActionResource {
     public Response delete(DeleteActionDTO dto) {
         WoodElement source = dao.findById(dto.sourceId);
 
-        WoodElementDeleteAction action = actionFactory.deleteAction();
+        WoodElementDeleteAction action = ( WoodElementDeleteAction ) actionFactory.deleteAction();
         action.assignSource(source);
 
         return Response.ok().build();

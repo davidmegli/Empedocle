@@ -18,13 +18,12 @@ public class WoodElementActionTest extends ApiTest {
         // Split id1 into id2 and id3
         given()
                 .contentType(ContentType.JSON)
-                .body("""
-            {
-              "sourceId":%d,
-              "target1Id":%d,
-              "target2Id":%d
-            }
-          """.formatted(id1, id2, id3))
+                .body(String.format(
+                        "{\n" +
+                                "  \"sourceId\":%d,\n" +
+                                "  \"target1Id\":%d,\n" +
+                                "  \"target2Id\":%d\n" +
+                                "}", id1, id2, id3))
                 .when()
                 .post("/actions/split")
                 .then()
@@ -33,13 +32,12 @@ public class WoodElementActionTest extends ApiTest {
         // Merge id2 and id3 into id1
         given()
                 .contentType(ContentType.JSON)
-                .body("""
-            {
-              "targetId":%d,
-              "source1Id":%d,
-              "source2Id":%d
-            }
-          """.formatted(id1, id2, id3))
+                .body(String.format(
+                        "{\n" +
+                                "  \"sourceId\":%d,\n" +
+                                "  \"target1Id\":%d,\n" +
+                                "  \"target2Id\":%d\n" +
+                                "}", id1, id2, id3))
                 .when()
                 .post("/actions/merge")
                 .then()
@@ -48,12 +46,11 @@ public class WoodElementActionTest extends ApiTest {
         // Modify: assign source id1 to target id2
         given()
                 .contentType(ContentType.JSON)
-                .body("""
-            {
-              "sourceId":%d,
-              "targetId":%d
-            }
-          """.formatted(id1, id2))
+                .body(String.format(
+                        "{\n" +
+                                "  \"sourceId\":%d,\n" +
+                                "  \"target1Id\":%d\n" +
+                                "}", id1, id2))
                 .when()
                 .post("/actions/modify")
                 .then()
@@ -62,9 +59,10 @@ public class WoodElementActionTest extends ApiTest {
         // Delete action: mark id3
         given()
                 .contentType(ContentType.JSON)
-                .body("""
-            { "sourceId":%d }
-          """.formatted(id3))
+                .body(String.format(
+                        "{\n" +
+                                "  \"sourceId\":%d\n" +
+                                "}", id3))
                 .when()
                 .post("/actions/delete")
                 .then()
@@ -74,16 +72,15 @@ public class WoodElementActionTest extends ApiTest {
     private long createElement(String externalId) {
         return given()
                 .contentType(ContentType.JSON)
-                .body("""
-                {
-                  "type":"Stem",
-                  "specie":"Specie%s",
-                  "age":10,
-                  "placeOfOrigin":"Origin%s",
-                  "externalElementId":"%s",
-                  "note":"note"
-                }
-            """.formatted(externalId, externalId, externalId))
+                .body(String.format(
+                        "{\n" +
+                                "  \"type\":\"Stem\",\n" +
+                                "  \"specie\":\"Specie%s\",\n" +
+                                "  \"age\":10,\n" +
+                                "  \"placeOfOrigin\":\"Origin%s\",\n" +
+                                "  \"externalElementId\":\"%s\",\n" +
+                                "  \"note\":\"note\"\n" +
+                                "}", externalId, externalId, externalId))
                 .when()
                 .post()
                 .then()

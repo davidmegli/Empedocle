@@ -15,18 +15,18 @@ public class WoodElementCrudTest extends ApiTest {
         int age = 50;
         String place = "Forest";
 
+        String json = String.format(
+                "{\n" +
+                        "  \"type\":\"Tree\",\n" +
+                        "  \"specie\":\"%s\",\n" +
+                        "  \"age\":%d,\n" +
+                        "  \"placeOfOrigin\":\"%s\",\n" +
+                        "  \"externalElementId\":\"E1\",\n" +
+                        "  \"note\":\"Test note\"\n" +
+                        "}", specie, age, place);
         long id = given()
                 .contentType(ContentType.JSON)
-                .body("""
-                {
-                  "type":"Tree",
-                  "specie":"%s",
-                  "age":%d,
-                  "placeOfOrigin":"%s",
-                  "externalElementId":"E1",
-                  "note":"Test note"
-                }
-            """.formatted(specie, age, place))
+                .body(json)
                 .when()
                 .post()
                 .then()

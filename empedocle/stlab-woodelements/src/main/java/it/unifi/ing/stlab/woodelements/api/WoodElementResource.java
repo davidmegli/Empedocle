@@ -5,6 +5,7 @@ import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.users.model.User;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
@@ -49,7 +50,7 @@ public class WoodElementResource {
         dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-        builder.path(dto.id);
+        builder.path(dto.id.toString());
         return Response.created(builder.build()).entity(WoodElementMapper.toDto(element)).build();
     }
 
@@ -71,10 +72,12 @@ public class WoodElementResource {
     @Operation(summary = "Delete a wood element", description = "Deletes a wood element by its external ID")
     @APIResponse(responseCode = "204", description = "Wood element successfully deleted")
     @APIResponse(responseCode = "404", description = "Wood element not found")
-    public Response delete(@PathParam("id") Long id) {
+    public Response delete(@PathParam("id") Long id) { // TODO: Replace with actual user retrieval logic!!!
         WoodElement element = dao.findById(id);
         if (element == null) throw new NotFoundException();
-        dao.delete(element);
+
+        dao.deleteById(id, null); // TODO: Replace with actual user retrieval logic, a User is required
+
         return Response.noContent().build();
     }
 }
