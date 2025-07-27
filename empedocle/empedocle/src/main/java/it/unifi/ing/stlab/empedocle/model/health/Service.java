@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "health_services")
+@Table(name = "services")
 public class Service implements Persistable {
 
 	private PersistableImpl persistable;
@@ -41,7 +41,7 @@ public class Service implements Persistable {
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="health_service", 
+		pkColumnValue="service",
 		allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {

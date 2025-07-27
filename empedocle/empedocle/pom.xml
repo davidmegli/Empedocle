@@ -126,9 +126,26 @@
 			<version>2.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-
-
+		<!-- openapi dependencies -->
+		<dependency>
+			<groupId>org.eclipse.microprofile.openapi</groupId>
+			<artifactId>microprofile-openapi-api</artifactId>
+			<version>3.1</version>
+		</dependency>
 		<!-- richfaces dependencies -->
+		<!-- api test dependencies -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.9.3</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.richfaces</groupId>
 			<artifactId>richfaces</artifactId>
@@ -302,14 +319,6 @@
 							<type>jar</type>
 							<includes>
 								<include>resources/**</include>
-								<include>pages/**</include>
-							</includes>
-						</overlay>
-						<overlay>
-							<groupId>it.unifi.ing.stlab</groupId>
-							<artifactId>empedocle-viewers</artifactId>
-							<type>jar</type>
-							<includes>
 								<include>pages/**</include>
 							</includes>
 						</overlay>

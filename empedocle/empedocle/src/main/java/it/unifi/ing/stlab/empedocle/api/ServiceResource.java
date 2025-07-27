@@ -9,18 +9,18 @@ import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.UUID;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import java.util.UUID;
 
 @Path("/services")
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,7 +32,16 @@ public class ServiceResource {
 
     @GET
     @Path("/{id}")
-    public Response getById(@PathParam("id") Long id) {
+    @Operation(summary = "Get service by ID", description = "Returns a service entity identified by the given ID.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "Service found",
+                    content = @Content(schema = @Schema(implementation = ServiceDTO.class))),
+            @APIResponse(responseCode = "404", description = "Service not found")
+    })
+    public Response getById(
+            @Parameter(description = "ID of the service to retrieve", required = true)
+            @PathParam("id") Long id) {
+
         Service entity = serviceDao.findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -41,14 +50,17 @@ public class ServiceResource {
     }
 
     @POST
-    public Response create(ServiceDTO dto) {
-        Service entity = ServiceFactory.createService();
+    @Operation(summary = "Create a new service", description = "Creates a new service and returns the created object.")
+    @APIResponse(responseCode = "201", description = "Service created",
+            content = @Content(schema = @Schema(implementation = ServiceDTO.class)))
+    public Response create(
+            @Parameter(description = "DTO representing the service to be created", required = true)
+            ServiceDTO dto) {
 
+        Service entity = ServiceFactory.createService();
         Agenda agenda = AgendaFactory.createAgenda();
-        //agenda.setId(dto.agendaId);
 
         ServiceMapper.updateEntity(entity, dto, agenda);
-        // Aggiungi persistenza se hai serviceDao.save(entity);
 
         return Response.status(Response.Status.CREATED)
                 .entity(ServiceMapper.toDto(entity))
@@ -57,16 +69,25 @@ public class ServiceResource {
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, ServiceDTO dto) {
+    @Operation(summary = "Update a service", description = "Updates an existing service with new data.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "Service updated",
+                    content = @Content(schema = @Schema(implementation = ServiceDTO.class))),
+            @APIResponse(responseCode = "404", description = "Service not found")
+    })
+    public Response update(
+            @Parameter(description = "ID of the service to update", required = true)
+            @PathParam("id") Long id,
+            @Parameter(description = "DTO with updated service data", required = true)
+            ServiceDTO dto) {
+
         Service entity = serviceDao.findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         Agenda agenda = entity.getAgenda();
-
         ServiceMapper.updateEntity(entity, dto, agenda);
-        // Aggiungi persistenza se hai serviceDao.update(entity);
 
         return Response.ok(ServiceMapper.toDto(entity)).build();
     }

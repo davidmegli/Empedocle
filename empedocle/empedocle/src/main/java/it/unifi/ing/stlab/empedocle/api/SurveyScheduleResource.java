@@ -18,6 +18,13 @@ import jakarta.ws.rs.core.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 @Path("/survey-schedules")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -28,7 +35,22 @@ public class SurveyScheduleResource {
 
     @GET
     @Path("/{id}")
-    public Response getById(@PathParam("id") Long id) {
+    @Operation(
+            summary = "Retrieve a SurveySchedule by ID",
+            description = "Fetches a specific SurveySchedule entity by its unique identifier."
+    )
+    @APIResponses(value = {
+            @APIResponse(
+                    responseCode = "200",
+                    description = "SurveySchedule successfully retrieved",
+                    content = @Content(schema = @Schema(implementation = SurveyScheduleDTO.class))
+            ),
+            @APIResponse(responseCode = "404", description = "SurveySchedule not found")
+    })
+    public Response getById(
+            @Parameter(description = "The ID of the SurveySchedule", required = true)
+            @PathParam("id") Long id) {
+
         SurveySchedule entity = findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -37,20 +59,33 @@ public class SurveyScheduleResource {
     }
 
     @POST
-    public Response create(SurveyScheduleDTO dto) {
+    @Operation(
+            summary = "Create a new SurveySchedule",
+            description = "Creates a new SurveySchedule and persists it in the system."
+    )
+    @APIResponses(value = {
+            @APIResponse(
+                    responseCode = "201",
+                    description = "SurveySchedule successfully created",
+                    content = @Content(schema = @Schema(implementation = SurveyScheduleDTO.class))
+            ),
+            @APIResponse(responseCode = "400", description = "Invalid input data")
+    })
+    public Response create(
+            @Parameter(description = "DTO representing the SurveySchedule to be created", required = true)
+            SurveyScheduleDTO dto) {
+
         SurveySchedule entity = new SurveySchedule(UUID.randomUUID().toString());
 
         Agenda agenda = AgendaFactory.createAgenda();
-        //agenda.setId(dto.agendaId);
 
         WoodElementManager manager = new WoodElementManager();
         ObservableEntity observableEntity = manager.getFactory().create();
-        observableEntity.setId(dto.observableEntityId);
 
         Set<Service> services = buildServicesFromIds(dto.serviceIds);
 
         SurveyScheduleMapper.updateEntity(entity, dto, agenda, observableEntity, services);
-        surveyScheduleDao.update(entity); // oppure save(entity)
+        surveyScheduleDao.update(entity);
 
         return Response.status(Response.Status.CREATED)
                 .entity(SurveyScheduleMapper.toDto(entity))
@@ -59,7 +94,24 @@ public class SurveyScheduleResource {
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, SurveyScheduleDTO dto) {
+    @Operation(
+            summary = "Update an existing SurveySchedule",
+            description = "Updates an existing SurveySchedule entity with new values."
+    )
+    @APIResponses(value = {
+            @APIResponse(
+                    responseCode = "200",
+                    description = "SurveySchedule successfully updated",
+                    content = @Content(schema = @Schema(implementation = SurveyScheduleDTO.class))
+            ),
+            @APIResponse(responseCode = "404", description = "SurveySchedule not found")
+    })
+    public Response update(
+            @Parameter(description = "The ID of the SurveySchedule to update", required = true)
+            @PathParam("id") Long id,
+            @Parameter(description = "Updated SurveySchedule data", required = true)
+            SurveyScheduleDTO dto) {
+
         SurveySchedule entity = findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -87,7 +139,6 @@ public class SurveyScheduleResource {
         if (ids == null) return Collections.emptySet();
         return ids.stream().map(id -> {
             Service s = ServiceFactory.createService();
-            //s.setId(id);
             return s;
         }).collect(Collectors.toSet());
     }
