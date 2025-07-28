@@ -8,10 +8,12 @@ import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
 import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionTypeFactory;
 
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+
+import javax.ejb.EJB;
 
 // OpenAPI / Swagger
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -26,7 +28,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AgendaResource {
 
-    @Inject
+    @EJB
     private AgendaDao agendaDao;
 
     @GET
@@ -99,5 +101,10 @@ public class AgendaResource {
         }
         agendaDao.delete(id);
         return Response.noContent().build();
+    }
+    @GET
+    @Path("/test")
+    public Response test() {
+        return Response.ok("Test OK").build();
     }
 }

@@ -3,12 +3,15 @@ package it.unifi.ing.stlab.woodelements.api;
 import it.unifi.ing.stlab.woodelements.api.dto.WoodElementDTO;
 import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+
+import javax.ejb.EJB;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,10 +27,10 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 @Consumes(MediaType.APPLICATION_JSON)
 public class WoodElementResource {
 
-    @Inject
-    private WoodElementDaoBean dao;
+    @EJB
+    private ObservableEntityDao<WoodElement, WoodElementManager> dao;
 
-    @Inject
+    @EJB
     private WoodElementFactory factory;
 
     @GET

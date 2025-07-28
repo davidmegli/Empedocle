@@ -11,9 +11,9 @@ import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import javax.ejb.EJB;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,7 +30,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Consumes(MediaType.APPLICATION_JSON)
 public class SurveyScheduleResource {
 
-    @Inject
+    @EJB
     private SurveyScheduleDao surveyScheduleDao;
 
     @GET

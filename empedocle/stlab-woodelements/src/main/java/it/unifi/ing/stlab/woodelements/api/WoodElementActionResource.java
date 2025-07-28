@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.woodelements.api.resource;
+package it.unifi.ing.stlab.woodelements.api;
 
 import it.unifi.ing.stlab.woodelements.api.dto.*;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
@@ -6,9 +6,9 @@ import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
 import it.unifi.ing.stlab.woodelements.model.actions.*;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;

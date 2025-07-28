@@ -4,8 +4,11 @@ import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 
+import javax.ejb.Stateless;
+
 import java.util.UUID;
 
+@Stateless
 public class WoodElementFactory extends ObservableEntityFactory<WoodElement, WoodElementIdentifier> {
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Stateless;
+import javax.ejb.Local;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +14,7 @@ import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 
 @Stateless
 @TransactionAttribute
+@Local(SurveyScheduleDao.class)
 public class SurveyScheduleDaoBean implements SurveyScheduleDao {
 
 	@PersistenceContext

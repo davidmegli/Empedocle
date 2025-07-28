@@ -9,9 +9,9 @@ import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
