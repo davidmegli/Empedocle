@@ -17,12 +17,14 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.ejb.EJB;
+
 @Path("/staff")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class StaffResource {
 
-    @Inject
+    @EJB
     private StaffDao staffDao;
 
     @GET

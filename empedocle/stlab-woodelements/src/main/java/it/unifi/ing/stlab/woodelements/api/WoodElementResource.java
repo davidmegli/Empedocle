@@ -45,6 +45,8 @@ public class WoodElementResource {
     @Operation(summary = "Create a new wood element", description = "Creates and persists a new wood element")
     @APIResponse(responseCode = "201", description = "Wood element successfully created")
     public Response create(WoodElementDTO dto, @Context UriInfo uriInfo) {
+        System.out.println(">>> WOODELEMENT POST CALLED <<<");
+
         WoodElement element = factory.create();
         WoodElementMapper.updateEntity(element, dto);
         dao.save(element);
@@ -79,5 +81,10 @@ public class WoodElementResource {
         dao.deleteById(id, null); // TODO: Replace with actual user retrieval logic, a User is required
 
         return Response.noContent().build();
+    }
+    @GET
+    @Path("/test")
+    public Response test() {
+        return Response.ok("Test OK").build();
     }
 }

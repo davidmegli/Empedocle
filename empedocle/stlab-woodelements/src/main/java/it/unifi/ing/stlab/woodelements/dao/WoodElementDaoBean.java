@@ -19,8 +19,12 @@ import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+
+import javax.ejb.Local;
 
 @Stateless
+@Local(ObservableEntityDao.class)
 public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, WoodElementManager> {
 
 	@Override
