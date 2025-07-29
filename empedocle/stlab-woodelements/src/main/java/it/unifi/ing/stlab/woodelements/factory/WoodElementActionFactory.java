@@ -15,7 +15,9 @@ import it.unifi.ing.stlab.users.model.time.Time;
 
 import java.util.UUID;
 
+import javax.ejb.Stateless;
 
+@Stateless
 public class WoodElementActionFactory
 		extends ObservableEntityActionFactory<
 		WoodElement,

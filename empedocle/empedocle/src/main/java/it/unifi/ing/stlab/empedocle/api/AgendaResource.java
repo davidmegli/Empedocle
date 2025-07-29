@@ -3,19 +3,16 @@ package it.unifi.ing.stlab.empedocle.api;
 import it.unifi.ing.stlab.empedocle.api.dto.AgendaDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.AgendaMapper;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.model.Agenda;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
+import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
-import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionTypeFactory;
 
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-import javax.ejb.EJB;
-
-// OpenAPI / Swagger
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -31,6 +28,9 @@ public class AgendaResource {
     @EJB
     private AgendaDao agendaDao;
 
+    @EJB
+    private MeasurementSessionTypeDao measurementSessionTypeDao;
+
     @GET
     @Path("/{id}")
     @Operation(summary = "Get agenda by ID", description = "Returns a single agenda given its ID.")
@@ -45,7 +45,6 @@ public class AgendaResource {
         if (agenda == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
         return Response.ok(AgendaMapper.toDto(agenda)).build();
     }
 
@@ -55,10 +54,17 @@ public class AgendaResource {
             content = @Content(schema = @Schema(implementation = AgendaDTO.class)))
     public Response create(@Parameter(description = "DTO representing the agenda to create", required = true)
                            AgendaDTO dto) {
+        MeasurementSessionType mst = measurementSessionTypeDao.findById(dto.measurementSessionTypeId);
+        if (mst == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("MeasurementSessionType not found for id: " + dto.measurementSessionTypeId)
+                    .build();
+        }
+
         Agenda agenda = AgendaFactory.createAgenda();
-        MeasurementSessionType mst = MeasurementSessionTypeFactory.createMeasurementSessionType();
         AgendaMapper.updateEntity(agenda, dto, mst);
         agendaDao.save(agenda);
+
         return Response.status(Response.Status.CREATED)
                 .entity(AgendaMapper.toDto(agenda))
                 .build();
@@ -80,7 +86,14 @@ public class AgendaResource {
         if (agenda == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+
         MeasurementSessionType mst = agenda.getMeasurementSessionType();
+        if (mst == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("MeasurementSessionType not found for id: " + dto.measurementSessionTypeId)
+                    .build();
+        }
+
         AgendaMapper.updateEntity(agenda, dto, mst);
         agendaDao.update(agenda);
         return Response.ok(AgendaMapper.toDto(agenda)).build();
@@ -102,6 +115,7 @@ public class AgendaResource {
         agendaDao.delete(id);
         return Response.noContent().build();
     }
+
     @GET
     @Path("/test")
     public Response test() {

@@ -11,7 +11,7 @@ import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionQueryBuilder;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
 
-import jakarta.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -32,10 +32,10 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MeasurementSessionResource {
 
-    @Inject
+    @EJB
     private MeasurementSessionDao measurementSessionDao;
 
-    @Inject
+    @EJB
     private MeasurementSessionTypeDao measurementSessionTypeDao;
 
     @GET

@@ -5,7 +5,7 @@ import it.unifi.ing.stlab.empedocle.api.dto.StaffDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.StaffMapper;
 import it.unifi.ing.stlab.empedocle.model.Staff;
 
-import jakarta.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

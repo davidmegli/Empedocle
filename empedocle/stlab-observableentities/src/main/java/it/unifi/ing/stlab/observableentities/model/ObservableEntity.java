@@ -12,12 +12,18 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table( name = "observable_entity" )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+		name = "entity_type",
+		discriminatorType = DiscriminatorType.STRING
+)
 public abstract class ObservableEntity
 			<T extends ObservableEntity<T, A, I, F>,
 			A extends ObservableEntityAction<T, A, ?,?>,

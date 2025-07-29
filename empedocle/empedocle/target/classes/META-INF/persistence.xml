@@ -20,8 +20,6 @@
 		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementSplitAction</class>
 		<class>it.unifi.ing.stlab.woodelements.model.actions.WoodElementDeleteAction</class>
 		<class>it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier</class>
-		<class>it.unifi.ing.stlab.woodelements.dao.WoodElementDao</class>
-		<class>it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean</class>
 		<class>it.unifi.ing.stlab.woodelements.factory.WoodElementFactory</class>
 		<class>it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory</class>
 		<class>it.unifi.ing.stlab.woodelements.manager.WoodElementManager</class>

@@ -8,7 +8,7 @@ import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 
-import jakarta.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,7 +27,7 @@ import java.util.UUID;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServiceResource {
 
-    @Inject
+    @EJB
     private ServiceDao serviceDao;
 
     @GET

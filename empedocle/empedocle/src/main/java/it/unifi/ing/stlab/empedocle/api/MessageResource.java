@@ -7,7 +7,7 @@ import it.unifi.ing.stlab.empedocle.model.messages.Message;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 
-import jakarta.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,7 +27,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MessageResource {
 
-    @Inject
+    @EJB
     private MessageDao messageDao;
 
     @GET

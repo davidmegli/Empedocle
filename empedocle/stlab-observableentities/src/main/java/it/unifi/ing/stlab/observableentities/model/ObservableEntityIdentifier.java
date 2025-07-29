@@ -3,19 +3,15 @@ package it.unifi.ing.stlab.observableentities.model;
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Version;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
+@Table( name = "observable_entity_identifier" )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+		name = "entity_type",
+		discriminatorType = DiscriminatorType.STRING
+)
 public abstract class ObservableEntityIdentifier implements Persistable {
 
 	protected PersistableImpl persistable;
