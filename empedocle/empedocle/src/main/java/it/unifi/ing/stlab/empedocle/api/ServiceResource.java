@@ -3,6 +3,7 @@ package it.unifi.ing.stlab.empedocle.api;
 import it.unifi.ing.stlab.empedocle.api.dto.ServiceDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.ServiceMapper;
 import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
+import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.model.health.Service;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
@@ -29,6 +30,9 @@ public class ServiceResource {
 
     @EJB
     private ServiceDao serviceDao;
+
+    @EJB
+    private AgendaDao agendaDao;
 
     @GET
     @Path("/{id}")
@@ -57,9 +61,14 @@ public class ServiceResource {
             @Parameter(description = "DTO representing the service to be created", required = true)
             ServiceDTO dto) {
 
-        Service entity = ServiceFactory.createService();
-        Agenda agenda = AgendaFactory.createAgenda();
+        Agenda agenda = agendaDao.findById(dto.agendaId);
+        if (agenda == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Agenda with ID " + dto.agendaId + " not found")
+                    .build();
+        }
 
+        Service entity = ServiceFactory.createService();
         ServiceMapper.updateEntity(entity, dto, agenda);
 
         return Response.status(Response.Status.CREATED)

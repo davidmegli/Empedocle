@@ -4,14 +4,15 @@ import it.unifi.ing.stlab.empedocle.api.dto.MessageDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.MessageMapper;
 import it.unifi.ing.stlab.empedocle.dao.messages.MessageDao;
 import it.unifi.ing.stlab.empedocle.model.messages.Message;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
-import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
+import it.unifi.ing.stlab.empedocle.factory.MessageFactory;
+
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import java.util.UUID;
 
 // OpenAPI
@@ -29,6 +30,9 @@ public class MessageResource {
 
     @EJB
     private MessageDao messageDao;
+
+    @EJB
+    private ObservableEntityDao observableEntityDao;
 
     @GET
     @Path("/{id}")
@@ -51,19 +55,24 @@ public class MessageResource {
     }
 
     @POST
-    @Operation(summary = "Create a new message", description = "Creates a new message and associates it with an observable entity.")
-    @APIResponse(responseCode = "201", description = "Message created",
-            content = @Content(schema = @Schema(implementation = MessageDTO.class)))
+    @Operation(summary = "Create a new message", description = "Creates a new message and associates it with an existing observable entity.")
+    @APIResponses({
+            @APIResponse(responseCode = "201", description = "Message created",
+                    content = @Content(schema = @Schema(implementation = MessageDTO.class))),
+            @APIResponse(responseCode = "400", description = "Invalid observable entity ID")
+    })
     public Response create(
             @Parameter(description = "DTO representing the message to create", required = true)
             MessageDTO dto) {
 
-        Message message = new Message(UUID.randomUUID().toString());
-        WoodElementManager manager = new WoodElementManager();
+        ObservableEntity observable = observableEntityDao.findById(dto.observableEntityId);
+        if (observable == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("ObservableEntity with ID " + dto.observableEntityId + " not found")
+                    .build();
+        }
 
-        ObservableEntity observable = manager.getFactory().create();
-        observable.setId(dto.observableEntityId);
-
+        Message message = MessageFactory.createMessage();
         MessageMapper.updateEntity(message, dto, observable);
         messageDao.save(message);
 

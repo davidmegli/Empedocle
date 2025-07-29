@@ -2,14 +2,17 @@ package it.unifi.ing.stlab.empedocle.api;
 
 import it.unifi.ing.stlab.empedocle.api.dto.MeasurementSessionDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.MeasurementSessionMapper;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
 import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
 import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionTypeFactory;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionQueryBuilder;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
-import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
+
+import it.unifi.ing.stlab.empedocle.dao.health.SurveyScheduleDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionQueryBuilder;
+
+import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -38,6 +41,9 @@ public class MeasurementSessionResource {
     @EJB
     private MeasurementSessionTypeDao measurementSessionTypeDao;
 
+    @EJB
+    private SurveyScheduleDao surveyScheduleDao;
+
     @GET
     @Path("/{id}")
     @Operation(summary = "Get a measurement session by ID", description = "Returns the measurement session identified by the given ID.")
@@ -64,11 +70,22 @@ public class MeasurementSessionResource {
     public Response create(
             @Parameter(description = "DTO with the data to create the measurement session", required = true)
             MeasurementSessionDTO dto) {
+        SurveySchedule schedule = null;//surveyScheduleDao.findById(dto.surveyScheduleId);
+        if (schedule == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("SurveySchedule with ID " + dto.surveyScheduleId + " not found")
+                    .build();
+        }
 
-        MeasurementSession entity = new MeasurementSession(UUID.randomUUID().toString());
+        // Recupero MeasurementSessionType
+        MeasurementSessionType type = measurementSessionTypeDao.findById(dto.typeId);
+        if (type == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("MeasurementSessionType with ID " + dto.typeId + " not found")
+                    .build();
+        }
 
-        SurveySchedule schedule = SurveyScheduleFactory.createSurveySchedule();
-        MeasurementSessionType type = MeasurementSessionTypeFactory.createMeasurementSessionType();
+        MeasurementSession entity = MeasurementSessionFactory.createMeasurementSession();
 
         MeasurementSessionMapper.updateEntity(entity, dto, schedule, type, null);
         measurementSessionDao.save(entity);

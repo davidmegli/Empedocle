@@ -33,7 +33,6 @@ public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction
 	private String note;
 
 
-
 	//constructors
 	public WoodElement( String uuid ) {
 		super(uuid);

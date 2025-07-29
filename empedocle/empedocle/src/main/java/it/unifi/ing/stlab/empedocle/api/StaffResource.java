@@ -1,9 +1,17 @@
 package it.unifi.ing.stlab.empedocle.api;
 
 import it.unifi.ing.stlab.empedocle.dao.staff.StaffDao;
+import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
+import it.unifi.ing.stlab.reflection.dao.types.PhenomenonDao;
+import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.empedocle.api.dto.StaffDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.StaffMapper;
 import it.unifi.ing.stlab.empedocle.model.Staff;
+import it.unifi.ing.stlab.empedocle.factory.StaffFactory;
+import it.unifi.ing.stlab.users.model.User;
+import it.unifi.ing.stlab.reflection.model.types.Phenomenon;
+import it.unifi.ing.stlab.empedocle.model.Agenda;
+
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -26,6 +34,13 @@ public class StaffResource {
 
     @EJB
     private StaffDao staffDao;
+    @EJB
+    private AgendaDao agendaDao;
+    @EJB
+    private PhenomenonDao phenomenonDao;
+    @EJB
+    private UserDao userDao;
+
 
     @GET
     @Path("/{id}")
@@ -55,13 +70,47 @@ public class StaffResource {
             @Parameter(description = "DTO representing the staff to be created", required = true)
             StaffDTO dto) {
 
-        Staff entity = StaffMapper.toEntity(dto);
-        staffDao.save(entity);
+        Staff staff = StaffFactory.createStaff();
+
+        // Recupera entità esistenti
+        if (dto.userId != null) {
+            User user = userDao.findById(dto.userId);
+            staff.setUser(user);
+        }
+
+        if (dto.phenomenonUuid != null) {
+            Phenomenon phenomenon = phenomenonDao.findByUuid(dto.phenomenonUuid);
+            staff.setPhenomenon(phenomenon);
+        }
+
+        if (dto.defaultAgendaId != null) {
+            Agenda defaultAgenda = agendaDao.findById(dto.defaultAgendaId);
+            staff.setDefaultAgenda(defaultAgenda);
+        }
+
+        if (dto.agendaIds != null) {
+            dto.agendaIds.forEach(id -> {
+                Agenda agenda = agendaDao.findById(id);
+                staff.addAgenda(agenda);
+            });
+        }
+
+        if (dto.favoriteAgendaIds != null) {
+            dto.favoriteAgendaIds.forEach(id -> {
+                Agenda agenda = agendaDao.findById(id);
+                staff.addFavoriteAgenda(agenda);
+            });
+        }
+
+        staff.setNumber(dto.number);
+
+        staffDao.save(staff);
 
         return Response.status(Response.Status.CREATED)
-                .entity(StaffMapper.toDto(entity))
+                .entity(StaffMapper.toDto(staff))
                 .build();
     }
+
 
     @PUT
     @Path("/{id}")

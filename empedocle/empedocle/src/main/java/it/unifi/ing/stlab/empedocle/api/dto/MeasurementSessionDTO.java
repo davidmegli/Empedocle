@@ -9,7 +9,6 @@ public class MeasurementSessionDTO {
     public String status;
     public Boolean wasDone;
     public Date lastUpdate;
-
     public Long surveyScheduleId;
     public Long typeId;
     public Long authorId;

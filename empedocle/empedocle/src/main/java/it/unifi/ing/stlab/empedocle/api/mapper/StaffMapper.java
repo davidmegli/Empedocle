@@ -27,7 +27,7 @@ public class StaffMapper {
         }
 
         if (entity.getPhenomenon() != null) {
-            dto.phenomenonId = entity.getPhenomenon().getId();
+            dto.phenomenonUuid = entity.getPhenomenon().getUuid();
             dto.phenomenonName = entity.getPhenomenon().getName();
         }
 
@@ -45,46 +45,6 @@ public class StaffMapper {
 
         return dto;
     }
-    public static Staff toEntity(StaffDTO dto) {
-        if (dto == null) return null;
-
-        Staff entity = StaffFactory.createStaff();
-        entity.setNumber(dto.number);
-
-        if (dto.userId != null) {
-//        TODO: sistemare autenticazione User
-//        User user = new User();
-//        user.setUserid(dto.username); // opzionale
-            entity.setUser(null);
-        }
-
-        if (dto.phenomenonId != null) {
-            Phenomenon phenomenon = PhenomenonFactory.createPhenomenon();
-            phenomenon.setName(dto.phenomenonName); // opzionale
-            entity.setPhenomenon(phenomenon);
-        }
-
-        if (dto.defaultAgendaId != null) {
-            Agenda defaultAgenda = AgendaFactory.createAgenda();
-            entity.setDefaultAgenda(defaultAgenda);
-        }
-
-        if (dto.agendaIds != null) {
-            dto.agendaIds.forEach(id -> {
-                Agenda agenda = AgendaFactory.createAgenda();
-                entity.addAgenda(agenda);
-            });
-        }
-
-        if (dto.favoriteAgendaIds != null) {
-            dto.favoriteAgendaIds.forEach(id -> {
-                Agenda agenda = AgendaFactory.createAgenda();
-                entity.addFavoriteAgenda(agenda);
-            });
-        }
-
-        return entity;
-    }
 
     public static void updateEntity(Staff entity, StaffDTO dto) {
         if (entity == null || dto == null) return;
@@ -98,7 +58,7 @@ public class StaffMapper {
             entity.setUser(null);
         }
 
-        if (dto.phenomenonId != null) {
+        if (dto.phenomenonUuid != null) {
             Phenomenon phenomenon = PhenomenonFactory.createPhenomenon();
             phenomenon.setName(dto.phenomenonName);
             entity.setPhenomenon(phenomenon);

@@ -5,11 +5,15 @@ import it.unifi.ing.stlab.empedocle.api.mapper.SurveyScheduleMapper;
 import it.unifi.ing.stlab.empedocle.dao.health.SurveyScheduleDao;
 import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
 import it.unifi.ing.stlab.empedocle.model.health.Service;
+import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
 import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
+import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
+import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -32,6 +36,12 @@ public class SurveyScheduleResource {
 
     @EJB
     private SurveyScheduleDao surveyScheduleDao;
+    @EJB
+    private ObservableEntityDao observableEntityDao;
+    @EJB
+    private AgendaDao agendaDao;
+    @EJB
+    private ServiceDao serviceDao;
 
     @GET
     @Path("/{id}")
@@ -74,15 +84,21 @@ public class SurveyScheduleResource {
     public Response create(
             @Parameter(description = "DTO representing the SurveySchedule to be created", required = true)
             SurveyScheduleDTO dto) {
+        Agenda agenda = agendaDao.findById(dto.agendaId);
+        if (agenda == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Agenda with ID " + dto.agendaId + " not found")
+                    .build();
+        }
+        ObservableEntity observableEntity = observableEntityDao.findById(dto.observableEntityId);
+        if (observableEntity == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Observable Entity with ID " + dto.observableEntityId + " not found")
+                    .build();
+        }
 
-        SurveySchedule entity = new SurveySchedule(UUID.randomUUID().toString());
-
-        Agenda agenda = AgendaFactory.createAgenda();
-
-        WoodElementManager manager = new WoodElementManager();
-        ObservableEntity observableEntity = manager.getFactory().create();
-
-        Set<Service> services = buildServicesFromIds(dto.serviceIds);
+        SurveySchedule entity = SurveyScheduleFactory.createSurveySchedule();
+        Set<Service> services = findServicesFromIds(dto.serviceIds);
 
         SurveyScheduleMapper.updateEntity(entity, dto, agenda, observableEntity, services);
         surveyScheduleDao.update(entity);
@@ -139,6 +155,13 @@ public class SurveyScheduleResource {
         if (ids == null) return Collections.emptySet();
         return ids.stream().map(id -> {
             Service s = ServiceFactory.createService();
+            return s;
+        }).collect(Collectors.toSet());
+    }
+    private Set<Service> findServicesFromIds(Set<Long> ids) {
+        if (ids == null) return Collections.emptySet();
+        return ids.stream().map(id -> {
+            Service s = serviceDao.findById(id);
             return s;
         }).collect(Collectors.toSet());
     }
