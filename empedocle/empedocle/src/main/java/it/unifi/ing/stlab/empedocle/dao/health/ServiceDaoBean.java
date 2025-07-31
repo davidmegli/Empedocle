@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 //TODO test
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+//@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class ServiceDaoBean implements ServiceDao {
 
 	@PersistenceContext
@@ -51,4 +51,10 @@ public class ServiceDaoBean implements ServiceDao {
 		
 		return (Service)results.get( 0 );
 	}
+	@Override
+	public void save(Service service){entityManager.persist(service);}
+	@Override
+	public void update(Service service){entityManager.merge(service);}
+	@Override
+	public void delete(Long id){entityManager.remove( findById(id) );}
 }

@@ -7,11 +7,10 @@ import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.empedocle.api.dto.StaffDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.StaffMapper;
 import it.unifi.ing.stlab.empedocle.model.Staff;
-import it.unifi.ing.stlab.empedocle.factory.StaffFactory;
+import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.reflection.model.types.Phenomenon;
-import it.unifi.ing.stlab.empedocle.model.Agenda;
-
+import it.unifi.ing.stlab.empedocle.factory.StaffFactory;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -25,22 +24,15 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.ejb.EJB;
-
 @Path("/staff")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class StaffResource {
 
-    @EJB
-    private StaffDao staffDao;
-    @EJB
-    private AgendaDao agendaDao;
-    @EJB
-    private PhenomenonDao phenomenonDao;
-    @EJB
-    private UserDao userDao;
-
+    @EJB private StaffDao staffDao;
+    @EJB private AgendaDao agendaDao;
+    @EJB private PhenomenonDao phenomenonDao;
+    @EJB private UserDao userDao;
 
     @GET
     @Path("/{id}")
@@ -50,29 +42,20 @@ public class StaffResource {
                     content = @Content(schema = @Schema(implementation = StaffDTO.class))),
             @APIResponse(responseCode = "404", description = "Staff not found")
     })
-    public Response findById(
-            @Parameter(description = "ID of the staff member", required = true)
-            @PathParam("id") Long id) {
-
+    public Response findById(@PathParam("id") Long id) {
         Staff staff = staffDao.fetchById(id);
         if (staff == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
         return Response.ok(StaffMapper.toDto(staff)).build();
     }
 
     @POST
-    @Operation(summary = "Create a new staff member", description = "Creates and persists a new staff member.")
-    @APIResponse(responseCode = "201", description = "Staff created",
-            content = @Content(schema = @Schema(implementation = StaffDTO.class)))
-    public Response create(
-            @Parameter(description = "DTO representing the staff to be created", required = true)
-            StaffDTO dto) {
-
+    @Operation(summary = "Create a new staff member")
+    @APIResponse(responseCode = "201", description = "Staff created")
+    public Response create(StaffDTO dto) {
         Staff staff = StaffFactory.createStaff();
 
-        // Recupera entità esistenti
         if (dto.userId != null) {
             User user = userDao.findById(dto.userId);
             staff.setUser(user);
@@ -111,44 +94,64 @@ public class StaffResource {
                 .build();
     }
 
-
     @PUT
     @Path("/{id}")
-    @Operation(summary = "Update an existing staff member", description = "Updates the staff member identified by the given ID.")
+    @Operation(summary = "Update an existing staff member")
     @APIResponses({
-            @APIResponse(responseCode = "200", description = "Staff updated",
-                    content = @Content(schema = @Schema(implementation = StaffDTO.class))),
+            @APIResponse(responseCode = "200", description = "Staff updated"),
             @APIResponse(responseCode = "404", description = "Staff not found")
     })
-    public Response update(
-            @Parameter(description = "ID of the staff to update", required = true)
-            @PathParam("id") Long id,
-            @Parameter(description = "DTO with updated staff data", required = true)
-            StaffDTO dto) {
-
-        Staff entity = staffDao.findById(id);
-        if (entity == null) {
+    public Response update(@PathParam("id") Long id, StaffDTO dto) {
+        Staff staff = staffDao.findById(id);
+        if (staff == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        StaffMapper.updateEntity(entity, dto);
-        staffDao.update(entity);
+        StaffMapper.updateEntity(staff, dto);
 
-        return Response.ok(StaffMapper.toDto(entity)).build();
+        if (dto.userId != null) {
+            User user = userDao.findById(dto.userId);
+            staff.setUser(user);
+        }
+
+        if (dto.phenomenonUuid != null) {
+            Phenomenon phenomenon = phenomenonDao.findByUuid(dto.phenomenonUuid);
+            staff.setPhenomenon(phenomenon);
+        }
+
+        if (dto.defaultAgendaId != null) {
+            Agenda defaultAgenda = agendaDao.findById(dto.defaultAgendaId);
+            staff.setDefaultAgenda(defaultAgenda);
+        }
+
+        if (dto.agendaIds != null) {
+            dto.agendaIds.forEach(idAgenda -> {
+                Agenda agenda = agendaDao.findById(idAgenda);
+                staff.addAgenda(agenda);
+            });
+        }
+
+        if (dto.favoriteAgendaIds != null) {
+            dto.favoriteAgendaIds.forEach(idAgenda -> {
+                Agenda agenda = agendaDao.findById(idAgenda);
+                staff.addFavoriteAgenda(agenda);
+            });
+        }
+
+        staffDao.update(staff);
+
+        return Response.ok(StaffMapper.toDto(staff)).build();
     }
 
     @DELETE
     @Path("/{id}")
-    @Operation(summary = "Delete a staff member", description = "Deletes the staff member identified by the given ID if no foreign key constraints exist.")
+    @Operation(summary = "Delete a staff member")
     @APIResponses({
             @APIResponse(responseCode = "204", description = "Staff deleted"),
-            @APIResponse(responseCode = "400", description = "Deletion not allowed due to existing references"),
+            @APIResponse(responseCode = "400", description = "Deletion not allowed"),
             @APIResponse(responseCode = "404", description = "Staff not found")
     })
-    public Response delete(
-            @Parameter(description = "ID of the staff to delete", required = true)
-            @PathParam("id") Long id) {
-
+    public Response delete(@PathParam("id") Long id) {
         Staff staff = staffDao.findById(id);
         if (staff == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

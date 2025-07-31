@@ -101,7 +101,7 @@ public class SurveyScheduleResource {
         Set<Service> services = findServicesFromIds(dto.serviceIds);
 
         SurveyScheduleMapper.updateEntity(entity, dto, agenda, observableEntity, services);
-        surveyScheduleDao.update(entity);
+        surveyScheduleDao.save(entity);
 
         return Response.status(Response.Status.CREATED)
                 .entity(SurveyScheduleMapper.toDto(entity))

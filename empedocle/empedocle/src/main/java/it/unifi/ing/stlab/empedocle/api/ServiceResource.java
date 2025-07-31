@@ -70,7 +70,7 @@ public class ServiceResource {
 
         Service entity = ServiceFactory.createService();
         ServiceMapper.updateEntity(entity, dto, agenda);
-
+        serviceDao.update(entity);
         return Response.status(Response.Status.CREATED)
                 .entity(ServiceMapper.toDto(entity))
                 .build();
@@ -97,7 +97,23 @@ public class ServiceResource {
 
         Agenda agenda = entity.getAgenda();
         ServiceMapper.updateEntity(entity, dto, agenda);
-
+        serviceDao.update(entity);
         return Response.ok(ServiceMapper.toDto(entity)).build();
+    }
+    @DELETE
+    @Path("/{id}")
+    @Operation(summary = "Delete a service", description = "Deletes the service identified by the given ID.")
+    @APIResponses({
+            @APIResponse(responseCode = "204", description = "Service deleted successfully"),
+            @APIResponse(responseCode = "404", description = "Service not found")
+    })
+    public Response delete(@Parameter(description = "ID of the service to delete", required = true)
+                           @PathParam("id") Long id) {
+        Service entity = serviceDao.findById(id);
+        if (entity == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        serviceDao.delete(id);
+        return Response.noContent().build();
     }
 }
