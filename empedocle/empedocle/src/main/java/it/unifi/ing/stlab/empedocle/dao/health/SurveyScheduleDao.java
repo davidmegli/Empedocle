@@ -11,5 +11,6 @@ import java.util.Set;
 public interface SurveyScheduleDao {
 	
 	List<SurveySchedule> findByObservableEntities(Set<ObservableEntity> observableEntities);
+	SurveySchedule findById(Long id);
 	void update(SurveySchedule a);
 }

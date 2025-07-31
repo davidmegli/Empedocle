@@ -30,6 +30,10 @@ public class SurveyScheduleDaoBean implements SurveyScheduleDao {
 					" where a.observableEntity in :observableEntities " )
 				.setParameter( "observableEntities", observableEntities ).getResultList();
 	}
+	@Override
+	public SurveySchedule findById(Long id){
+		return entityManager.find(SurveySchedule.class, id);
+	}
 	
 	@Override
 	public void update( SurveySchedule target ) {

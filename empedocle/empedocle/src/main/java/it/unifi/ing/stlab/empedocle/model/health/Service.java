@@ -77,7 +77,7 @@ public class Service implements Persistable {
 	}
 	
 	
-	@ManyToOne( cascade = { CascadeType.PERSIST })
+	@ManyToOne( cascade = { CascadeType.MERGE })
 	@JoinColumn( name = "agenda_id" )
 	public Agenda getAgenda() {
 		return agenda;

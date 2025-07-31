@@ -11,10 +11,10 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-@TransactionAttribute
+//@TransactionAttribute
 public class StaffDaoBean implements StaffDao {
 
-	@PersistenceContext()
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override

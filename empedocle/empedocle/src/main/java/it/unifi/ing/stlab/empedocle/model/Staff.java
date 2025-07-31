@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -150,8 +151,8 @@ public class Staff implements Persistable {
 	
 		return result;
 	}
-	
-	@ManyToMany
+
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name = "favorite_agendas",
 	    joinColumns = { @JoinColumn( name = "staff_id", referencedColumnName="id" ) },

@@ -23,12 +23,10 @@ public class StaffMapper {
 
         if (entity.getUser() != null) {
             dto.userId = entity.getUser().getId();
-            dto.username = entity.getUser().getUserid();
         }
 
         if (entity.getPhenomenon() != null) {
             dto.phenomenonUuid = entity.getPhenomenon().getUuid();
-            dto.phenomenonName = entity.getPhenomenon().getName();
         }
 
         if (entity.getPhenomenon() != null) {
@@ -48,42 +46,8 @@ public class StaffMapper {
 
     public static void updateEntity(Staff entity, StaffDTO dto) {
         if (entity == null || dto == null) return;
-
         entity.setNumber(dto.number);
 
-        if (dto.userId != null) {
-//        TODO: sistemare autenticazione User
-//        User user = new User();
-//        user.setUserid(dto.username);
-            entity.setUser(null);
-        }
-
-        if (dto.phenomenonUuid != null) {
-            Phenomenon phenomenon = PhenomenonFactory.createPhenomenon();
-            phenomenon.setName(dto.phenomenonName);
-            entity.setPhenomenon(phenomenon);
-        }
-
-        if (dto.defaultAgendaId != null) {
-            Agenda defaultAgenda = AgendaFactory.createAgenda();
-            entity.setDefaultAgenda(defaultAgenda);
-        }
-
-        entity.clearAgendas();
-        if (dto.agendaIds != null) {
-            dto.agendaIds.forEach(id -> {
-                Agenda agenda = AgendaFactory.createAgenda();
-                entity.addAgenda(agenda);
-            });
-        }
-
-        entity.clearFavoriteAgendas();
-        if (dto.favoriteAgendaIds != null) {
-            dto.favoriteAgendaIds.forEach(id -> {
-                Agenda agenda = AgendaFactory.createAgenda();
-                entity.addFavoriteAgenda(agenda);
-            });
-        }
     }
 
 }

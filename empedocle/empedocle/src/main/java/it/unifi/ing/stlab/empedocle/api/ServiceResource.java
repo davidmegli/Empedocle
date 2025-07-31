@@ -70,7 +70,8 @@ public class ServiceResource {
 
         Service entity = ServiceFactory.createService();
         ServiceMapper.updateEntity(entity, dto, agenda);
-        serviceDao.update(entity);
+        serviceDao.save(entity);
+
         return Response.status(Response.Status.CREATED)
                 .entity(ServiceMapper.toDto(entity))
                 .build();

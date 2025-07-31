@@ -8,7 +8,6 @@ public class ServiceDTO {
     public String description;
     public String internalCode;
     public Long agendaId;
-
     public ServiceDTO() {
     }
 

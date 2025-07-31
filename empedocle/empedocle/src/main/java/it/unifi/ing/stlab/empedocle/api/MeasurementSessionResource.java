@@ -70,7 +70,7 @@ public class MeasurementSessionResource {
     public Response create(
             @Parameter(description = "DTO with the data to create the measurement session", required = true)
             MeasurementSessionDTO dto) {
-        SurveySchedule schedule = null;//surveyScheduleDao.findById(dto.surveyScheduleId);
+        SurveySchedule schedule = surveyScheduleDao.findById(dto.surveyScheduleId);
         if (schedule == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("SurveySchedule with ID " + dto.surveyScheduleId + " not found")
@@ -88,7 +88,7 @@ public class MeasurementSessionResource {
         MeasurementSession entity = MeasurementSessionFactory.createMeasurementSession();
 
         MeasurementSessionMapper.updateEntity(entity, dto, schedule, type, null);
-        measurementSessionDao.save(entity);
+        measurementSessionDao.update(entity);
 
         return Response.status(Response.Status.CREATED).entity(MeasurementSessionMapper.toDto(entity)).build();
     }

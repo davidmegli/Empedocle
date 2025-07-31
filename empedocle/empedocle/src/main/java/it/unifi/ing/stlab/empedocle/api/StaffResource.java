@@ -85,9 +85,8 @@ public class StaffResource {
             });
         }
 
-        staff.setNumber(dto.number);
-
-        staffDao.save(staff);
+        StaffMapper.updateEntity(staff, dto);
+        staffDao.update(staff);
 
         return Response.status(Response.Status.CREATED)
                 .entity(StaffMapper.toDto(staff))
