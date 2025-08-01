@@ -6,18 +6,19 @@ import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import java.util.UUID;
 
 public abstract class ObservableEntityFactory
-		<T extends ObservableEntity<T, ?, ?, ?>, I extends ObservableEntityIdentifier> {
+		<T extends ObservableEntity<T, ?, I, ?>, I extends ObservableEntityIdentifier> {
 
 	public T create() {
 		T entity = createConcreteEntity();
 		entity.setUuid(generateUuid());
-		entity.init(); // logica comune
+		entity.init();
+		I id = createIdentifier();
+		entity.setIdentifier(id);
 		return entity;
 	}
 	public I createIdentifier(){
 		I identifier = createConcreteIdentifier();
 		identifier.setUuid(generateUuid());
-		//identifier.init(); // logica  TODO:capire se aggiure metodo a Identifier o no
 		return identifier;
 	};
 

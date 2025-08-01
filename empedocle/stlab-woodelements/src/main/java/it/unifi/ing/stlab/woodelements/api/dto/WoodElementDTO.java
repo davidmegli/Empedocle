@@ -10,11 +10,12 @@ public class WoodElementDTO {
     public String placeOfOrigin;
     public String externalElementId;
     public String note;
+    public String identifierCode;
 
     public WoodElementDTO() {
     }
 
-    public WoodElementDTO(Long id, WoodElementType type, String specie, int age, String placeOfOrigin, String externalElementId, String note) {
+    public WoodElementDTO(Long id, WoodElementType type, String specie, int age, String placeOfOrigin, String externalElementId, String note, String identifierCode) {
         this.id = id;
         this.type = type;
         this.specie = specie;
@@ -22,6 +23,7 @@ public class WoodElementDTO {
         this.placeOfOrigin = placeOfOrigin;
         this.externalElementId = externalElementId;
         this.note = note;
+        this.identifierCode = identifierCode;
     }
 
     public Long getId() {
@@ -79,4 +81,8 @@ public class WoodElementDTO {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public String getIdentifierCode(){return identifierCode;}
+
+    public void setIdentifierCode(String identifierCode){this.identifierCode = identifierCode;}
 }

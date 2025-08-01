@@ -12,7 +12,7 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 
 public abstract class ObservableEntityManager
-	<		T extends ObservableEntity<T, A, ?, ?>,
+	<		T extends ObservableEntity<T, A, I, F>,
 			A extends ObservableEntityAction<T,A, User, Time>,
 			F extends ObservableEntityFactory<T,I>,
 			I extends ObservableEntityIdentifier>

@@ -15,6 +15,7 @@ public class WoodElementMapper {
         dto.placeOfOrigin = element.getPlaceOfOrigin();
         dto.externalElementId = element.getExternalElementId();
         dto.note = element.getNote();
+        dto.identifierCode= element.getIdentifier().getCode();
         return dto;
     }
 
@@ -25,6 +26,7 @@ public class WoodElementMapper {
         element.setPlaceOfOrigin(dto.placeOfOrigin);
         element.setExternalElementId(dto.externalElementId);
         element.setNote(dto.note);
+        element.getIdentifier().setCode(dto.identifierCode);
     }
 
     public static WoodElement toEntity(WoodElementDTO dto) {
