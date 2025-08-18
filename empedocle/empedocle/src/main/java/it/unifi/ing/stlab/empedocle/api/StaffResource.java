@@ -86,10 +86,10 @@ public class StaffResource {
         }
 
         StaffMapper.updateEntity(staff, dto);
-        staffDao.update(staff);
+        Staff saved = staffDao.save(staff);
 
         return Response.status(Response.Status.CREATED)
-                .entity(StaffMapper.toDto(staff))
+                .entity(StaffMapper.toDto(saved))
                 .build();
     }
 

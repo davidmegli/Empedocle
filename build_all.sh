@@ -12,11 +12,11 @@ BASE_DIR="$(pwd)"
 #echo "Building stlab-observableentities..."
 #cd "$BASE_DIR/empedocle/stlab-observableentities" || exit
 #mvn clean install -DskipTests
-
-# Compilazione di stlab-woodelements
-echo "Building stlab-woodelements..."
-cd "$BASE_DIR/empedocle/stlab-woodelements" || exit
-mvn clean install -DskipTests
+#
+## Compilazione di stlab-woodelements
+#echo "Building stlab-woodelements..."
+#cd "$BASE_DIR/empedocle/stlab-woodelements" || exit
+#mvn clean install -DskipTests
 
 # Compilazione di empedocle
 echo "Building empedocle..."

@@ -102,14 +102,12 @@ public class StaffDaoBean implements StaffDao {
 			throw new RuntimeException( "More than one result from StaffDAO for username = " + username );
 		}
 	}
-
-	public void save( Staff target ) {
-		entityManager.persist( target );
-		entityManager.flush();
+	@Override
+	public Staff save( Staff target ) {
+		return entityManager.merge( target );
 	}
-
+	@Override
 	public void update( Staff target ) {
-
 		entityManager.merge( target );
 	}
 

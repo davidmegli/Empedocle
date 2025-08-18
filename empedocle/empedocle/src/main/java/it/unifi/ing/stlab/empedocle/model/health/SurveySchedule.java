@@ -112,7 +112,7 @@ public class SurveySchedule implements Persistable {
 	}
 	
 	
-	@ManyToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST } )
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST } )
 	@JoinTable(
 		name = "survey_schedule_services",
 	    joinColumns = { @JoinColumn( name = "survey_schedule_id", referencedColumnName="id" ) },

@@ -350,9 +350,9 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 	public void update( MeasurementSession e ) {
 		entityManager.merge(e);
 	}
-	
-	public void save( MeasurementSession e ) {
-		entityManager.persist(e);
+	@Override
+	public MeasurementSession save( MeasurementSession e ) {
+		return entityManager.merge(e);
 	}
 
 	@Override
@@ -430,5 +430,9 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 			entityManager.remove( measurementSession );
 		}
 
+	}
+	@Override
+	public void delete(Long id){
+		entityManager.remove( findById(id) );
 	}
 }

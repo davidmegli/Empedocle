@@ -12,5 +12,7 @@ public interface SurveyScheduleDao {
 	
 	List<SurveySchedule> findByObservableEntities(Set<ObservableEntity> observableEntities);
 	SurveySchedule findById(Long id);
-	void update(SurveySchedule a);
+	void update(SurveySchedule surveySchedule);
+	SurveySchedule save(SurveySchedule surveySchedule);
+	void delete(Long id);
 }

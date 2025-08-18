@@ -36,8 +36,9 @@ public interface MeasurementSessionDao {
 	boolean hasPermission(Long measurementSessionId, Long qualificationId, MeasurementSessionOperation operation);
 	
 	void update(MeasurementSession e);
-	void save(MeasurementSession e);
+	MeasurementSession save(MeasurementSession e);
 	void deleteById(Long id) ;
+	void delete(Long id);
 	
 	Fact resume(Fact f, ObservableEntity p);
 }

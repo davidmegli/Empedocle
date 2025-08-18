@@ -63,7 +63,7 @@ public class AgendaResource {
 
         Agenda agenda = AgendaFactory.createAgenda();
         AgendaMapper.updateEntity(agenda, dto, mst);
-        agendaDao.update(agenda);
+        agendaDao.save(agenda);
 
         return Response.status(Response.Status.CREATED)
                 .entity(AgendaMapper.toDto(agenda))

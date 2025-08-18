@@ -18,7 +18,7 @@ public interface StaffDao {
 	Staff fetchById(Long id);
 	Staff fetchByUsername(String username);
 
-	void save(Staff staff);
+	Staff save(Staff staff);
 	void update(Staff staff);
 	void delete(Long id);
 

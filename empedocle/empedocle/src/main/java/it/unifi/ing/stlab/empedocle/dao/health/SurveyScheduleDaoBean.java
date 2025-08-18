@@ -39,4 +39,12 @@ public class SurveyScheduleDaoBean implements SurveyScheduleDao {
 	public void update( SurveySchedule target ) {
 		entityManager.merge( target );
 	}
+	@Override
+	public SurveySchedule save(SurveySchedule surveySchedule){
+		return entityManager.merge(surveySchedule);
+	}
+	@Override
+	public void delete( Long id ) {
+		entityManager.remove( findById( id ) );
+	}
 }

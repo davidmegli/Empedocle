@@ -61,7 +61,7 @@ public class SurveyScheduleResource {
             @Parameter(description = "The ID of the SurveySchedule", required = true)
             @PathParam("id") Long id) {
 
-        SurveySchedule entity = findById(id);
+        SurveySchedule entity = surveyScheduleDao.findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -101,10 +101,10 @@ public class SurveyScheduleResource {
         Set<Service> services = findServicesFromIds(dto.serviceIds);
 
         SurveyScheduleMapper.updateEntity(entity, dto, agenda, observableEntity, services);
-        surveyScheduleDao.update(entity);
+        SurveySchedule saved = surveyScheduleDao.save(entity);
 
         return Response.status(Response.Status.CREATED)
-                .entity(SurveyScheduleMapper.toDto(entity))
+                .entity(SurveyScheduleMapper.toDto(saved))
                 .build();
     }
 
@@ -128,29 +128,50 @@ public class SurveyScheduleResource {
             @Parameter(description = "Updated SurveySchedule data", required = true)
             SurveyScheduleDTO dto) {
 
-        SurveySchedule entity = findById(id);
+        SurveySchedule entity = surveyScheduleDao.findById(id);
         if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
         Agenda agenda = entity.getAgenda();
         ObservableEntity observableEntity = entity.getObservableEntity();
-        Set<Service> services = buildServicesFromIds(dto.serviceIds);
+        Set<Service> services = findServicesFromIds(dto.serviceIds);
 
         SurveyScheduleMapper.updateEntity(entity, dto, agenda, observableEntity, services);
         surveyScheduleDao.update(entity);
 
         return Response.ok(SurveyScheduleMapper.toDto(entity)).build();
     }
+    @DELETE
+    @Path("/{id}")
+    @Operation(
+            summary = "Delete an existing SurveySchedule",
+            description = "Deletes a SurveySchedule entity by its ID."
+    )
+    @APIResponses(value = {
+            @APIResponse(responseCode = "204", description = "SurveySchedule successfully deleted"),
+            @APIResponse(responseCode = "404", description = "SurveySchedule not found")
+    })
+    public Response delete(
+            @Parameter(description = "The ID of the SurveySchedule to delete", required = true)
+            @PathParam("id") Long id) {
+
+        // Trova l'entità esistente
+        SurveySchedule entity = surveyScheduleDao.findById(id);
+        if (entity == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        // Rimuove l'entità dal database
+        surveyScheduleDao.delete(id);
+
+        // Restituisce 204 No Content
+        return Response.noContent().build();
+    }
 
     //
     // Helpers
     //
-    private SurveySchedule findById(Long id) {
-        Set<SurveySchedule> all = new HashSet<>(surveyScheduleDao.findByObservableEntities(Collections.emptySet()));
-        return all.stream().filter(s -> Objects.equals(s.getId(), id)).findFirst().orElse(null);
-    }
-
     private Set<Service> buildServicesFromIds(Set<Long> ids) {
         if (ids == null) return Collections.emptySet();
         return ids.stream().map(id -> {

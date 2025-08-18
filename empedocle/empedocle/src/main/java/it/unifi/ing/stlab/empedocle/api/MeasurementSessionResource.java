@@ -88,9 +88,9 @@ public class MeasurementSessionResource {
         MeasurementSession entity = MeasurementSessionFactory.createMeasurementSession();
 
         MeasurementSessionMapper.updateEntity(entity, dto, schedule, type, null);
-        measurementSessionDao.update(entity);
+        MeasurementSession saved = measurementSessionDao.save(entity);
 
-        return Response.status(Response.Status.CREATED).entity(MeasurementSessionMapper.toDto(entity)).build();
+        return Response.status(Response.Status.CREATED).entity(MeasurementSessionMapper.toDto(saved)).build();
     }
 
     @PUT
@@ -135,7 +135,7 @@ public class MeasurementSessionResource {
         if (ms == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        measurementSessionDao.deleteById(id);
+        measurementSessionDao.delete(id);
         return Response.noContent().build();
     }
 }
