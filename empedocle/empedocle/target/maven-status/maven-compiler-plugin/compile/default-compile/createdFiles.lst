@@ -16,6 +16,7 @@ it/unifi/ing/stlab/empedocle/api/StaffResource.class
 it/unifi/ing/stlab/empedocle/dao/health/SurveyScheduleDao.class
 it/unifi/ing/stlab/empedocle/api/mapper/SurveyScheduleMapper.class
 it/unifi/ing/stlab/empedocle/api/mapper/StaffMapper.class
+it/unifi/ing/stlab/empedocle/api/dto/FactDTO.class
 it/unifi/ing/stlab/empedocle/model/health/ViewerUse.class
 it/unifi/ing/stlab/empedocle/presentation/SelectionBean.class
 it/unifi/ing/stlab/empedocle/factory/health/ServiceFactory.class
@@ -23,6 +24,7 @@ it/unifi/ing/stlab/empedocle/model/health/MeasurementSessionOperation.class
 it/unifi/ing/stlab/empedocle/EmpedocleApplication.class
 it/unifi/ing/stlab/empedocle/dao/health/MeasurementSessionDao.class
 it/unifi/ing/stlab/empedocle/dao/messages/MessageQueryBuilder.class
+it/unifi/ing/stlab/empedocle/api/FactController.class
 it/unifi/ing/stlab/empedocle/api/dto/MeasurementSessionDTO.class
 it/unifi/ing/stlab/empedocle/dao/staff/StaffDaoBean.class
 it/unifi/ing/stlab/empedocle/dao/agendas/AgendaDaoBean.class
@@ -39,6 +41,7 @@ it/unifi/ing/stlab/empedocle/factory/StaffFactory.class
 it/unifi/ing/stlab/empedocle/factory/health/ViewerUseFactory.class
 it/unifi/ing/stlab/empedocle/api/AgendaResource.class
 it/unifi/ing/stlab/empedocle/model/messages/Message.class
+it/unifi/ing/stlab/empedocle/api/mapper/FactMapper.class
 it/unifi/ing/stlab/empedocle/factory/MessageFactory.class
 it/unifi/ing/stlab/empedocle/api/dto/SurveyScheduleDTO.class
 it/unifi/ing/stlab/empedocle/dao/staff/StaffDao.class

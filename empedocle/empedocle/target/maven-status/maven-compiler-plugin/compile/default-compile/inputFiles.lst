@@ -8,6 +8,7 @@
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/services/handlers/SOAPLoggingHandler.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/SurveyScheduleFactory.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/dao/health/MeasurementSessionDaoBean.java
+/home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/api/FactController.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/dao/messages/MessageDaoBean.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/api/dto/ServiceDTO.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/security/LoginBean.java
@@ -21,6 +22,7 @@
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/scripts/reconciliator/OfflineObservableEntityReconciliator.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/factory/health/AuthorizationFactory.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/dao/health/ServiceDao.java
+/home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/api/mapper/FactMapper.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/auth/jwt/JWTService.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/Authorization.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/api/mapper/StaffMapper.java
@@ -51,6 +53,7 @@
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/presentation/SelectionBean.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/dao/health/MeasurementSessionQueryBuilder.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/auth/api/AuthResource.java
+/home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/api/dto/FactDTO.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/model/health/MeasurementSessionStatus.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/dao/health/MeasurementSessionTypeDaoBean.java
 /home/sara/IdeaProjects/Empedocle/empedocle/empedocle/src/main/java/it/unifi/ing/stlab/empedocle/security/LoggedUser.java

@@ -14,6 +14,7 @@ import it.unifi.ing.stlab.empedocle.api.MessageResource;
 import it.unifi.ing.stlab.empedocle.api.ServiceResource;
 import it.unifi.ing.stlab.empedocle.api.StaffResource;
 import it.unifi.ing.stlab.empedocle.api.SurveyScheduleResource;
+import it.unifi.ing.stlab.empedocle.api.FactController;
 
 @ApplicationPath("/api")
 public class EmpedocleApplication extends Application {
@@ -29,6 +30,8 @@ public class EmpedocleApplication extends Application {
         classes.add(ServiceResource.class);
         classes.add(StaffResource.class);
         classes.add(SurveyScheduleResource.class);
+
+        classes.add(FactController.class);
 
         return classes;
     }
