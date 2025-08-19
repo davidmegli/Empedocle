@@ -123,17 +123,23 @@ public class StaffResource {
             staff.setDefaultAgenda(defaultAgenda);
         }
 
+        staff.clearAgendas();
         if (dto.agendaIds != null) {
             dto.agendaIds.forEach(idAgenda -> {
                 Agenda agenda = agendaDao.findById(idAgenda);
-                staff.addAgenda(agenda);
+                if (agenda != null) {
+                    staff.addAgenda(agenda);
+                }
             });
         }
 
+        staff.clearFavoriteAgendas();
         if (dto.favoriteAgendaIds != null) {
             dto.favoriteAgendaIds.forEach(idAgenda -> {
                 Agenda agenda = agendaDao.findById(idAgenda);
-                staff.addFavoriteAgenda(agenda);
+                if (agenda != null) {
+                    staff.addFavoriteAgenda(agenda);
+                }
             });
         }
 
@@ -141,6 +147,7 @@ public class StaffResource {
 
         return Response.ok(StaffMapper.toDto(staff)).build();
     }
+
 
     @DELETE
     @Path("/{id}")

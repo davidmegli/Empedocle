@@ -86,7 +86,7 @@ public class Staff implements Persistable {
 		this.user = user;
 	}
 	
-	@ManyToOne( cascade = { CascadeType.ALL } )
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn( name = "phen_id" )
 	public Phenomenon getPhenomenon() {
 		return phenomenon;

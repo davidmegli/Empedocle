@@ -36,8 +36,8 @@ public class StaffDaoBean implements StaffDao {
 
 	@Override
 	public Staff findById( Long id ) {
-		List<Staff> results = entityManager.createQuery( 
-				"select s from Staff s" 
+		List<Staff> results = entityManager.createQuery(
+				"select s from Staff s"
 					+ " where s.id = :id", Staff.class )
 				.setParameter( "id", id )
 				.getResultList();
@@ -110,9 +110,9 @@ public class StaffDaoBean implements StaffDao {
 	public void update( Staff target ) {
 		entityManager.merge( target );
 	}
-
+	@Override
 	public void delete( Long id ) {
-		entityManager.remove( findById( id ) );
+		entityManager.remove( fetchById( id ) );
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class StaffDaoBean implements StaffDao {
 				.isEmpty();
         //TODO: riguardare ObservableEntityAction
 		Boolean observableEntityActions = !entityManager.createQuery(
-				"select pa from ObservableEntityAction pa" 
+				"select pa from WoodElementAction pa"
 					+ " where pa.author = :user" )
 				.setParameter( "user", s.getUser() )
 				.setMaxResults( 1 )

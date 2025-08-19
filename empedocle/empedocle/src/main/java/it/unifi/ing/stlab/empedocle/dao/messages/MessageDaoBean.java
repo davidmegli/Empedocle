@@ -57,12 +57,14 @@ public class MessageDaoBean implements MessageDao {
 		
 		return (Message)results.get( 0 );
 	}
-	
+	@Override
 	public void update(Message target) {
 		entityManager.merge(target);
 	}
-	
+	@Override
 	public void save(Message target) {
 		entityManager.persist(target);
 	}
+	@Override
+	public void delete(Long id){entityManager.remove(findById(id));}
 }

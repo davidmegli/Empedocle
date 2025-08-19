@@ -16,4 +16,5 @@ public interface MessageDao {
 
 	void update(Message target);
 	void save(Message target);
+	void delete(Long id);
 }

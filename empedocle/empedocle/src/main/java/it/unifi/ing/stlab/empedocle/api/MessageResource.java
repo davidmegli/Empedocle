@@ -106,4 +106,21 @@ public class MessageResource {
 
         return Response.ok(MessageMapper.toDto(message)).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Operation(summary="Delete message", description= "Deleted the message identified by the given ID")
+    @APIResponses({
+            @APIResponse(responseCode = "204", description = "Message deleted successfully"),
+            @APIResponse(responseCode = "404", description = "Message not found")
+    })
+    public Response delete(@Parameter(description = "ID of the message to delete", required = true)
+                           @PathParam("id") Long id) {
+        Message message= messageDao.findById(id);
+        if (message == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        messageDao.delete(id);
+        return Response.noContent().build();
+    }
 }
