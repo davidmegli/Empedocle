@@ -71,6 +71,7 @@ public class FactDaoBean implements FactDao {
 			" from FactImpl f " +
 			"  join f.ancestors aa " +
 			"  left join fetch f.before " +
+			"  left join fetch f.after " +
 			"  left join fetch f.children " +
 			"  left join fetch f.origin " +
 			" where aa.id = :id" ).setParameter( "id", id ).getResultList();
@@ -80,7 +81,7 @@ public class FactDaoBean implements FactDao {
 		
 		return result;
 	}
-	
+
 	// FIXME is there a more elegant solution?
 	@Override
 	public Fact fetchForStatistics(Long id) {

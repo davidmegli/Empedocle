@@ -231,7 +231,7 @@ public abstract class FactImpl
 	}
 
 	
-	@OneToMany( mappedBy="source", fetch=FetchType.LAZY, cascade = { CascadeType.REMOVE } )
+	@OneToMany( mappedBy="source", fetch=FetchType.EAGER, cascade = { CascadeType.REMOVE } )
 	protected Set<FactLinkImpl> getChildren() {
 		return compactEntity.getChildren();
 	}
