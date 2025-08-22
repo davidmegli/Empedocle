@@ -49,6 +49,7 @@ public class WoodElementResource {
     }
 
     @POST
+    @Secured
     @Operation(summary = "Create a new wood element", description = "Creates and persists a new wood element")
     @APIResponse(responseCode = "201", description = "Wood element successfully created")
     public Response create(WoodElementDTO dto, @Context UriInfo uriInfo) {
@@ -67,6 +68,7 @@ public class WoodElementResource {
     }
 
     @PUT
+    @Secured
     @Path("/{id}")
     @Operation(summary = "Update a wood element", description = "Updates the properties of an existing wood element")
     @APIResponse(responseCode = "200", description = "Wood element successfully updated")
@@ -86,6 +88,7 @@ public class WoodElementResource {
     }
 
     @DELETE
+    @Secured
     @Path("/{id}")
     @Operation(summary = "Delete a wood element", description = "Deletes a wood element by its external ID")
     @APIResponse(responseCode = "204", description = "Wood element successfully deleted")

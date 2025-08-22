@@ -29,6 +29,7 @@ public class WoodElementActionResource {
     private WoodElementActionFactory actionFactory;
 
     @POST
+    @Secured
     @Path("/split")
     @Operation(summary = "Split a wood element", description = "Splits a source wood element into two target elements")
     @APIResponse(responseCode = "200", description = "Split action completed successfully")
@@ -46,6 +47,7 @@ public class WoodElementActionResource {
     }
 
     @POST
+    @Secured
     @Path("/merge")
     @Operation(summary = "Merge two wood elements", description = "Merges two source wood elements into a single target element")
     @APIResponse(responseCode = "200", description = "Merge action completed successfully")
@@ -63,6 +65,7 @@ public class WoodElementActionResource {
     }
 
     @POST
+    @Secured
     @Path("/modify")
     @Operation(summary = "Modify a wood element", description = "Modifies a source wood element and applies changes to a target")
     @APIResponse(responseCode = "200", description = "Modify action completed successfully")
@@ -78,6 +81,7 @@ public class WoodElementActionResource {
     }
 
     @POST
+    @Secured
     @Path("/delete")
     @Operation(summary = "Delete a wood element via action", description = "Performs a delete action on a wood element")
     @APIResponse(responseCode = "200", description = "Delete action completed successfully")
