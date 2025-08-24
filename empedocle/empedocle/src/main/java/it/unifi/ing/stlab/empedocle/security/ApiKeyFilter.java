@@ -13,7 +13,7 @@ import java.io.IOException;
 @Priority(Priorities.AUTHENTICATION)
 public class ApiKeyFilter implements ContainerRequestFilter {
 
-    // Hardcoded API Key (per adesso)
+    // API Key. TODO: Replace with a secure method of storing and retrieving the API key.
     private static final String API_KEY = "MY_SECRET_TOKEN_123";
 
     private static final String HEADER_NAME = "X-API-KEY";
