@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.security;
+package it.unifi.ing.stlab.security;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;

@@ -13,14 +13,12 @@ it\unifi\ing\stlab\empedocle\dao\staff\StaffDaoBean.class
 it\unifi\ing\stlab\empedocle\model\health\Authorization.class
 it\unifi\ing\stlab\empedocle\dao\health\MeasurementSessionTypeDao.class
 it\unifi\ing\stlab\empedocle\model\health\MeasurementSessionOperation.class
-it\unifi\ing\stlab\empedocle\security\Secured.class
 it\unifi\ing\stlab\empedocle\security\LoginBean.class
 it\unifi\ing\stlab\empedocle\model\messages\Message.class
 it\unifi\ing\stlab\empedocle\services\handlers\SOAPLoggingHandler.class
 it\unifi\ing\stlab\empedocle\dao\health\MeasurementSessionDaoBean.class
 it\unifi\ing\stlab\empedocle\api\dto\StaffDTO.class
 it\unifi\ing\stlab\empedocle\model\Staff.class
-it\unifi\ing\stlab\empedocle\security\ApiKeyFilter.class
 it\unifi\ing\stlab\empedocle\factory\health\MeasurementSessionFactory.class
 it\unifi\ing\stlab\empedocle\model\health\MeasurementSessionStatus.class
 it\unifi\ing\stlab\empedocle\presentation\SelectionBean.class

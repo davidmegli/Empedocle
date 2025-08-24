@@ -33,9 +33,6 @@ public class EmpedocleApplication extends Application {
 
         classes.add(FactController.class);
 
-        classes.add(it.unifi.ing.stlab.empedocle.security.ApiKeyFilter.class);
-
-
         return classes;
     }
 }

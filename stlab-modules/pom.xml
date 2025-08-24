@@ -15,6 +15,7 @@
 		<module>stlab-reflection-dsl</module>
 		<module>stlab-reflection-impl</module>
 		<module>stlab-reflection-lite</module>
+		<module>stlab-security</module>
 		<module>stlab-test</module>
 		<module>stlab-users</module>
 		<module>stlab-view</module>

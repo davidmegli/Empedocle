@@ -7,7 +7,7 @@ import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
 import it.unifi.ing.stlab.woodelements.model.actions.*;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
-import it.unifi.ing.stlab.empedocle.security.Secured;
+import it.unifi.ing.stlab.security.Secured;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

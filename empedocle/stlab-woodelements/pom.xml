@@ -26,6 +26,11 @@
 		</dependency>
 		<dependency>
 			<groupId>it.unifi.ing.stlab</groupId>
+			<artifactId>stlab-security</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>it.unifi.ing.stlab</groupId>
 			<artifactId>stlab-users</artifactId>
 			<version>1.0.0</version>
 		</dependency>

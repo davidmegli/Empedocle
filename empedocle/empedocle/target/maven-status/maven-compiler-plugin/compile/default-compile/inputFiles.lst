@@ -5,7 +5,6 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\api\dto\MeasurementSessionDTO.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\api\dto\MessageDTO.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\staff\StaffDao.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\security\Secured.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\api\dto\SurveyScheduleDTO.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\factory\AgendaFactory.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\agendas\AgendaDao.java
@@ -63,7 +62,6 @@ C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\api\ServiceResource.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\api\SurveyScheduleResource.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\MeasurementSessionDetails.java
-C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\security\ApiKeyFilter.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\messages\MessageDaoBean.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\dao\health\MeasurementSessionDaoBean.java
 C:\Users\verba\IdeaProjects\Empedocle\empedocle\empedocle\src\main\java\it\unifi\ing\stlab\empedocle\model\health\Service.java
