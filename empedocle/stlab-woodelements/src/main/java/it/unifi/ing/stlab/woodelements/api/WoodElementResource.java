@@ -8,6 +8,7 @@ import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
+import it.unifi.ing.stlab.empedocle.security.Secured;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
