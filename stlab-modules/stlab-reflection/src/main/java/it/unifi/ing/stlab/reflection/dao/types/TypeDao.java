@@ -27,6 +27,7 @@ public interface TypeDao {
 
 	void save(Type t);
 	void delete(Long id);
+	void update(Type t);
 	
 	void assignToLink(TypeLink link, Type type);
 

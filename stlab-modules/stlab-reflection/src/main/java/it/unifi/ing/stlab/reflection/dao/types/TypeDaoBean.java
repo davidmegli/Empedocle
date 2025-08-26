@@ -232,6 +232,13 @@ public class TypeDaoBean implements TypeDao {
 	}
 
 	@Override
+	public void update(Type type){
+		if(type == null)
+			throw new IllegalArgumentException("parametro null");
+		entityManager.merge( type );
+	}
+
+	@Override
 	public boolean checkForeignKeyRestrictions( Long id ) {
 		Boolean checkMeasurementSessionType = !entityManager.createQuery( 
 			"select t from Type t, MeasurementSessionType et " 

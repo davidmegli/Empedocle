@@ -15,6 +15,7 @@ import it.unifi.ing.stlab.empedocle.api.ServiceResource;
 import it.unifi.ing.stlab.empedocle.api.StaffResource;
 import it.unifi.ing.stlab.empedocle.api.SurveyScheduleResource;
 import it.unifi.ing.stlab.empedocle.api.FactController;
+import it.unifi.ing.stlab.empedocle.api.TypeController;
 
 @ApplicationPath("/api")
 public class EmpedocleApplication extends Application {
@@ -32,6 +33,7 @@ public class EmpedocleApplication extends Application {
         classes.add(SurveyScheduleResource.class);
 
         classes.add(FactController.class);
+        classes.add(TypeController.class);
 
         // Register security filter
         classes.add(it.unifi.ing.stlab.security.ApiKeyFilter.class);
