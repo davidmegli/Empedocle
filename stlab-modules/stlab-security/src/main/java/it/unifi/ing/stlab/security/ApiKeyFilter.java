@@ -30,4 +30,7 @@ public class ApiKeyFilter implements ContainerRequestFilter {
             );
         }
     }
+    private boolean isValid(String apiKey) {
+        return this.API_KEY.equals(apiKey);
+    }
 }
