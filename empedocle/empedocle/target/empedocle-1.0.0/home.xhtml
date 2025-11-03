@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="body">
+		<div class="page-header">
+			<div class="row-fluid">
+				<div class="span9">		
+					<h1 style="font-size: 60px; padding-bottom: 10px">
+						Empedocle
+					</h1>
+					<p class="lead">The application for the collection of experimental and specialist data</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row-fluid">
+			<div class="span8" style="margin-left: 20px;">
+
+				<div class="welcome small-lead">
+					<p>Welcome!
+					With Empedocle it is possible to:</p>
+					<h:form>
+						<ul style="position:relative; left:50px;">
+							<li>Consult observableentity' <h:commandLink action="observableentity-list" actionListener="#{headerMenu.endConversation}" value="Clinical Records" /> </li>
+							<li>View the <h:commandLink action="measurementSession-list" actionListener="#{headerMenu.endConversation}" value="Scheduled Visits" /> for the day</li>
+						</ul>
+					</h:form>
+				</div>
+ 			</div>	
+
+ 			<h:panelGroup styleClass="span3 home-rem-box pull-right" layout="block"
+ 				rendered="#{measurementSessionReminder.nSuspended gt 0 or measurementSessionReminder.nRunning gt 0}">
+ 				<h:form>
+	 				Dear <strong>#{loggedUser.username}</strong>,
+	 				<ul class="unstyled home-rem-lst">
+	 					<li>
+	 						<h:panelGroup styleClass="alert" rendered="#{measurementSessionReminder.nSuspended gt 0}">
+	 							hai <strong>#{measurementSessionReminder.nSuspended}</strong> visite
+	 							<strong><h:commandLink value="SOSPESE" action="#{measurementSessionReminder.listSuspendedMeasurementSessions}" /></strong>
+	 						</h:panelGroup>
+	 					</li>
+	 					<li>
+	 						<h:panelGroup styleClass="alert" rendered="#{measurementSessionReminder.nRunning gt 0}">
+	 							You have <strong>#{measurementSessionReminder.nRunning}</strong> visits
+	 							<strong><h:commandLink value="IN EROGAZIONE" action="#{measurementSessionReminder.listRunningMeasurementSessions}" /></strong>
+	 						</h:panelGroup>
+	 					</li>
+	 				</ul>
+ 				</h:form>
+ 			</h:panelGroup>
+ 		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>
