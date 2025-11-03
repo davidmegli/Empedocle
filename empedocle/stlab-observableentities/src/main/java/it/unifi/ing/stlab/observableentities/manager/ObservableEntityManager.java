@@ -39,7 +39,7 @@ public abstract class ObservableEntityManager
 		this.factory = factory;
 	}
 
-	public T createObservableEntity( User author, Time time ) {
+	public T create( User author, Time time ) {
 		return init( factory.create(), author, time );
 	}
 

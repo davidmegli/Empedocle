@@ -5,9 +5,12 @@ import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
+import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
+import it.unifi.ing.stlab.users.model.time.Time;
+import java.util.Date;
 import it.unifi.ing.stlab.security.Secured;
 
 import javax.ws.rs.*;
@@ -35,6 +38,12 @@ public class WoodElementResource {
     @EJB
     private WoodElementFactory factory;
 
+    @EJB
+    private WoodElementActionFactory actionFactory;
+
+    @EJB
+    private WoodElementManager manager;
+
     @Inject // CDI bean
     private User user;
 
@@ -57,9 +66,12 @@ public class WoodElementResource {
         User author = user;
         if (author == null) throw new NotAuthorizedException("User not authenticated");
 
-        WoodElement element = factory.create();
+        WoodElement element = manager.create(null, new Time(new Date()));
         WoodElementMapper.updateEntity(element, dto);
         dao.save(element);  // Can also pass the author if necessary: dao.save(element, author);
+
+        // Create the action
+        actionFactory.createAction();
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
         builder.path(dto.id.toString());

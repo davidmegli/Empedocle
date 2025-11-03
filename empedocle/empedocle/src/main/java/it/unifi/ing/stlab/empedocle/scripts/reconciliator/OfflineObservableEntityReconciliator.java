@@ -102,7 +102,7 @@ public class OfflineObservableEntityReconciliator {
 						// slave found, master not found
 	
 						// 1. a new observable_entity with role master is created
-						master = observableEntityManager.createObservableEntity( author, time );
+						master = observableEntityManager.create( author, time );
 						update( master, rs );
 						entityManager.persist( master );
 	

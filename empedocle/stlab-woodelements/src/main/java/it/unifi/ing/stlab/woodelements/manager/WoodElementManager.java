@@ -11,8 +11,9 @@ import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityActio
 import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
+import javax.ejb.Stateless;
 
-
+@Stateless
 public class WoodElementManager extends ObservableEntityManager<
 		WoodElement,
 		WoodElementAction,
