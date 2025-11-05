@@ -103,4 +103,6 @@ public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, Woo
 	public WoodElementManager getManager(){
 		return new WoodElementManager();
 	}
+
+	public User findUser(Long id){return entityManager.find(User.class, id);}
 }

@@ -88,7 +88,7 @@ public abstract class ObservableEntity
 	}
 
 
-	@ManyToMany( fetch = FetchType.LAZY, targetEntity = ObservableEntity.class )
+	@ManyToMany( fetch = FetchType.EAGER, targetEntity = ObservableEntity.class )
 	@JoinTable(
 		name = "observable_entity_before",
 	    joinColumns = { @JoinColumn( name = "observable_entity_id", referencedColumnName="id" ) },
@@ -104,7 +104,7 @@ public abstract class ObservableEntity
 	}
 
 	
-	@ManyToMany( mappedBy = "before", fetch = FetchType.LAZY, targetEntity = ObservableEntity.class )
+	@ManyToMany( mappedBy = "before", fetch = FetchType.EAGER, targetEntity = ObservableEntity.class )
 	public Set<T> getAfter() {
 		return tracedEntity.getAfter();
 	}

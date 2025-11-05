@@ -7,6 +7,8 @@ import it.unifi.ing.stlab.woodelements.model.WoodElement.WoodElementType;
 public class WoodElementMapper {
 
     public static WoodElementDTO toDto(WoodElement element) {
+        if (element == null) return null;
+
         WoodElementDTO dto = new WoodElementDTO();
         dto.id = element.getId();
         dto.type = element.getType();
@@ -15,7 +17,9 @@ public class WoodElementMapper {
         dto.placeOfOrigin = element.getPlaceOfOrigin();
         dto.externalElementId = element.getExternalElementId();
         dto.note = element.getNote();
-        dto.identifierCode= element.getIdentifier().getCode();
+        if (element.getIdentifier() != null) {
+            dto.identifierCode = element.getIdentifier().getCode();
+        }
         return dto;
     }
 
@@ -29,9 +33,11 @@ public class WoodElementMapper {
         element.getIdentifier().setCode(dto.identifierCode);
     }
 
-    public static WoodElement toEntity(WoodElementDTO dto) {
-        WoodElement element = new WoodElement();
-        updateEntity(element, dto);
-        return element;
-    }
+//    public static WoodElement toEntity(WoodElementDTO dto) {
+//        if (dto == null) return null;
+//
+//        WoodElement element = new WoodElement();
+//        updateEntity(element, dto);
+//        return element;
+//    }
 }

@@ -17,7 +17,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,9 +43,8 @@ public class WoodElementResource {
     @EJB
     private WoodElementManager manager;
 
-    @Inject // CDI bean
-    private User user;
 
+    //TODO: autenticazione non impelmentata, author viene passato come null, se viene implementata modificare qua e in AbstractTracedEntityManager
     @GET
     @Path("/{id}")
     @Operation(summary = "Get a wood element by ID", description = "Returns a single wood element by its external ID")
@@ -63,15 +61,13 @@ public class WoodElementResource {
     @Operation(summary = "Create a new wood element", description = "Creates and persists a new wood element")
     @APIResponse(responseCode = "201", description = "Wood element successfully created")
     public Response create(WoodElementDTO dto, @Context UriInfo uriInfo) {
-        User author = user;
+        //Utente fittizio
+        User author = dao.findUser(1L);
         if (author == null) throw new NotAuthorizedException("User not authenticated");
 
-        WoodElement element = manager.create(null, new Time(new Date()));
+        WoodElement element = manager.create(author, new Time(new Date()));
         WoodElementMapper.updateEntity(element, dto);
-        dao.save(element);  // Can also pass the author if necessary: dao.save(element, author);
-
-        // Create the action
-        actionFactory.createAction();
+        dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
         builder.path(dto.id.toString());
@@ -87,14 +83,15 @@ public class WoodElementResource {
     @APIResponse(responseCode = "200", description = "Wood element successfully updated")
     @APIResponse(responseCode = "404", description = "Wood element not found")
     public Response update(@PathParam("id") Long id, WoodElementDTO dto) {
-        //User author = loggedUser.getUser();
-        User author = user;
+        User author = dao.findUser(1L);
         if (author == null) throw new NotAuthorizedException("User not authenticated");
 
         WoodElement element = dao.findById(id);
         if (element == null) throw new NotFoundException();
 
         WoodElementMapper.updateEntity(element, dto);
+        //Passare author qundo viene implementata autenticazione
+        WoodElement updated = manager.modify(author, new Time(new Date()), element);
         dao.update(element);  // author could also be passed
 
         return Response.ok(WoodElementMapper.toDto(element)).build();
@@ -107,25 +104,15 @@ public class WoodElementResource {
     @APIResponse(responseCode = "204", description = "Wood element successfully deleted")
     @APIResponse(responseCode = "404", description = "Wood element not found")
     public Response delete(@PathParam("id") Long id) {
-        User author = user;
+        //Utente fittizio
+        User author = dao.findUser(1L);
         if (author == null) throw new NotAuthorizedException("User not authenticated");
 
         WoodElement element = dao.findById(id);
         if (element == null) throw new NotFoundException();
-
+        //non è necessario chiamare manager perchè lo fa direttamente il dao
         dao.deleteById(id, author);
 
         return Response.noContent().build();
-    }
-
-    @GET
-    @Path("/test")
-    public Response test() {
-        User author = user;
-        String message = (user != null)
-                ? "Test OK - Logged in as " + user.getName()
-                : "Test OK - No user";
-
-        return Response.ok(message).build();
     }
 }

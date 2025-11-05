@@ -18,7 +18,9 @@ public abstract class AbstractTracedEntityManager
 	protected abstract AbstractActionFactory<T,A,U,H> getActionFactory();
 
 	public T modify( U author, H time, T source ) {
-		if ( author == null || time == null || source == null ) {
+		if ( /*TODO: rimuovere commenti quanto viene implementata autenticazione
+		 author == null ||*/
+				time == null || source == null ) {
 			throw new IllegalArgumentException();
 		}
 		if ( !source.isActive() ) {
@@ -31,7 +33,9 @@ public abstract class AbstractTracedEntityManager
 	}
 	
 	public T delete( U author, H time, T source ) {
-		if ( author == null || time == null || source == null )
+		if ( /*TODO: rimuovere commenti quanto viene implementata autenticazione
+		 author == null ||*/
+				time == null || source == null )
 			throw new IllegalArgumentException();
 		
 		if ( !source.isActive() )
