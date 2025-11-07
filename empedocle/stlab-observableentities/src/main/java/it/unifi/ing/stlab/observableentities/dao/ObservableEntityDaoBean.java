@@ -154,16 +154,39 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 
 
 	@Override
-	public void deleteById(Long id, User author) {
+	public T deleteById(Long id, User author) {
 		if (id != null) {
 			T entityToDelete = findById(id);
 			if (entityToDelete != null) {
 				M manager= getManager();
 				T result = manager.delete(author, new Time(new Date()), entityToDelete);
-				entityManager.persist(result);
-				flush();
+				save(result);
+				return result;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public T create(User author){
+		M manager= getManager();
+		T result = manager.create(author, new Time(new Date()));
+		return result;
+	}
+
+	@Override
+	public T modifyById(Long id, User author) {
+		if (id != null) {
+			T entityToModify = findById(id);
+			if (entityToModify != null) {
+				M manager= getManager();
+				T result = manager.modify(author, new Time(new Date()), entityToModify);
+				entityManager.persist(result);
+				entityManager.flush();
+				return result;
+			}
+		}
+		return null;
 	}
 	
 	protected void flush() {

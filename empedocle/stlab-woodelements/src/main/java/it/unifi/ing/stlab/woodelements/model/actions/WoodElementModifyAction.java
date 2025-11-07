@@ -13,7 +13,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.persistence.FetchType;
 
 //TODO: riguardare
 
@@ -52,8 +54,7 @@ public class WoodElementModifyAction
 	}
 
 
-	@ManyToOne
-	@JoinColumn( name = "target_id" )
+	@OneToOne(mappedBy = "origin", fetch = FetchType.LAZY)
 	public WoodElement getTarget() {
 		return (WoodElement) getDelegate().getTarget();
 	}

@@ -80,6 +80,7 @@ public class MeasurementSessionDaoResumeFactTest extends PersistenceTest {
 		entityManager.persist(author);
 		
 		p = observableEntityDao.getManager().getFactory().create();
+		p.getIdentifier().setCode("TEST-001");
 		entityManager.persist( p );
 		
 		measurementSession = MeasurementSessionFactory.createMeasurementSession();

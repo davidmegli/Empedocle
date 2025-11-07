@@ -115,9 +115,9 @@ public abstract class ObservableEntity
 		return tracedEntity.listAfter();
 	}
 
-	
-	@ManyToOne( fetch = FetchType.LAZY , cascade = CascadeType.PERSIST)
-	@JoinColumn( name = "origin_id" )
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "origin_id")
 	public A getOrigin() {
 		return tracedEntity.getOrigin();
 	}
@@ -125,8 +125,8 @@ public abstract class ObservableEntity
 		tracedEntity.setOrigin(origin);
 	}
 
-	
-	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+
+	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL )
 	@JoinColumn( name = "dest_id" )
 	public A getDestination() {
 		return tracedEntity.getDestination();

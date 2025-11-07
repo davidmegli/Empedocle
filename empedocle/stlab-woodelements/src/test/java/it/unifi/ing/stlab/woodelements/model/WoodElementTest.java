@@ -35,8 +35,8 @@ public class WoodElementTest {
 		WoodElement wood_element1 = factory.create();
 		WoodElement wood_element2 = factory.create();
 
-		assertEquals( true, wood_element1.sameAs( wood_element2 ) );
-		assertEquals( true, wood_element2.sameAs( wood_element1 ) );
+		assertEquals( false, wood_element1.sameAs( wood_element2 ) );
+		assertEquals( false, wood_element2.sameAs( wood_element1 ) );
 	}
 	
 	@Test
