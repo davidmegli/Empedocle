@@ -96,6 +96,8 @@ public class WoodElementResource {
 
         WoodElementMapper.updateEntity(element, dto);
 
+        dao.save(element);
+
         return Response.ok(WoodElementMapper.toDto(element)).build();
     }
 

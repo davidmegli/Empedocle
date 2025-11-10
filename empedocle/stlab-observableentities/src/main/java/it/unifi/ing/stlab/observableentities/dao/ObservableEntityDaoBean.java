@@ -149,7 +149,7 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 	@Override
 	public void update( T target ) {
 		entityManager.merge( target );
-		flush();
+		entityManager.flush();
 	}
 
 
@@ -181,8 +181,9 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 			if (entityToModify != null) {
 				M manager= getManager();
 				T result = manager.modify(author, new Time(new Date()), entityToModify);
-				entityManager.persist(result);
-				entityManager.flush();
+//				if (result.getBefore() != null) result.getBefore().clear();
+//				if (result.getAfter() != null) result.getAfter().clear();
+//				entityManager.persist(result);
 				return result;
 			}
 		}
