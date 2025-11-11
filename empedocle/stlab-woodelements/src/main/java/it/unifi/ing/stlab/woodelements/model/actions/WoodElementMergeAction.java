@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-//TODO: riguardare
-
 @Entity
 @DiscriminatorValue( "MR" )
 public class WoodElementMergeAction

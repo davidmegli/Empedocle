@@ -39,7 +39,7 @@ public class WoodElementActionResource {
         WoodElement t1 = dao.findById(dto.target1Id);
         WoodElement t2 = dao.findById(dto.target2Id);
 
-        WoodElementSplitAction action = ( WoodElementSplitAction ) actionFactory.splitAction();
+        WoodElementSplitAction action = (WoodElementSplitAction) actionFactory.splitAction();
         action.assignSource(source);
         action.assignTarget1(t1);
         action.assignTarget2(t2);
@@ -57,40 +57,10 @@ public class WoodElementActionResource {
         WoodElement s1 = dao.findById(dto.source1Id);
         WoodElement s2 = dao.findById(dto.source2Id);
 
-        WoodElementMergeAction action = ( WoodElementMergeAction ) actionFactory.mergeAction();
+        WoodElementMergeAction action = (WoodElementMergeAction) actionFactory.mergeAction();
         action.assignTarget(t);
         action.assignSource1(s1);
         action.assignSource2(s2);
-
-        return Response.ok().build();
-    }
-
-    @POST
-    @Secured
-    @Path("/modify")
-    @Operation(summary = "Modify a wood element", description = "Modifies a source wood element and applies changes to a target")
-    @APIResponse(responseCode = "200", description = "Modify action completed successfully")
-    public Response modify(ModifyActionDTO dto) {
-        WoodElement source = dao.findById(dto.sourceId);
-        WoodElement target = dao.findById(dto.targetId);
-
-        WoodElementModifyAction action = ( WoodElementModifyAction ) actionFactory.modifyAction();
-        action.assignSource(source);
-        action.assignTarget(target);
-
-        return Response.ok().build();
-    }
-
-    @POST
-    @Secured
-    @Path("/delete")
-    @Operation(summary = "Delete a wood element via action", description = "Performs a delete action on a wood element")
-    @APIResponse(responseCode = "200", description = "Delete action completed successfully")
-    public Response delete(DeleteActionDTO dto) {
-        WoodElement source = dao.findById(dto.sourceId);
-
-        WoodElementDeleteAction action = ( WoodElementDeleteAction ) actionFactory.deleteAction();
-        action.assignSource(source);
 
         return Response.ok().build();
     }

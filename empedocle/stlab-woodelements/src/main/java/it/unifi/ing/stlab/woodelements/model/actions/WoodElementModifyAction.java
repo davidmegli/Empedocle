@@ -12,8 +12,6 @@ import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityActio
 import javax.persistence.*;
 
 
-//TODO: riguardare
-
 @Entity
 @DiscriminatorValue( "MD" )
 public class WoodElementModifyAction

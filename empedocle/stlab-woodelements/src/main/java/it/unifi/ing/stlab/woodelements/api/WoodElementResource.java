@@ -42,7 +42,7 @@ public class WoodElementResource {
 
     @EJB
     private WoodElementManager manager;
-    //TODO: autenticazione non impelmentata, author fittizio in db
+    //TODO: authentication not implemented, used dummy user
     private User getAuthor() {
         User author = dao.findUser(1L);
         if (author == null)
@@ -66,8 +66,25 @@ public class WoodElementResource {
     @APIResponse(responseCode = "201", description = "Wood element successfully created")
     @APIResponse(responseCode = "401", description = "User not authorized")
     public Response create(WoodElementDTO dto, @Context UriInfo uriInfo) {
-        //dummy author
-        User author = getAuthor();
+        //Check if the identifier is not empty or already used
+        String identifierCode = dto.identifierCode;
+
+        if (identifierCode != null && !identifierCode.trim().isEmpty()) {
+            if (dao.findByIdentifier(identifierCode) != null) {
+                // The identifier code already exists
+                return Response.status(Response.Status.CONFLICT)
+                        .entity("Error: identifier code already exists.")
+                        .build();
+            }
+        } else {
+            // identifier code is null
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Error: You have to insert identifier code.")
+                    .build();
+        }
+        //If the identifier code is new proceed with the creation
+
+        User author = getAuthor(); //dummy author
 
         WoodElement element = dao.create(author);
         WoodElementMapper.updateEntity(element, dto);
@@ -88,18 +105,25 @@ public class WoodElementResource {
     @APIResponse(responseCode = "404", description = "Wood element not found")
     @APIResponse(responseCode = "401", description = "User not authorized")
     public Response update(@PathParam("id") Long id, WoodElementDTO dto) {
-        //dummy author
-        User author = getAuthor();
+        try {
+            User author = getAuthor(); //dummy author
 
-        WoodElement element = dao.modifyById(id,author);
-        if (element == null) throw new NotFoundException();
+            WoodElement element = dao.modifyById(id, author);
+            if (element == null) throw new NotFoundException();
 
-        WoodElementMapper.updateEntity(element, dto);
+            WoodElementMapper.updateEntity(element, dto);
 
-        dao.update(element);
+            dao.update(element);
 
-        return Response.ok(WoodElementMapper.toDto(element)).build();
+            return Response.ok(WoodElementMapper.toDto(element)).build();
+        } catch (IllegalArgumentException e) {
+            // return error if the entity is not active.
+            return Response.status(Response.Status.CONFLICT)
+                    .entity("Errore: Impossibile modificare un'entità non attiva.")
+                    .build();
+        }
     }
+
 
     @DELETE
     @Secured
@@ -109,12 +133,19 @@ public class WoodElementResource {
     @APIResponse(responseCode = "404", description = "Wood element not found")
     @APIResponse(responseCode = "401", description = "User not authorized")
     public Response delete(@PathParam("id") Long id) {
-        //Dummy author
-        User author = getAuthor();
+        try {
+            //Dummy author
+            User author = getAuthor();
 
-        WoodElement element = dao.deleteById(id, author);
-        if (element == null) throw new NotFoundException();
+            WoodElement element = dao.deleteById(id, author);
+            if (element == null) throw new NotFoundException();
 
-        return Response.noContent().build();
+            return Response.noContent().build();
+        } catch (IllegalArgumentException e) {
+            // Return error if the entity is not active
+            return Response.status(Response.Status.CONFLICT)
+                    .entity("Errore: Impossibile eliminare un'entità non attiva.")
+                    .build();
+        }
     }
 }
