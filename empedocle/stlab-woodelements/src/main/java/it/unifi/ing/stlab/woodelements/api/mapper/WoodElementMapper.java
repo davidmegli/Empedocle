@@ -32,12 +32,4 @@ public class WoodElementMapper {
         element.setNote(dto.note);
         element.getIdentifier().setCode(dto.identifierCode);
     }
-
-//    public static WoodElement toEntity(WoodElementDTO dto) {
-//        if (dto == null) return null;
-//
-//        WoodElement element = new WoodElement();
-//        updateEntity(element, dto);
-//        return element;
-//    }
 }

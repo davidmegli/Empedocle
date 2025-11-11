@@ -9,13 +9,8 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-import javax.persistence.FetchType;
+import javax.persistence.*;
+
 
 //TODO: riguardare
 
@@ -54,7 +49,7 @@ public class WoodElementModifyAction
 	}
 
 
-	@OneToOne(mappedBy = "origin", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "origin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public WoodElement getTarget() {
 		return (WoodElement) getDelegate().getTarget();
 	}

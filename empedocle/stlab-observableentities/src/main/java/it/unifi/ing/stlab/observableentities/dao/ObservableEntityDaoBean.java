@@ -160,7 +160,6 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 			if (entityToDelete != null) {
 				M manager= getManager();
 				T result = manager.delete(author, new Time(new Date()), entityToDelete);
-				save(result);
 				return result;
 			}
 		}
@@ -181,9 +180,6 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 			if (entityToModify != null) {
 				M manager= getManager();
 				T result = manager.modify(author, new Time(new Date()), entityToModify);
-//				if (result.getBefore() != null) result.getBefore().clear();
-//				if (result.getAfter() != null) result.getAfter().clear();
-//				entityManager.persist(result);
 				return result;
 			}
 		}
