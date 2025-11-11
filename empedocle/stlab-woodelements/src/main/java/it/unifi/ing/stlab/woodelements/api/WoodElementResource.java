@@ -104,6 +104,7 @@ public class WoodElementResource {
     @APIResponse(responseCode = "200", description = "Wood element successfully updated")
     @APIResponse(responseCode = "404", description = "Wood element not found")
     @APIResponse(responseCode = "401", description = "User not authorized")
+    @APIResponse(responseCode = "409", description = "Entity not active")
     public Response update(@PathParam("id") Long id, WoodElementDTO dto) {
         try {
             User author = getAuthor(); //dummy author
@@ -116,11 +117,17 @@ public class WoodElementResource {
             dao.update(element);
 
             return Response.ok(WoodElementMapper.toDto(element)).build();
-        } catch (IllegalArgumentException e) {
-            // return error if the entity is not active.
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("Errore: Impossibile modificare un'entità non attiva.")
-                    .build();
+        } catch (javax.ejb.EJBException e) {
+
+            Throwable cause = e.getCause();
+
+            if (cause instanceof IllegalArgumentException) {
+                return Response.status(Response.Status.CONFLICT)
+                        .entity(cause.getMessage())
+                        .build();
+            } else {
+                throw e;
+            }
         }
     }
 
@@ -132,8 +139,9 @@ public class WoodElementResource {
     @APIResponse(responseCode = "204", description = "Wood element successfully deleted")
     @APIResponse(responseCode = "404", description = "Wood element not found")
     @APIResponse(responseCode = "401", description = "User not authorized")
+    @APIResponse(responseCode = "409", description = "Entity not active")
     public Response delete(@PathParam("id") Long id) {
-        try {
+       try {
             //Dummy author
             User author = getAuthor();
 
@@ -141,11 +149,15 @@ public class WoodElementResource {
             if (element == null) throw new NotFoundException();
 
             return Response.noContent().build();
-        } catch (IllegalArgumentException e) {
-            // Return error if the entity is not active
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("Errore: Impossibile eliminare un'entità non attiva.")
-                    .build();
-        }
+        } catch (javax.ejb.EJBException e) {
+           Throwable cause = e.getCause();
+           if (cause instanceof IllegalArgumentException) {
+               return Response.status(Response.Status.CONFLICT)
+                       .entity(cause.getMessage())
+                       .build();
+           } else {
+               throw e;
+           }
+       }
     }
 }

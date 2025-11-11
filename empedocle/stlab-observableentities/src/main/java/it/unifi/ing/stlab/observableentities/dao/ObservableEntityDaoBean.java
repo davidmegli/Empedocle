@@ -158,7 +158,10 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 		if (id != null) {
 			T entityToDelete = findById(id);
 			if (entityToDelete != null) {
-				M manager= getManager();
+				if (!entityToDelete.isActive()) {
+					throw new IllegalArgumentException("Entity with id " + id + " is not active");
+				}
+				M manager = getManager();
 				T result = manager.delete(author, new Time(new Date()), entityToDelete);
 				return result;
 			}
@@ -178,6 +181,9 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 		if (id != null) {
 			T entityToModify = findById(id);
 			if (entityToModify != null) {
+				if (!entityToModify.isActive()) {
+					throw new IllegalArgumentException("Entity with id " + id + " is not active");
+				}
 				M manager= getManager();
 				T result = manager.modify(author, new Time(new Date()), entityToModify);
 				return result;
