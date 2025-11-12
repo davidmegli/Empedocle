@@ -314,8 +314,8 @@
  		<class>it.unifi.ing.stlab.empedocle.model.SurveySchedule</class>
 		<class>it.unifi.ing.stlab.empedocle.model.Authorization</class>
 		
-		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
-
+		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>
+		
 		<properties>
 			<property name="javax.persistence.validation.mode" value="none" /> 
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

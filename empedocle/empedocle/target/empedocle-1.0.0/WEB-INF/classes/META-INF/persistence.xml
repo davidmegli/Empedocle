@@ -122,6 +122,7 @@
 		<class>it.unifi.ing.stlab.factquery.model.expression.OrExpression</class>
 		<class>it.unifi.ing.stlab.factquery.model.expression.ExpressionLink</class>
 
+
 		<!--"org.hibernate.dialect.MySQL5InnoDBDialect"-->
 
         <properties>
