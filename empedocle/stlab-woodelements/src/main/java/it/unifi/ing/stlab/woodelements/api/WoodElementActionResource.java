@@ -47,21 +47,21 @@ public class WoodElementActionResource {
         return Response.ok().build();
     }
 
-    @POST
-    @Secured
-    @Path("/merge")
-    @Operation(summary = "Merge two wood elements", description = "Merges two source wood elements into a single target element")
-    @APIResponse(responseCode = "200", description = "Merge action completed successfully")
-    public Response merge(MergeActionDTO dto) {
-        WoodElement t = dao.findById(dto.targetId);
-        WoodElement s1 = dao.findById(dto.source1Id);
-        WoodElement s2 = dao.findById(dto.source2Id);
-
-        WoodElementMergeAction action = (WoodElementMergeAction) actionFactory.mergeAction();
-        action.assignTarget(t);
-        action.assignSource1(s1);
-        action.assignSource2(s2);
-
-        return Response.ok().build();
-    }
+//    @POST
+//    @Secured
+//    @Path("/merge")
+//    @Operation(summary = "Merge two wood elements", description = "Merges two source wood elements into a single target element")
+//    @APIResponse(responseCode = "200", description = "Merge action completed successfully")
+//    public Response merge(MergeActionDTO dto) {
+//        WoodElement t = dao.findById(dto.targetId);
+//        WoodElement s1 = dao.findById(dto.source1Id);
+//        WoodElement s2 = dao.findById(dto.source2Id);
+//
+//        WoodElementMergeAction action = (WoodElementMergeAction) actionFactory.mergeAction();
+//        action.assignTarget(t);
+//        action.assignSource1(s1);
+//        action.assignSource2(s2);
+//
+//        return Response.ok().build();
+//    }
 }

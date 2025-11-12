@@ -1,6 +1,7 @@
 package it.unifi.ing.stlab.woodelements.api;
 
 import it.unifi.ing.stlab.woodelements.api.dto.WoodElementDTO;
+import it.unifi.ing.stlab.woodelements.api.dto.MergeActionDTO;
 import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
 import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
@@ -159,5 +160,25 @@ public class WoodElementResource {
                throw e;
            }
        }
+    }
+    @POST
+    @Secured
+    @Path("/merge")
+    @Operation(summary = "Merge two wood elements", description = "Merges two source wood elements into a single target element")
+    @APIResponse(responseCode = "200", description = "Merge action completed successfully")
+    public Response merge(MergeActionDTO dto, @Context UriInfo uriInfo) {
+        //Dummy author
+        User author = getAuthor();
+
+        WoodElement t = dao.mergeById(dto.source1Id, dto.source2Id, author);
+        if (t == null) throw new NotFoundException();
+
+        dao.update(t);
+
+        UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+        builder.path(t.getId().toString());
+        return Response.created(builder.build())
+                .entity(WoodElementMapper.toDto(t))
+                .build();
     }
 }

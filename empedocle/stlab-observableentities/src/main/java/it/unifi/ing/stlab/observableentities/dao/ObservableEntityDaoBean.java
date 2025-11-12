@@ -191,6 +191,25 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 		}
 		return null;
 	}
+
+	public T mergeById(Long id1, Long id2, User author){
+		if (id1 != null && id2 != null){
+			T source1 = findById(id1);
+			T source2 = findById(id2);
+			if (source1 != null && source2 != null) {
+				if (!source1.isActive()) {
+					throw new IllegalArgumentException("Entity with id " + id1 + " is not active");
+				}
+				if (!source2.isActive()) {
+					throw new IllegalArgumentException("Entity with id " + id2 + " is not active");
+				}
+				M manager = getManager();
+				T result = manager.merge(author, new Time(new Date()), source1, source2);
+				return result;
+			}
+		}
+		return null;
+	}
 	
 	protected void flush() {
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));

@@ -8,11 +8,7 @@ import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue( "MR" )
@@ -63,8 +59,8 @@ public class WoodElementMergeAction
 	}
 
 
-	@ManyToOne
-	@JoinColumn( name = "target_id" )
+	@ManyToOne(cascade = CascadeType.ALL )
+	@JoinColumn( name = "target_id")
 	public WoodElement getTarget() {
 		return (WoodElement) getDelegate().getTarget();
 	}

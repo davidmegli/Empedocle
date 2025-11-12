@@ -30,6 +30,7 @@ public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>, M 
 	void save(T target);
 	void update(T target);
 	T deleteById(Long id, User author);
+	T mergeById(Long id1, Long id2, User author);
 	T create(User author);
 	T modifyById(Long id, User author);
 	User findUser(Long id);
