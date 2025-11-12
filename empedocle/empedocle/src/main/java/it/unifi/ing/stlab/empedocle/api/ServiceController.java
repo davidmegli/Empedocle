@@ -26,7 +26,7 @@ import java.util.UUID;
 @Path("/services")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ServiceResource {
+public class ServiceController {
 
     @EJB
     private ServiceDao serviceDao;

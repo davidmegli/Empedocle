@@ -23,7 +23,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Path("/agendas")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class AgendaResource {
+public class AgendaController {
 
     @EJB
     private AgendaDao agendaDao;

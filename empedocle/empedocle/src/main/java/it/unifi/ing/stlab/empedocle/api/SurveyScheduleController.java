@@ -32,7 +32,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Path("/survey-schedules")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class SurveyScheduleResource {
+public class SurveyScheduleController {
 
     @EJB
     private SurveyScheduleDao surveyScheduleDao;

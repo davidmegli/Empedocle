@@ -30,7 +30,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 @Path("/woodelements")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class WoodElementResource {
+public class WoodElementController {
 
     @EJB
     private ObservableEntityDao<WoodElement, WoodElementManager> dao;
