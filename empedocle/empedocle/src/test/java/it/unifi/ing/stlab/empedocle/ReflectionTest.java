@@ -197,21 +197,7 @@ public class ReflectionTest extends JpaTest {
 		timeTracker.stop();
 		printResult( timeTracker );
 	}
-	
-//	@Test
-	public void testSearchView() {
-		TimeTracker timeTracker = new TimeTracker( "Search-View" );
-		
-		timeTracker.start();
 
-		MeasurementSessionDetails measurementSessionDetails = measurementSessionDao.fetchById( new Long( 174350  ), new Long( 1  ), MeasurementSessionTypeContext.EDIT );
-	
-		measurementSessionDetails.getFact().accept( new ReflectionFactVisitor( new ReflectionTypeVisitor()));
-		measurementSessionDetails.getViewer().accept( new ReflectionViewerVisitor());
-
-		timeTracker.stop();
-		printResult( timeTracker );
-	}
 	
 	private void printResult( TimeTracker t) {
 		PrintWriter writer;

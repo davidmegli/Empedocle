@@ -31,8 +31,6 @@ public interface MeasurementSessionDao {
                                          Set<Agenda> agendas, int offset, int limit);
 	
 	MeasurementSessionDetails fetchById(Long measurementSessionId, Long qualificationId, MeasurementSessionTypeContext context);
-	MeasurementSessionDetails fetchByMeasurementSessionViewer(Long measurementSessionId, Long qualificationId, Long viewerId);
-
 	boolean hasPermission(Long measurementSessionId, Long qualificationId, MeasurementSessionOperation operation);
 	
 	void update(MeasurementSession e);

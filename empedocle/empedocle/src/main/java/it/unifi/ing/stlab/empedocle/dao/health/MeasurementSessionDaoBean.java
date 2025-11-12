@@ -273,75 +273,13 @@ public class MeasurementSessionDaoBean implements MeasurementSessionDao {
 		
 		// FIXME trovare soluzione più elegante?
 		// aggiunto per risolvere crash quando si stampa visita con storia passata
-		result.getFact().accept(new RecursiveResolveLazyLoadVisitor());		
-
-		// init viewer
-		for ( ViewerUse viewerUse  : result.getMeasurementSession().getType().listViewers() ) {
-			if ( viewerUse.getContext().equals( context ) &&
-				 viewerUse.getQualification().getId().equals( qualificationId )) {
-				
-				result.setViewer( viewerDao.fetchById( viewerUse.getViewer().getId() ));
-			}
-		}
+		result.getFact().accept(new RecursiveResolveLazyLoadVisitor());
 		
 		long end = System.currentTimeMillis();
 		
 		// FIXME ripulire
 		System.out.println( "TEMPO CARICAMENTO DATI:" + ( end - start ));
 		
-		
-		return result;
-	}
-	
-	@Override
-	public MeasurementSessionDetails fetchByMeasurementSessionViewer( Long measurementSessionId, Long qualificationId, Long viewerId ) {
-		MeasurementSessionDetails result = new MeasurementSessionDetails();
-
-		// init measurementSession
-		result.setMeasurementSession( findById( measurementSessionId ));
-		if ( result.getMeasurementSession() == null ) return null;
-
-		// prefetch qualifiche user
-		entityManager.createQuery("select u from User u left join fetch u.qualifications q where u = :user")
-				.setParameter("user", result.getMeasurementSession().getAuthor()).getResultList();
-		
-		// find type
-		if ( result.getMeasurementSession().getType() == null || 
-			 result.getMeasurementSession().getType().getType() == null ) return null;
-			
-		typeDao.fetchById( result.getMeasurementSession().getType().getType().getId() );
-		
-		// find fact
-		Long typeId = result.getMeasurementSession().getType().getType().getId();
-		result.setFact( factDao.findByContextId(measurementSessionId, typeId ));
-		if ( result.getFact() == null )
-			return null;
-		
-		factDao.fetchById( getId( result.getFact() ) );
-		
-		// FIXME trovare soluzione più elegante?
-		// aggiunto per risolvere crash quando si stampa visita con storia passata
-		result.getFact().accept(new RecursiveResolveLazyLoadVisitor());
-
-		//FIXME da ricontrollare e testare
-		// controllo che il viewer sia associato effettivamente con la mia qualifica
-//		int size = ((Long)entityManager.createQuery(" select count( distinct v) from ViewerUse v " +
-//									" where v.viewer.id = :viewerId " +
-//									" and v.qualification.id = :qualificationId")
-//								.setParameter("viewerId", viewerId)
-//								.setParameter("qualificationId", qualificationId)
-//								.getSingleResult()).intValue();
-		
-//		if(size != 1) return null;
-		
-		result.setViewer( viewerDao.fetchById( viewerId ));
-		
-		// pre-fetch dei services per poter leggere agenda
-		// FIXME serve ancora? adesso l'agenda è associata anche alla visita!
-		entityManager.createQuery("select a from SurveySchedule a, FactImpl f left join fetch a.services ss where f.context = a and f.id = :id")
-			.setParameter("id", getId( result.getFact() ) ).getResultList();
-		
-		if ( result.getViewer() == null ) return null;
 		
 		return result;
 	}

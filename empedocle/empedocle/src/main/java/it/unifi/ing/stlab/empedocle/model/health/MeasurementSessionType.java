@@ -31,18 +31,15 @@ public class MeasurementSessionType implements Persistable {
 	private String description;
 	private Type type;
 	private Integer timeToLive;
-	private Set<ViewerUse> viewers;
 	private Set<Authorization> authorizations;
 	
 	public MeasurementSessionType( String uuid ) {
 		persistable = new PersistableImpl( uuid );
-		viewers = new HashSet<ViewerUse>();
 		authorizations = new HashSet<Authorization>();
 		
 	}
 	protected MeasurementSessionType() {
 		persistable = new PersistableImpl();
-		viewers = new HashSet<ViewerUse>();
 		authorizations = new HashSet<Authorization>();
 
 	}
@@ -106,30 +103,7 @@ public class MeasurementSessionType implements Persistable {
 	public void setTimeToLive(Integer timeToLive) {
 		this.timeToLive = timeToLive;
 	}
-	
 
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval=true)
-	@JoinColumn(name="measurement_session_type_id", nullable=false)
-	public Set<ViewerUse> getViewers() {
-		return viewers;
-	}
-	protected void setViewers(Set<ViewerUse> measurementSessionTypeViewerQualifications) {
-		this.viewers = measurementSessionTypeViewerQualifications;
-	}
-	public Set<ViewerUse> listViewers() {
-		return Collections.unmodifiableSet( viewers );
-	}
-	public void addViewerUse(ViewerUse viewerUse ){
-		if(viewerUse == null) 	return;
-		
-		viewers.add(viewerUse);
-	}
-	public void removeViewerUse(ViewerUse viewerUse ){
-		if(viewerUse == null)
-			return;
-		
-		viewers.remove(viewerUse);
-	}
 	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval=true)
 	@JoinColumn(name="authorization_id", nullable=false)

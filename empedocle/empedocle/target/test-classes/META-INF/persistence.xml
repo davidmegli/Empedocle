@@ -108,7 +108,6 @@
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>	
 		
 		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
@@ -228,7 +227,6 @@
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
 		
 		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
@@ -349,7 +347,6 @@
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
  		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.ViewerUse</class>
 		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
 		
 		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			

@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import it.unifi.ing.stlab.woodelements.api.WoodElementResource;
-import it.unifi.ing.stlab.woodelements.api.WoodElementActionResource;
 import it.unifi.ing.stlab.empedocle.api.AgendaResource;
 import it.unifi.ing.stlab.empedocle.api.MeasurementSessionResource;
 import it.unifi.ing.stlab.empedocle.api.MessageResource;
@@ -23,8 +22,6 @@ public class EmpedocleApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(WoodElementResource.class);
-        classes.add(WoodElementActionResource.class);
-
         classes.add(AgendaResource.class);
         classes.add(MeasurementSessionResource.class);
         classes.add(MessageResource.class);

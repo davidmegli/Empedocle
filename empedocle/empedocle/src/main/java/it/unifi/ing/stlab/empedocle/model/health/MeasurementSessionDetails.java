@@ -7,7 +7,6 @@ public class MeasurementSessionDetails {
 
 	private MeasurementSession measurementSession;
 	private Fact fact;
-	private Viewer viewer;
 
 	public MeasurementSession getMeasurementSession() {
 		return measurementSession;
@@ -20,11 +19,5 @@ public class MeasurementSessionDetails {
 	}
 	public void setFact(Fact fact) {
 		this.fact = fact;
-	}
-	public Viewer getViewer() {
-		return viewer;
-	}
-	public void setViewer(Viewer viewer) {
-		this.viewer = viewer;
 	}
 }
