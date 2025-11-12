@@ -2,12 +2,12 @@ package it.unifi.ing.stlab.empedocle.api;
 
 import it.unifi.ing.stlab.empedocle.api.dto.ServiceDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.ServiceMapper;
-import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
+import it.unifi.ing.stlab.empedocle.dao.ServiceDao;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.model.health.Service;
+import it.unifi.ing.stlab.empedocle.model.Service;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
+import it.unifi.ing.stlab.empedocle.factory.ServiceFactory;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;

@@ -2,17 +2,17 @@ package it.unifi.ing.stlab.empedocle.api;
 
 import it.unifi.ing.stlab.empedocle.api.dto.MeasurementSessionDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.MeasurementSessionMapper;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
-import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionTypeFactory;
-import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSession;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSessionType;
+import it.unifi.ing.stlab.empedocle.factory.MeasurementSessionTypeFactory;
+import it.unifi.ing.stlab.empedocle.model.SurveySchedule;
 
-import it.unifi.ing.stlab.empedocle.dao.health.SurveyScheduleDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionQueryBuilder;
+import it.unifi.ing.stlab.empedocle.dao.SurveyScheduleDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionTypeDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionQueryBuilder;
 
-import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
+import it.unifi.ing.stlab.empedocle.factory.MeasurementSessionFactory;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;

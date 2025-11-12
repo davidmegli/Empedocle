@@ -1,13 +1,11 @@
 package it.unifi.ing.stlab.empedocle;
 
-//import it.unifi.ing.stlab.empedocle.actions.health.measurementSession.RecurrentFactHelper;
-//import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelper;
-//import it.unifi.ing.stlab.empedocle.actions.util.GarbageCollectorHelperBean;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionDaoBean;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDaoBean;
-import it.unifi.ing.stlab.empedocle.model.health.*;
+
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionDaoBean;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionTypeDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionTypeDaoBean;
+import it.unifi.ing.stlab.empedocle.model.*;
 import it.unifi.ing.stlab.entities.implementation.GarbageCollector;
 import it.unifi.ing.stlab.entities.implementation.JpaGarbageAction;
 import it.unifi.ing.stlab.reflection.dao.types.TypeDao;

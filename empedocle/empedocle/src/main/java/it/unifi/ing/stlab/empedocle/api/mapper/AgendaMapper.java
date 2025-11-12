@@ -2,7 +2,7 @@ package it.unifi.ing.stlab.empedocle.api.mapper;
 
 import it.unifi.ing.stlab.empedocle.api.dto.AgendaDTO;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSessionType;
 
 public class AgendaMapper {
 

@@ -1,7 +1,7 @@
 package it.unifi.ing.stlab.empedocle.api.mapper;
 
 import it.unifi.ing.stlab.empedocle.api.dto.MeasurementSessionDTO;
-import it.unifi.ing.stlab.empedocle.model.health.*;
+import it.unifi.ing.stlab.empedocle.model.*;
 import it.unifi.ing.stlab.users.model.User;
 
 public class MeasurementSessionMapper {

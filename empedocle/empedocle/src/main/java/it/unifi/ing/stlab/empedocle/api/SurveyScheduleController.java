@@ -2,17 +2,17 @@ package it.unifi.ing.stlab.empedocle.api;
 
 import it.unifi.ing.stlab.empedocle.api.dto.SurveyScheduleDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.SurveyScheduleMapper;
-import it.unifi.ing.stlab.empedocle.dao.health.SurveyScheduleDao;
-import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
-import it.unifi.ing.stlab.empedocle.model.health.Service;
-import it.unifi.ing.stlab.empedocle.dao.health.ServiceDao;
-import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
+import it.unifi.ing.stlab.empedocle.dao.SurveyScheduleDao;
+import it.unifi.ing.stlab.empedocle.model.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.model.Service;
+import it.unifi.ing.stlab.empedocle.dao.ServiceDao;
+import it.unifi.ing.stlab.empedocle.factory.ServiceFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
+import it.unifi.ing.stlab.empedocle.factory.SurveyScheduleFactory;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 
 import javax.ejb.EJB;

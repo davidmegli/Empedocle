@@ -103,30 +103,13 @@
 		
  		<class>it.unifi.ing.stlab.empedocle.model.Agenda</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>	
+ 		<class>it.unifi.ing.stlab.empedocle.model.Service</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.SurveySchedule</class>
+		<class>it.unifi.ing.stlab.empedocle.model.Authorization</class>
 		
-		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
-		
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubClassificationCode</class> 
- 		
-  		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCAnatomicalMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCTherapeuticMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCPharmacologicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>	
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class> 
+		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>
 		
  		<properties>
  			<property name="javax.persistence.validation.mode" value="none" />
@@ -222,30 +205,13 @@
 		
  		<class>it.unifi.ing.stlab.empedocle.model.Agenda</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
+ 		<class>it.unifi.ing.stlab.empedocle.model.Service</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.SurveySchedule</class>
+		<class>it.unifi.ing.stlab.empedocle.model.Authorization</class>
 		
-		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
-		
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubClassificationCode</class> 
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCAnatomicalMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCTherapeuticMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCPharmacologicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>	
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class> 
+		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>
 
 		<properties>
 			<property name="javax.persistence.validation.mode" value="none" /> 
@@ -342,31 +308,14 @@
 		
  		<class>it.unifi.ing.stlab.empedocle.model.Agenda</class> 
  		<class>it.unifi.ing.stlab.empedocle.model.Staff</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Icd9cm</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.Service</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.MeasurementSession</class>
- 		<class>it.unifi.ing.stlab.empedocle.model.health.SurveySchedule</class>
-		<class>it.unifi.ing.stlab.empedocle.model.health.Authorization</class>		
+ 		<class>it.unifi.ing.stlab.empedocle.model.Service</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSessionType</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.MeasurementSession</class>
+ 		<class>it.unifi.ing.stlab.empedocle.model.SurveySchedule</class>
+		<class>it.unifi.ing.stlab.empedocle.model.Authorization</class>
 		
 		<class>it.unifi.ing.stlab.empedocle.model.messages.Message</class>  			
-		
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubTopicCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubCategoryCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.icd9cm.ICD9CMSubClassificationCode</class> 
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCAnatomicalMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCTherapeuticMainGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCPharmacologicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubGroupCode</class> 
- 		<class>it.unifi.ing.stlab.empedocle.model.health.coding.atc.ATCChemicalSubstanceCode</class>	
- 		
-   		<class>it.unifi.ing.stlab.empedocle.model.health.drugs.DrugIndex</class> 
-		
+
 		<properties>
 			<property name="javax.persistence.validation.mode" value="none" /> 
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

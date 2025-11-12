@@ -1,15 +1,15 @@
 package it.unifi.ing.stlab.reflection.dao.facts;
 
 import static org.junit.Assert.assertEquals;
-import it.unifi.ing.stlab.empedocle.factory.health.SurveyScheduleFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.MeasurementSessionTypeFactory;
-import it.unifi.ing.stlab.empedocle.factory.health.ServiceFactory;
-import it.unifi.ing.stlab.empedocle.model.health.SurveySchedule;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSession;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionStatus;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
-import it.unifi.ing.stlab.empedocle.model.health.Service;
+import it.unifi.ing.stlab.empedocle.factory.SurveyScheduleFactory;
+import it.unifi.ing.stlab.empedocle.factory.MeasurementSessionFactory;
+import it.unifi.ing.stlab.empedocle.factory.MeasurementSessionTypeFactory;
+import it.unifi.ing.stlab.empedocle.factory.ServiceFactory;
+import it.unifi.ing.stlab.empedocle.model.SurveySchedule;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSession;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSessionStatus;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSessionType;
+import it.unifi.ing.stlab.empedocle.model.Service;
 import it.unifi.ing.stlab.reflection.factory.types.TypeFactory;
 import it.unifi.ing.stlab.reflection.impl.manager.FactManager;
 import it.unifi.ing.stlab.reflection.impl.model.facts.FactImpl;

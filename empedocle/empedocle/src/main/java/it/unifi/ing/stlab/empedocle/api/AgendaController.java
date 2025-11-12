@@ -3,10 +3,10 @@ package it.unifi.ing.stlab.empedocle.api;
 import it.unifi.ing.stlab.empedocle.api.dto.AgendaDTO;
 import it.unifi.ing.stlab.empedocle.api.mapper.AgendaMapper;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
-import it.unifi.ing.stlab.empedocle.dao.health.MeasurementSessionTypeDao;
+import it.unifi.ing.stlab.empedocle.dao.MeasurementSessionTypeDao;
 import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
-import it.unifi.ing.stlab.empedocle.model.health.MeasurementSessionType;
+import it.unifi.ing.stlab.empedocle.model.MeasurementSessionType;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;

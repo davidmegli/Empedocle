@@ -1,13 +1,12 @@
 package it.unifi.ing.stlab.empedocle.model;
 
-import it.unifi.ing.stlab.empedocle.model.MeasurementSessionType;
+import it.unifi.ing.stlab.empedocle.model.Agenda;
 import it.unifi.ing.stlab.entities.implementation.persistable.PersistableImpl;
 import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,28 +17,31 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "agendas")
-public class Agenda implements Persistable {
-	
+@Table(name = "services")
+public class Service implements Persistable {
+
 	private PersistableImpl persistable;
+	
 	private String code;
 	private String description;
-	private MeasurementSessionType measurementSessionType;
+	private Agenda agenda;
 	
-	public Agenda( String uuid ) {
+	private String internalCode;
+	
+	public Service( String uuid ) {
 		persistable = new PersistableImpl( uuid );
 	}
-	protected Agenda() {
+	protected Service() {
 		persistable = new PersistableImpl();
 	}
-	
+
 	@Id
 	@TableGenerator( 
 		name="table_gen", 
 		table="sequence_table", 
 		pkColumnName="seq_name",
 		valueColumnName="seq_count", 
-		pkColumnValue="agenda", 
+		pkColumnValue="service",
 		allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="table_gen")	
 	public Long getId() {
@@ -50,41 +52,47 @@ public class Agenda implements Persistable {
 	}
 
 	
-	
 	public String getUuid() {
 		return persistable.getUuid();
 	}
-	public void setUuid(String uuid) {
+	protected void setUuid(String uuid) {
 		persistable.setUuid(uuid);
 	}
 
 	
-	@Column( unique = true )
 	public String getCode() {
 		return code;
 	}
-	public void setCode(String codice) {
-		this.code = codice;
+	public void setCode(String code) {
+		this.code = code;
 	}
-	
 
+	
 	@Lob
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String descrizione) {
-		this.description = descrizione;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
-	@ManyToOne( fetch = FetchType.EAGER )
-	@JoinColumn( name = "measurement_session_type_id" )
-	public MeasurementSessionType getMeasurementSessionType() {
-		return measurementSessionType;
+	
+	@ManyToOne( cascade = { CascadeType.MERGE })
+	@JoinColumn( name = "agenda_id" )
+	public Agenda getAgenda() {
+		return agenda;
 	}
-	public void setMeasurementSessionType(MeasurementSessionType measurementSessionType) {
-		this.measurementSessionType = measurementSessionType;
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 	
+	@Column( name = "internal_code", unique = true )
+	public String getInternalCode() {
+		return internalCode;
+	}
+	public void setInternalCode(String internalCode) {
+		this.internalCode = internalCode;
+	}	
 	
 	//
 	// HashCode & Equals
@@ -94,13 +102,5 @@ public class Agenda implements Persistable {
 	}
 	public boolean equals(Object obj) {
 		return persistable.equals(obj);
-	}
-	
-	@Override
-	public String toString(){
-		if(this.getCode() == null && this.getDescription() == null)
-			return null;
-		else 
-			return this.getCode() + " " + this.getDescription();
 	}
 }

@@ -1,7 +1,7 @@
 package it.unifi.ing.stlab.empedocle.api.mapper;
 
 import it.unifi.ing.stlab.empedocle.api.dto.ServiceDTO;
-import it.unifi.ing.stlab.empedocle.model.health.Service;
+import it.unifi.ing.stlab.empedocle.model.Service;
 import it.unifi.ing.stlab.empedocle.model.Agenda;
 
 public class ServiceMapper {
