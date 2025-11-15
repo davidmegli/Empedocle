@@ -3,10 +3,7 @@ package it.unifi.ing.stlab.woodelements.api;
 import it.unifi.ing.stlab.woodelements.api.dto.WoodElementDTO;
 import it.unifi.ing.stlab.woodelements.api.dto.MergeActionDTO;
 import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
-import it.unifi.ing.stlab.woodelements.dao.WoodElementDaoBean;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementFactory;
-import it.unifi.ing.stlab.woodelements.factory.WoodElementActionFactory;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
 import it.unifi.ing.stlab.users.model.User;
@@ -35,14 +32,6 @@ public class WoodElementController {
     @EJB
     private ObservableEntityDao<WoodElement, WoodElementManager> dao;
 
-    @EJB
-    private WoodElementFactory factory;
-
-    @EJB
-    private WoodElementActionFactory actionFactory;
-
-    @EJB
-    private WoodElementManager manager;
     //TODO: authentication not implemented, used dummy user
     private User getAuthor() {
         User author = dao.findUser(1L);
