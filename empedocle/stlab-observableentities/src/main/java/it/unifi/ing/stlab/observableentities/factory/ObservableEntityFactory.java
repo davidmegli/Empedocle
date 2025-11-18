@@ -20,7 +20,7 @@ public abstract class ObservableEntityFactory
 		I identifier = createConcreteIdentifier();
 		identifier.setUuid(generateUuid());
 		return identifier;
-	};
+	}
 
 	protected abstract T createConcreteEntity();
 
