@@ -32,7 +32,7 @@ public class WoodElementController {
     @EJB
     private ObservableEntityDao<WoodElement, WoodElementManager> dao;
 
-    //TODO: authentication not implemented, used dummy user
+    //TODO: authentication by user not implemented
     private User getAuthor() {
         User author = dao.findUser(1L);
         if (author == null)
@@ -55,6 +55,7 @@ public class WoodElementController {
     @Operation(summary = "Create a new wood element", description = "Creates and persists a new wood element")
     @APIResponse(responseCode = "201", description = "Wood element successfully created")
     @APIResponse(responseCode = "401", description = "User not authorized")
+    @APIResponse(responseCode = "409", description = "Identifier already exists")
     public Response create(WoodElementDTO dto, @Context UriInfo uriInfo) {
         //Check if the identifier is not empty or already used
         String identifierCode = dto.identifierCode;

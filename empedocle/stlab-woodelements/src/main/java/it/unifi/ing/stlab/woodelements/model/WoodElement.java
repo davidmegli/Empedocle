@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table( name = "wood_elements" )
 public class WoodElement extends ObservableEntity<WoodElement, WoodElementAction, WoodElementIdentifier, WoodElementFactory> {
 
 	public enum WoodElementType {Tree, Stem, Log, Pole, Sawn_Timber, Reclaimed_Wood}
