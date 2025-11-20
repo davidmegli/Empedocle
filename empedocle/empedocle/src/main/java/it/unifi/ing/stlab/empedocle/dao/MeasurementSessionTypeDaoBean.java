@@ -42,7 +42,6 @@ public class MeasurementSessionTypeDaoBean implements MeasurementSessionTypeDao{
 				"select distinct et " +
 				" from MeasurementSessionType et " +
 				"  left join fetch et.type " +
-				"  left join fetch et.viewers " +
 				"  left join fetch et.authorizations " +
 				" where et.id = :id")
 			.setParameter("id", id )
@@ -110,19 +109,6 @@ public class MeasurementSessionTypeDaoBean implements MeasurementSessionTypeDao{
 		} else {
 			return null;
 		}
-	}
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<Viewer> findAssociatedViewer( Long measurementSessionTypeId, Long qualificationId, MeasurementSessionTypeContext context ){
-		return (List<Viewer>)entityManager.createQuery(" select v.viewer " +
-														" from MeasurementSessionType et join et.viewers v " +
-														" where et.id = :id and v.context = :context " +
-														" and v.qualification.id = :qualificationId ")
-											.setParameter("id", measurementSessionTypeId)
-											.setParameter("context", context)
-											.setParameter("qualificationId", qualificationId)
-											.getResultList();
 	}
 
 	@Override

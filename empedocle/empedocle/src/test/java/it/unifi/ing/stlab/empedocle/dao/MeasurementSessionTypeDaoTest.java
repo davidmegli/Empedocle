@@ -52,13 +52,4 @@ public class MeasurementSessionTypeDaoTest extends JpaTest{
 		assertEquals( "Cardiologia Dr. Fabio Mori - II rev", type.getName() );
 	}
 	
-	@Test
-	public void testFindAssociatedViewer() {
-		List<Viewer> result = measurementSessionTypeDao.findAssociatedViewer( new Long(1), new Long(1), MeasurementSessionTypeContext.REPORT );
-		assertNotNull( result );
-		assertEquals( 2, result.size() );
-		assertEquals( "Cardiologia Dr. Fabio Mori - II rev - ETICHETTA", result.get(0).getName() );
-		assertEquals( "Cardiologia Dr. Fabio Mori - II rev - REPORT", result.get(1).getName() );
-	}
-	
 }

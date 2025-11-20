@@ -28,12 +28,6 @@ import it.unifi.ing.stlab.users.dao.UserDao;
 import it.unifi.ing.stlab.users.dao.UserDaoBean;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
-import it.unifi.ing.stlab.view.dao.ViewerDao;
-import it.unifi.ing.stlab.view.dao.ViewerDaoBean;
-import it.unifi.ing.stlab.view.model.Viewer;
-import it.unifi.ing.stlab.view.model.ViewerVisitor;
-import it.unifi.ing.stlab.view.model.links.ViewerLink;
-import it.unifi.ing.stlab.view.model.widgets.ViewerCustom;
 import it.unifi.ing.stlab.view.model.widgets.container.*;
 import it.unifi.ing.stlab.view.model.widgets.input.*;
 import it.unifi.ing.stlab.view.model.widgets.output.*;
@@ -60,10 +54,8 @@ public class ReflectionTest extends JpaTest {
 	private UserDao userDao;
 	private FactDao factDao;
 	private TypeDao typeDao;
-	private ViewerDao viewerDao;
 	private MeasurementSessionDao measurementSessionDao;
 	private MeasurementSessionTypeDao measurementSessionTypeDao;
-	//private GarbageCollectorHelper garbageCollector;
 		
 	@Parameters
 	public static List<Object[]> data() {
@@ -87,16 +79,12 @@ public class ReflectionTest extends JpaTest {
 		
 		typeDao = new TypeDaoBean();
 		FieldUtils.assignField( typeDao, "entityManager", entityManager );
-		
-		viewerDao = new ViewerDaoBean();
-		FieldUtils.assignField( viewerDao, "entityManager", entityManager );
+
 
 		measurementSessionDao = new MeasurementSessionDaoBean();
 		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 		FieldUtils.assignField( measurementSessionDao, "factDao", factDao );
 		FieldUtils.assignField( measurementSessionDao, "typeDao", typeDao );
-		FieldUtils.assignField( measurementSessionDao, "viewerDao", viewerDao );
-		
 		measurementSessionTypeDao = new MeasurementSessionTypeDaoBean();
 		FieldUtils.assignField( measurementSessionDao, "entityManager", entityManager );
 		
@@ -316,147 +304,4 @@ class ReflectionTypeVisitor implements TypeVisitor {
 		}
 	}
 	
-}
-
-class ReflectionViewerVisitor implements ViewerVisitor {
-
-	@Override
-	public void visitInputText(InputText viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitInputTemporal(InputTemporal viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitTextArea(TextArea viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitCombo(Combo viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitSuggestion(Suggestion viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitInputList(InputList viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-	
-	@Override
-	public void visitFileUpload(FileUpload viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitLabel(Label viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputType(OutputType viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputValue(OutputValue viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputMeasurementUnit(OutputMeasurementUnit viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputPath(OutputPath viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputList(OutputList viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitOutputField(OutputField viewer) {
-		viewer.getName();
-	}
-
-	@Override
-	public void visitOutputImage(OutputImage viewer) {
-		viewer.getName();
-	}
-	
-	@Override
-	public void visitOutputLink(OutputLink viewer) {
-		viewer.getName();
-	}	
-
-	@Override
-	public void visitGrid(Grid viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitFactPanel(FactPanel viewer) {
-		if ( viewer.getQuery() != null ) {
-			viewer.getQuery().getName();
-		}
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitBox(Box viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitConditionalPanel(ConditionalPanel viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitTabbedPanel(TabbedPanel viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitReport(Report viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-
-	@Override
-	public void visitViewerCustom(ViewerCustom viewer) {
-		viewer.getName();
-		visitViewerChildren(viewer);
-	}
-	
-	private void visitViewerChildren(Viewer viewer) {
-		for ( ViewerLink link : viewer.listChildren() ) {
-			if ( link.getTarget() != null ) {
-				link.getTarget().accept( this );
-			}
-		}
-	}
-
-	@Override
-	public void visitParagraph( Paragraph viewer ) {
-		viewer.getName();
-		visitViewerChildren(viewer);		
-	}
 }

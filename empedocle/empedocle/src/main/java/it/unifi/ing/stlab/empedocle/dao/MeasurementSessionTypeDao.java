@@ -18,7 +18,6 @@ public interface MeasurementSessionTypeDao {
 	boolean isUsed(Long id);
 	
 	MeasurementSessionType findByMeasurementSessionId(Long id);
-	List<Viewer> findAssociatedViewer(Long measurementSessionTypeId, Long qualificationId, MeasurementSessionTypeContext context);
 	
 	List<MeasurementSessionType> findAll();
 	List<MeasurementSessionType> findWithAgendas();
