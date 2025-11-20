@@ -27,7 +27,7 @@ On Windows, run the ```build_all.bat```
 on Linux, run the ```build_all.sh```
 
 ### Database Setup
-Use the empedocle_initialized.sql script provided at this [link](https://drive.google.com/file/d/16_Q-XjCycEcMkoMV9e7F5WZMR5gGZ_LC/view?usp=drive_link) to create the database schema. Ensure you have an empty database called emp_db on your system and run the script inside it to create tables and populate initial data.
+Use the `woodelement_example-dump.sql` script to create the database schema. Ensure you have an empty database called emp_db on your system and run the script inside it to create tables and populate initial data.
 
 Pre-set data:
 * Username: administrator
