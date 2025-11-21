@@ -18,10 +18,10 @@
 		<module>stlab-security</module>
 		<module>stlab-test</module>
 		<module>stlab-users</module>
-		<module>stlab-view</module>
-		<module>stlab-view-controllers</module>
-		<module>stlab-view-crud</module>
-		<module>stlab-view-dsl</module>
+<!--		<module>stlab-view</module>-->
+<!--		<module>stlab-view-controllers</module>-->
+<!--		<module>stlab-view-crud</module>-->
+<!--		<module>stlab-view-dsl</module>-->
 	</modules>
 
 	<properties>
