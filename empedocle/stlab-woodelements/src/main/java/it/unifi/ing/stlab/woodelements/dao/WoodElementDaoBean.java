@@ -24,12 +24,16 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import javax.ejb.Local;
 
 @Stateless
-@Local(ObservableEntityDao.class)
-public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, WoodElementManager> {
+@Local({WoodElementDao.class,ObservableEntityDao.class})
+public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, WoodElementManager> implements WoodElementDao {
 
 	@Override
 	protected Class<WoodElement> getEntityClass() {
 		return WoodElement.class;
+	}
+	@Override
+	public WoodElementManager getManager(){
+		return new WoodElementManager();
 	}
 
 
@@ -99,10 +103,4 @@ public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, Woo
 		return result;
 	}
 
-	@Override
-	public WoodElementManager getManager(){
-		return new WoodElementManager();
-	}
-
-	public User findUser(Long id){return entityManager.find(User.class, id);}
 }

@@ -9,5 +9,6 @@ import javax.ejb.Local;
 
 @Local
 public interface WoodElementDao extends ObservableEntityDao<WoodElement, WoodElementManager>{
-
+    WoodElementIdentifier findIdentifierByCode(String code);
+    WoodElement mergeWoodElements( Long woodElementId, Long otherId, User author );
 }

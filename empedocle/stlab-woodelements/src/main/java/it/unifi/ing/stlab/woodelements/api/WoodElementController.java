@@ -6,6 +6,7 @@ import it.unifi.ing.stlab.woodelements.api.mapper.WoodElementMapper;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.woodelements.manager.WoodElementManager;
 import it.unifi.ing.stlab.woodelements.model.WoodElement;
+import it.unifi.ing.stlab.woodelements.dao.WoodElementDao;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import java.util.Date;
@@ -30,7 +31,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 public class WoodElementController {
 
     @EJB
-    private ObservableEntityDao<WoodElement, WoodElementManager> dao;
+    //private ObservableEntityDao<WoodElement, WoodElementManager> dao;
+    private WoodElementDao dao;
 
     //TODO: authentication by user not implemented
     private User getAuthor() {
@@ -74,7 +76,6 @@ public class WoodElementController {
                     .build();
         }
         //If the identifier code is new proceed with the creation
-
         User author = getAuthor(); //dummy author
 
         WoodElement element = dao.create(author);
@@ -82,7 +83,7 @@ public class WoodElementController {
         dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-        builder.path(dto.id.toString());
+        builder.path(element.getId().toString());
         return Response.created(builder.build())
                 .entity(WoodElementMapper.toDto(element))
                 .build();

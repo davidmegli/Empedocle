@@ -215,6 +215,7 @@ public abstract class ObservableEntityDaoBean<T extends ObservableEntity<T, ?, ?
 		GarbageCollector.getInstance().flush( new JpaGarbageAction( entityManager ));
 	}
 
+	public User findUser(Long id){return entityManager.find(User.class, id);}
 
 
 	

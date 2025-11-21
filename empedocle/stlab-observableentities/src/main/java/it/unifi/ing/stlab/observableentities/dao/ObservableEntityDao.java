@@ -34,5 +34,4 @@ public interface ObservableEntityDao <T extends ObservableEntity<T, ?, ?, ?>, M 
 	T create(User author);
 	T modifyById(Long id, User author);
 	User findUser(Long id);
-
 }
