@@ -28,12 +28,6 @@ public class ParticipationManager extends ObservableEntityManager<
     protected AbstractActionFactory<Participation, ParticipationAction, User, Time> getActionFactory() {
         return new ParticipationActionFactory();
     }
-    @Override
-    public Participation merge( User author, Time time, Participation master, Participation slave ) {
-        Participation copy = (master != null) ? master.copy() : (slave != null ? slave.copy() : null);
-        return ((ParticipationAction) this.actionFactory
-                .mergeAction(author, time, master, slave, copy))
-                .getTarget();
-    }
+
 
 }

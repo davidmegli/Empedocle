@@ -18,7 +18,7 @@ public class MatchDTO {
     public MatchDTO(Long id, Date date, Roster homeTeam, Roster AwayTeam, String place, String identifierCode) {
         this.id = id;
         this.date = date;
-        this.HomeTeam = homeTeam;
+        this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.place = place;
         this.identifierCode = identifierCode;

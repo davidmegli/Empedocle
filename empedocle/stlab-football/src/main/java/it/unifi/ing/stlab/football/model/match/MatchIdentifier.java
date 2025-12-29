@@ -1,5 +1,6 @@
 package it.unifi.ing.stlab.football.model.match;
 
+import it.unifi.ing.stlab.entities.model.persistable.Persistable;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntityIdentifier;
 import javax.persistence.Entity;
 import javax.persistence.Table;

@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.football.model.roster.actions;s
+package it.unifi.ing.stlab.football.model.roster.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.DeleteActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.DeleteAction;

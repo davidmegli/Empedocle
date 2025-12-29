@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.football.factory.roster;
 
-import it.unifi.ing.stlab.football.model.roster.Roster
+import it.unifi.ing.stlab.football.model.roster.Roster;
 import it.unifi.ing.stlab.football.model.roster.RosterIdentifier;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 

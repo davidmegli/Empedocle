@@ -36,4 +36,11 @@ public class ParticipationActionFactory
         return new ParticipationDeleteAction( UUID.randomUUID().toString() );
     }
 
+    public ParticipationAction mergeAction() {
+        return null;
+    }
+    
+    public ParticipationAction splitAction() {
+        return null;
+    }
 }

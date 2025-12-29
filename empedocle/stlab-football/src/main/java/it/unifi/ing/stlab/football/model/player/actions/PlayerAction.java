@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.football.model.playeractions;
+package it.unifi.ing.stlab.football.model.player.actions;
 
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.football.model.player.Player;

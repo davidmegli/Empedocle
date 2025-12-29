@@ -12,11 +12,12 @@ import it.unifi.ing.stlab.football.factory.roster.RosterFactory;
 import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
-package it.unifi.ing.stlab.football.model.player.Player;
+import it.unifi.ing.stlab.football.model.player.Player;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentifier, RosterFactory> {

@@ -24,7 +24,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 @Tag(name = "Matches", description = "Operations for managing matches")
-@Path("/match")
+@Path("/matches")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MatchController {

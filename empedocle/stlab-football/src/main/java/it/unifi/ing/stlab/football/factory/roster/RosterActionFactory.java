@@ -36,4 +36,13 @@ public class RosterActionFactory
 		return new RosterDeleteAction( UUID.randomUUID().toString() );
 	}
 
+	public RosterAction mergeAction() {
+		return null;
+	}
+	
+	public RosterAction splitAction() {
+		return null;
+
+	}
+
 }

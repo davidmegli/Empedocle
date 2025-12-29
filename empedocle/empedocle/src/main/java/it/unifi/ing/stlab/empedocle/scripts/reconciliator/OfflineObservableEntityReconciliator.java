@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
+/*package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
 
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
@@ -34,8 +34,8 @@ public class OfflineObservableEntityReconciliator {
 	private EntityManager entityManager;	
 	
 	@Resource
-	private UserTransaction utx;	
-	
+	private UserTransaction utx;
+
 	@EJB
 	private ObservableEntityDao observableEntityDao;
 	
@@ -267,4 +267,4 @@ public class OfflineObservableEntityReconciliator {
 			}
 		}
 	}
-}
+}*/

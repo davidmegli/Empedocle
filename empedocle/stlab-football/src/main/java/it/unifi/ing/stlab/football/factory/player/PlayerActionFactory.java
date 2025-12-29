@@ -26,13 +26,20 @@ public class PlayerActionFactory
         return new PlayerCreateAction( UUID.randomUUID().toString() );
     }
 
-
     public PlayerAction modifyAction() {
         return new PlayerModifyAction( UUID.randomUUID().toString() );
     }
 
     public PlayerAction deleteAction() {
         return new PlayerDeleteAction( UUID.randomUUID().toString() );
+    }
+
+    public PlayerAction mergeAction() {
+        return null;
+    }
+    
+    public PlayerAction splitAction() {
+        return null;
     }
 
 }

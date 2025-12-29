@@ -1,6 +1,6 @@
 package it.unifi.ing.stlab.football.factory.participation;
 
-import it.unifi.ing.stlab.football.model.participation.Participation
+import it.unifi.ing.stlab.football.model.participation.Participation;
 import it.unifi.ing.stlab.football.model.participation.ParticipationIdentifier;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 

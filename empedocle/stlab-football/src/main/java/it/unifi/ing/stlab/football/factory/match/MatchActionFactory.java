@@ -35,4 +35,12 @@ public class MatchActionFactory
         return new MatchDeleteAction( UUID.randomUUID().toString() );
     }
 
+    public MatchAction mergeAction() {
+        return null;
+    }
+
+    public MatchAction splitAction() {
+        return null;
+    }
+
 }

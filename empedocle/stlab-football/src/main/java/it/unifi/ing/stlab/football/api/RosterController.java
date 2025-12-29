@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.football.model.roster;
+package it.unifi.ing.stlab.football.api;
 
 import it.unifi.ing.stlab.football.api.dto.RosterDTO;
 import it.unifi.ing.stlab.football.api.mapper.RosterMapper;

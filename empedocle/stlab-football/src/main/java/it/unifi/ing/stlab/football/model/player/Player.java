@@ -36,27 +36,27 @@ public class Player extends ObservableEntity<Player, PlayerAction, PlayerIdentif
 
     //getter and setter
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
     @Column( name = "birth_date" )
     public Date getBirthDate() {
-        return BirthDate;
+        return birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
-        BirthDate = birthDate;
+        this.birthDate = birthDate;
     }
 
     @Enumerated(EnumType.STRING)

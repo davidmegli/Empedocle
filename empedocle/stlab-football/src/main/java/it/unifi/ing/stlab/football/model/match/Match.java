@@ -8,8 +8,9 @@ import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
-import it.unifi.ing.stlab.football.factory.matchMatchFactory;
+import it.unifi.ing.stlab.football.factory.match.MatchFactory;
 import it.unifi.ing.stlab.football.model.match.actions.MatchAction;
+import it.unifi.ing.stlab.football.model.roster.Roster;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 

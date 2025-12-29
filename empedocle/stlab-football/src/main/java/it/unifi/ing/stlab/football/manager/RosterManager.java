@@ -28,12 +28,5 @@ public class RosterManager extends ObservableEntityManager<
     protected AbstractActionFactory<Roster, RosterAction, User, Time> getActionFactory() {
         return new RosterActionFactory();
     }
-    @Override
-    public Roster merge( User author, Time time, Roster master, Roster slave ) {
-        Roster copy = (master != null) ? master.copy() : (slave != null ? slave.copy() : null);
-        return ((RosterAction) this.actionFactory
-                .mergeAction(author, time, master, slave, copy))
-                .getTarget();
-    }
 
 }

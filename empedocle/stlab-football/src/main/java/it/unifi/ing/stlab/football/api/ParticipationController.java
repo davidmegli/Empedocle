@@ -1,4 +1,4 @@
-package it.unifi.ing.stlab.football.model.participation;
+package it.unifi.ing.stlab.football.api;
 
 import it.unifi.ing.stlab.football.api.dto.ParticipationDTO;
 import it.unifi.ing.stlab.football.api.mapper.ParticipationMapper;

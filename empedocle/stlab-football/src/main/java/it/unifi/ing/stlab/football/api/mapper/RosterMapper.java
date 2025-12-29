@@ -3,19 +3,18 @@ import it.unifi.ing.stlab.football.api.dto.RosterDTO;
 import it.unifi.ing.stlab.football.model.roster.Roster;
 
 public class RosterMapper {
-    public static RosterDTO toDTO(Roster roster) {
+    public static RosterDTO toDto(Roster roster) {
         if (roster == null) {
             return null;
         }
-        return new RosterDTO(roster.getName());
+        return new RosterDTO(roster.getName(), roster.getIdentifier().getCode());
     }
 
-    public static Roster fromDTO(RosterDTO rosterDTO) {
+    public static Roster updateEntity(Roster roster, RosterDTO rosterDTO) {
         if (rosterDTO == null) {
             return null;
         }
-        Roster roster = new Roster();
-        roster.setName(rosterDTO.getName());
+        roster.setName(rosterDTO.name);
         return roster;
     }
 }
