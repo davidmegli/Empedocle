@@ -1,7 +1,7 @@
-package it.unifi.ing.stlab.woodelements.factory;
+package it.unifi.ing.stlab.football.factory.roster;
 
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.WoodElementIdentifier;
+import it.unifi.ing.stlab.football.model.roster.Roster
+import it.unifi.ing.stlab.football.model.roster.RosterIdentifier;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 
 import javax.ejb.Stateless;
@@ -9,27 +9,27 @@ import javax.ejb.Stateless;
 import java.util.UUID;
 
 @Stateless
-public class WoodElementFactory extends ObservableEntityFactory<WoodElement, WoodElementIdentifier> {
+public class RosterFactory extends ObservableEntityFactory<Roster, RosterIdentifier> {
 
 	@Override
-	protected WoodElement createConcreteEntity() {
-		return new WoodElement();
+	protected Roster createConcreteEntity() {
+		return new Roster();
 	}
 
 	@Override
-	protected WoodElementIdentifier createConcreteIdentifier() {
-		return new WoodElementIdentifier();
+	protected RosterIdentifier createConcreteIdentifier() {
+		return new RosterIdentifier();
 	}
 
 	@Override
-	public WoodElement create() {
-		WoodElement wood = super.create();
-		return wood;
+	public Roster create() {
+		Roster roster = super.create();
+		return roster;
 	}
 
 	@Override
-	public WoodElementIdentifier createIdentifier() {
-		WoodElementIdentifier identifier = super.createIdentifier();
+	public RosterIdentifier createIdentifier() {
+		RosterIdentifier identifier = super.createIdentifier();
 		return identifier;
 	}
 }

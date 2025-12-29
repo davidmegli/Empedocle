@@ -1,13 +1,11 @@
-package it.unifi.ing.stlab.woodelements.factory;
+package it.unifi.ing.stlab.football.factory.roster;
 
 import it.unifi.ing.stlab.entities.factory.AbstractActionFactory;
-import it.unifi.ing.stlab.woodelements.model.WoodElement;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementCreateAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementDeleteAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementMergeAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementModifyAction;
-import it.unifi.ing.stlab.woodelements.model.actions.WoodElementSplitAction;
+import it.unifi.ing.stlab.football.model.roster.Roster;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterCreateAction;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterDeleteAction;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterModifyAction;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityActionFactory;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.users.model.User;
@@ -18,35 +16,24 @@ import java.util.UUID;
 import javax.ejb.Stateless;
 
 @Stateless
-public class WoodElementActionFactory
+public class RosterActionFactory
 		extends ObservableEntityActionFactory<
-		WoodElement,
-		WoodElementAction>{
+		Roster,
+		RosterAction>{
 
 
-	public WoodElementAction createAction() {
-		return new WoodElementCreateAction( UUID.randomUUID().toString() );
+	public RosterAction createAction() {
+		return new RosterCreateAction( UUID.randomUUID().toString() );
 	}
 
 
-	public WoodElementAction modifyAction() {
-		WoodElementModifyAction woodelementmodifyaction = new WoodElementModifyAction( UUID.randomUUID().toString() );
-		return woodelementmodifyaction;
+	public RosterAction modifyAction() {
+		RosterModifyAction rostermodifyaction = new RosterModifyAction( UUID.randomUUID().toString() );
+		return rostermodifyaction;
 	}
 
-
-	public WoodElementAction mergeAction() {
-		return new WoodElementMergeAction( UUID.randomUUID().toString() );
-	}
-
-
-	public WoodElementAction splitAction() {
-		return new WoodElementSplitAction( UUID.randomUUID().toString() );
-	}
-
-
-	public WoodElementAction deleteAction() {
-		return new WoodElementDeleteAction( UUID.randomUUID().toString() );
+	public RosterAction deleteAction() {
+		return new RosterDeleteAction( UUID.randomUUID().toString() );
 	}
 
 }
