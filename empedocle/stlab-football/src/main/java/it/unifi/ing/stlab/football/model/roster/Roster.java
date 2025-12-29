@@ -8,8 +8,8 @@ import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
-import it.unifi.ing.stlab.woodelements.factory.RosterFactory;
-import it.unifi.ing.stlab.woodelements.model.actions.RosterAction;
+import it.unifi.ing.stlab.football.factory.roster.RosterFactory;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
 package it.unifi.ing.stlab.football.model.player.Player;
@@ -56,7 +56,7 @@ public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentif
     }
 
     @Override
-    public boolean sameAs(WoodElement entity) {
+    public boolean sameAs(Roster entity) {
         if (entity == null) return false;
 
         return     ( ( name == null && entity.getName() == null ) ||

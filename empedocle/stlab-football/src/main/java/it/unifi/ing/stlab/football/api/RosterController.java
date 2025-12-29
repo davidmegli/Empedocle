@@ -31,7 +31,6 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 public class RosterController {
 
     @EJB
-    //private ObservableEntityDao<WoodElement, WoodElementManager> dao;
     private RosterDao dao;
 
     //TODO: authentication by user not implemented

@@ -13,7 +13,7 @@ public class PlayerDTO {
     public PlayerRole role;
     public String identifierCode;
 
-    public WoodElementDTO() {
+    public PlayerDTO() {
     }
 
     public PlayerDTO(Long id, String name, String surname, Date birthDate, PlayerRole role, String identifierCode) {

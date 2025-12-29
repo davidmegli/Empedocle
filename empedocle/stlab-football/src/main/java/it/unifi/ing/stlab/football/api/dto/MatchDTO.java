@@ -12,7 +12,7 @@ public class MatchDTO {
     public String place;
     public String identifierCode;
 
-    public WoodElementDTO() {
+    public MatchDTO() {
     }
 
     public MatchDTO(Long id, Date date, Roster homeTeam, Roster AwayTeam, String place, String identifierCode) {

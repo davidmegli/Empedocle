@@ -63,7 +63,7 @@ public class Participation extends ObservableEntity<Participation, Participation
     }
 
     @Override
-    public boolean sameAs(WoodElement entity) {
+    public boolean sameAs(Participation entity) {
         if (entity == null) return false;
 
         return

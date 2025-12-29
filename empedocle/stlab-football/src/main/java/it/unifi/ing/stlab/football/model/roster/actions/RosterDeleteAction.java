@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.football.model.roster.actions;s
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.DeleteActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.DeleteAction;
-import it.unifi.ing.stlab.woodelements.model.roster.Roster;
-import it.unifi.ing.stlab.woodelements.model.roster.actions.RosterAction;
+import it.unifi.ing.stlab.football.model.roster.Roster;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityDeleteAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.users.model.User;

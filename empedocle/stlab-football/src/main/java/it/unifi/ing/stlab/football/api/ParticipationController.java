@@ -31,7 +31,6 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 public class ParticipationController {
 
     @EJB
-    //private ObservableEntityDao<WoodElement, WoodElementManager> dao;
     private ParticipationDao dao;
 
     //TODO: authentication by user not implemented

@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.football.model.participation.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.ModifyActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.ModifyAction;
-import it.unifi.ing.stlab.woodelements.model.participation.Participation;
-import it.unifi.ing.stlab.woodelements.model.participation.actions.ParticipationAction;
+import it.unifi.ing.stlab.football.model.participation.Participation;
+import it.unifi.ing.stlab.football.model.participation.actions.ParticipationAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityModifyAction;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;

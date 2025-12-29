@@ -2,8 +2,8 @@ package it.unifi.ing.stlab.football.model.participation.actions;s
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.DeleteActionImpl;
 import it.unifi.ing.stlab.entities.model.traced.actions.DeleteAction;
-import it.unifi.ing.stlab.woodelements.model.participation.Participation;
-import it.unifi.ing.stlab.woodelements.model.participation.actions.ParticipationAction;
+import it.unifi.ing.stlab.football.model.participation.Participation;
+import it.unifi.ing.stlab.football.model.participation.actions.ParticipationAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityDeleteAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.users.model.User;

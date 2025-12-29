@@ -1,8 +1,8 @@
 package it.unifi.ing.stlab.football.model.roster.actions;
 
 import it.unifi.ing.stlab.entities.implementation.traced.actions.CreateActionImpl;
-import it.unifi.ing.stlab.woodelements.model.roster.Roster;
-import it.unifi.ing.stlab.woodelements.model.roster.actions.RosterAction;
+import it.unifi.ing.stlab.football.model.roster.Roster;
+import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
 import it.unifi.ing.stlab.entities.model.traced.actions.CreateAction;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityCreateAction;
 import it.unifi.ing.stlab.users.model.User;
