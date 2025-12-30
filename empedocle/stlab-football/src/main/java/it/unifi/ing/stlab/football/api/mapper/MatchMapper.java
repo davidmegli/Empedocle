@@ -2,6 +2,7 @@ package it.unifi.ing.stlab.football.api.mapper;
 
 import it.unifi.ing.stlab.football.api.dto.MatchDTO;
 import it.unifi.ing.stlab.football.model.match.Match;
+import it.unifi.ing.stlab.football.model.roster.Roster;
 
 public class MatchMapper {
 
@@ -11,8 +12,12 @@ public class MatchMapper {
         MatchDTO dto = new MatchDTO();
         dto.id = m.getId();
         dto.date = m.getDate();
-        dto.homeTeam = m.getHomeTeam();
-        dto.awayTeam = m.getAwayTeam();
+        if (m.getHomeTeam() != null){
+            dto.homeTeamId = m.getHomeTeam().getId();
+        }
+        if (m.getAwayTeam() != null){
+            dto.awayTeamId = m.getAwayTeam().getId();
+        }
         dto.place = m.getPlace();
         if (m.getIdentifier() != null) {
             dto.identifierCode = m.getIdentifier().getCode();
@@ -20,10 +25,10 @@ public class MatchMapper {
         return dto;
     }
 
-    public static void updateEntity(Match m, MatchDTO dto) {
+    public static void updateEntity(Match m, MatchDTO dto, Roster homeTeam, Roster awayTeam) {
         m.setDate(dto.date);
-        m.setHomeTeam(dto.homeTeam);
-        m.setAwayTeam(dto.awayTeam);
+        m.setHomeTeam(homeTeam);
+        m.setAwayTeam(awayTeam);
         m.setPlace(dto.place);
         m.getIdentifier().setCode(dto.identifierCode);
     }

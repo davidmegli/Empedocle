@@ -8,7 +8,8 @@ public class RosterDTO {
     public RosterDTO() {
     }
 
-    public RosterDTO(String name, String identifierCode) {
+    public RosterDTO(Long id, String name, String identifierCode) {
+        this.id = id;
         this.name = name;
         this.identifierCode = identifierCode;
     }

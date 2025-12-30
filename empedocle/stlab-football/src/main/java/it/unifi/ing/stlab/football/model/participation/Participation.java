@@ -22,9 +22,19 @@ import java.util.Set;
 @Entity
 public class Participation extends ObservableEntity<Participation, ParticipationAction, ParticipationIdentifier, ParticipationFactory> {
 
+    public enum PlayerDisciplinaryStatus {
+        NONE,                 // no card
+        YELLOW_CARD,          // single yellow card
+        DOUBLE_YELLOW_CARD,   // two yellow cards (sent off)
+        RED_CARD              // straight red card
+    }
+
     private int minutesPlayed;
     private int goals;
     private int assists;
+    private Date start;
+    private PlayerDisciplinaryStatus disciplinaryStatus;
+    private int playerNumber;
     private Player player;
     private Match match;
 
@@ -75,6 +85,30 @@ public class Participation extends ObservableEntity<Participation, Participation
 
     public void setMatch(Match match) {
         this.match = match;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+    @Column(name= "disciplinary_status")
+    public PlayerDisciplinaryStatus getDisciplinaryStatus() {
+        return disciplinaryStatus;
+    }
+
+    public void setDisciplinaryStatus(PlayerDisciplinaryStatus disciplinaryStatus) {
+        this.disciplinaryStatus = disciplinaryStatus;
+    }
+    @Column(name= "player_number")
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
     }
 
     @Override

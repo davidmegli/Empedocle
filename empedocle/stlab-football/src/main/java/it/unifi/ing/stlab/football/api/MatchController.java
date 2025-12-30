@@ -5,7 +5,9 @@ import it.unifi.ing.stlab.football.api.mapper.MatchMapper;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.football.manager.MatchManager;
 import it.unifi.ing.stlab.football.model.match.Match;
+import it.unifi.ing.stlab.football.model.roster.Roster;
 import it.unifi.ing.stlab.football.dao.match.MatchDao;
+import it.unifi.ing.stlab.football.dao.roster.RosterDao;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import java.util.Date;
@@ -31,6 +33,8 @@ public class MatchController {
 
     @EJB
     private MatchDao dao;
+    @EJB
+    private RosterDao rosterDao;
 
     //TODO: authentication by user not implemented
     private User getAuthor() {
@@ -76,8 +80,21 @@ public class MatchController {
         //If the identifier code is new proceed with the creation
         User author = getAuthor(); //dummy author
 
+        Roster homeTeam = rosterDao.findById(dto.homeTeamId);
+        if (homeTeam == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Roster with ID " + dto.homeTeamId + " not found")
+                    .build();
+        }
+        Roster awayTeam = rosterDao.findById(dto.awayTeamId);
+        if (awayTeam == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Roster with ID " + dto.awayTeamId + " not found")
+                    .build();
+        }
+
         Match element = dao.create(author);
-        MatchMapper.updateEntity(element, dto);
+        MatchMapper.updateEntity(element, dto, homeTeam, awayTeam);
         dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
@@ -102,7 +119,20 @@ public class MatchController {
             Match element = dao.modifyById(id, author);
             if (element == null) throw new NotFoundException();
 
-            MatchMapper.updateEntity(element, dto);
+            Roster homeTeam = rosterDao.findById(dto.homeTeamId);
+            if (homeTeam == null) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Roster with ID " + dto.homeTeamId + " not found")
+                        .build();
+            }
+            Roster awayTeam = rosterDao.findById(dto.awayTeamId);
+            if (awayTeam == null) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Roster with ID " + dto.awayTeamId + " not found")
+                        .build();
+            }
+
+            MatchMapper.updateEntity(element, dto, homeTeam, awayTeam);
 
             dao.update(element);
 

@@ -14,6 +14,13 @@ cd "$BASE_DIR/empedocle/stlab-observableentities" || exit
 mvn clean install -DskipTests
 
 # Compilazione di stlab-woodelements
+echo "Building stlab-woodelements..."
+cd "$BASE_DIR/empedocle/stlab-woodelements" || exit
+mvn clean install -DskipTests
+
+
+# Compilazione di stlab-football
+
 echo "Building stlab-football..."
 cd "$BASE_DIR/empedocle/stlab-football" || exit
 mvn clean install -DskipTests

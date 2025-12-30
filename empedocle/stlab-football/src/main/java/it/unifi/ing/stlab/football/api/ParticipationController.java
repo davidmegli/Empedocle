@@ -6,6 +6,10 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.football.manager.ParticipationManager;
 import it.unifi.ing.stlab.football.model.participation.Participation;
 import it.unifi.ing.stlab.football.dao.participation.ParticipationDao;
+import it.unifi.ing.stlab.football.dao.player.PlayerDao;
+import it.unifi.ing.stlab.football.dao.match.MatchDao;
+import it.unifi.ing.stlab.football.model.player.Player;
+import it.unifi.ing.stlab.football.model.match.Match;
 
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -32,6 +36,11 @@ public class ParticipationController {
 
     @EJB
     private ParticipationDao dao;
+
+    @EJB
+    private PlayerDao playerDao;
+    @EJB
+    private MatchDao matchDao;
 
     //TODO: authentication by user not implemented
     private User getAuthor() {
@@ -77,8 +86,22 @@ public class ParticipationController {
         //If the identifier code is new proceed with the creation
         User author = getAuthor(); //dummy author
 
+
+        Player player = playerDao.findById(dto.playerId);
+        if (player == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Player with ID " + dto.playerId + " not found")
+                    .build();
+        }
+
+        Match match = matchDao.findById(dto.matchId);
+        if (match == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Match with ID " + dto.matchId + " not found")
+                    .build();
+        }
         Participation element = dao.create(author);
-        ParticipationMapper.updateEntity(element, dto);
+        ParticipationMapper.updateEntity(element, dto, player, match );
         dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
@@ -103,7 +126,21 @@ public class ParticipationController {
             Participation element = dao.modifyById(id, author);
             if (element == null) throw new NotFoundException();
 
-            ParticipationMapper.updateEntity(element, dto);
+            Player player = playerDao.findById(dto.playerId);
+            if (player == null) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Player with ID " + dto.playerId + " not found")
+                        .build();
+            }
+
+            Match match = matchDao.findById(dto.matchId);
+            if (match == null) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Match with ID " + dto.matchId + " not found")
+                        .build();
+            }
+
+            ParticipationMapper.updateEntity(element, dto, player, match);
 
             dao.update(element);
 

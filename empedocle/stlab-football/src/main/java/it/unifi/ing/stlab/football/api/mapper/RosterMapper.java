@@ -7,7 +7,7 @@ public class RosterMapper {
         if (roster == null) {
             return null;
         }
-        return new RosterDTO(roster.getName(), roster.getIdentifier().getCode());
+        return new RosterDTO(roster.getId(), roster.getName(), roster.getIdentifier().getCode());
     }
 
     public static Roster updateEntity(Roster roster, RosterDTO rosterDTO) {
@@ -15,6 +15,7 @@ public class RosterMapper {
             return null;
         }
         roster.setName(rosterDTO.name);
+        roster.getIdentifier().setCode(rosterDTO.identifierCode);
         return roster;
     }
 }
