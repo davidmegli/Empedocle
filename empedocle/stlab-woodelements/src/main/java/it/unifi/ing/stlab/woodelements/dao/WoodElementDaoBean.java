@@ -24,7 +24,7 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import javax.ejb.Local;
 
 @Stateless
-@Local({WoodElementDao.class,ObservableEntityDao.class})
+@Local({WoodElementDao.class})
 public class WoodElementDaoBean extends ObservableEntityDaoBean<WoodElement, WoodElementManager> implements WoodElementDao {
 
 	@Override

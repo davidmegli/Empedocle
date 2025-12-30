@@ -5,6 +5,7 @@ import it.unifi.ing.stlab.empedocle.api.mapper.MessageMapper;
 import it.unifi.ing.stlab.empedocle.dao.messages.MessageDao;
 import it.unifi.ing.stlab.empedocle.model.messages.Message;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDaoBean;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.empedocle.factory.MessageFactory;
 
@@ -23,6 +24,9 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Path("/messages")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -31,8 +35,10 @@ public class MessageController {
     @EJB
     private MessageDao messageDao;
 
-    @EJB
-    private ObservableEntityDao observableEntityDao;
+    //@EJB(beanName = "ObservableEntityDaoBean")
+    //private ObservableEntityDao observableEntityDao;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @GET
     @Path("/{id}")
@@ -65,7 +71,9 @@ public class MessageController {
             @Parameter(description = "DTO representing the message to create", required = true)
             MessageDTO dto) {
 
-        ObservableEntity observable = observableEntityDao.findById(dto.observableEntityId);
+        //ObservableEntity observable = observableEntityDao.findById(dto.observableEntityId);
+        ObservableEntity observable = entityManager.find(ObservableEntity.class, dto.observableEntityId);
+
         if (observable == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("ObservableEntity with ID " + dto.observableEntityId + " not found")

@@ -22,7 +22,7 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import javax.ejb.Local;
 
 @Stateless
-@Local({MatchDao.class,ObservableEntityDao.class})
+@Local({MatchDao.class})
 public class MatchDaoBean extends ObservableEntityDaoBean<Match, MatchManager> implements MatchDao {
 
     @Override

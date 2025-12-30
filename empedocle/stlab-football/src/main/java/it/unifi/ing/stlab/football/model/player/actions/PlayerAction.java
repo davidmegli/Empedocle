@@ -15,7 +15,7 @@ import it.unifi.ing.stlab.entities.model.traced.Action;
 
 
 @Entity
-@Table(name = "match_actions")
+@Table(name = "player_actions")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
         name = "action_type",

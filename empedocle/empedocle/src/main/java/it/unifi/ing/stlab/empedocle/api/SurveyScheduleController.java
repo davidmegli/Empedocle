@@ -14,6 +14,7 @@ import it.unifi.ing.stlab.empedocle.factory.AgendaFactory;
 import it.unifi.ing.stlab.empedocle.dao.agendas.AgendaDao;
 import it.unifi.ing.stlab.empedocle.factory.SurveyScheduleFactory;
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDaoBean;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -29,6 +30,9 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Path("/survey-schedules")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -36,8 +40,10 @@ public class SurveyScheduleController {
 
     @EJB
     private SurveyScheduleDao surveyScheduleDao;
-    @EJB
-    private ObservableEntityDao observableEntityDao;
+    //@EJB(beanName = "ObservableEntityDaoBean")
+    //private ObservableEntityDao observableEntityDao;
+    @PersistenceContext
+    private EntityManager entityManager;
     @EJB
     private AgendaDao agendaDao;
     @EJB
@@ -90,7 +96,8 @@ public class SurveyScheduleController {
                     .entity("Agenda with ID " + dto.agendaId + " not found")
                     .build();
         }
-        ObservableEntity observableEntity = observableEntityDao.findById(dto.observableEntityId);
+        //ObservableEntity observableEntity = observableEntityDao.findById(dto.observableEntityId);
+        ObservableEntity observableEntity = entityManager.find(ObservableEntity.class, dto.observableEntityId);
         if (observableEntity == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Observable Entity with ID " + dto.observableEntityId + " not found")

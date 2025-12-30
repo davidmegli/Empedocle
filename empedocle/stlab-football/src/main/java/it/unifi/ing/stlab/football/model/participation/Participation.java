@@ -8,6 +8,8 @@ import it.unifi.ing.stlab.entities.model.timed.TimedEntity;
 import it.unifi.ing.stlab.entities.model.traced.TracedEntity;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
+import it.unifi.ing.stlab.football.model.player.Player;
+import it.unifi.ing.stlab.football.model.match.Match;
 import it.unifi.ing.stlab.football.factory.participation.ParticipationFactory;
 import it.unifi.ing.stlab.football.model.participation.actions.ParticipationAction;
 import it.unifi.ing.stlab.users.model.time.Time;
@@ -23,6 +25,8 @@ public class Participation extends ObservableEntity<Participation, Participation
     private int minutesPlayed;
     private int goals;
     private int assists;
+    private Player player;
+    private Match match;
 
     public Participation( String uuid ) {
         super(uuid);
@@ -53,13 +57,34 @@ public class Participation extends ObservableEntity<Participation, Participation
     public void setAssists(int assists) {
         this.assists = assists;
     }
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "match_id")
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
 
     @Override
     @Transient
     public boolean isEmpty() {
         return 	minutesPlayed == 0 &&
                 goals == 0 &&
-                assists == 0;
+                assists == 0 &&
+                player == null &&
+                match == null;
     }
 
     @Override
@@ -69,7 +94,9 @@ public class Participation extends ObservableEntity<Participation, Participation
         return
                 ( minutesPlayed == entity.getMinutesPlayed() ) &&
                 ( goals == entity.getGoals() ) &&
-                ( assists == entity.getAssists() );
+                ( assists == entity.getAssists() ) &&
+                        ( player == null ? entity.getPlayer() == null : player.equals(entity.getPlayer()) ) &&
+                        ( match == null ? entity.getMatch() == null : match.equals(entity.getMatch()) ) ;
     }
 
 
@@ -82,6 +109,8 @@ public class Participation extends ObservableEntity<Participation, Participation
         result.setMinutesPlayed( this.getMinutesPlayed() );
         result.setGoals( this.getGoals() );
         result.setAssists( this.getAssists() );
+        result.setPlayer( this.getPlayer() );
+        result.setMatch( this.getMatch() );
 
         return result;
     }

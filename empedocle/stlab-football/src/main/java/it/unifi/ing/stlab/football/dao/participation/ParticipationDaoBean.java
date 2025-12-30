@@ -24,7 +24,7 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import javax.ejb.Local;
 
 @Stateless
-@Local({ParticipationDao.class,ObservableEntityDao.class})
+@Local({ParticipationDao.class})
 public class ParticipationDaoBean extends ObservableEntityDaoBean<Participation, ParticipationManager> implements ParticipationDao {
 
     @Override

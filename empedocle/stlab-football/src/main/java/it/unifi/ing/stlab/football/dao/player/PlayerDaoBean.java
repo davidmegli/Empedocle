@@ -25,7 +25,7 @@ import it.unifi.ing.stlab.users.model.time.Time;
 import javax.ejb.Local;
 
 @Stateless
-@Local({PlayerDao.class,ObservableEntityDao.class})
+@Local({PlayerDao.class})
 public class PlayerDaoBean extends ObservableEntityDaoBean<Player, PlayerManager> implements PlayerDao {
 
     @Override

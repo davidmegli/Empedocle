@@ -24,7 +24,7 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import javax.ejb.Local;
 
 @Stateless
-@Local({RosterDao.class,ObservableEntityDao.class})
+@Local({RosterDao.class})
 public class RosterDaoBean extends ObservableEntityDaoBean<Roster, RosterManager> implements RosterDao {
 
 	@Override

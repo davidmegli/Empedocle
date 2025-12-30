@@ -14,7 +14,12 @@
 		<class>it.unifi.ing.stlab.football.model.player.Player</class>
 		<class>it.unifi.ing.stlab.football.model.roster.Roster</class>
 		<class>it.unifi.ing.stlab.football.model.match.Match</class>
-		<class>it.unifi.ing.stlab.football.model.participations.Participation</class>
+		<class>it.unifi.ing.stlab.football.model.participation.Participation</class>
+
+		<class>it.unifi.ing.stlab.football.model.player.PlayerIdentifier</class>
+		<class>it.unifi.ing.stlab.football.model.roster.RosterIdentifier</class>
+		<class>it.unifi.ing.stlab.football.model.match.MatchIdentifier</class>
+		<class>it.unifi.ing.stlab.football.model.participation.ParticipationIdentifier</class>
 
 		<class>it.unifi.ing.stlab.football.model.player.actions.PlayerAction</class>
 		<class>it.unifi.ing.stlab.football.model.roster.actions.RosterAction</class>
@@ -44,22 +49,22 @@
 		<class>it.unifi.ing.stlab.football.factory.player.PlayerFactory</class>
 		<class>it.unifi.ing.stlab.football.factory.roster.RosterFactory</class>
 		<class>it.unifi.ing.stlab.football.factory.match.MatchFactory</class>
-		<class>it.unifi.ing.stlab.football.factory.participations.ParticipationFactory</class>
+		<class>it.unifi.ing.stlab.football.factory.participation.ParticipationFactory</class>
 
 		<class>it.unifi.ing.stlab.football.factory.player.PlayerActionFactory</class>
 		<class>it.unifi.ing.stlab.football.factory.roster.RosterActionFactory</class>
 		<class>it.unifi.ing.stlab.football.factory.match.MatchActionFactory</class>
-		<class>it.unifi.ing.stlab.football.factory.participations.ParticipationActionFactory</class>
+		<class>it.unifi.ing.stlab.football.factory.participation.ParticipationActionFactory</class>
 
 		<class>it.unifi.ing.stlab.football.dao.player.PlayerDao</class>
 		<class>it.unifi.ing.stlab.football.dao.roster.RosterDao</class>
 		<class>it.unifi.ing.stlab.football.dao.match.MatchDao</class>
-		<class>it.unifi.ing.stlab.football.dao.participations.ParticipationDao</class>
+		<class>it.unifi.ing.stlab.football.dao.participation.ParticipationDao</class>
 
 		<class>it.unifi.ing.stlab.football.dao.player.PlayerDaoBean</class>
 		<class>it.unifi.ing.stlab.football.dao.roster.RosterDaoBean</class>
 		<class>it.unifi.ing.stlab.football.dao.match.MatchDaoBean</class>
-		<class>it.unifi.ing.stlab.football.dao.participations.ParticipationDaoBean</class>
+		<class>it.unifi.ing.stlab.football.dao.participation.ParticipationDaoBean</class>
 
 		<class>it.unifi.ing.stlab.football.api.dto.PlayerDTO</class>
 		<class>it.unifi.ing.stlab.football.api.dto.RosterDTO</class>

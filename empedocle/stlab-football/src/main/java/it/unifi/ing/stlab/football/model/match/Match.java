@@ -45,8 +45,9 @@ public class Match extends ObservableEntity<Match, MatchAction, MatchIdentifier,
     public void setDate(Date date) {
         this.date = date;
     }
-    @Column(name="home_team")
+
     @ManyToOne
+    @JoinColumn(name="home_team_id")
     public Roster getHomeTeam() {
         return homeTeam;
     }
@@ -55,8 +56,8 @@ public class Match extends ObservableEntity<Match, MatchAction, MatchIdentifier,
         this.homeTeam = homeTeam;
     }
 
-    @Column(name="away_team")
     @ManyToOne
+    @JoinColumn(name="away_team_id")
     public Roster getAwayTeam() {
         return awayTeam;
     }

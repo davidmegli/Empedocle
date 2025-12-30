@@ -1,6 +1,7 @@
 /*package it.unifi.ing.stlab.empedocle.scripts.reconciliator;
 
 import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
+import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDaoBean;
 import it.unifi.ing.stlab.observableentities.factory.ObservableEntityFactory;
 import it.unifi.ing.stlab.observableentities.manager.ObservableEntityManager;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
@@ -36,7 +37,7 @@ public class OfflineObservableEntityReconciliator {
 	@Resource
 	private UserTransaction utx;
 
-	@EJB
+	@EJB(beanName = "ObservableEntityDaoBean")
 	private ObservableEntityDao observableEntityDao;
 	
 	@EJB
