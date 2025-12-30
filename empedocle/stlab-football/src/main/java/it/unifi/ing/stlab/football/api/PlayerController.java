@@ -6,6 +6,8 @@ import it.unifi.ing.stlab.observableentities.dao.ObservableEntityDao;
 import it.unifi.ing.stlab.football.manager.PlayerManager;
 import it.unifi.ing.stlab.football.model.player.Player;
 import it.unifi.ing.stlab.football.dao.player.PlayerDao;
+import it.unifi.ing.stlab.football.dao.roster.RosterDao;
+import it.unifi.ing.stlab.football.model.roster.Roster;
 import it.unifi.ing.stlab.users.model.User;
 import it.unifi.ing.stlab.users.model.time.Time;
 import java.util.Date;
@@ -31,6 +33,8 @@ public class PlayerController {
 
     @EJB
     private PlayerDao dao;
+    @EJB
+    private RosterDao rosterDao;
 
     //TODO: authentication by user not implemented
     private User getAuthor() {
@@ -76,8 +80,15 @@ public class PlayerController {
         //If the identifier code is new proceed with the creation
         User author = getAuthor(); //dummy author
 
+        Roster roster = rosterDao.findById(dto.rosterId);
+        if (roster == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Roster with ID " + dto.rosterId + " not found")
+                    .build();
+        }
+
         Player element = dao.create(author);
-        PlayerMapper.updateEntity(element, dto);
+        PlayerMapper.updateEntity(element, dto, roster);
         dao.save(element);
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
@@ -102,7 +113,14 @@ public class PlayerController {
             Player element = dao.modifyById(id, author);
             if (element == null) throw new NotFoundException();
 
-            PlayerMapper.updateEntity(element, dto);
+            Roster roster = rosterDao.findById(dto.rosterId);
+            if (roster == null) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Roster with ID " + dto.rosterId + " not found")
+                        .build();
+            }
+
+            PlayerMapper.updateEntity(element, dto, roster);
 
             dao.update(element);
 

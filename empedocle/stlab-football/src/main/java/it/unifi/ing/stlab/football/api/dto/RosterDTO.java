@@ -1,4 +1,5 @@
 package it.unifi.ing.stlab.football.api.dto;
+import java.util.Set;
 
 public class RosterDTO {
     public String name;

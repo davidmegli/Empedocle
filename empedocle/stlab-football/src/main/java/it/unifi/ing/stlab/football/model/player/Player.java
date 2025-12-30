@@ -3,6 +3,7 @@ package it.unifi.ing.stlab.football.model.player;
 import it.unifi.ing.stlab.observableentities.model.ObservableEntity;
 import it.unifi.ing.stlab.observableentities.model.actions.ObservableEntityAction;
 import it.unifi.ing.stlab.football.factory.player.PlayerFactory;
+import it.unifi.ing.stlab.football.model.roster.Roster;
 import it.unifi.ing.stlab.football.model.player.actions.PlayerAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
@@ -33,6 +34,7 @@ public class Player extends ObservableEntity<Player, PlayerAction, PlayerIdentif
     private String surname;
     private Date birthDate;
     private PlayerRole role;
+    private Roster roster;
 
     //getter and setter
     public String getName() {
@@ -68,6 +70,15 @@ public class Player extends ObservableEntity<Player, PlayerAction, PlayerIdentif
         this.role = role;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "roster_id")
+    public Roster getRoster() {
+        return roster;
+    }
+
+    public void setRoster(Roster roster) {
+        this.roster = roster;
+    }
 
     //constructors
     public Player( String uuid ) {

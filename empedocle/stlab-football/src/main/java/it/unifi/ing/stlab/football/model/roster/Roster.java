@@ -12,7 +12,6 @@ import it.unifi.ing.stlab.football.factory.roster.RosterFactory;
 import it.unifi.ing.stlab.football.model.roster.actions.RosterAction;
 import it.unifi.ing.stlab.users.model.time.Time;
 import it.unifi.ing.stlab.users.model.time.TimeRange;
-import it.unifi.ing.stlab.football.model.player.Player;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,7 +23,6 @@ public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentif
 
     @Enumerated(EnumType.STRING)
     private String name;
-    private List<Player> players;
 
     public Roster( String uuid ) {
         super(uuid);
@@ -40,20 +38,12 @@ public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentif
     public void setName(String name) {
         this.name = name;
     }
-    @OneToMany
-    public List<Player> getPlayers() {
-        return players;
-    }
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
 
     // Methods
     @Override
     @Transient
     public boolean isEmpty() {
-        return 	( name == null || name.isEmpty() ) &&
-                ( players == null || players.isEmpty() );
+        return 	( name == null || name.isEmpty() ) ;
     }
 
     @Override
@@ -61,9 +51,7 @@ public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentif
         if (entity == null) return false;
 
         return     ( ( name == null && entity.getName() == null ) ||
-                    ( name != null && name.equals( entity.getName() ) ) ) &&
-                ( ( players == null && entity.getPlayers() == null ) ||
-                    ( players != null && players.equals( entity.getPlayers() ) ) );
+                    ( name != null && name.equals( entity.getName() ) ) );
     }
 
 
@@ -74,7 +62,6 @@ public class Roster extends ObservableEntity<Roster, RosterAction, RosterIdentif
         Roster result = factory.create();
 
         result.setName( this.getName() );
-        result.setPlayers( this.getPlayers() );
 
         return result;
     }
